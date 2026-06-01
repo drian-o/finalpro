@@ -1,0 +1,51 @@
+<?php
+// ajax/update_turnover.php
+include_once '../../koneksi.php';
+
+header('Content-Type: application/json');
+
+// Pastikan permintaan adalah POST dan pengguna sudah login
+if ($_SERVER['REQUEST_METHOD'] !== 'POST' || !isset($_SESSION['kode_admin'])) {
+    http_response_code(403);
+    echo json_encode(['status' => 'error', 'message' => 'Akses ditolak.']);
+    exit();
+}
+
+$response = ['status' => 'error', 'message' => 'Gagal memperbarui turnover.'];
+
+// Ambil data dari permintaan AJAX
+$id_anggota = isset($_POST['id_anggota']) ? $_POST['id_anggota'] : null;
+$turnover_amount = isset($_POST['turnover_amount']) ? $_POST['turnover_amount'] : null;
+
+// Validasi data
+if ($id_anggota === null || $turnover_amount === null || !is_numeric($id_anggota) || !is_numeric($turnover_amount)) {
+    $response['message'] = 'Data tidak valid.';
+    echo json_encode($response);
+    exit();
+}
+
+$new_turnover = floatval($turnover_amount);
+$current_time = date('Y-m-d H:i:s'); // Ambil waktu saat ini
+
+// Gunakan prepared statement untuk keamanan dan update kedua kolom
+$query_update = "UPDATE anggota SET turnover_amount = ?, last_turnover_update = ? WHERE id_anggota = ?";
+$stmt = mysqli_prepare($koneksi, $query_update);
+
+if ($stmt) {
+    mysqli_stmt_bind_param($stmt, 'dsi', $new_turnover, $current_time, $id_anggota);
+    if (mysqli_stmt_execute($stmt)) {
+        if (mysqli_stmt_affected_rows($stmt) > 0) {
+            $response['status'] = 'success';
+            $response['message'] = 'Turnover dan waktu pembaruan berhasil diperbarui.';
+        } else {
+            $response['message'] = 'Tidak ada perubahan data.';
+        }
+    } else {
+        $response['message'] = 'Gagal mengeksekusi query.';
+    }
+    mysqli_stmt_close($stmt);
+} else {
+    $response['message'] = 'Gagal menyiapkan statement.';
+}
+
+echo json_encode($response);

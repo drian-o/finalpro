@@ -1,0 +1,194 @@
+[2025-09-04 13:22:02] =================================================
+[2025-09-04 13:22:02] Memulai eksekusi cron job untuk cek pemain aktif.
+[2025-09-04 13:22:02] Payload API yang dikirim: {"method":"call_players","agent_code":"freenetvg","agent_token":"17697a73634e15a027f89cf9a865ac30"}
+[2025-09-04 13:22:04] Respons mentah (raw) dari API diterima: {"status":1,"data":[]}
+[2025-09-04 13:22:04] API berhasil. Jumlah pemain aktif: 0.
+[2025-09-04 13:22:04] Tidak ada pemain aktif yang terdeteksi. Tidak ada notifikasi yang dikirim.
+[2025-09-04 13:22:04] Eksekusi cron job selesai.
+[2025-09-04 13:22:04] =================================================
+
+[2025-09-04 13:23:02] =================================================
+[2025-09-04 13:23:02] Memulai eksekusi cron job untuk cek pemain aktif.
+[2025-09-04 13:23:02] Payload API yang dikirim: {"method":"call_players","agent_code":"freenetvg","agent_token":"17697a73634e15a027f89cf9a865ac30"}
+[2025-09-04 13:23:08] Respons mentah (raw) dari API diterima: {"status":1,"data":[]}
+[2025-09-04 13:23:08] API berhasil. Jumlah pemain aktif: 0.
+[2025-09-04 13:23:08] Tidak ada pemain aktif yang terdeteksi. Tidak ada notifikasi yang dikirim.
+[2025-09-04 13:23:08] Eksekusi cron job selesai.
+[2025-09-04 13:23:08] =================================================
+
+[2025-09-04 13:24:02] =================================================
+[2025-09-04 13:24:02] Memulai eksekusi cron job untuk cek pemain aktif.
+[2025-09-04 13:24:02] Payload API yang dikirim: {"method":"call_players","agent_code":"freenetvg","agent_token":"17697a73634e15a027f89cf9a865ac30"}
+[2025-09-04 13:24:02] Respons mentah (raw) dari API diterima: {"status":1,"data":[{"user_code":"developer","provider_code":"PRAGMATIC","game_code":"vs20olympgold","bet":400,"balance":42560,"total_debit":13200,"total_credit":1160,"target_rtp":80,"real_rtp":8.787878787878787}]}
+[2025-09-04 13:24:02] API berhasil. Jumlah pemain aktif: 1.
+[2025-09-04 13:24:02] Mendeteksi pemain aktif. Mengirim notifikasi Telegram...
+[2025-09-04 13:24:07] Notifikasi pemain online berhasil dikirim ke Telegram.
+[2025-09-04 13:24:07] Eksekusi cron job selesai.
+[2025-09-04 13:24:07] =================================================
+
+[2025-09-04 13:25:04] =================================================
+[2025-09-04 13:25:04] Memulai eksekusi cron job untuk cek pemain aktif.
+[2025-09-04 13:25:04] Payload API yang dikirim: {"method":"call_players","agent_code":"freenetvg","agent_token":"17697a73634e15a027f89cf9a865ac30"}
+[2025-09-04 13:25:05] Respons mentah (raw) dari API diterima: {"status":1,"data":[]}
+[2025-09-04 13:25:05] API berhasil. Jumlah pemain aktif: 0.
+[2025-09-04 13:25:05] Tidak ada pemain aktif yang terdeteksi. Tidak ada notifikasi yang dikirim.
+[2025-09-04 13:25:05] Eksekusi cron job selesai.
+[2025-09-04 13:25:05] =================================================
+
+[2025-09-04 13:26:03] =================================================
+[2025-09-04 13:26:03] Memulai eksekusi cron job untuk cek pemain aktif.
+[2025-09-04 13:26:03] Payload API yang dikirim: {"method":"call_players","agent_code":"freenetvg","agent_token":"17697a73634e15a027f89cf9a865ac30"}
+[2025-09-04 13:26:04] Respons mentah (raw) dari API diterima: {"status":1,"data":[{"user_code":"developer","provider_code":"PRAGMATIC","game_code":"vs20olympgold","bet":400,"balance":39760,"total_debit":18400,"total_credit":3560,"target_rtp":80,"real_rtp":19.34782608695652}]}
+[2025-09-04 13:26:04] API berhasil. Jumlah pemain aktif: 1.
+[2025-09-04 13:26:04] Mendeteksi pemain aktif. Mengirim notifikasi Telegram...
+[2025-09-04 13:26:06] Notifikasi pemain online berhasil dikirim ke Telegram.
+[2025-09-04 13:26:06] Eksekusi cron job selesai.
+[2025-09-04 13:26:06] =================================================
+
+[2025-09-04 13:27:02] =================================================
+[2025-09-04 13:27:02] Memulai eksekusi cron job untuk cek pemain aktif.
+[2025-09-04 13:27:02] Payload API yang dikirim: {"method":"call_players","agent_code":"freenetvg","agent_token":"17697a73634e15a027f89cf9a865ac30"}
+[2025-09-04 13:27:03] Respons mentah (raw) dari API diterima: {"status":1,"data":[{"user_code":"developer","provider_code":"PRAGMATIC","game_code":"vs20olympgold","bet":400,"balance":37360,"total_debit":24400,"total_credit":7160,"target_rtp":80,"real_rtp":29.34426229508197}]}
+[2025-09-04 13:27:03] API berhasil. Jumlah pemain aktif: 1.
+[2025-09-04 13:27:03] Mendeteksi pemain aktif. Mengirim notifikasi Telegram...
+[2025-09-04 13:27:16] Peringatan: Gagal mengirim notifikasi Telegram pemain online.
+[2025-09-04 13:27:16] Eksekusi cron job selesai.
+[2025-09-04 13:27:16] =================================================
+
+[2025-09-04 13:28:02] =================================================
+[2025-09-04 13:28:02] Memulai eksekusi cron job untuk cek pemain aktif.
+[2025-09-04 13:28:02] Payload API yang dikirim: {"method":"call_players","agent_code":"freenetvg","agent_token":"17697a73634e15a027f89cf9a865ac30"}
+[2025-09-04 13:28:03] Respons mentah (raw) dari API diterima: {"status":1,"data":[{"user_code":"developer","provider_code":"PRAGMATIC","game_code":"vs20olympgold","bet":400,"balance":38120,"total_debit":28000,"total_credit":11520,"target_rtp":80,"real_rtp":41.14285714285714}]}
+[2025-09-04 13:28:03] API berhasil. Jumlah pemain aktif: 1.
+[2025-09-04 13:28:03] Mendeteksi pemain aktif. Mengirim notifikasi Telegram...
+[2025-09-04 13:28:05] Notifikasi pemain online berhasil dikirim ke Telegram.
+[2025-09-04 13:28:05] Eksekusi cron job selesai.
+[2025-09-04 13:28:05] =================================================
+
+[2025-09-04 13:29:03] =================================================
+[2025-09-04 13:29:03] Memulai eksekusi cron job untuk cek pemain aktif.
+[2025-09-04 13:29:03] Payload API yang dikirim: {"method":"call_players","agent_code":"freenetvg","agent_token":"17697a73634e15a027f89cf9a865ac30"}
+[2025-09-04 13:29:03] Respons mentah (raw) dari API diterima: {"status":1,"data":[{"user_code":"developer","provider_code":"PRAGMATIC","game_code":"vs20olympgold","bet":400,"balance":39140,"total_debit":30400,"total_credit":14940,"target_rtp":80,"real_rtp":49.14473684210526}]}
+[2025-09-04 13:29:03] API berhasil. Jumlah pemain aktif: 1.
+[2025-09-04 13:29:03] Mendeteksi pemain aktif. Mengirim notifikasi Telegram...
+[2025-09-04 13:29:04] Notifikasi pemain online berhasil dikirim ke Telegram.
+[2025-09-04 13:29:04] Eksekusi cron job selesai.
+[2025-09-04 13:29:04] =================================================
+
+[2025-09-04 13:30:03] =================================================
+[2025-09-04 13:30:03] Memulai eksekusi cron job untuk cek pemain aktif.
+[2025-09-04 13:30:03] Payload API yang dikirim: {"method":"call_players","agent_code":"freenetvg","agent_token":"17697a73634e15a027f89cf9a865ac30"}
+[2025-09-04 13:30:04] Respons mentah (raw) dari API diterima: {"status":1,"data":[]}
+[2025-09-04 13:30:04] API berhasil. Jumlah pemain aktif: 0.
+[2025-09-04 13:30:04] Tidak ada pemain aktif yang terdeteksi. Tidak ada notifikasi yang dikirim.
+[2025-09-04 13:30:04] Eksekusi cron job selesai.
+[2025-09-04 13:30:04] =================================================
+
+[2025-09-04 13:31:03] =================================================
+[2025-09-04 13:31:03] Memulai eksekusi cron job untuk cek pemain aktif.
+[2025-09-04 13:31:03] Payload API yang dikirim: {"method":"call_players","agent_code":"freenetvg","agent_token":"17697a73634e15a027f89cf9a865ac30"}
+[2025-09-04 13:31:03] Respons mentah (raw) dari API diterima: {"status":1,"data":[]}
+[2025-09-04 13:31:03] API berhasil. Jumlah pemain aktif: 0.
+[2025-09-04 13:31:03] Tidak ada pemain aktif yang terdeteksi. Tidak ada notifikasi yang dikirim.
+[2025-09-04 13:31:03] Eksekusi cron job selesai.
+[2025-09-04 13:31:03] =================================================
+
+[2025-09-04 13:32:02] =================================================
+[2025-09-04 13:32:02] Memulai eksekusi cron job untuk cek pemain aktif.
+[2025-09-04 13:32:02] Payload API yang dikirim: {"method":"call_players","agent_code":"freenetvg","agent_token":"17697a73634e15a027f89cf9a865ac30"}
+[2025-09-04 13:32:03] Respons mentah (raw) dari API diterima: {"status":1,"data":[]}
+[2025-09-04 13:32:03] API berhasil. Jumlah pemain aktif: 0.
+[2025-09-04 13:32:03] Tidak ada pemain aktif yang terdeteksi. Tidak ada notifikasi yang dikirim.
+[2025-09-04 13:32:03] Eksekusi cron job selesai.
+[2025-09-04 13:32:03] =================================================
+
+[2025-09-04 13:33:02] =================================================
+[2025-09-04 13:33:02] Memulai eksekusi cron job untuk cek pemain aktif.
+[2025-09-04 13:33:02] Payload API yang dikirim: {"method":"call_players","agent_code":"freenetvg","agent_token":"17697a73634e15a027f89cf9a865ac30"}
+[2025-09-04 13:33:03] Respons mentah (raw) dari API diterima: {"status":1,"data":[]}
+[2025-09-04 13:33:03] API berhasil. Jumlah pemain aktif: 0.
+[2025-09-04 13:33:03] Tidak ada pemain aktif yang terdeteksi. Tidak ada notifikasi yang dikirim.
+[2025-09-04 13:33:03] Eksekusi cron job selesai.
+[2025-09-04 13:33:03] =================================================
+
+[2025-09-04 13:34:03] =================================================
+[2025-09-04 13:34:03] Memulai eksekusi cron job untuk cek pemain aktif.
+[2025-09-04 13:34:03] Payload API yang dikirim: {"method":"call_players","agent_code":"freenetvg","agent_token":"17697a73634e15a027f89cf9a865ac30"}
+[2025-09-04 13:34:03] Respons mentah (raw) dari API diterima: {"status":1,"data":[]}
+[2025-09-04 13:34:03] API berhasil. Jumlah pemain aktif: 0.
+[2025-09-04 13:34:03] Tidak ada pemain aktif yang terdeteksi. Tidak ada notifikasi yang dikirim.
+[2025-09-04 13:34:03] Eksekusi cron job selesai.
+[2025-09-04 13:34:03] =================================================
+
+[2025-09-04 13:35:04] =================================================
+[2025-09-04 13:35:04] Memulai eksekusi cron job untuk cek pemain aktif.
+[2025-09-04 13:35:04] Payload API yang dikirim: {"method":"call_players","agent_code":"freenetvg","agent_token":"17697a73634e15a027f89cf9a865ac30"}
+[2025-09-04 13:35:04] Respons mentah (raw) dari API diterima: {"status":1,"data":[]}
+[2025-09-04 13:35:04] API berhasil. Jumlah pemain aktif: 0.
+[2025-09-04 13:35:04] Tidak ada pemain aktif yang terdeteksi. Tidak ada notifikasi yang dikirim.
+[2025-09-04 13:35:04] Eksekusi cron job selesai.
+[2025-09-04 13:35:04] =================================================
+
+[2025-09-04 13:36:02] =================================================
+[2025-09-04 13:36:02] Memulai eksekusi cron job untuk cek pemain aktif.
+[2025-09-04 13:36:02] Payload API yang dikirim: {"method":"call_players","agent_code":"freenetvg","agent_token":"17697a73634e15a027f89cf9a865ac30"}
+[2025-09-04 13:36:02] Respons mentah (raw) dari API diterima: {"status":1,"data":[]}
+[2025-09-04 13:36:02] API berhasil. Jumlah pemain aktif: 0.
+[2025-09-04 13:36:02] Tidak ada pemain aktif yang terdeteksi. Tidak ada notifikasi yang dikirim.
+[2025-09-04 13:36:02] Eksekusi cron job selesai.
+[2025-09-04 13:36:02] =================================================
+
+[2025-09-04 13:37:04] =================================================
+[2025-09-04 13:37:04] Memulai eksekusi cron job untuk cek pemain aktif.
+[2025-09-04 13:37:04] Payload API yang dikirim: {"method":"call_players","agent_code":"freenetvg","agent_token":"17697a73634e15a027f89cf9a865ac30"}
+[2025-09-04 13:37:05] Respons mentah (raw) dari API diterima: {"status":1,"data":[]}
+[2025-09-04 13:37:05] API berhasil. Jumlah pemain aktif: 0.
+[2025-09-04 13:37:05] Tidak ada pemain aktif yang terdeteksi. Tidak ada notifikasi yang dikirim.
+[2025-09-04 13:37:05] Eksekusi cron job selesai.
+[2025-09-04 13:37:05] =================================================
+
+[2025-09-04 13:38:02] =================================================
+[2025-09-04 13:38:02] Memulai eksekusi cron job untuk cek pemain aktif.
+[2025-09-04 13:38:02] Payload API yang dikirim: {"method":"call_players","agent_code":"freenetvg","agent_token":"17697a73634e15a027f89cf9a865ac30"}
+[2025-09-04 13:38:04] Respons mentah (raw) dari API diterima: {"status":1,"data":[]}
+[2025-09-04 13:38:04] API berhasil. Jumlah pemain aktif: 0.
+[2025-09-04 13:38:04] Tidak ada pemain aktif yang terdeteksi. Tidak ada notifikasi yang dikirim.
+[2025-09-04 13:38:04] Eksekusi cron job selesai.
+[2025-09-04 13:38:04] =================================================
+
+[2025-09-04 13:39:02] =================================================
+[2025-09-04 13:39:02] Memulai eksekusi cron job untuk cek pemain aktif.
+[2025-09-04 13:39:02] Payload API yang dikirim: {"method":"call_players","agent_code":"freenetvg","agent_token":"17697a73634e15a027f89cf9a865ac30"}
+[2025-09-04 13:39:04] Respons mentah (raw) dari API diterima: {"status":1,"data":[]}
+[2025-09-04 13:39:04] API berhasil. Jumlah pemain aktif: 0.
+[2025-09-04 13:39:04] Tidak ada pemain aktif yang terdeteksi. Tidak ada notifikasi yang dikirim.
+[2025-09-04 13:39:04] Eksekusi cron job selesai.
+[2025-09-04 13:39:04] =================================================
+
+[2025-09-04 13:40:04] =================================================
+[2025-09-04 13:40:04] Memulai eksekusi cron job untuk cek pemain aktif.
+[2025-09-04 13:40:04] Payload API yang dikirim: {"method":"call_players","agent_code":"freenetvg","agent_token":"17697a73634e15a027f89cf9a865ac30"}
+[2025-09-04 13:40:04] Respons mentah (raw) dari API diterima: {"status":1,"data":[]}
+[2025-09-04 13:40:04] API berhasil. Jumlah pemain aktif: 0.
+[2025-09-04 13:40:04] Tidak ada pemain aktif yang terdeteksi. Tidak ada notifikasi yang dikirim.
+[2025-09-04 13:40:04] Eksekusi cron job selesai.
+[2025-09-04 13:40:04] =================================================
+
+[2025-09-04 13:41:02] =================================================
+[2025-09-04 13:41:02] Memulai eksekusi cron job untuk cek pemain aktif.
+[2025-09-04 13:41:02] Payload API yang dikirim: {"method":"call_players","agent_code":"freenetvg","agent_token":"17697a73634e15a027f89cf9a865ac30"}
+[2025-09-04 13:41:04] Respons mentah (raw) dari API diterima: {"status":1,"data":[]}
+[2025-09-04 13:41:04] API berhasil. Jumlah pemain aktif: 0.
+[2025-09-04 13:41:04] Tidak ada pemain aktif yang terdeteksi. Tidak ada notifikasi yang dikirim.
+[2025-09-04 13:41:04] Eksekusi cron job selesai.
+[2025-09-04 13:41:04] =================================================
+
+[2025-09-04 13:42:02] =================================================
+[2025-09-04 13:42:02] Memulai eksekusi cron job untuk cek pemain aktif.
+[2025-09-04 13:42:02] Jumlah kombinasi pemain-game dari cache: 0
+[2025-09-04 13:42:02] Jumlah pemain atau pemain yang pindah game: 0.
+[2025-09-04 13:42:02] Tidak ada pemain baru atau yang pindah game. Tidak ada notifikasi yang dikirim.
+[2025-09-04 13:42:02] Data pemain saat ini disimpan ke cache untuk perbandingan berikutnya.
+[2025-09-04 13:42:02] Eksekusi cron job selesai.
+[2025-09-04 13:42:02] =================================================
+

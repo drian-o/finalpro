@@ -1,0 +1,657 @@
+[2025-07-26 05:22:30] ==== ADMIN DEPOSIT APPROVAL DEBUG ====
+Admin: n90v6Hdzb6zO8SutZ0ZQ
+Deposit ID: 2
+Target User: demodoang
+Jumlah Deposit: 2000
+Status Lama: diproses, Status Baru: disetujui
+Request Params (Transaksi): {"username":"demodoang","amount":2000,"type":"deposit"}
+API Response (Transaksi): {"status":"fail","msg":"INVALID AGENT CODE"}
+API Call (Transaksi) Failed: Proses transaksi deposit via API gagal. Pesan: INVALID AGENT CODE
+==== DEBUG END ====
+
+[2025-07-26 05:22:36] ==== ADMIN DEPOSIT APPROVAL DEBUG ====
+Admin: n90v6Hdzb6zO8SutZ0ZQ
+Deposit ID: 2
+Target User: demodoang
+Jumlah Deposit: 2000
+Status Lama: diproses, Status Baru: dibatalkan
+DB Update: Sukses update status deposit (tanpa interaksi API) ke dibatalkan
+==== DEBUG END ====
+
+[2025-07-26 05:35:37] ==== ADMIN DEPOSIT APPROVAL DEBUG ====
+Admin: n90v6Hdzb6zO8SutZ0ZQ
+Deposit ID: 3
+Target User: demodoang
+Jumlah Deposit: 2000
+Status Lama: diproses, Status Baru: disetujui
+Request Params (Transaksi): {"username":"demodoang","amount":2000,"type":"deposit"}
+API Response (Transaksi): {"status":"fail","msg":"INVALID AGENT CODE"}
+API Call (Transaksi) Failed: Proses transaksi deposit via API gagal. Pesan: INVALID AGENT CODE
+==== DEBUG END ====
+
+[2025-07-26 05:45:02] ==== ADMIN DEPOSIT APPROVAL DEBUG ====
+Admin: n90v6Hdzb6zO8SutZ0ZQ
+Deposit ID: 4
+Target User: demodoang
+Jumlah Deposit: 2000
+Status Lama: diproses, Status Baru: dibatalkan
+DB Update: Sukses update status deposit (tanpa interaksi API) ke dibatalkan
+==== DEBUG END ====
+
+[2025-07-26 08:23:04] ==== ADMIN DEPOSIT APPROVAL DEBUG ====
+Admin: 7cRGOlSpZUJkySuPTaKn
+Deposit ID: 6
+Player ID (id_sigma): 67
+Target User: demodoang
+Jumlah Deposit: 1000
+Status Lama: diproses, Status Baru: disetujui
+Generated new reference_id: deposit_68842df8f0274
+Request Params (depositToPlayer): {"playerId":67,"amount":1000,"referenceId":"deposit_68842df8f0274"}
+API Response (depositToPlayer): {"success":true,"data":{"message":"Deposit successful","data":{"player_id":"67","amount":1000,"balance_before":5600,"balance_after":6600,"transaction_type":"deposit","reference_id":"deposit_68842df8f0274","agent_id":15,"agent_balance_before":5370000,"agent_balance_after":5369000,"hierarchy_level":"agent_to_player"}}}
+Deposit API sukses. Memanggil getPlayerBalance untuk player ID: 67
+API Response (getPlayerBalance): {"success":true,"data":{"player_id":67,"username":"demodoang","full_name":"Vegon Shella","balance":6600,"currency":"IDR"}}
+Saldo final dari getPlayerBalance: 6600
+DB Exception: Unknown column 'deposit_reference_id' in 'SET'
+==== DEBUG END ====
+
+[2025-07-26 08:24:14] ==== ADMIN DEPOSIT APPROVAL DEBUG ====
+Admin: 7cRGOlSpZUJkySuPTaKn
+Deposit ID: 6
+Player ID (id_sigma): 67
+Target User: demodoang
+Jumlah Deposit: 1000
+Status Lama: diproses, Status Baru: disetujui
+Generated new reference_id: deposit_68842e3e0715c
+Request Params (depositToPlayer): {"playerId":67,"amount":1000,"referenceId":"deposit_68842e3e0715c"}
+API Response (depositToPlayer): {"success":true,"data":{"message":"Deposit successful","data":{"player_id":"67","amount":1000,"balance_before":6600,"balance_after":7600,"transaction_type":"deposit","reference_id":"deposit_68842e3e0715c","agent_id":15,"agent_balance_before":5369000,"agent_balance_after":5368000,"hierarchy_level":"agent_to_player"}}}
+Deposit API sukses. Memanggil getPlayerBalance untuk player ID: 67
+API Response (getPlayerBalance): {"success":true,"data":{"player_id":67,"username":"demodoang","full_name":"Vegon Shella","balance":7600,"currency":"IDR"}}
+Saldo final dari getPlayerBalance: 7600
+DB Update: Sukses update saldo anggota, reference_id, dan status deposit.
+==== DEBUG END ====
+
+[2025-07-26 08:44:53] ==== ADMIN DEPOSIT APPROVAL DEBUG ====
+Admin: 7cRGOlSpZUJkySuPTaKn
+Deposit ID: 7
+Player ID (id_sigma): 67
+Target User: demodoang
+Jumlah Deposit: 50000
+Status Lama: diproses, Status Baru: disetujui
+Generated new reference_id: dep_22067787468843315f3d507.33978322
+Request Params (depositToPlayer): {"playerId":67,"amount":50000,"referenceId":"dep_22067787468843315f3d507.33978322"}
+API Response (depositToPlayer): {"success":true,"data":{"message":"Deposit successful","data":{"player_id":"67","amount":50000,"balance_before":7600,"balance_after":57600,"transaction_type":"deposit","reference_id":"dep_22067787468843315f3d507.33978322","agent_id":15,"agent_balance_before":5368000,"agent_balance_after":5318000,"hierarchy_level":"agent_to_player"}}}
+Deposit API sukses. Memanggil getPlayerBalance untuk player ID: 67
+API Response (getPlayerBalance): {"success":true,"data":{"player_id":67,"username":"demodoang","full_name":"Vegon Shella","balance":57600,"currency":"IDR"}}
+Saldo final dari getPlayerBalance: 57600
+DB Update: Sukses update saldo anggota, reference_id, dan status deposit.
+==== DEBUG END ====
+
+[2025-07-26 12:33:41] ==== ADMIN DEPOSIT APPROVAL DEBUG ====
+Admin: CsAWNawYRKYepkKo4nqp
+Deposit ID: 12
+Player ID (id_sigma): 73
+Target User: demodoang1
+Jumlah Deposit: 2000
+Status Lama: diproses, Status Baru: disetujui
+Generated new reference_id: dep_1412397827688468b5df21a2.25661409
+Request Params (depositToPlayer): {"playerId":73,"amount":2000,"referenceId":"dep_1412397827688468b5df21a2.25661409"}
+API Response (depositToPlayer): {"success":true,"data":{"message":"Deposit successful","data":{"player_id":"73","amount":2000,"balance_before":8000,"balance_after":10000,"transaction_type":"deposit","reference_id":"dep_1412397827688468b5df21a2.25661409","agent_id":15,"agent_balance_before":60000,"agent_balance_after":58000,"hierarchy_level":"agent_to_player"}}}
+Deposit API sukses. Memanggil getPlayerBalance untuk player ID: 73
+API Response (getPlayerBalance): {"success":true,"data":{"player_id":73,"username":"demodoang1","full_name":"Vegon s","balance":10000,"currency":"IDR"}}
+Saldo final dari getPlayerBalance: 10000
+DB Update: Sukses update saldo anggota, reference_id, dan status deposit.
+Referral found for demodoang1: demodoang. Calculating bonus.
+Referral Bonus: Updated bonus for referer 'demodoang' from 'demodoang1'. New total bonus: 60. Keterangan: 'Bonus dari deposit dep_1412397827688468b5df21a2.25661409 (Rp 2.000)'.
+DB Update: Transaksi COMMIT sukses.
+==== DEBUG END ====
+
+[2025-07-27 19:41:27] ==== ADMIN DEPOSIT APPROVAL DEBUG ====
+Admin: n8mShCe9uBQ1AcbltW1N
+Deposit ID: 13
+Player ID (id_sigma): 98
+Target User: Septi123
+Jumlah Deposit: 200000
+Status Lama: diproses, Status Baru: dibatalkan
+DB Update: Sukses update status deposit (tanpa interaksi API) ke dibatalkan
+==== DEBUG END ====
+
+[2025-07-27 19:44:56] ==== ADMIN DEPOSIT APPROVAL DEBUG ====
+Admin: n8mShCe9uBQ1AcbltW1N
+Deposit ID: 14
+Player ID (id_sigma): 98
+Target User: Septi123
+Jumlah Deposit: 50000
+Status Lama: diproses, Status Baru: dibatalkan
+DB Update: Sukses update status deposit (tanpa interaksi API) ke dibatalkan
+==== DEBUG END ====
+
+[2025-07-29 17:53:10] ==== ADMIN DEPOSIT APPROVAL DEBUG ====
+Admin: pGCINO7nfxLVkC2L0SqN
+Deposit ID: 15
+Player ID (id_sigma): 67
+Target User: demodoang
+Jumlah Deposit: 50000
+Status Lama: diproses, Status Baru: disetujui
+Generated new reference_id: dep_19533258296888a816c81a58.21685100
+Request Params (depositToPlayer): {"playerId":67,"amount":50000,"referenceId":"dep_19533258296888a816c81a58.21685100"}
+API Response (depositToPlayer): {"success":true,"data":{"message":"Deposit successful","data":{"player_id":"67","amount":50000,"balance_before":22502.5,"balance_after":72502.5,"transaction_type":"deposit","reference_id":"dep_19533258296888a816c81a58.21685100","agent_id":15,"agent_balance_before":5449100,"agent_balance_after":5399100,"hierarchy_level":"agent_to_player"}}}
+Deposit API sukses. Memanggil getPlayerBalance untuk player ID: 67
+API Response (getPlayerBalance): {"success":true,"data":{"player_id":67,"username":"demodoang","full_name":"Vegon Shella","balance":72502.5,"currency":"IDR"}}
+Saldo final dari getPlayerBalance: 72502.5
+DB Update: Sukses update saldo anggota, reference_id, dan status deposit.
+No referer found for user 'demodoang'. Skipping referral bonus.
+DB Update: Transaksi COMMIT sukses.
+==== DEBUG END ====
+
+[2025-08-03 11:57:50] ==== ADMIN DEPOSIT APPROVAL DEBUG ====
+Admin: 5T4qHG2eFDkyBsmBye7Q
+Deposit ID: 16
+Player ID (id_sigma): 67
+Target User: demodoang
+Jumlah Deposit: 50000
+Status Lama: diproses, Status Baru: disetujui
+Generated new reference_id: dep_441765179688eec4e1d27c1.49205046
+Request Params (depositToPlayer): {"playerId":67,"amount":50000,"referenceId":"dep_441765179688eec4e1d27c1.49205046"}
+API Response (depositToPlayer): {"success":true,"data":{"message":"Deposit successful","data":{"player_id":"67","amount":50000,"balance_before":6280,"balance_after":56280,"transaction_type":"deposit","reference_id":"dep_441765179688eec4e1d27c1.49205046","agent_id":15,"agent_balance_before":5465222.5,"agent_balance_after":5415222.5,"hierarchy_level":"agent_to_player"}}}
+Deposit API sukses. Memanggil getPlayerBalance untuk player ID: 67
+API Response (getPlayerBalance): {"success":true,"data":{"player_id":67,"username":"demodoang","full_name":"Vegon Shella","balance":56280,"currency":"IDR"}}
+Saldo final dari getPlayerBalance: 56280
+DB Update: Sukses update saldo anggota, reference_id, dan status deposit.
+No referer found for user 'demodoang'. Skipping referral bonus.
+DB Update: Transaksi COMMIT sukses.
+==== DEBUG END ====
+
+[2025-08-04 03:01:25] ==== ADMIN DEPOSIT APPROVAL DEBUG ====
+Admin: 7HZ7mbpBVGTqepTSdG83
+Deposit ID: 17
+Player ID (id_sigma): 84
+Target User: joniaw
+Jumlah Deposit: 50000
+Status Lama: diproses, Status Baru: disetujui
+Generated new reference_id: dep_1711664662688fc015114e72.04491316
+Request Params (depositToPlayer): {"playerId":84,"amount":50000,"referenceId":"dep_1711664662688fc015114e72.04491316"}
+API Response (depositToPlayer): {"success":true,"data":{"message":"Deposit successful","data":{"player_id":"84","amount":50000,"balance_before":80,"balance_after":50080,"transaction_type":"deposit","reference_id":"dep_1711664662688fc015114e72.04491316","agent_id":15,"agent_balance_before":5415222.5,"agent_balance_after":5365222.5,"hierarchy_level":"agent_to_player"}}}
+Deposit API sukses. Memanggil getPlayerBalance untuk player ID: 84
+API Response (getPlayerBalance): {"success":true,"data":{"player_id":84,"username":"joniaw","full_name":"joniah","balance":50080,"currency":"IDR"}}
+Saldo final dari getPlayerBalance: 50080
+DB Update: Sukses update saldo anggota, reference_id, dan status deposit.
+No referer found for user 'joniaw'. Skipping referral bonus.
+DB Update: Transaksi COMMIT sukses.
+==== DEBUG END ====
+
+[2025-08-04 11:56:57] ==== ADMIN DEPOSIT APPROVAL DEBUG ====
+Admin: F0QQ5bfncBHpeAKNpRXZ
+Deposit ID: 18
+Player ID (id_sigma): 67
+Target User: demodoang
+Jumlah Deposit: 2000
+Status Lama: diproses, Status Baru: disetujui
+Generated new reference_id: dep_190361817768903d995ee1c2.75535363
+Request Params (depositToPlayer): {"playerId":67,"amount":2000,"referenceId":"dep_190361817768903d995ee1c2.75535363"}
+API Response (depositToPlayer): {"success":true,"data":{"message":"Deposit successful","data":{"player_id":"67","amount":2000,"balance_before":56280,"balance_after":58280,"transaction_type":"deposit","reference_id":"dep_190361817768903d995ee1c2.75535363","agent_id":15,"agent_balance_before":5385122.5,"agent_balance_after":5383122.5,"hierarchy_level":"agent_to_player"}}}
+Deposit API sukses. Memanggil getPlayerBalance untuk player ID: 67
+API Response (getPlayerBalance): {"success":true,"data":{"player_id":67,"username":"demodoang","full_name":"Vegon Shella","balance":58280,"currency":"IDR"}}
+Saldo final dari getPlayerBalance: 58280
+DB Update: Sukses update saldo anggota, reference_id, dan status deposit.
+No referer found for user 'demodoang'. Skipping referral bonus.
+DB Update: Transaksi COMMIT sukses.
+==== DEBUG END ====
+
+[2025-08-05 12:09:31] ==== ADMIN DEPOSIT APPROVAL DEBUG ====
+Admin: g8uEKgb9k1GliXDDN4QR
+Deposit ID: 19
+Player ID (id_sigma): 197
+Target User: keminfo2020
+Jumlah Deposit: 20000
+Status Lama: diproses, Status Baru: dibatalkan
+DB Update: Sukses update status deposit (tanpa interaksi API) ke dibatalkan
+==== DEBUG END ====
+
+[2025-08-05 12:19:26] ==== ADMIN DEPOSIT APPROVAL DEBUG ====
+Admin: g8uEKgb9k1GliXDDN4QR
+Deposit ID: 20
+Player ID (id_sigma): 67
+Target User: demodoang
+Jumlah Deposit: 50000
+Status Lama: diproses, Status Baru: dibatalkan
+DB Update: Sukses update status deposit (tanpa interaksi API) ke dibatalkan
+==== DEBUG END ====
+
+[2025-08-06 03:49:09] ==== ADMIN DEPOSIT APPROVAL DEBUG ====
+Admin: y49qmfODoCsCASHoMUsa
+Deposit ID: 1
+Player ID (id_sigma): 254
+Target User: demouser
+Jumlah Deposit: 1000
+Status Lama: diproses, Status Baru: disetujui
+Generated new reference_id: dep_212886179468926e451a16e0.46492187
+Request Params (depositToPlayer): {"playerId":254,"amount":1000,"referenceId":"dep_212886179468926e451a16e0.46492187"}
+API Response (depositToPlayer): {"success":true,"data":{"message":"Deposit successful","data":{"player_id":"254","amount":1000,"balance_before":0,"balance_after":1000,"transaction_type":"deposit","reference_id":"dep_212886179468926e451a16e0.46492187","agent_id":123,"agent_balance_before":100000,"agent_balance_after":99000,"hierarchy_level":"agent_to_player"}}}
+Deposit API sukses. Memanggil getPlayerBalance untuk player ID: 254
+API Response (getPlayerBalance): {"success":true,"data":{"player_id":254,"username":"demouser","full_name":"Vegon Shella","balance":1000,"currency":"IDR"}}
+Saldo final dari getPlayerBalance: 1000
+DB Update: Sukses update saldo anggota, reference_id, dan status deposit.
+No referer found for user 'demouser'. Skipping referral bonus.
+DB Update: Transaksi COMMIT sukses.
+==== DEBUG END ====
+
+[2025-08-06 03:51:32] ==== ADMIN DEPOSIT APPROVAL DEBUG ====
+Admin: n5TCrwQ3PSuqrZ5r40vP
+Deposit ID: 2
+Player ID (id_sigma): 255
+Target User: ref1demouser
+Jumlah Deposit: 10000
+Status Lama: diproses, Status Baru: disetujui
+Generated new reference_id: dep_111451736968926ed413cb89.41750903
+Request Params (depositToPlayer): {"playerId":255,"amount":10000,"referenceId":"dep_111451736968926ed413cb89.41750903"}
+API Response (depositToPlayer): {"success":true,"data":{"message":"Deposit successful","data":{"player_id":"255","amount":10000,"balance_before":0,"balance_after":10000,"transaction_type":"deposit","reference_id":"dep_111451736968926ed413cb89.41750903","agent_id":123,"agent_balance_before":99000,"agent_balance_after":89000,"hierarchy_level":"agent_to_player"}}}
+Deposit API sukses. Memanggil getPlayerBalance untuk player ID: 255
+API Response (getPlayerBalance): {"success":true,"data":{"player_id":255,"username":"ref1demouser","full_name":"Ref demo doang","balance":10000,"currency":"IDR"}}
+Saldo final dari getPlayerBalance: 10000
+DB Update: Sukses update saldo anggota, reference_id, dan status deposit.
+Referral found for ref1demouser: demodoang. Calculating bonus.
+Referral rate from DB/default: 0.1.
+Referral Bonus: Inserted new entry for referer 'demodoang' from 'ref1demouser'. Initial bonus: 1000. Keterangan: 'Bonus dari deposit dep_111451736968926ed413cb89.41750903 (Rp 10.000)'.
+DB Update: Transaksi COMMIT sukses.
+==== DEBUG END ====
+
+[2025-08-06 06:31:39] ==== ADMIN DEPOSIT APPROVAL DEBUG ====
+Admin: ZOPZJmpGpoLl24Ws90JO
+Deposit ID: 3
+Player ID (id_sigma): 254
+Target User: demouser
+Jumlah Deposit: 2000
+Status Lama: diproses, Status Baru: dibatalkan
+DB Update: Sukses update status deposit (tanpa interaksi API) ke dibatalkan
+==== DEBUG END ====
+
+[2025-08-06 06:33:36] ==== ADMIN DEPOSIT APPROVAL DEBUG ====
+Admin: ZOPZJmpGpoLl24Ws90JO
+Deposit ID: 4
+Player ID (id_sigma): 254
+Target User: demouser
+Jumlah Deposit: 2000
+Status Lama: diproses, Status Baru: dibatalkan
+DB Update: Sukses update status deposit (tanpa interaksi API) ke dibatalkan
+==== DEBUG END ====
+
+[2025-08-07 03:32:48] ==== ADMIN DEPOSIT APPROVAL DEBUG ====
+Admin: bxOBCdBNJ5UlEvZGGWkt
+Deposit ID: 5
+Player ID (id_sigma): 254
+Target User: demouser
+Jumlah Deposit: 2000
+Status Lama: diproses, Status Baru: dibatalkan
+DB Update: Sukses update status deposit (tanpa interaksi API) ke dibatalkan
+==== DEBUG END ====
+
+[2025-08-07 03:32:57] ==== ADMIN DEPOSIT APPROVAL DEBUG ====
+Admin: bxOBCdBNJ5UlEvZGGWkt
+Deposit ID: 6
+Player ID (id_sigma): 261
+Target User: demouser1
+Jumlah Deposit: 2000
+Status Lama: diproses, Status Baru: dibatalkan
+DB Update: Sukses update status deposit (tanpa interaksi API) ke dibatalkan
+==== DEBUG END ====
+
+[2025-08-07 03:41:15] ==== ADMIN DEPOSIT APPROVAL DEBUG ====
+Admin: bxOBCdBNJ5UlEvZGGWkt
+Deposit ID: 7
+Player ID (id_sigma): 261
+Target User: demouser1
+Jumlah Deposit: 2000
+Status Lama: diproses, Status Baru: dibatalkan
+DB Update: Sukses update status deposit (tanpa interaksi API) ke dibatalkan
+==== DEBUG END ====
+
+[2025-08-07 03:57:00] ==== ADMIN DEPOSIT APPROVAL DEBUG ====
+Admin: bxOBCdBNJ5UlEvZGGWkt
+Deposit ID: 8
+Player ID (id_sigma): 261
+Target User: demouser1
+Jumlah Deposit: 2000
+Status Lama: diproses, Status Baru: disetujui
+Generated new reference_id: dep_15800158236893c19c518824.54586611
+Request Params (depositToPlayer): {"playerId":261,"amount":2000,"referenceId":"dep_15800158236893c19c518824.54586611"}
+API Response (depositToPlayer): {"success":true,"data":{"message":"Deposit successful","data":{"player_id":"261","amount":2000,"balance_before":0,"balance_after":2000,"transaction_type":"deposit","reference_id":"dep_15800158236893c19c518824.54586611","agent_id":123,"agent_balance_before":100000,"agent_balance_after":98000,"hierarchy_level":"agent_to_player"}}}
+Deposit API sukses. Memanggil getPlayerBalance untuk player ID: 261
+API Response (getPlayerBalance): {"success":true,"data":{"player_id":261,"username":"demouser1","full_name":"Vegon shell","balance":2000,"currency":"IDR"}}
+Saldo final dari getPlayerBalance: 2000
+DB Update: Sukses update saldo anggota, reference_id, dan status deposit.
+Referral found for demouser1: demouser. Calculating bonus.
+Referral rate from DB/default: 0.1.
+Referral Bonus: Inserted new entry for referer 'demouser' from 'demouser1'. Initial bonus: 200. Keterangan: 'Bonus dari deposit dep_15800158236893c19c518824.54586611 (Rp 2.000)'.
+DB Update: Transaksi COMMIT sukses.
+==== DEBUG END ====
+
+[2025-08-08 20:11:10] ==== ADMIN DEPOSIT APPROVAL DEBUG ====
+Admin: qhyvlLEClPuZcwX8QPgy
+Deposit ID: 9
+Player ID (id_sigma): 254
+Target User: demouser
+Jumlah Deposit: 50000
+Status Lama: diproses, Status Baru: disetujui
+Generated new reference_id: dep_16742230666895f76e25cbf9.45434342
+Request Params (depositToPlayer): {"playerId":254,"amount":50000,"referenceId":"dep_16742230666895f76e25cbf9.45434342"}
+API Response (depositToPlayer): {"success":true,"data":{"message":"Deposit successful","data":{"player_id":"254","amount":50000,"balance_before":0,"balance_after":50000,"transaction_type":"deposit","reference_id":"dep_16742230666895f76e25cbf9.45434342","agent_id":123,"agent_balance_before":98000,"agent_balance_after":48000,"hierarchy_level":"agent_to_player"}}}
+Deposit API sukses. Memanggil getPlayerBalance untuk player ID: 254
+API Response (getPlayerBalance): {"success":true,"data":{"player_id":254,"username":"demouser","full_name":"Vegon Shella","balance":50000,"currency":"IDR"}}
+Saldo final dari getPlayerBalance: 50000
+DB Update: Sukses update saldo anggota, reference_id, dan status deposit.
+No referer found for user 'demouser'. Skipping referral bonus.
+DB Update: Transaksi COMMIT sukses.
+==== DEBUG END ====
+
+[2025-08-09 19:26:28] ==== ADMIN DEPOSIT APPROVAL DEBUG ====
+Admin: suTebGT2RRMnXMDlpBMo
+Deposit ID: 10
+Player ID (id_sigma): 254
+Target User: demouser
+Jumlah Deposit: 25000
+Status Lama: diproses, Status Baru: disetujui
+Generated new reference_id: dep_5841994068973e741d1a61.42342996
+Request Params (depositToPlayer): {"playerId":254,"amount":25000,"referenceId":"dep_5841994068973e741d1a61.42342996"}
+API Response (depositToPlayer): {"success":true,"data":{"message":"Deposit successful","data":{"player_id":"254","amount":25000,"balance_before":0,"balance_after":25000,"transaction_type":"deposit","reference_id":"dep_5841994068973e741d1a61.42342996","agent_id":123,"agent_balance_before":90740,"agent_balance_after":65740,"hierarchy_level":"agent_to_player"}}}
+Deposit API sukses. Memanggil getPlayerBalance untuk player ID: 254
+API Response (getPlayerBalance): {"success":true,"data":{"player_id":254,"username":"demouser","full_name":"Vegon Shella","balance":25000,"currency":"IDR"}}
+Saldo final dari getPlayerBalance: 25000
+DB Update: Sukses update saldo anggota, reference_id, dan status deposit.
+No referer found for user 'demouser'. Skipping referral bonus.
+DB Update: Transaksi COMMIT sukses.
+==== DEBUG END ====
+
+[2025-08-09 19:34:25] ==== ADMIN DEPOSIT APPROVAL DEBUG ====
+Admin: suTebGT2RRMnXMDlpBMo
+Deposit ID: 11
+Player ID (id_sigma): 254
+Target User: demouser
+Jumlah Deposit: 2
+Status Lama: diproses, Status Baru: dibatalkan
+DB Update: Sukses update status deposit (tanpa interaksi API) ke dibatalkan
+==== DEBUG END ====
+
+[2025-08-15 06:04:29] ==== ADMIN DEPOSIT APPROVAL DEBUG ====
+Admin: sWDRlY2cUZF1v4xCrsbD
+Deposit ID: 15
+Player ID (id_sigma): 542
+Target User: sakti77
+Jumlah Deposit: 25000
+Status Lama: diproses, Status Baru: dibatalkan
+DB Update: Sukses update status deposit (tanpa interaksi API) ke dibatalkan
+==== DEBUG END ====
+
+[2025-08-15 18:52:30] ==== ADMIN DEPOSIT APPROVAL DEBUG ====
+Admin: KU3JkTa0lxHoTsbA2tYC
+Deposit ID: 16
+Player ID (id_sigma): 543
+Target User: demotheo
+Jumlah Deposit: 25000
+Status Lama: diproses, Status Baru: dibatalkan
+DB Update: Sukses update status deposit (tanpa interaksi API) ke dibatalkan
+==== DEBUG END ====
+
+[2025-08-15 20:40:57] ==== ADMIN DEPOSIT APPROVAL DEBUG ====
+Admin: VMmb8Bx1C7KWBXsF853C
+Deposit ID: 17
+Player ID (id_sigma): 541
+Target User: Uhuy23
+Jumlah Deposit: 50000
+Status Lama: diproses, Status Baru: disetujui
+Generated new reference_id: dep_1949087054689f38e9d44713.05724065
+Request Params (depositToPlayer): {"playerId":541,"amount":50000,"referenceId":"dep_1949087054689f38e9d44713.05724065"}
+API Response (depositToPlayer): {"success":true,"data":{"message":"Deposit successful","data":{"player_id":"541","amount":50000,"balance_before":3460,"balance_after":53460,"transaction_type":"deposit","reference_id":"dep_1949087054689f38e9d44713.05724065","agent_id":123,"agent_balance_before":133063,"agent_balance_after":83063,"hierarchy_level":"agent_to_player"}}}
+Deposit API sukses. Memanggil getPlayerBalance untuk player ID: 541
+API Response (getPlayerBalance): {"success":true,"data":{"player_id":541,"username":"Uhuy23","full_name":"Uhuy","balance":53460,"currency":"IDR"}}
+Saldo final dari getPlayerBalance: 53460
+DB Update: Sukses update saldo anggota, reference_id, dan status deposit.
+No referer found for user 'Uhuy23'. Skipping referral bonus.
+DB Update: Transaksi COMMIT sukses.
+==== DEBUG END ====
+
+[2025-08-16 20:33:35] ==== ADMIN DEPOSIT APPROVAL DEBUG ====
+Admin: ueHyZChy67meSVB5OBu9
+Deposit ID: 18
+Player ID (id_sigma): 543
+Target User: demotheo
+Jumlah Deposit: 10000
+Status Lama: diproses, Status Baru: dibatalkan
+DB Update: Sukses update status deposit (tanpa interaksi API) ke dibatalkan
+==== DEBUG END ====
+
+[2025-08-16 20:37:03] ==== ADMIN DEPOSIT APPROVAL DEBUG ====
+Admin: ueHyZChy67meSVB5OBu9
+Deposit ID: 19
+Player ID (id_sigma): 543
+Target User: demotheo
+Jumlah Deposit: 10000
+Status Lama: diproses, Status Baru: disetujui
+Generated new reference_id: dep_48668930668a0897f1a0cf4.71885697
+Request Params (depositToPlayer): {"playerId":543,"amount":10000,"referenceId":"dep_48668930668a0897f1a0cf4.71885697"}
+API Response (depositToPlayer): {"success":true,"data":{"message":"Deposit successful","data":{"player_id":"543","amount":10000,"balance_before":51290,"balance_after":61290,"transaction_type":"deposit","reference_id":"dep_48668930668a0897f1a0cf4.71885697","agent_id":123,"agent_balance_before":125513,"agent_balance_after":115513,"hierarchy_level":"agent_to_player"}}}
+Deposit API sukses. Memanggil getPlayerBalance untuk player ID: 543
+API Response (getPlayerBalance): {"success":true,"data":{"player_id":543,"username":"demotheo","full_name":"Theo","balance":61290,"currency":"IDR"}}
+Saldo final dari getPlayerBalance: 61290
+DB Update: Sukses update saldo anggota, reference_id, dan status deposit.
+No referer found for user 'demotheo'. Skipping referral bonus.
+DB Update: Transaksi COMMIT sukses.
+==== DEBUG END ====
+
+[2025-08-17 21:25:42] ==== ADMIN DEPOSIT APPROVAL DEBUG ====
+Admin: 08vEhuZHSvQovV7o8LEI
+Deposit ID: 24
+Player ID (id_sigma): 541
+Target User: uhuy23
+Jumlah Deposit: 2000
+Status Lama: diproses, Status Baru: dibatalkan
+DB Update: Sukses update status deposit (tanpa interaksi API) ke dibatalkan
+==== DEBUG END ====
+
+[2025-08-17 21:56:40] ==== ADMIN DEPOSIT APPROVAL DEBUG ====
+Admin: 08vEhuZHSvQovV7o8LEI
+Deposit ID: 26
+Player ID (id_sigma): 541
+Target User: uhuy23
+Jumlah Deposit: 2000
+Status Lama: diproses, Status Baru: dibatalkan
+DB Update: Sukses update status deposit (tanpa interaksi API) ke dibatalkan
+==== DEBUG END ====
+
+[2025-08-17 22:04:33] ==== ADMIN DEPOSIT APPROVAL DEBUG ====
+Admin: 08vEhuZHSvQovV7o8LEI
+Deposit ID: 27
+Player ID (id_sigma): 541
+Target User: uhuy23
+Jumlah Deposit: 2000
+Status Lama: diproses, Status Baru: dibatalkan
+DB Update: Sukses update status deposit (tanpa interaksi API) ke dibatalkan
+==== DEBUG END ====
+
+[2025-08-18 06:47:03] ==== ADMIN DEPOSIT APPROVAL DEBUG ====
+Admin: lXCu0mTG9ux4LHGRYgU5
+Deposit ID: 31
+Player ID (id_sigma): 543
+Target User: demotheo
+Jumlah Deposit: 25000
+Status Lama: diproses, Status Baru: dibatalkan
+DB Update: Sukses update status deposit (tanpa interaksi API) ke dibatalkan
+==== DEBUG END ====
+
+[2025-08-18 06:47:08] ==== ADMIN DEPOSIT APPROVAL DEBUG ====
+Admin: lXCu0mTG9ux4LHGRYgU5
+Deposit ID: 30
+Player ID (id_sigma): 541
+Target User: uhuy23
+Jumlah Deposit: 25000
+Status Lama: diproses, Status Baru: dibatalkan
+DB Update: Sukses update status deposit (tanpa interaksi API) ke dibatalkan
+==== DEBUG END ====
+
+[2025-08-18 06:47:12] ==== ADMIN DEPOSIT APPROVAL DEBUG ====
+Admin: lXCu0mTG9ux4LHGRYgU5
+Deposit ID: 29
+Player ID (id_sigma): 541
+Target User: uhuy23
+Jumlah Deposit: 2000
+Status Lama: diproses, Status Baru: dibatalkan
+DB Update: Sukses update status deposit (tanpa interaksi API) ke dibatalkan
+==== DEBUG END ====
+
+[2025-08-18 07:50:48] ==== ADMIN DEPOSIT APPROVAL DEBUG ====
+Admin: LyhDiesP2CgjDqpwB0gh
+Deposit ID: 32
+Player ID (id_sigma): 541
+Target User: uhuy23
+Jumlah Deposit: 2000
+Status Lama: diproses, Status Baru: dibatalkan
+DB Update: Sukses update status deposit (tanpa interaksi API) ke dibatalkan
+==== DEBUG END ====
+
+[2025-08-18 07:56:28] ==== ADMIN DEPOSIT APPROVAL DEBUG ====
+Admin: LyhDiesP2CgjDqpwB0gh
+Deposit ID: 33
+Player ID (id_sigma): 541
+Target User: uhuy23
+Jumlah Deposit: 2000
+Status Lama: diproses, Status Baru: dibatalkan
+DB Update: Sukses update status deposit (tanpa interaksi API) ke dibatalkan
+==== DEBUG END ====
+
+[2025-08-18 08:02:59] ==== ADMIN DEPOSIT APPROVAL DEBUG ====
+Admin: LyhDiesP2CgjDqpwB0gh
+Deposit ID: 34
+Player ID (id_sigma): 541
+Target User: uhuy23
+Jumlah Deposit: 2000
+Status Lama: diproses, Status Baru: dibatalkan
+DB Update: Sukses update status deposit (tanpa interaksi API) ke dibatalkan
+==== DEBUG END ====
+
+[2025-08-18 08:07:01] ==== ADMIN DEPOSIT APPROVAL DEBUG ====
+Admin: LyhDiesP2CgjDqpwB0gh
+Deposit ID: 35
+Player ID (id_sigma): 541
+Target User: uhuy23
+Jumlah Deposit: 2000
+Status Lama: diproses, Status Baru: dibatalkan
+DB Update: Sukses update status deposit (tanpa interaksi API) ke dibatalkan
+==== DEBUG END ====
+
+[2025-08-18 08:14:07] ==== ADMIN DEPOSIT APPROVAL DEBUG ====
+Admin: LyhDiesP2CgjDqpwB0gh
+Deposit ID: 36
+Player ID (id_sigma): 541
+Target User: uhuy23
+Jumlah Deposit: 2000
+Status Lama: diproses, Status Baru: dibatalkan
+DB Update: Sukses update status deposit (tanpa interaksi API) ke dibatalkan
+==== DEBUG END ====
+
+[2025-08-18 08:22:27] ==== ADMIN DEPOSIT APPROVAL DEBUG ====
+Admin: LyhDiesP2CgjDqpwB0gh
+Deposit ID: 37
+Player ID (id_sigma): 541
+Target User: uhuy23
+Jumlah Deposit: 2000
+Status Lama: diproses, Status Baru: dibatalkan
+DB Update: Sukses update status deposit (tanpa interaksi API) ke dibatalkan
+==== DEBUG END ====
+
+[2025-08-26 18:30:28] ==== ADMIN DEPOSIT APPROVAL DEBUG ====
+Admin: FUVIEuPVTwAU5144aUeR
+Deposit ID: 49
+Player ID (id_sigma): 498
+Target User: Saupani
+Jumlah Deposit: 50000
+Status Lama: diproses, Status Baru: dibatalkan
+DB Update: Sukses update status deposit (tanpa interaksi API) ke dibatalkan
+==== DEBUG END ====
+
+[2025-08-26 18:30:34] ==== ADMIN DEPOSIT APPROVAL DEBUG ====
+Admin: FUVIEuPVTwAU5144aUeR
+Deposit ID: 46
+Player ID (id_sigma): 541
+Target User: uhuy23
+Jumlah Deposit: 25000
+Status Lama: diproses, Status Baru: dibatalkan
+DB Update: Sukses update status deposit (tanpa interaksi API) ke dibatalkan
+==== DEBUG END ====
+
+[2025-08-26 18:30:40] ==== ADMIN DEPOSIT APPROVAL DEBUG ====
+Admin: FUVIEuPVTwAU5144aUeR
+Deposit ID: 43
+Player ID (id_sigma): 584
+Target User: Tester11
+Jumlah Deposit: 25000
+Status Lama: diproses, Status Baru: dibatalkan
+DB Update: Sukses update status deposit (tanpa interaksi API) ke dibatalkan
+==== DEBUG END ====
+
+[2025-08-26 18:31:11] ==== ADMIN DEPOSIT APPROVAL DEBUG ====
+Admin: FUVIEuPVTwAU5144aUeR
+Deposit ID: 20
+Player ID (id_sigma): 580
+Target User: keminfo2020
+Jumlah Deposit: 25000
+Status Lama: diproses, Status Baru: dibatalkan
+DB Update: Sukses update status deposit (tanpa interaksi API) ke dibatalkan
+==== DEBUG END ====
+
+[2025-08-27 16:15:29] ==== ADMIN DEPOSIT APPROVAL DEBUG ====
+Admin: 0b99cGTAmCLzX2ey3XaO
+Deposit ID: 52
+Player ID (id_sigma): 663
+Target User: developer
+Jumlah Deposit: 2000
+Status Lama: diproses, Status Baru: dibatalkan
+DB Update: Sukses update status deposit (tanpa interaksi API) ke dibatalkan
+==== DEBUG END ====
+
+[2025-08-27 16:36:47] ==== ADMIN DEPOSIT APPROVAL DEBUG ====
+Admin: 0b99cGTAmCLzX2ey3XaO
+Deposit ID: 53
+Player ID (id_sigma): 663
+Target User: developer
+Jumlah Deposit: 2000
+Status Lama: diproses, Status Baru: dibatalkan
+DB Update: Sukses update status deposit (tanpa interaksi API) ke dibatalkan
+==== DEBUG END ====
+
+[2025-08-28 09:12:38] ==== ADMIN DEPOSIT APPROVAL DEBUG ====
+Admin: Uvzrtwf3MqJsjpS1f8pI
+Deposit ID: 55
+Player ID (id_sigma): 731
+Target User: nyobaa
+Jumlah Deposit: 25000
+Status Lama: diproses, Status Baru: dibatalkan
+DB Update: Sukses update status deposit (tanpa interaksi API) ke dibatalkan
+==== DEBUG END ====
+
+[2025-08-28 09:12:44] ==== ADMIN DEPOSIT APPROVAL DEBUG ====
+Admin: Uvzrtwf3MqJsjpS1f8pI
+Deposit ID: 54
+Player ID (id_sigma): 723
+Target User: developer
+Jumlah Deposit: 25000
+Status Lama: diproses, Status Baru: dibatalkan
+DB Update: Sukses update status deposit (tanpa interaksi API) ke dibatalkan
+==== DEBUG END ====
+
+[2025-09-06 19:09:14] ==== ADMIN DEPOSIT APPROVAL DEBUG ====
+Admin: imhKpvfAbEDtEOzwS8jx
+Deposit ID: 1
+Player ID (id_sigma): 967
+Target User: Developer
+Jumlah Deposit: 2000
+Status Lama: diproses, Status Baru: disetujui
+Generated new reference_id: dep_154845731468bc246a9f75c7.48659166
+Request Params (depositToPlayer): {"playerId":967,"amount":2000,"referenceId":"dep_154845731468bc246a9f75c7.48659166"}
+API Response (depositToPlayer): {"success":true,"data":{"message":"Deposit successful","data":{"player_id":"967","amount":2000,"balance_before":0,"balance_after":2000,"transaction_type":"deposit","reference_id":"dep_154845731468bc246a9f75c7.48659166","agent_id":234,"agent_balance_before":50000,"agent_balance_after":48000,"hierarchy_level":"agent_to_player"}}}
+Deposit API sukses. Memanggil getPlayerBalance untuk player ID: 967
+API Response (getPlayerBalance): {"success":true,"data":{"player_id":967,"username":"Developer","full_name":"Developer","balance":2000,"currency":"IDR"}}
+Saldo final dari getPlayerBalance: 2000
+DB Update: Sukses update saldo anggota, reference_id, dan status deposit.
+No referer found for user 'Developer'. Skipping referral bonus.
+DB Update: Transaksi COMMIT sukses.
+==== DEBUG END ====
+

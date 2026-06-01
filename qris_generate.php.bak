@@ -1,0 +1,249 @@
+<?php
+header('Content-Type: application/json');
+
+require_once __DIR__ . '/vendor/autoload.php';
+
+use chillerlan\QRCode\{QRCode, QROptions};
+use chillerlan\QRCode\Common\EccLevel;
+
+if (session_status() == PHP_SESSION_NONE) {
+    session_start();
+}
+
+include_once 'koneksi.php';
+require_once __DIR__ . '/functions_telegram.php';
+
+define('QRIS_MERCHANT_UID', '9b7543c6-5e54-475c-b21f-bd7339264259');
+define('QRIS_API_GENERATE_URL', 'https://rest.otomatis.vip/api/generate');
+define('QR_IMAGE_SAVE_PATH', __DIR__ . '/folder_qr/');
+$alamat_website_base = isset($alamat_website) ? rtrim($alamat_website, '/') . '/' : 'https://demo2.zhero.site/';
+define('QR_IMAGE_PUBLIC_URL_BASE', $alamat_website_base . 'folder_qr/');
+
+$logFileDir = __DIR__ . '/logs/';
+$logFilePath = $logFileDir . 'qris_generate.log';
+if (!is_dir($logFileDir)) { @mkdir($logFileDir, 0775, true); }
+if (!is_dir(QR_IMAGE_SAVE_PATH)) { @mkdir(QR_IMAGE_SAVE_PATH, 0775, true); }
+
+function log_qris_generate($message) {
+    global $logFilePath;
+    $timestamp = date("Y-m-d H:i:s");
+    file_put_contents($logFilePath, "[{$timestamp}] " . $message . PHP_EOL, FILE_APPEND | LOCK_EX);
+}
+
+$response_ajax = ['success' => false, 'message' => 'Terjadi kesalahan umum.'];
+
+if (!isset($_SESSION['loggedin']) || $_SESSION['loggedin'] !== true || !isset($_SESSION['nama_pengguna_anggota']) || !isset($_SESSION['id_anggota'])) {
+    $response_ajax['message'] = 'Sesi tidak valid atau pengguna belum login.';
+    log_qris_generate("Error: Sesi tidak valid. IP: " . ($_SERVER['REMOTE_ADDR'] ?? 'N/A'));
+    echo json_encode($response_ajax);
+    exit;
+}
+$username_pemain = $_SESSION['nama_pengguna_anggota'];
+$id_anggota_login = $_SESSION['id_anggota'];
+
+if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
+    $response_ajax['message'] = 'Metode request tidak valid.';
+    log_qris_generate("Error: Metode request bukan POST. User: {$username_pemain}");
+    echo json_encode($response_ajax);
+    exit;
+}
+
+if (!isset($_POST['jumlah_deposit']) || !is_numeric($_POST['jumlah_deposit'])) {
+    $response_ajax['message'] = 'Jumlah deposit tidak valid.';
+    log_qris_generate("Error: Jumlah deposit tidak valid. User: {$username_pemain}, Input: " . print_r($_POST, true));
+    echo json_encode($response_ajax);
+    exit;
+}
+
+$amount_input = intval($_POST['jumlah_deposit']);
+
+if ($amount_input < 1000) {
+    $response_ajax['message'] = 'Minimum deposit adalah IDR 20.000.';
+    log_qris_generate("Error: Jumlah deposit kurang dari minimum. User: {$username_pemain}, Amount: {$amount_input}");
+    echo json_encode($response_ajax);
+    exit;
+}
+
+// Tambahkan kueri untuk mendapatkan id_sigma
+$stmt_get_id_sigma = $koneksi->prepare("SELECT id_sigma FROM anggota WHERE id_anggota = ?");
+if (!$stmt_get_id_sigma) {
+    $response_ajax['message'] = 'Kesalahan sistem saat menyiapkan kueri ID Sigma.';
+    log_qris_generate("Error: Gagal prepare statement untuk id_sigma. User: {$username_pemain}. Error: " . $koneksi->error);
+    echo json_encode($response_ajax);
+    exit;
+}
+$stmt_get_id_sigma->bind_param("i", $id_anggota_login);
+$stmt_get_id_sigma->execute();
+$result_id_sigma = $stmt_get_id_sigma->get_result();
+$data_id_sigma = $result_id_sigma->fetch_assoc();
+$stmt_get_id_sigma->close();
+
+$id_sigma_anggota = $data_id_sigma['id_sigma'] ?? null;
+if (empty($id_sigma_anggota)) {
+    $response_ajax['message'] = 'ID Sigma pengguna tidak ditemukan. Transaksi tidak dapat diproses.';
+    log_qris_generate("Error: id_sigma tidak ditemukan untuk user ID {$id_anggota_login}.");
+    echo json_encode($response_ajax);
+    exit;
+}
+
+
+log_qris_generate("Attempting to generate QRIS data string for user: {$username_pemain}, amount: {$amount_input}");
+$payload = json_encode(['username' => $username_pemain, 'amount' => $amount_input, 'uuid' => QRIS_MERCHANT_UID]);
+
+$ch = curl_init(QRIS_API_GENERATE_URL);
+curl_setopt($ch, CURLOPT_RETURNTRANSFER, true); curl_setopt($ch, CURLOPT_POST, true);
+curl_setopt($ch, CURLOPT_POSTFIELDS, $payload);
+curl_setopt($ch, CURLOPT_HTTPHEADER, ['Content-Type: application/json', 'Content-Length: ' . strlen($payload)]);
+curl_setopt($ch, CURLOPT_TIMEOUT, 45);
+$api_response_raw = curl_exec($ch); $http_code = curl_getinfo($ch, CURLINFO_HTTP_CODE);
+$curl_error = curl_error($ch); curl_close($ch);
+
+if ($curl_error) {
+    $response_ajax['message'] = 'Gagal menghubungi server QRIS (cURL Error): ' . $curl_error;
+    log_qris_generate("cURL Error for user {$username_pemain}: " . $curl_error);
+} elseif ($api_response_raw === false) {
+    $response_ajax['message'] = 'Tidak ada respons dari server QRIS.';
+    log_qris_generate("No response from QRIS server for user {$username_pemain}. HTTP Code: {$http_code}");
+} else {
+    log_qris_generate("QRIS API Data Response for user {$username_pemain} (HTTP {$http_code}): " . $api_response_raw);
+    $api_response_data = json_decode($api_response_raw, true);
+
+    if ($http_code == 200 && isset($api_response_data['status']) && $api_response_data['status'] === true) {
+        if (isset($api_response_data['data']) && isset($api_response_data['trx_id'])) {
+            $qrisDataString = $api_response_data['data']; $trxIdOtomatisVIP = $api_response_data['trx_id'];
+            $qrCodeImageFileName = $trxIdOtomatisVIP . '.png';
+            $qrCodeImagePathOnServer = QR_IMAGE_SAVE_PATH . $qrCodeImageFileName;
+            $qrCodePublicUrl = QR_IMAGE_PUBLIC_URL_BASE . $qrCodeImageFileName;
+            
+            try {
+                $options_array = [
+                    'version'           => QRCode::VERSION_AUTO,
+                    'outputType'        => QRCode::OUTPUT_IMAGE_PNG,
+                    'eccLevel'          => EccLevel::L,
+                    'scale'             => 10,
+                    'imageBase64'       => false,
+                    'imageTransparent'  => false,
+                    'backgroundColor'   => '#FFFFFF',
+                    'foregroundColor'   => '#000000',
+                    'quietzoneSize'     => 1,
+                ];
+                
+                $options = new QROptions($options_array);
+                (new QRCode($options))->render($qrisDataString, $qrCodeImagePathOnServer);
+
+                if (file_exists($qrCodeImagePathOnServer)) {
+                    if ($koneksi) {
+                        $kode_deposit_unik = "QR" . time() . $id_anggota_login;
+                        $asal_deposit_val = "QRIS via " . $username_pemain;
+                        $tujuan_deposit_val = "QRIS Payment (Otomatis VIP)";
+                        $bonus_deposit_val = "";
+                        $status_awal = 'diproses';
+                        $qris_file_path_relative = 'folder_qr/' . $qrCodeImageFileName;
+                        $jumlah_deposit_str = strval($amount_input);
+                        
+                        $query_insert = "INSERT INTO deposit
+                                            (id_anggota_deposit, kode_deposit, nama_pengguna_anggota_deposit,
+                                             asal_deposit, tujuan_deposit, bonus_deposit, jumlah_deposit,
+                                             tanggal_deposit, transaction_id, status_deposit, qris_image, waktu_mulai, qris_file)
+                                         VALUES (?, ?, ?, ?, ?, ?, ?, NOW(), ?, ?, ?, NOW(), ?)";
+                        
+                        $stmt_insert = $koneksi->prepare($query_insert);
+                        if ($stmt_insert) {
+                            $stmt_insert->bind_param("issssssssss",
+                                $id_anggota_login,
+                                $kode_deposit_unik,
+                                $username_pemain,
+                                $asal_deposit_val,
+                                $tujuan_deposit_val,
+                                $bonus_deposit_val,
+                                $jumlah_deposit_str,
+                                $trxIdOtomatisVIP,
+                                $status_awal,
+                                $qrCodePublicUrl,
+                                $qris_file_path_relative
+                            );
+
+                            if ($stmt_insert->execute()) {
+                                $new_deposit_id = $koneksi->insert_id;
+                                log_qris_generate("Data transaksi QRIS '{$status_awal}' disimpan ke DB. ID Deposit: {$new_deposit_id}, TRX ID OtomatisVIP: {$trxIdOtomatisVIP}");
+
+                                $depositDataForTelegram = [
+                                    'id_deposit' => $new_deposit_id,
+                                    'kode_deposit' => $kode_deposit_unik,
+                                    'nama_pengguna_anggota_deposit' => $username_pemain,
+                                    'asal_deposit' => $asal_deposit_val,
+                                    'tujuan_deposit' => $tujuan_deposit_val,
+                                    'bonus_deposit' => $bonus_deposit_val,
+                                    'jumlah_deposit' => $amount_input,
+                                    'tanggal_deposit' => date('Y-m-d H:i:s'),
+                                    'status_deposit' => $status_awal,
+                                    'id_sigma' => $id_sigma_anggota // Tambahkan id_sigma
+                                ];
+
+                                $admin_panel_url_base = isset($alamat_admin) ? $alamat_admin : null;
+
+                                if (function_exists('sendNewDepositNotificationToTelegram')) {
+                                    if (!sendNewDepositNotificationToTelegram($depositDataForTelegram, $admin_panel_url_base)) {
+                                        log_qris_generate("Peringatan: Gagal mengirim notifikasi Telegram untuk deposit ID: " . $new_deposit_id);
+                                    } else {
+                                        log_qris_generate("Notifikasi Telegram berhasil dikirim untuk deposit ID: " . $new_deposit_id);
+                                    }
+                                } else {
+                                    log_qris_generate("Peringatan Kritis: Fungsi sendNewDepositNotificationToTelegram tidak ditemukan.");
+                                    error_log("CRITICAL: functions_telegram.php or sendNewDepositNotificationToTelegram() not found in qris_generate.php");
+                                }
+
+                                $response_ajax['success'] = true;
+                                $response_ajax['message'] = 'QRIS berhasil dibuat.';
+                                $response_ajax['qris_image_url'] = $qrCodePublicUrl;
+                                $response_ajax['trx_id'] = $trxIdOtomatisVIP;
+                                $response_ajax['amount'] = $amount_input;
+                            } else {
+                                $db_error = $stmt_insert->error;
+                                $response_ajax['message'] = 'Gagal menyimpan data transaksi awal ke DB.';
+                                log_qris_generate("Gagal menyimpan data transaksi QRIS '{$status_awal}' ke DB. TRX ID OtomatisVIP: {$trxIdOtomatisVIP}. Error: " . $db_error);
+                            }
+                            $stmt_insert->close();
+                        } else {
+                            $db_error = $koneksi->error;
+                            $response_ajax['message'] = 'Kesalahan sistem saat menyiapkan penyimpanan transaksi.';
+                            log_qris_generate("Gagal prepare statement simpan data QRIS ke DB. Error: " . $db_error);
+                        }
+                    } else {
+                         $response_ajax['message'] = 'Koneksi DB tidak tersedia.';
+                         log_qris_generate("Koneksi DB tidak tersedia. Tidak dapat simpan transaksi QRIS.");
+                    }
+                } else {
+                    $response_ajax['message'] = 'Gagal menyimpan gambar QRIS di server.';
+                    log_qris_generate("Gagal save QRIS image file for {$username_pemain}. TRX ID: {$trxIdOtomatisVIP}, Path: {$qrCodeImagePathOnServer}");
+                }
+            } catch (\Throwable $e) {
+                $response_ajax['message'] = 'Gagal membuat gambar QRIS: ' . $e->getMessage();
+                log_qris_generate("Exception generating QRIS image for {$username_pemain}, TRX ID: " . ($trxIdOtomatisVIP ?? 'N/A') . ": " . $e->getMessage() . ". Data String (awal): " . substr($qrisDataString ?? '', 0, 100) . "...");
+                if (strpos(strtolower($e->getMessage()), 'code length overflow') !== false) {
+                    $response_ajax['message'] = 'Data QRIS terlalu panjang untuk dibuat gambar dengan konfigurasi saat ini. Hubungi admin.';
+                }
+            }
+        } else {
+            $response_ajax['message'] = 'Respons API QRIS sukses namun data string atau TRX ID tidak lengkap.';
+            log_qris_generate("QRIS API success but incomplete data for {$username_pemain}. Resp: " . $api_response_raw);
+        }
+    } elseif (isset($api_response_data['error'])) {
+        $response_ajax['message'] = 'API QRIS Error: ' . htmlspecialchars($api_response_data['error']);
+        log_qris_generate("QRIS API Error for {$username_pemain}: " . $api_response_data['error'] . ". Raw: " . $api_response_raw);
+    } else {
+        $response_ajax['message'] = 'Gagal memproses respons dari server QRIS (HTTP: {$http_code}).';
+        log_qris_generate("Failed to process QRIS server resp for {$username_pemain}. HTTP: {$http_code}, Raw: " . $api_response_raw);
+    }
+}
+if (!isset($response_ajax['success'])) {
+    if (empty($response_ajax['message'])) {
+        $response_ajax['message'] = 'Terjadi kesalahan tidak diketahui.';
+    }
+    log_qris_generate("Final response: " . json_encode($response_ajax));
+}
+
+if (isset($koneksi) && $koneksi instanceof mysqli && $koneksi->thread_id) { $koneksi->close(); }
+echo json_encode($response_ajax);
+exit;
+?>

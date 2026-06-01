@@ -1,0 +1,4 @@
+[04-Jul-2023 11:59:11 Asia/Jakarta] PHP Warning:  Trying to access array offset on value of type null in /home/maxwinmy/public_html/gameplay/PragmaticPlay.php on line 38
+[04-Jul-2023 11:59:13 Asia/Jakarta] PHP Warning:  Undefined array key "description" in /home/maxwinmy/public_html/gameplay/PragmaticPlay.php on line 157
+[04-Jul-2023 12:23:14 Asia/Jakarta] PHP Warning:  Trying to access array offset on value of type null in /home/maxwinmy/public_html/gameplay/PragmaticPlay.php on line 38
+[04-Jul-2023 12:23:16 Asia/Jakarta] PHP Warning:  Undefined array key "description" in /home/maxwinmy/public_html/gameplay/PragmaticPlay.php on line 157

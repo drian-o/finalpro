@@ -1,0 +1,34 @@
+<?php
+// --- FILE INCLUSIONS AND INITIALIZATION ---
+// Tidak ada lagi include 'header.php' karena semua kode sudah digabungkan di sini.
+if (!isset($_SESSION)) { session_start(); }
+include_once 'koneksi.php';
+
+$nama_pengguna = isset($_SESSION['nama_pengguna_anggota']) ? $_SESSION['nama_pengguna_anggota'] : '';
+
+// Ambil inisial huruf pertama dari nama pengguna
+$inisial = strtoupper(substr($nama_pengguna, 0, 1));
+
+// Cek jika pengguna sudah login
+if (isset($_SESSION['loggedin']) && $_SESSION['loggedin'] === true) {
+    // Ambil ID anggota dari session
+    $id_anggota = $_SESSION['id_anggota'];
+    
+    // Query untuk mendapatkan saldo terbaru dari database
+    $query = "SELECT saldo_anggota FROM anggota WHERE id_anggota = ?";
+    $stmt = mysqli_prepare($koneksi, $query);
+    mysqli_stmt_bind_param($stmt, 'i', $id_anggota);
+    mysqli_stmt_execute($stmt);
+    $result = mysqli_stmt_get_result($stmt);
+    
+    if ($result && mysqli_num_rows($result) == 1) {
+        $row = mysqli_fetch_assoc($result);
+        // Update saldo di session dengan nilai terbaru dari database
+        $_SESSION['saldo_anggota'] = $row['saldo_anggota'];
+    }
+}
+
+// Ambil nilai warna dari database
+$theme_color_query = mysqli_query($koneksi, "SELECT * FROM pengaturan WHERE nama_pengaturan IN ('bg_1_web', 'bg_2_web', 'bg_3_web')");
+
+// A

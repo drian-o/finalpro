@@ -1,0 +1,45 @@
+[2025-07-10 20:35:29] [SRG LOTTERY LAUNCH] [INFO] Permintaan diterima dari IP: 182.6.78.255
+[2025-07-10 20:35:29] [SRG LOTTERY LAUNCH] [DEBUG] Isi $_SESSION setelah session_start(): array (
+  'id_admin' => 4,
+  'kode_admin' => 'ffONkyaYeM57eX0Vh147',
+  'lastDepositCount' => '1037000',
+  'lastWithdrawCount' => '560000',
+  'lastAnggotaCount' => 26,
+  'lastPromosiCount' => 6,
+  'lastStaffCount' => 1,
+  'loggedin' => true,
+  'id_anggota' => 2048,
+  'nama_pengguna_anggota' => 'Halodek11',
+  'saldo_anggota' => 4000.0,
+  'welcome_modal_shown' => true,
+)
+[2025-07-10 20:35:29] [SRG LOTTERY LAUNCH] [INFO] Mencoba membuka game SRG Lottery untuk Player: 'Halodek11', Provider Code: '1233', Game Code: 'draw.hklive.day', Game Type: 'undefined'
+[2025-07-10 20:35:29] [SRG LOTTERY LAUNCH] [INFO] Memanggil metode SRG->launchGame()...
+[2025-07-10 20:35:29] [SRG LOTTERY LAUNCH] [DEBUG] Respons dari API SRG (URL atau false): https://vxbrkq1luxtv.gpa2glsjhw.xyz/public/4DWeb.html?loginToken=4j64w5EYGFriUT5K&dg=draw.hklive.day
+[2025-07-10 20:35:29] [SRG LOTTERY LAUNCH] [SUCCESS] Game SRG Lottery berhasil dibuka untuk player 'Halodek11'. Mengalihkan ke URL game: https://vxbrkq1luxtv.gpa2glsjhw.xyz/public/4DWeb.html?loginToken=4j64w5EYGFriUT5K&dg=draw.hklive.day
+[2025-07-16 19:21:16] [SRG LOTTERY LAUNCH] [INFO] Permintaan diterima dari IP: 182.6.85.199
+[2025-07-16 19:21:16] [SRG LOTTERY LAUNCH] [DEBUG] Isi $_SESSION setelah session_start(): array (
+  'loggedin' => true,
+  'id_anggota' => 7,
+  'nama_pengguna_anggota' => 'devdepo',
+  'saldo_anggota' => 20000.0,
+  'welcome_modal_shown' => true,
+)
+[2025-07-16 19:21:16] [SRG LOTTERY LAUNCH] [INFO] Mencoba membuka game SRG Lottery untuk Player: 'devdepo', Provider Code: '0', Game Code: '48cd68b11b58aaa0c34e19251589f53a', Game Type: 'undefined'
+[2025-07-16 19:21:16] [SRG LOTTERY LAUNCH] [INFO] Memanggil metode SRG->launchGame()...
+[2025-07-16 19:21:16] [SRG LOTTERY LAUNCH] [DEBUG] Respons dari API SRG (URL atau false): false
+[2025-07-16 19:21:16] [SRG LOTTERY LAUNCH] [ERROR] Gagal membuka game SRG Lottery untuk player 'devdepo'. Penyebab: URL game tidak didapatkan dari API atau respons API gagal.
+[2025-07-16 19:21:16] [SRG LOTTERY LAUNCH] [INFO] Mengalihkan ke: /home/buhwhbjg/index.php
+[2025-07-26 01:13:03] [SRG LOTTERY LAUNCH] [INFO] Permintaan diterima dari IP: 182.6.71.178
+[2025-07-26 01:13:03] [SRG LOTTERY LAUNCH] [DEBUG] Isi $_SESSION setelah session_start(): array (
+  'loggedin' => true,
+  'id_anggota' => 8,
+  'nama_pengguna_anggota' => 'demodoang',
+  'saldo_anggota' => 1600.0,
+  'welcome_modal_shown' => true,
+)
+[2025-07-26 01:13:03] [SRG LOTTERY LAUNCH] [INFO] Mencoba membuka game SRG Lottery untuk Player: 'demodoang', Provider Code: '0', Game Code: '48cd68b11b58aaa0c34e19251589f53a', Game Type: 'undefined'
+[2025-07-26 01:13:03] [SRG LOTTERY LAUNCH] [INFO] Memanggil metode SRG->launchGame()...
+[2025-07-26 01:13:03] [SRG LOTTERY LAUNCH] [DEBUG] Respons dari API SRG (URL atau false): false
+[2025-07-26 01:13:03] [SRG LOTTERY LAUNCH] [ERROR] Gagal membuka game SRG Lottery untuk player 'demodoang'. Penyebab: URL game tidak didapatkan dari API atau respons API gagal.
+[2025-07-26 01:13:03] [SRG LOTTERY LAUNCH] [INFO] Mengalihkan ke: /home/buhwhbjg/index.php

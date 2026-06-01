@@ -1,0 +1,125 @@
+[2025-08-18 22:27:56] ==== ADMIN SALDO OPERATION DEBUG ====
+Admin: 52I3WQ1at4yfLyVX8MBy
+Target User DB ID: 26 (Username: uhuy23)
+Target API Player ID (id_sigma): 541
+Operation: Withdraw Sejumlah: 1000
+Request Params (Transaksi): {"player_id_api":"541","amount":1000,"reference_id":"ADM-WITHDRAW-uhuy23-1755530876","type":"withdraw"}
+API Response (Transaksi): {"success":true,"data":{"message":"Player withdraw successful - Balance returned to agent","data":{"player_id":"541","amount":1000,"balance_before":32000,"balance_after":31000,"transaction_type":"withdrawal","reference_id":"ADM-WITHDRAW-uhuy23-1755530876","agent_id":123,"agent_role":"affiliate","agent_balance_before":218413,"agent_balance_after":219413,"hierarchy_level":"player_to_agent"}}}
+Transaksi API sukses. Memanggil getPlayerBalance untuk player ID: 541
+API Response (getPlayerBalance): {"success":true,"data":{"player_id":541,"username":"Uhuy23","full_name":"Uhuy","balance":31000,"currency":"IDR"}}
+Saldo final dari getPlayerBalance: 31000
+DB Update & Insert: SUKSES, transaksi commit.
+DB Update: Sukses update saldo anggota ke: 31000
+==== DEBUG END ====
+
+[2025-08-18 22:44:08] ==== ADMIN SALDO OPERATION DEBUG ====
+Admin: 52I3WQ1at4yfLyVX8MBy
+Target User DB ID: 26 (Username: uhuy23)
+Target API Player ID (id_sigma): 541
+Operation: Withdraw Sejumlah: 35000
+Request Params (Transaksi): {"player_id_api":541,"amount":35000,"reference_id":"ADM-WITHDRAW-uhuy23-1755531847","type":"withdraw"}
+API Response (Transaksi): {"success":true,"data":{"message":"Player withdraw successful - Balance returned to agent","data":{"player_id":"541","amount":35000,"balance_before":35000,"balance_after":0,"transaction_type":"withdrawal","reference_id":"ADM-WITHDRAW-uhuy23-1755531847","agent_id":123,"agent_role":"affiliate","agent_balance_before":215333,"agent_balance_after":250333,"hierarchy_level":"player_to_agent"}}}
+Transaksi API sukses. Memanggil getPlayerBalance untuk player ID: 541
+Saldo final dari API Response: 0
+DB Update & Insert: SUKSES, transaksi commit.
+DB Update: Sukses update saldo anggota ke: 0
+==== DEBUG END ====
+
+[2025-08-18 22:48:34] ==== ADMIN SALDO OPERATION DEBUG ====
+Admin: 52I3WQ1at4yfLyVX8MBy
+Target User DB ID: 27 (Username: sakti77)
+Target API Player ID (id_sigma): 542
+Operation: Deposit Sejumlah: 1000
+Request Params (Transaksi): {"player_id_api":542,"amount":1000,"reference_id":"ADM-DEPOSIT-sakti77-1755532114","type":"deposit"}
+API Response (Transaksi): {"success":true,"data":{"message":"Deposit successful","data":{"player_id":"542","amount":1000,"balance_before":1265.32,"balance_after":2265.3199999999997,"transaction_type":"deposit","reference_id":"ADM-DEPOSIT-sakti77-1755532114","agent_id":123,"agent_balance_before":250333,"agent_balance_after":249333,"hierarchy_level":"agent_to_player"}}}
+Transaksi API sukses. Memanggil getPlayerBalance untuk player ID: 542
+Saldo final dari API Response: 2265.32
+DB Update & Insert: SUKSES, transaksi commit.
+DB Update: Sukses update saldo anggota ke: 2265.32
+==== DEBUG END ====
+
+[2025-08-18 22:50:46] ==== ADMIN SALDO OPERATION DEBUG ====
+Admin: 52I3WQ1at4yfLyVX8MBy
+Target User DB ID: 26 (Username: uhuy23)
+Target API Player ID (id_sigma): 541
+Operation: Deposit Sejumlah: 1000
+Request Params (Transaksi): {"player_id_api":541,"amount":1000,"reference_id":"ADM-DEPOSIT-uhuy23-1755532246","type":"deposit"}
+API Response (Transaksi): {"success":true,"data":{"message":"Deposit successful","data":{"player_id":"541","amount":1000,"balance_before":0,"balance_after":1000,"transaction_type":"deposit","reference_id":"ADM-DEPOSIT-uhuy23-1755532246","agent_id":123,"agent_balance_before":249333,"agent_balance_after":248333,"hierarchy_level":"agent_to_player"}}}
+Transaksi API sukses. Memanggil getPlayerBalance untuk player ID: 541
+Saldo final dari API Response: 1000
+DB Update & Insert: SUKSES, transaksi commit.
+DB Update: Sukses update saldo anggota ke: 1000
+==== DEBUG END ====
+
+[2025-08-26 05:37:45] ==== ADMIN SALDO OPERATION DEBUG ====
+Admin: 7PvJdY5GbjmfRy9KztlX
+Target User DB ID: 35 (Username: kuntul)
+Target API Player ID (id_sigma): 587
+Operation: Deposit Sejumlah: 500
+Request Params (Transaksi): {"player_id_api":587,"amount":500,"reference_id":"ADM-DEPOSIT-kuntul-1756161464","type":"deposit"}
+API Response (Transaksi): {"success":true,"data":{"message":"Deposit successful","data":{"player_id":"587","amount":500,"balance_before":0,"balance_after":500,"transaction_type":"deposit","reference_id":"ADM-DEPOSIT-kuntul-1756161464","agent_id":123,"agent_balance_before":740,"agent_balance_after":240,"hierarchy_level":"agent_to_player"}}}
+Transaksi API sukses. Memanggil getPlayerBalance untuk player ID: 587
+Saldo final dari API Response: 500
+DB Update & Insert: SUKSES, transaksi commit.
+DB Update: Sukses update saldo anggota ke: 500
+==== DEBUG END ====
+
+[2025-08-26 05:47:13] ==== ADMIN SALDO OPERATION DEBUG ====
+Admin: 7PvJdY5GbjmfRy9KztlX
+Target User DB ID: 26 (Username: uhuy23)
+Target API Player ID (id_sigma): 541
+Operation: Deposit Sejumlah: 4000
+Request Params (Transaksi): {"player_id_api":541,"amount":4000,"reference_id":"ADM-DEPOSIT-uhuy23-1756162033","type":"deposit"}
+API Response (Transaksi): {"success":false,"message":"Unknown error","code":404,"data":{"error":"Player not found or no permission"}}
+API Call (Transaksi) Failed: Proses Transaksi (Deposit) via API gagal. Pesan: Unknown error
+==== DEBUG END ====
+
+[2025-08-26 05:47:23] ==== ADMIN SALDO OPERATION DEBUG ====
+Admin: 7PvJdY5GbjmfRy9KztlX
+Target User DB ID: 26 (Username: uhuy23)
+Target API Player ID (id_sigma): 541
+Operation: Deposit Sejumlah: 4000
+Request Params (Transaksi): {"player_id_api":541,"amount":4000,"reference_id":"ADM-DEPOSIT-uhuy23-1756162043","type":"deposit"}
+API Response (Transaksi): {"success":false,"message":"Unknown error","code":404,"data":{"error":"Player not found or no permission"}}
+API Call (Transaksi) Failed: Proses Transaksi (Deposit) via API gagal. Pesan: Unknown error
+==== DEBUG END ====
+
+[2025-08-26 05:51:23] ==== ADMIN SALDO OPERATION DEBUG ====
+Admin: xci0bE50BWubUDaf1Jm1
+Target User DB ID: 36 (Username: developer)
+Target API Player ID (id_sigma): 663
+Operation: Deposit Sejumlah: 5000
+Request Params (Transaksi): {"player_id_api":663,"amount":5000,"reference_id":"ADM-DEPOSIT-developer-1756162283","type":"deposit"}
+API Response (Transaksi): {"success":true,"data":{"message":"Deposit successful","data":{"player_id":"663","amount":5000,"balance_before":0,"balance_after":5000,"transaction_type":"deposit","reference_id":"ADM-DEPOSIT-developer-1756162283","agent_id":123,"agent_balance_before":178362,"agent_balance_after":173362,"hierarchy_level":"agent_to_player"}}}
+Transaksi API sukses. Memanggil getPlayerBalance untuk player ID: 663
+Saldo final dari API Response: 5000
+DB Update & Insert: SUKSES, transaksi commit.
+DB Update: Sukses update saldo anggota ke: 5000
+==== DEBUG END ====
+
+[2025-09-01 15:02:49] ==== ADMIN SALDO OPERATION DEBUG ====
+Admin: mEsGHTwPAF7Jq2YuxfDX
+Target User DB ID: 43 (Username: demouser)
+Target API Player ID (id_sigma): 817
+Operation: Deposit Sejumlah: 100000
+Request Params (Transaksi): {"player_id_api":817,"amount":100000,"reference_id":"ADM-DEPOSIT-demouser-1756713769","type":"deposit"}
+API Response (Transaksi): {"success":true,"data":{"message":"Deposit successful","data":{"player_id":"817","amount":100000,"balance_before":0,"balance_after":100000,"transaction_type":"deposit","reference_id":"ADM-DEPOSIT-demouser-1756713769","agent_id":123,"agent_balance_before":168842,"agent_balance_after":68842,"hierarchy_level":"agent_to_player"}}}
+Transaksi API sukses. Memanggil getPlayerBalance untuk player ID: 817
+Saldo final dari API Response: 100000
+DB Update & Insert: SUKSES, transaksi commit.
+DB Update: Sukses update saldo anggota ke: 100000
+==== DEBUG END ====
+
+[2025-09-02 23:31:16] ==== ADMIN SALDO OPERATION DEBUG ====
+Admin: jLvVRnHv0OTCqaW6I6JE
+Target User DB ID: 45 (Username: Dewa78)
+Target API Player ID (id_sigma): 847
+Operation: Deposit Sejumlah: 20000
+Request Params (Transaksi): {"player_id_api":847,"amount":20000,"reference_id":"ADM-DEPOSIT-Dewa78-1756830676","type":"deposit"}
+API Response (Transaksi): {"success":true,"data":{"message":"Deposit successful","data":{"player_id":"847","amount":20000,"balance_before":0,"balance_after":20000,"transaction_type":"deposit","reference_id":"ADM-DEPOSIT-Dewa78-1756830676","agent_id":123,"agent_balance_before":132342,"agent_balance_after":112342,"hierarchy_level":"agent_to_player"}}}
+Transaksi API sukses. Memanggil getPlayerBalance untuk player ID: 847
+Saldo final dari API Response: 20000
+DB Update & Insert: SUKSES, transaksi commit.
+DB Update: Sukses update saldo anggota ke: 20000
+==== DEBUG END ====
+

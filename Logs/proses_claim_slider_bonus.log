@@ -1,0 +1,50 @@
+[2025-07-16 12:21:52] Akses ditolak: Sesi pengguna tidak ditemukan. IP: 196.251.88.64
+[2025-07-16 12:22:29] Akses ditolak: Sesi pengguna tidak ditemukan. IP: 196.251.88.64
+[2025-07-31 07:52:13] User demodoang (ID: 8) mencoba klaim bonus balance sejumlah: 3090
+[2025-07-31 07:52:13] Verifikasi bonus_balance user demodoang sukses. DB Bonus Balance: 3090, Akan diklaim: 3090
+[2025-07-31 07:52:13] Memanggil SRG->deposit() untuk user demodoang, Amount: 3090.
+[2025-07-31 07:52:13] Response SRG Deposit: false
+[2025-07-31 07:52:13] Exception saat proses klaim bonus slider untuk User ID: 8, Pesan: Gagal proses deposit bonus ke sistem SRGConnect API. Respon: false. Transaksi DB di-ROLLBACK.
+[2025-07-31 12:30:06] Akses ditolak: Sesi pengguna tidak ditemukan atau EXA Player ID hilang. IP: 182.6.68.87
+[2025-07-31 12:30:14] Akses ditolak: Sesi pengguna tidak ditemukan atau EXA Player ID hilang. IP: 182.6.68.87
+[2025-07-31 12:42:27] User demodoang (ID: 8, ID Sigma: 67) mencoba klaim bonus balance sejumlah: 3090
+[2025-07-31 12:42:27] Verifikasi bonus_balance user demodoang sukses. DB Bonus Balance: 3090, Akan diklaim: 3090
+[2025-07-31 12:42:27] Memanggil EXAAPI->depositToPlayer() untuk ID Sigma: 67, Amount: 3090, Reference ID: BONUSCLAIM_8_1753940547_688b02433a265.
+[2025-07-31 12:42:27] Response EXAAPI Deposit: {"success":true,"data":{"message":"Deposit successful","data":{"player_id":"67","amount":3090,"balance_before":100,"balance_after":3190,"transaction_type":"deposit","reference_id":"BONUSCLAIM_8_1753940547_688b02433a265","agent_id":15,"agent_balance_before":5471402.5,"agent_balance_after":5468312.5,"hierarchy_level":"agent_to_player"}}}
+[2025-07-31 12:42:27] Memanggil EXAAPI->getPlayerBalance() untuk ID Sigma: 67.
+[2025-07-31 12:42:27] Response EXAAPI GetBalance: {"success":true,"data":{"player_id":67,"username":"demodoang","full_name":"Vegon Shella","balance":3190,"currency":"IDR"}}
+[2025-07-31 12:42:27] Saldo terbaru dari GameXa untuk ID Sigma 67 adalah 3190.
+[2025-07-31 12:42:27] Mengupdate saldo_anggota di tabel lokal untuk id_anggota 8 menjadi 3190 dan bonus_balance menjadi 0.
+[2025-07-31 12:42:27] Update saldo_anggota dan set bonus_balance ke 0 untuk user ID 8 berhasil. Affected rows: 1
+[2025-07-31 12:42:27] Mencatat klaim ke tabel claim_bonus. User: demodoang, Jumlah: 3090, ID Sigma: 67
+[2025-07-31 12:42:27] Exception saat proses klaim bonus slider untuk User ID: 8, Pesan: Unknown column 'reference_id_exa' in 'INSERT INTO'. Transaksi DB di-ROLLBACK.
+[2025-07-31 12:50:05] User demodoang (ID: 8, ID Sigma: 67) mencoba klaim bonus balance sejumlah: 3090
+[2025-07-31 12:50:05] Verifikasi bonus_balance user demodoang sukses. DB Bonus Balance: 3090, Akan diklaim: 3090
+[2025-07-31 12:50:05] Memanggil EXAAPI->depositToPlayer() untuk ID Sigma: 67, Amount: 3090, Reference ID: BONUSCLAIM_8_1753941005_688b040dd0a85.
+[2025-07-31 12:50:06] Response EXAAPI Deposit: {"success":true,"data":{"message":"Deposit successful","data":{"player_id":"67","amount":3090,"balance_before":3190,"balance_after":6280,"transaction_type":"deposit","reference_id":"BONUSCLAIM_8_1753941005_688b040dd0a85","agent_id":15,"agent_balance_before":5468312.5,"agent_balance_after":5465222.5,"hierarchy_level":"agent_to_player"}}}
+[2025-07-31 12:50:06] Memanggil EXAAPI->getPlayerBalance() untuk ID Sigma: 67.
+[2025-07-31 12:50:06] Response EXAAPI GetBalance: {"success":true,"data":{"player_id":67,"username":"demodoang","full_name":"Vegon Shella","balance":6280,"currency":"IDR"}}
+[2025-07-31 12:50:06] Saldo terbaru dari GameXa untuk ID Sigma 67 adalah 6280.
+[2025-07-31 12:50:06] Mengupdate saldo_anggota di tabel lokal untuk id_anggota 8 menjadi 6280 dan bonus_balance menjadi 0.
+[2025-07-31 12:50:06] Update saldo_anggota dan set bonus_balance ke 0 untuk user ID 8 berhasil. Affected rows: 1
+[2025-07-31 12:50:06] Mencatat klaim ke tabel claim_bonus. User: demodoang, Jumlah: 3090
+[2025-07-31 12:50:06] Log klaim bonus dari slider berhasil dicatat ke tabel claim_bonus.
+[2025-07-31 12:50:06] Klaim bonus dari slider SUKSES dan COMMIT untuk user demodoang.
+[2025-08-06 03:59:16] User ref1demouser (ID: 16, ID Sigma: 255) mencoba klaim bonus balance sejumlah: 300
+[2025-08-06 03:59:16] Verifikasi bonus_balance user ref1demouser sukses. DB Bonus Balance: 300, Akan diklaim: 300
+[2025-08-06 03:59:16] Memanggil EXAAPI->depositToPlayer() untuk ID Sigma: 255, Amount: 300, Reference ID: BONUSCLAIM_16_1754427556_689270a48be4b.
+[2025-08-06 03:59:16] Response EXAAPI Deposit: {"success":true,"data":{"message":"Deposit successful","data":{"player_id":"255","amount":300,"balance_before":10000,"balance_after":10300,"transaction_type":"deposit","reference_id":"BONUSCLAIM_16_1754427556_689270a48be4b","agent_id":123,"agent_balance_before":89000,"agent_balance_after":88700,"hierarchy_level":"agent_to_player"}}}
+[2025-08-06 03:59:16] Memanggil EXAAPI->getPlayerBalance() untuk ID Sigma: 255.
+[2025-08-06 03:59:16] Response EXAAPI GetBalance: {"success":true,"data":{"player_id":255,"username":"ref1demouser","full_name":"Ref demo doang","balance":10300,"currency":"IDR"}}
+[2025-08-06 03:59:16] Saldo terbaru dari GameXa untuk ID Sigma 255 adalah 10300.
+[2025-08-06 03:59:16] Mengupdate saldo_anggota di tabel lokal untuk id_anggota 16 menjadi 10300 dan bonus_balance menjadi 0.
+[2025-08-06 03:59:16] Update saldo_anggota dan set bonus_balance ke 0 untuk user ID 16 berhasil. Affected rows: 1
+[2025-08-06 03:59:16] Mencatat klaim ke tabel claim_bonus. User: ref1demouser, Jumlah: 300
+[2025-08-06 03:59:16] Log klaim bonus dari slider berhasil dicatat ke tabel claim_bonus.
+[2025-08-06 03:59:16] Klaim bonus dari slider SUKSES dan COMMIT untuk user ref1demouser.
+[2025-08-18 09:37:54] Akses ditolak: Sesi pengguna tidak ditemukan. IP: 196.251.88.64
+[2025-08-18 09:38:52] Akses ditolak: Sesi pengguna tidak ditemukan. IP: 196.251.88.64
+[2025-08-18 12:42:19] Akses ditolak: Sesi pengguna tidak ditemukan. IP: 196.251.88.64
+[2025-08-18 12:42:41] Akses ditolak: Sesi pengguna tidak ditemukan. IP: 196.251.88.64
+[2025-11-08 08:03:05] Akses ditolak: Sesi pengguna tidak ditemukan. IP: 108.137.123.237
+[2025-11-10 11:53:42] Akses ditolak: Sesi pengguna tidak ditemukan. IP: 108.136.234.221

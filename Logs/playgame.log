@@ -1,0 +1,7 @@
+[2025-08-14 22:19:39] ==== PLAYGAME ATTEMPT ====
+[2025-08-14 22:19:39] Received parameters: game_uid=c21358b76bc72ac120d6097aa8c672af, provider_code=bflottobiit, game_type=lottery, server=
+[2025-08-14 22:19:39] User logged in with id_anggota: 25
+[2025-08-14 22:19:39] SUCCESS: Balance sync finished successfully. Final balance: 14000
+[2025-08-14 22:19:39] STEP 2: Launching game for GameXa API (player_id: 540, game_uid: c21358b76bc72ac120d6097aa8c672af).
+[2025-08-14 22:19:40] STEP 2: GameXa launch API response: {"success":true,"data":{"success":true,"game_launch_url":"https:\/\/api.gamexaglobal.com\/api\/games\/proxy\/aHR0cHM6Ly9odWlkdS5iZXQvZ2FtZS9nYW1lc1VybD9pZD05MTQ0NWQzNS04YTliLTQ0MWUtODAyNi05ZDQ2ZTFlOTY3ZGU%3D","session_id":"session_1755184758383_ml2m5rezd"}}
+[2025-08-14 22:19:40] SUCCESS: Game launched successfully. Redirecting to URL: https://api.gamexaglobal.com/api/games/proxy/aHR0cHM6Ly9odWlkdS5iZXQvZ2FtZS9nYW1lc1VybD9pZD05MTQ0NWQzNS04YTliLTQ0MWUtODAyNi05ZDQ2ZTFlOTY3ZGU%3D

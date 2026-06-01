@@ -1,0 +1,56 @@
+[2025-07-16 19:40:27] [INFO] Memulai proses peluncuran game untuk player_id: 7, game_uid: 9860c865264dcacad1ef37176cdefc1a
+[2025-07-16 19:40:27] [INFO] GameXaAPI diinisialisasi.
+[2025-07-16 19:40:27] [INFO] Request mentah ke API GameXa (POST /api/games/launch): {"player_id":7,"game_uid":"9860c865264dcacad1ef37176cdefc1a"}
+[2025-07-16 19:40:27] [INFO] Respons dari API GameXa: {"success":false,"message":"Unknown error","code":404,"data":{"error":"Player not found"}}
+[2025-07-16 19:40:27] [ERROR] Gagal meluncurkan game. Error Code: 404, Message: Unknown error
+[2025-07-16 19:40:27] [ERROR] Keterangan: Kegagalan dari respons API GameXa.
+[2025-07-16 19:45:45] [INFO] Memulai proses peluncuran game untuk player_id: 7, game_uid: 9860c865264dcacad1ef37176cdefc1a
+[2025-07-16 19:45:45] [WARNING] Redirect ke login. Keterangan: Silakan login untuk bermain game.
+[2025-07-16 19:45:59] [INFO] Memulai proses peluncuran game untuk player_id: 7, game_uid: 44f6e08965a602e68952f49658b7d3f8
+[2025-07-16 19:45:59] [WARNING] Redirect ke login. Keterangan: Silakan login untuk bermain game.
+[2025-07-16 19:47:08] [INFO] Memulai proses peluncuran game untuk player_id: GUEST, game_uid: 6075420770ec2fe9c31b48159729299c
+[2025-07-16 19:47:08] [WARNING] Redirect ke login. Keterangan: Silakan login untuk bermain game.
+[2025-07-16 19:50:29] [INFO] Memulai proses peluncuran game.
+[2025-07-16 19:50:29] [INFO] id_anggota (7) berhasil dipetakan ke id_sigma GameXa: 39
+[2025-07-16 19:50:29] [INFO] GameXaAPI diinisialisasi.
+[2025-07-16 19:50:29] [INFO] Request mentah ke API GameXa (POST /api/games/launch): {"player_id":39,"game_uid":"c002f8b5cd124abe27b50d5e082364f4"}
+[2025-07-16 19:50:29] [INFO] Respons dari API GameXa: {"success":false,"message":"Please use [USD,BRL,COP] for the test environment","code":400,"data":{"error":"Failed to launch game","code":10001,"message":"Please use [USD,BRL,COP] for the test environment"}}
+[2025-07-16 19:50:29] [ERROR] Gagal meluncurkan game. Error Code: 400, Message: Please use [USD,BRL,COP] for the test environment
+[2025-07-16 19:50:29] [ERROR] Keterangan: Kegagalan dari respons API GameXa.
+[2025-07-16 19:54:59] [INFO] Memulai proses peluncuran game.
+[2025-07-16 19:54:59] [INFO] id_anggota (7) berhasil dipetakan ke id_sigma GameXa: 39
+[2025-07-16 19:54:59] [INFO] GameXaAPI diinisialisasi.
+[2025-07-16 19:54:59] [INFO] Request mentah ke API GameXa (POST /api/games/launch): {"player_id":39,"game_uid":"c002f8b5cd124abe27b50d5e082364f4","currency":"USD"}
+[2025-07-16 19:54:59] [INFO] Respons dari API GameXa: {"success":false,"message":"Please use [USD,BRL,COP] for the test environment","code":400,"data":{"error":"Failed to launch game","code":10001,"message":"Please use [USD,BRL,COP] for the test environment"}}
+[2025-07-16 19:54:59] [ERROR] Gagal meluncurkan game. Error Code: 400, Message: Please use [USD,BRL,COP] for the test environment
+[2025-07-16 19:54:59] [ERROR] Keterangan: Kegagalan dari respons API GameXa.
+[2025-07-26 00:30:25] [INFO] Memulai proses peluncuran game.
+[2025-07-26 00:30:25] [INFO] id_anggota (1) berhasil dipetakan ke id_sigma GameXa: 25
+[2025-07-26 00:30:25] [INFO] GameXaAPI diinisialisasi.
+[2025-07-26 00:30:25] [INFO] Request mentah ke API GameXa (POST /api/games/launch): {"player_id":25,"game_uid":"fffac1d578d7f53cbc67af087bf7911d","currency":"USD"}
+[2025-07-26 00:30:25] [INFO] Respons dari API GameXa: {"success":true,"data":{"success":true,"game_launch_url":"https:\/\/huidu.bet\/game\/gamesUrl?id=e0a7f4e9-97f3-4ffd-90d8-a84629840d89","session_id":"session_1753464628617_qxpq6dcw7"}}
+[2025-07-26 00:30:25] [INFO] Game berhasil diluncurkan.
+[2025-07-26 00:30:25] [INFO] URL Game: https://huidu.bet/game/gamesUrl?id=e0a7f4e9-97f3-4ffd-90d8-a84629840d89
+[2025-07-26 00:30:25] [INFO] Session ID GameXa: session_1753464628617_qxpq6dcw7
+[2025-07-26 00:30:25] [INFO] Keterangan: Pemain diarahkan ke URL game.
+[2025-07-26 01:12:20] [INFO] Memulai proses peluncuran game.
+[2025-07-26 01:12:20] [INFO] id_anggota (8) berhasil dipetakan ke id_sigma GameXa: 67
+[2025-07-26 01:12:20] [INFO] GameXaAPI diinisialisasi.
+[2025-07-26 01:12:20] [INFO] Request mentah ke API GameXa (POST /api/games/launch): {"player_id":67,"game_uid":"fffac1d578d7f53cbc67af087bf7911d","currency":"USD"}
+[2025-07-26 01:12:21] [INFO] Respons dari API GameXa: {"success":true,"data":{"success":true,"game_launch_url":"https:\/\/huidu.bet\/game\/gamesUrl?id=d170c55a-27b2-4472-a6d9-b92236c427aa","session_id":"session_1753467144410_6wk9554bm"}}
+[2025-07-26 01:12:21] [INFO] Game berhasil diluncurkan.
+[2025-07-26 01:12:21] [INFO] URL Game: https://huidu.bet/game/gamesUrl?id=d170c55a-27b2-4472-a6d9-b92236c427aa
+[2025-07-26 01:12:21] [INFO] Session ID GameXa: session_1753467144410_6wk9554bm
+[2025-07-26 01:12:21] [INFO] Keterangan: Pemain diarahkan ke URL game.
+[2025-07-26 01:15:36] [INFO] Memulai proses peluncuran game.
+[2025-07-26 01:15:36] [INFO] id_anggota (8) berhasil dipetakan ke id_sigma GameXa: 67
+[2025-07-26 01:15:36] [INFO] GameXaAPI diinisialisasi.
+[2025-07-26 01:15:36] [INFO] Request mentah ke API GameXa (POST /api/games/launch): {"player_id":67,"game_uid":"fffac1d578d7f53cbc67af087bf7911d","currency":"IDR"}
+[2025-07-26 01:15:36] [INFO] Respons dari API GameXa: {"success":true,"data":{"success":true,"game_launch_url":"https:\/\/huidu.bet\/game\/gamesUrl?id=bffcef01-aed9-40e9-99de-bbf9d9ab92c2","session_id":"session_1753467339703_oups5vsnv"}}
+[2025-07-26 01:15:36] [INFO] Game berhasil diluncurkan.
+[2025-07-26 01:15:36] [INFO] URL Game: https://huidu.bet/game/gamesUrl?id=bffcef01-aed9-40e9-99de-bbf9d9ab92c2
+[2025-07-26 01:15:36] [INFO] Session ID GameXa: session_1753467339703_oups5vsnv
+[2025-07-26 01:15:36] [INFO] Keterangan: Pemain diarahkan ke URL game.
+[2025-07-26 01:16:17] [INFO] Memulai proses peluncuran game.
+[2025-07-26 01:16:17] [INFO] id_anggota (8) berhasil dipetakan ke id_sigma GameXa: 67
+[2025-07-26 01:16:17] [ERROR] Error: Parameter game tidak lengkap (game_uid: , provider_code: ag, game_type: undefined).

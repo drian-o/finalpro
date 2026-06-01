@@ -1,0 +1,21 @@
+[14-Aug-2025 22:08:52 Asia/Jakarta] PHP Fatal error:  Cannot redeclare function write_log() (previously declared in /home/pxevcpmz/demo2.zhero.site/playgame/playGame.php:18) in /home/pxevcpmz/demo2.zhero.site/update_saldo.php on line 20
+[14-Aug-2025 22:09:39 Asia/Jakarta] PHP Fatal error:  Cannot redeclare function write_log() (previously declared in /home/pxevcpmz/demo2.zhero.site/playgame/playGame.php:18) in /home/pxevcpmz/demo2.zhero.site/update_saldo.php on line 20
+[14-Aug-2025 22:13:12 Asia/Jakarta] PHP Warning:  require_once(../classes/log_helper.php): Failed to open stream: No such file or directory in /home/pxevcpmz/demo2.zhero.site/playgame/playGame.php on line 8
+[14-Aug-2025 22:13:12 Asia/Jakarta] PHP Fatal error:  Uncaught Error: Failed opening required '../classes/log_helper.php' (include_path='.:/opt/alt/php84/usr/share/pear:/opt/alt/php84/usr/share/php:/usr/share/pear:/usr/share/php') in /home/pxevcpmz/demo2.zhero.site/playgame/playGame.php:8
+Stack trace:
+#0 {main}
+  thrown in /home/pxevcpmz/demo2.zhero.site/playgame/playGame.php on line 8
+[15-Aug-2025 00:55:41 Asia/Jakarta] API Error: HTTP Code 400, Response: {"error":"Failed to launch game","code":10017,"message":"Game is not available : BLACKJACK_LIVE"}
+[15-Aug-2025 00:56:08 Asia/Jakarta] API Error: HTTP Code 400, Response: {"error":"Failed to launch game","code":10017,"message":"Game is not available : BLACKJACK_LIVE"}
+[15-Aug-2025 00:56:22 Asia/Jakarta] API Error: HTTP Code 400, Response: {"error":"Failed to launch game","code":10017,"message":"Game is not available : BLACKJACK_LIVE"}
+[15-Aug-2025 00:56:31 Asia/Jakarta] API Error: HTTP Code 400, Response: {"error":"Failed to launch game","code":10017,"message":"Game is not available : ROULETTE_LIVE"}
+[15-Aug-2025 01:11:10 Asia/Jakarta] API Error: HTTP Code 404, Response: {"error":"Game not found or inactive"}
+[15-Aug-2025 01:11:25 Asia/Jakarta] API Error: HTTP Code 404, Response: {"error":"Game not found or inactive"}
+[15-Aug-2025 01:11:32 Asia/Jakarta] API Error: HTTP Code 404, Response: {"error":"Game not found or inactive"}
+[15-Aug-2025 01:12:17 Asia/Jakarta] API Error: HTTP Code 404, Response: {"error":"Game not found or inactive"}
+[20-Aug-2025 10:21:55 Asia/Jakarta] API Error: HTTP Code 404, Response: {"error":"Player not found or no permission"}
+[01-Sep-2025 15:12:32 Asia/Jakarta] API Error: HTTP Code 400, Response: {"error":"Failed to launch game","code":10017,"message":"Game is not available : 37bcc1a9ee64201fe9599cf3d5e3ea18"}
+[06-Sep-2025 02:28:34 Asia/Jakarta] API Error: HTTP Code 400, Response: {"error":"Invalid credentials"}
+[06-Sep-2025 02:29:02 Asia/Jakarta] API Error: HTTP Code 400, Response: {"error":"Invalid credentials"}
+[06-Sep-2025 02:29:18 Asia/Jakarta] API Error: HTTP Code 400, Response: {"error":"Invalid credentials"}
+[06-Sep-2025 02:29:34 Asia/Jakarta] API Error: HTTP Code 400, Response: {"error":"Invalid credentials"}

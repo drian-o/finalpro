@@ -1,0 +1,43 @@
+<?php
+include_once 'koneksi.php';
+include_once 'header.php';
+
+// 1. KEAMANAN & PENGAMBILAN DATA
+// ======================================================================
+
+// Cek jika pengguna sudah login, jika tidak, alihkan ke halaman utama
+if (!isset($_SESSION['loggedin']) || $_SESSION['loggedin'] !== true) {
+    echo '<script>window.location.replace("' . $alamat_website . 'auth-login.php");</script>';
+    exit();
+}
+
+// Ambil data penting dari session
+$id_anggota_aktif = $_SESSION['id_anggota'];
+
+// Gunakan prepared statement untuk mengambil data anggota
+$stmt = $koneksi->prepare("SELECT tanggal_bergabung FROM anggota WHERE id_anggota = ?");
+$stmt->bind_param("i", $id_anggota_aktif);
+$stmt->execute();
+$result = $stmt->get_result();
+$data_anggota = $result->fetch_assoc();
+$stmt->close();
+
+if (!$data_anggota) {
+    // Jika data anggota tidak ditemukan, logout untuk keamanan
+    echo '<script>window.location.replace("' . $alamat_website . 'logout.php");</script>';
+    exit();
+}
+
+// 2. LOGIKA & KONFIGURASI SISTEM VIP
+// ======================================================================
+
+/*
+ * Konfigurasi Pusat untuk Level VIP.
+ * Anda bisa menambahkan 'benefits' (keuntungan) untuk setiap level.
+*/
+$vip_levels = [
+    1 => [
+        'name' => 'Pemain Baru',
+        'min_days' => 0,
+        'badge_url' => '/upload/vip/PemainBaru.png',
+ 

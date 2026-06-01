@@ -1,0 +1,105 @@
+[28-Jan-2023 22:27:01 Asia/Jakarta] PHP Warning:  Use of undefined constant abcdefghijklmnopqrstuvwxyz123456789 - assumed 'abcdefghijklmnopqrstuvwxyz123456789' (this will throw an Error in a future version of PHP) in /home/u0434615/public_html/kingcuan69.com/function/reset-proses.php on line 13
+[28-Jan-2023 22:27:01 Asia/Jakarta] PHP Notice:  Undefined index: email in /home/u0434615/public_html/kingcuan69.com/function/reset-proses.php on line 16
+[30-Jan-2023 12:37:49 Asia/Jakarta] PHP Warning:  Use of undefined constant abcdefghijklmnopqrstuvwxyz123456789 - assumed 'abcdefghijklmnopqrstuvwxyz123456789' (this will throw an Error in a future version of PHP) in /home/u0434615/public_html/kingcuan69.com/function/reset-proses.php on line 13
+[30-Jan-2023 12:37:49 Asia/Jakarta] PHP Notice:  Undefined index: email in /home/u0434615/public_html/kingcuan69.com/function/reset-proses.php on line 16
+[30-Jan-2023 12:38:59 Asia/Jakarta] PHP Warning:  Use of undefined constant abcdefghijklmnopqrstuvwxyz123456789 - assumed 'abcdefghijklmnopqrstuvwxyz123456789' (this will throw an Error in a future version of PHP) in /home/u0434615/public_html/kingcuan69.com/function/reset-proses.php on line 13
+[30-Jan-2023 12:38:59 Asia/Jakarta] PHP Notice:  Undefined index: email in /home/u0434615/public_html/kingcuan69.com/function/reset-proses.php on line 16
+[30-Jan-2023 12:39:40 Asia/Jakarta] PHP Warning:  Use of undefined constant abcdefghijklmnopqrstuvwxyz123456789 - assumed 'abcdefghijklmnopqrstuvwxyz123456789' (this will throw an Error in a future version of PHP) in /home/u0434615/public_html/kingcuan69.com/function/reset-proses.php on line 13
+[30-Jan-2023 12:39:40 Asia/Jakarta] PHP Notice:  Undefined index: email in /home/u0434615/public_html/kingcuan69.com/function/reset-proses.php on line 16
+[03-Feb-2023 22:31:56 Asia/Jakarta] PHP Warning:  Use of undefined constant abcdefghijklmnopqrstuvwxyz123456789 - assumed 'abcdefghijklmnopqrstuvwxyz123456789' (this will throw an Error in a future version of PHP) in /home/u0434615/public_html/kingcuan69.com/function/reset-proses.php on line 13
+[03-Feb-2023 22:31:56 Asia/Jakarta] PHP Notice:  Undefined index: email in /home/u0434615/public_html/kingcuan69.com/function/reset-proses.php on line 16
+[03-Feb-2023 22:33:08 Asia/Jakarta] PHP Warning:  Use of undefined constant abcdefghijklmnopqrstuvwxyz123456789 - assumed 'abcdefghijklmnopqrstuvwxyz123456789' (this will throw an Error in a future version of PHP) in /home/u0434615/public_html/kingcuan69.com/function/reset-proses.php on line 13
+[03-Feb-2023 22:33:08 Asia/Jakarta] PHP Notice:  Undefined index: email in /home/u0434615/public_html/kingcuan69.com/function/reset-proses.php on line 16
+[03-Jul-2023 18:37:12 UTC] PHP Warning:  Undefined array key "full_name" in /home/maxwinmy/public_html/function/step-1.php on line 9
+[03-Jul-2023 18:37:12 UTC] PHP Deprecated:  mysqli_real_escape_string(): Passing null to parameter #2 ($string) of type string is deprecated in /home/maxwinmy/public_html/function/step-1.php on line 9
+[03-Jul-2023 18:37:12 UTC] PHP Warning:  Undefined array key "user" in /home/maxwinmy/public_html/function/step-1.php on line 10
+[03-Jul-2023 18:37:12 UTC] PHP Deprecated:  strtolower(): Passing null to parameter #1 ($string) of type string is deprecated in /home/maxwinmy/public_html/function/step-1.php on line 10
+[03-Jul-2023 18:37:12 UTC] PHP Warning:  Undefined array key "email" in /home/maxwinmy/public_html/function/step-1.php on line 15
+[03-Jul-2023 18:37:12 UTC] PHP Deprecated:  mysqli_real_escape_string(): Passing null to parameter #2 ($string) of type string is deprecated in /home/maxwinmy/public_html/function/step-1.php on line 15
+[03-Jul-2023 18:37:12 UTC] PHP Warning:  Undefined array key "no_hp" in /home/maxwinmy/public_html/function/step-1.php on line 16
+[03-Jul-2023 18:37:12 UTC] PHP Warning:  Undefined array key "akun" in /home/maxwinmy/public_html/function/step-1.php on line 17
+[03-Jul-2023 18:37:12 UTC] PHP Deprecated:  mysqli_real_escape_string(): Passing null to parameter #2 ($string) of type string is deprecated in /home/maxwinmy/public_html/function/step-1.php on line 17
+[03-Jul-2023 18:37:12 UTC] PHP Warning:  Undefined array key "no_rek" in /home/maxwinmy/public_html/function/step-1.php on line 18
+[03-Jul-2023 18:37:12 UTC] PHP Warning:  Undefined array key "pass" in /home/maxwinmy/public_html/function/step-1.php on line 19
+[03-Jul-2023 18:37:12 UTC] PHP Deprecated:  password_hash(): Passing null to parameter #1 ($password) of type string is deprecated in /home/maxwinmy/public_html/function/step-1.php on line 19
+[03-Jul-2023 18:37:12 UTC] PHP Warning:  Undefined array key "sponsor" in /home/maxwinmy/public_html/function/step-1.php on line 51
+[03-Jul-2023 18:51:23 UTC] PHP Warning:  Undefined array key "full_name" in /home/maxwinmy/public_html/function/step-1.php on line 9
+[03-Jul-2023 18:51:23 UTC] PHP Deprecated:  mysqli_real_escape_string(): Passing null to parameter #2 ($string) of type string is deprecated in /home/maxwinmy/public_html/function/step-1.php on line 9
+[03-Jul-2023 18:51:23 UTC] PHP Warning:  Undefined array key "user" in /home/maxwinmy/public_html/function/step-1.php on line 10
+[03-Jul-2023 18:51:23 UTC] PHP Deprecated:  strtolower(): Passing null to parameter #1 ($string) of type string is deprecated in /home/maxwinmy/public_html/function/step-1.php on line 10
+[03-Jul-2023 18:51:23 UTC] PHP Warning:  Undefined array key "email" in /home/maxwinmy/public_html/function/step-1.php on line 15
+[03-Jul-2023 18:51:23 UTC] PHP Deprecated:  mysqli_real_escape_string(): Passing null to parameter #2 ($string) of type string is deprecated in /home/maxwinmy/public_html/function/step-1.php on line 15
+[03-Jul-2023 18:51:23 UTC] PHP Warning:  Undefined array key "no_hp" in /home/maxwinmy/public_html/function/step-1.php on line 16
+[03-Jul-2023 18:51:23 UTC] PHP Warning:  Undefined array key "akun" in /home/maxwinmy/public_html/function/step-1.php on line 17
+[03-Jul-2023 18:51:23 UTC] PHP Deprecated:  mysqli_real_escape_string(): Passing null to parameter #2 ($string) of type string is deprecated in /home/maxwinmy/public_html/function/step-1.php on line 17
+[03-Jul-2023 18:51:23 UTC] PHP Warning:  Undefined array key "no_rek" in /home/maxwinmy/public_html/function/step-1.php on line 18
+[03-Jul-2023 18:51:23 UTC] PHP Warning:  Undefined array key "pass" in /home/maxwinmy/public_html/function/step-1.php on line 19
+[03-Jul-2023 18:51:23 UTC] PHP Deprecated:  password_hash(): Passing null to parameter #1 ($password) of type string is deprecated in /home/maxwinmy/public_html/function/step-1.php on line 19
+[04-Jul-2023 02:33:21 Asia/Jakarta] PHP Warning:  include(../classes/class.phpmailer.php): Failed to open stream: No such file or directory in /home/maxwinmy/public_html/function/reset-proses.php on line 6
+[04-Jul-2023 02:33:21 Asia/Jakarta] PHP Warning:  include(../classes/class.phpmailer.php): Failed to open stream: No such file or directory in /home/maxwinmy/public_html/function/reset-proses.php on line 6
+[04-Jul-2023 02:33:21 Asia/Jakarta] PHP Warning:  include(): Failed opening '../classes/class.phpmailer.php' for inclusion (include_path='.:/opt/alt/php81/usr/share/pear:/opt/alt/php81/usr/share/php:/usr/share/pear:/usr/share/php') in /home/maxwinmy/public_html/function/reset-proses.php on line 6
+[04-Jul-2023 02:33:21 Asia/Jakarta] PHP Fatal error:  Uncaught Error: Undefined constant "abcdefghijklmnopqrstuvwxyz123456789" in /home/maxwinmy/public_html/function/reset-proses.php:13
+Stack trace:
+#0 {main}
+  thrown in /home/maxwinmy/public_html/function/reset-proses.php on line 13
+[04-Jul-2023 02:34:42 Asia/Jakarta] PHP Warning:  include(../classes/class.phpmailer.php): Failed to open stream: No such file or directory in /home/maxwinmy/public_html/function/reset-proses.php on line 6
+[04-Jul-2023 02:34:42 Asia/Jakarta] PHP Warning:  include(../classes/class.phpmailer.php): Failed to open stream: No such file or directory in /home/maxwinmy/public_html/function/reset-proses.php on line 6
+[04-Jul-2023 02:34:42 Asia/Jakarta] PHP Warning:  include(): Failed opening '../classes/class.phpmailer.php' for inclusion (include_path='.:/opt/alt/php81/usr/share/pear:/opt/alt/php81/usr/share/php:/usr/share/pear:/usr/share/php') in /home/maxwinmy/public_html/function/reset-proses.php on line 6
+[04-Jul-2023 02:34:42 Asia/Jakarta] PHP Fatal error:  Uncaught Error: Undefined constant "abcdefghijklmnopqrstuvwxyz123456789" in /home/maxwinmy/public_html/function/reset-proses.php:13
+Stack trace:
+#0 {main}
+  thrown in /home/maxwinmy/public_html/function/reset-proses.php on line 13
+[04-Jul-2023 05:59:23 Asia/Jakarta] PHP Warning:  include(../classes/class.phpmailer.php): Failed to open stream: No such file or directory in /home/maxwinmy/public_html/function/reset-proses.php on line 6
+[04-Jul-2023 05:59:23 Asia/Jakarta] PHP Warning:  include(../classes/class.phpmailer.php): Failed to open stream: No such file or directory in /home/maxwinmy/public_html/function/reset-proses.php on line 6
+[04-Jul-2023 05:59:23 Asia/Jakarta] PHP Warning:  include(): Failed opening '../classes/class.phpmailer.php' for inclusion (include_path='.:/opt/alt/php81/usr/share/pear:/opt/alt/php81/usr/share/php:/usr/share/pear:/usr/share/php') in /home/maxwinmy/public_html/function/reset-proses.php on line 6
+[04-Jul-2023 05:59:23 Asia/Jakarta] PHP Fatal error:  Uncaught Error: Undefined constant "abcdefghijklmnopqrstuvwxyz123456789" in /home/maxwinmy/public_html/function/reset-proses.php:13
+Stack trace:
+#0 {main}
+  thrown in /home/maxwinmy/public_html/function/reset-proses.php on line 13
+[06-Apr-2024 16:39:00 Asia/Jakarta] PHP Notice:  Undefined index: gameid in /home/cekopnzz/public_html/function2/deposit.php on line 7
+[06-Apr-2024 17:13:15 Asia/Jakarta] PHP Notice:  Undefined index: gameid in /home/cekopnzz/public_html/function2/deposit.php on line 7
+[07-Apr-2024 14:03:03 Asia/Jakarta] PHP Notice:  Undefined index: gameid in /home/cekopnzz/public_html/function2/deposit.php on line 7
+[31-May-2024 09:05:51 Asia/Jakarta] PHP Warning:  Undefined array key "gameid" in /home/asyik77/public_html/function2/deposit.php on line 7
+[31-May-2024 09:10:09 Asia/Jakarta] PHP Warning:  Undefined array key "metode" in /home/asyik77/public_html/function2/deposit.php on line 3
+[31-May-2024 09:10:09 Asia/Jakarta] PHP Warning:  Undefined array key "nominal" in /home/asyik77/public_html/function2/deposit.php on line 4
+[31-May-2024 09:10:09 Asia/Jakarta] PHP Deprecated:  preg_replace(): Passing null to parameter #3 ($subject) of type array|string is deprecated in /home/asyik77/public_html/function2/deposit.php on line 4
+[31-May-2024 09:10:09 Asia/Jakarta] PHP Warning:  Undefined array key "pay_from" in /home/asyik77/public_html/function2/deposit.php on line 5
+[31-May-2024 09:10:09 Asia/Jakarta] PHP Warning:  Undefined array key "catatan" in /home/asyik77/public_html/function2/deposit.php on line 6
+[31-May-2024 09:10:09 Asia/Jakarta] PHP Warning:  Undefined array key "gameid" in /home/asyik77/public_html/function2/deposit.php on line 7
+[31-May-2024 09:10:09 Asia/Jakarta] PHP Warning:  Undefined array key "postID" in /home/asyik77/public_html/function2/deposit.php on line 8
+[22-Jun-2024 15:47:04 Asia/Jakarta] PHP Notice:  Undefined index: gameid in /home/pastiijp/public_html/function2/deposit.php on line 7
+[22-Jun-2024 16:07:56 Asia/Jakarta] PHP Notice:  Undefined index: gameid in /home/pastiijp/public_html/function2/deposit.php on line 7
+[04-Aug-2024 00:39:44 Asia/Jakarta] PHP Notice:  Undefined index: gameid in /home/jamurmy1/public_html/function2/deposit.php on line 7
+[24-Dec-2024 18:23:16 Asia/Jakarta] PHP Notice:  Undefined index: gameid in /home/starboy108biz/public_html/function2/deposit.php on line 7
+[24-Dec-2024 18:43:38 Asia/Jakarta] PHP Notice:  Undefined index: gameid in /home/starboy108biz/public_html/function2/deposit.php on line 7
+[24-Dec-2024 19:31:27 Asia/Jakarta] PHP Notice:  Undefined index: gameid in /home/starboy108biz/public_html/function2/deposit.php on line 7
+[24-Dec-2024 19:42:39 Asia/Jakarta] PHP Notice:  Undefined index: gameid in /home/starboy108biz/public_html/function2/deposit.php on line 7
+[24-Dec-2024 19:54:49 Asia/Jakarta] PHP Notice:  Undefined index: gameid in /home/starboy108biz/public_html/function2/deposit.php on line 7
+[24-Dec-2024 20:43:21 Asia/Jakarta] PHP Notice:  Undefined index: gameid in /home/starboy108biz/public_html/function2/deposit.php on line 7
+[24-Dec-2024 21:02:11 Asia/Jakarta] PHP Notice:  Undefined index: gameid in /home/starboy108biz/public_html/function2/deposit.php on line 7
+[24-Dec-2024 21:07:40 Asia/Jakarta] PHP Notice:  Undefined index: gameid in /home/starboy108biz/public_html/function2/deposit.php on line 7
+[24-Dec-2024 21:30:58 Asia/Jakarta] PHP Notice:  Undefined index: gameid in /home/starboy108biz/public_html/function2/deposit.php on line 7
+[24-Dec-2024 21:41:42 Asia/Jakarta] PHP Notice:  Undefined index: gameid in /home/starboy108biz/public_html/function2/deposit.php on line 7
+[24-Dec-2024 22:16:33 Asia/Jakarta] PHP Notice:  Undefined index: gameid in /home/starboy108biz/public_html/function2/deposit.php on line 7
+[24-Dec-2024 22:45:27 Asia/Jakarta] PHP Notice:  Undefined index: gameid in /home/starboy108biz/public_html/function2/deposit.php on line 7
+[25-Dec-2024 13:03:53 Asia/Jakarta] PHP Notice:  Undefined index: gameid in /home/starboy108biz/public_html/function2/deposit.php on line 7
+[25-Dec-2024 13:46:30 Asia/Jakarta] PHP Notice:  Undefined index: gameid in /home/starboy108biz/public_html/function2/deposit.php on line 7
+[25-Dec-2024 18:58:12 Asia/Jakarta] PHP Notice:  A non well formed numeric value encountered in /home/starboy108biz/public_html/function2/deposit.php on line 28
+[02-Jan-2025 01:45:26 Asia/Jakarta] PHP Notice:  Undefined index: gameid in /home/starboy108biz/public_html/function2/deposit.php on line 7
+[02-Jan-2025 01:52:40 Asia/Jakarta] PHP Notice:  Undefined index: gameid in /home/starboy108biz/public_html/function2/deposit.php on line 7
+[02-Jan-2025 01:59:40 Asia/Jakarta] PHP Notice:  Undefined index: gameid in /home/starboy108biz/public_html/function2/deposit.php on line 7
+[16-Jan-2025 13:49:57 Asia/Jakarta] PHP Notice:  Undefined index: gameid in /home/starboy108biz/public_html/function2/deposit.php on line 7
+[16-Jan-2025 21:36:53 Asia/Jakarta] PHP Notice:  Undefined index: gameid in /home/starboy108biz/public_html/function2/deposit.php on line 7
+[16-Jan-2025 22:34:23 Asia/Jakarta] PHP Notice:  Undefined index: gameid in /home/starboy108biz/public_html/function2/deposit.php on line 7
+[17-Jan-2025 01:27:53 Asia/Jakarta] PHP Notice:  Undefined index: gameid in /home/starboy108biz/public_html/function2/deposit.php on line 7
+[17-Jan-2025 04:41:34 Asia/Jakarta] PHP Notice:  Undefined index: gameid in /home/starboy108biz/public_html/function2/deposit.php on line 7
+[23-Feb-2025 10:58:37 Asia/Jakarta] PHP Warning:  Undefined array key "gameid" in /home/jlrsdjle/public_html/function2/deposit.php on line 7
+[24-Feb-2025 18:01:29 Asia/Jakarta] PHP Warning:  Undefined array key "gameid" in /home/jlrsdjle/public_html/function2/deposit.php on line 7
+[26-Feb-2025 16:07:32 Asia/Jakarta] PHP Notice:  Undefined index: gameid in /home/jlrsdjle/public_html/function2/deposit.php on line 7
+[26-Feb-2025 17:34:34 Asia/Jakarta] PHP Notice:  Undefined index: gameid in /home/jlrsdjle/public_html/function2/deposit.php on line 7
+[26-Feb-2025 17:54:06 Asia/Jakarta] PHP Notice:  Undefined index: gameid in /home/jlrsdjle/public_html/function2/deposit.php on line 7
+[27-Feb-2025 08:43:37 Asia/Jakarta] PHP Notice:  Undefined index: gameid in /home/jlrsdjle/public_html/function2/deposit.php on line 7
+[27-Feb-2025 08:56:39 Asia/Jakarta] PHP Notice:  Undefined index: gameid in /home/jlrsdjle/public_html/function2/deposit.php on line 7
+[02-Mar-2025 00:35:01 Asia/Jakarta] PHP Notice:  Undefined index: gameid in /home/jlrsdjle/public_html/function2/deposit.php on line 7
+[03-Mar-2025 04:35:24 Asia/Jakarta] PHP Notice:  Undefined index: gameid in /home/jlrsdjle/public_html/function2/deposit.php on line 7
+[07-Mar-2025 00:02:33 Asia/Jakarta] PHP Notice:  Undefined index: gameid in /home/jlrsdjle/public_html/function2/deposit.php on line 7

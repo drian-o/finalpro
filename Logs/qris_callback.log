@@ -1,0 +1,637 @@
+[2025-07-26 05:45:30] Raw data callback QRIS diterima: {"amount":2000,"terminal_id":"demodoang","merchant_id":"3c1eb8b7-f7f4-482c-82ea-195530fd573a","trx_id":"02Ne2c6e305d2e61","rrn":"877744916064","custom_ref":"","vendor":"MNCNEW","status":"success","created_at":"2025-07-25T22:45:11.000Z","finish_at":"2025-07-25T22:45:29.004Z"}
+[2025-07-26 05:45:30] Data JSON callback QRIS berhasil di-decode: Array
+(
+    [amount] => 2000
+    [terminal_id] => demodoang
+    [merchant_id] => 3c1eb8b7-f7f4-482c-82ea-195530fd573a
+    [trx_id] => 02Ne2c6e305d2e61
+    [rrn] => 877744916064
+    [custom_ref] => 
+    [vendor] => MNCNEW
+    [status] => success
+    [created_at] => 2025-07-25T22:45:11.000Z
+    [finish_at] => 2025-07-25T22:45:29.004Z
+)
+
+[2025-07-26 05:45:30] Status Polling 'SUCCESS' untuk TRX ID QRIS 02Ne2c6e305d2e61 disimpan.
+[2025-07-26 05:45:30] Gambar QR /home/buhwhbjg/live2.sigmabet.pro/folder_qr/02Ne2c6e305d2e61.png dihapus untuk TRX ID QRIS 02Ne2c6e305d2e61.
+[2025-07-26 05:45:30] Pembayaran QRIS BERHASIL: TRX_ID_QRIS=02Ne2c6e305d2e61, User=demodoang, Amount=2000
+[2025-07-26 05:45:30] Current status_deposit_lokal for 02Ne2c6e305d2e61: diproses
+[2025-07-26 05:45:30] Memulai transaksi DB. QRIS_TRX_ID: 02Ne2c6e305d2e61
+[2025-07-26 05:45:30] GameXa Call: DepositToPlayer untuk ID Sigma '67', Amount 2000, Reference ID: 02Ne2c6e305d2e61.
+[2025-07-26 05:45:30] GameXa Resp (Deposit): {"success":true,"data":{"message":"Deposit successful","data":{"player_id":"67","amount":2000,"balance_before":3600,"balance_after":5600,"transaction_type":"deposit","reference_id":"02Ne2c6e305d2e61","agent_id":15,"agent_balance_before":5372000,"agent_balance_after":5370000,"hierarchy_level":"agent_to_player"}}}
+[2025-07-26 05:45:30] GameXa: Deposit sukses untuk demodoang. Amount: 2000, Before: 3600, After: 5600.
+[2025-07-26 05:45:30] GameXa Call: GetPlayerBalance untuk ID Sigma '67'.
+[2025-07-26 05:45:30] GameXa Resp (GetPlayerBalance): {"success":true,"data":{"player_id":67,"username":"demodoang","full_name":"Vegon Shella","balance":5600,"currency":"IDR"}}
+[2025-07-26 05:45:30] GameXa: Saldo terbaru dari GameXa untuk demodoang adalah 5600.
+[2025-07-26 05:45:30] DB: Status deposit QRIS TRX ID 02Ne2c6e305d2e61 diupdate ke 'disetujui'.
+[2025-07-26 05:45:30] DB: Saldo anggota demodoang diupdate ke 5600 (dari GameXa).
+[2025-07-26 05:45:30] DB: Transaksi COMMIT sukses untuk QRIS TRX ID: 02Ne2c6e305d2e61.
+[2025-07-26 12:16:40] Raw data callback QRIS diterima: {"amount":2000,"terminal_id":"demodoang1","merchant_id":"3c1eb8b7-f7f4-482c-82ea-195530fd573a","trx_id":"02Na65d4062ca759","rrn":"877883792768","custom_ref":"","vendor":"MNCNEW","status":"success","created_at":"2025-07-26T05:16:17.000Z","finish_at":"2025-07-26T05:16:39.002Z"}
+[2025-07-26 12:16:40] Data JSON callback QRIS berhasil di-decode: Array
+(
+    [amount] => 2000
+    [terminal_id] => demodoang1
+    [merchant_id] => 3c1eb8b7-f7f4-482c-82ea-195530fd573a
+    [trx_id] => 02Na65d4062ca759
+    [rrn] => 877883792768
+    [custom_ref] => 
+    [vendor] => MNCNEW
+    [status] => success
+    [created_at] => 2025-07-26T05:16:17.000Z
+    [finish_at] => 2025-07-26T05:16:39.002Z
+)
+
+[2025-07-26 12:16:40] Status Polling 'SUCCESS' untuk TRX ID QRIS 02Na65d4062ca759 disimpan.
+[2025-07-26 12:16:40] Gambar QR /home/buhwhbjg/live2.sigmabet.pro/folder_qr/02Na65d4062ca759.png dihapus untuk TRX ID QRIS 02Na65d4062ca759.
+[2025-07-26 12:16:40] Pembayaran QRIS BERHASIL: TRX_ID_QRIS=02Na65d4062ca759, User=demodoang1, Amount=2000
+[2025-07-26 12:16:40] Current status_deposit_lokal for 02Na65d4062ca759: diproses
+[2025-07-26 12:16:40] Memulai transaksi DB. QRIS_TRX_ID: 02Na65d4062ca759
+[2025-07-26 12:16:40] GameXa Call: DepositToPlayer untuk ID Sigma '73', Amount 2000, Reference ID: 02Na65d4062ca759.
+[2025-07-26 12:16:40] GameXa Resp (Deposit): {"success":true,"data":{"message":"Deposit successful","data":{"player_id":"73","amount":2000,"balance_before":0,"balance_after":2000,"transaction_type":"deposit","reference_id":"02Na65d4062ca759","agent_id":15,"agent_balance_before":68000,"agent_balance_after":66000,"hierarchy_level":"agent_to_player"}}}
+[2025-07-26 12:16:40] GameXa: Deposit sukses untuk demodoang1. Amount: 2000, Before: 0, After: 2000.
+[2025-07-26 12:16:40] GameXa Call: GetPlayerBalance untuk ID Sigma '73'.
+[2025-07-26 12:16:40] GameXa Resp (GetPlayerBalance): {"success":true,"data":{"player_id":73,"username":"demodoang1","full_name":"Vegon s","balance":2000,"currency":"IDR"}}
+[2025-07-26 12:16:40] GameXa: Saldo terbaru dari GameXa untuk demodoang1 adalah 2000.
+[2025-07-26 12:16:40] DB: Status deposit QRIS TRX ID 02Na65d4062ca759 diupdate ke 'disetujui'.
+[2025-07-26 12:16:40] DB: Saldo anggota demodoang1 diupdate ke 2000 (dari GameXa).
+[2025-07-26 12:16:40] Referral found for demodoang1: demodoang. Calculating bonus.
+[2025-07-26 12:16:40] Referral Bonus: Inserted 20 for referer 'demodoang' from 'demodoang1'.
+[2025-07-26 12:16:40] DB: Transaksi COMMIT sukses untuk QRIS TRX ID: 02Na65d4062ca759. Termasuk bonus referral.
+[2025-07-26 12:18:01] Raw data callback QRIS diterima: {"amount":2000,"terminal_id":"demodoang1","merchant_id":"3c1eb8b7-f7f4-482c-82ea-195530fd573a","trx_id":"02N49a46b58751f1","rrn":"877884370218","custom_ref":"","vendor":"MNCNEW","status":"success","created_at":"2025-07-26T05:17:39.000Z","finish_at":"2025-07-26T05:17:59.961Z"}
+[2025-07-26 12:18:01] Data JSON callback QRIS berhasil di-decode: Array
+(
+    [amount] => 2000
+    [terminal_id] => demodoang1
+    [merchant_id] => 3c1eb8b7-f7f4-482c-82ea-195530fd573a
+    [trx_id] => 02N49a46b58751f1
+    [rrn] => 877884370218
+    [custom_ref] => 
+    [vendor] => MNCNEW
+    [status] => success
+    [created_at] => 2025-07-26T05:17:39.000Z
+    [finish_at] => 2025-07-26T05:17:59.961Z
+)
+
+[2025-07-26 12:18:01] Status Polling 'SUCCESS' untuk TRX ID QRIS 02N49a46b58751f1 disimpan.
+[2025-07-26 12:18:01] Gambar QR /home/buhwhbjg/live2.sigmabet.pro/folder_qr/02N49a46b58751f1.png dihapus untuk TRX ID QRIS 02N49a46b58751f1.
+[2025-07-26 12:18:01] Pembayaran QRIS BERHASIL: TRX_ID_QRIS=02N49a46b58751f1, User=demodoang1, Amount=2000
+[2025-07-26 12:18:01] Current status_deposit_lokal for 02N49a46b58751f1: diproses
+[2025-07-26 12:18:01] Memulai transaksi DB. QRIS_TRX_ID: 02N49a46b58751f1
+[2025-07-26 12:18:01] GameXa Call: DepositToPlayer untuk ID Sigma '73', Amount 2000, Reference ID: 02N49a46b58751f1.
+[2025-07-26 12:18:01] GameXa Resp (Deposit): {"success":true,"data":{"message":"Deposit successful","data":{"player_id":"73","amount":2000,"balance_before":2000,"balance_after":4000,"transaction_type":"deposit","reference_id":"02N49a46b58751f1","agent_id":15,"agent_balance_before":66000,"agent_balance_after":64000,"hierarchy_level":"agent_to_player"}}}
+[2025-07-26 12:18:01] GameXa: Deposit sukses untuk demodoang1. Amount: 2000, Before: 2000, After: 4000.
+[2025-07-26 12:18:01] GameXa Call: GetPlayerBalance untuk ID Sigma '73'.
+[2025-07-26 12:18:01] GameXa Resp (GetPlayerBalance): {"success":true,"data":{"player_id":73,"username":"demodoang1","full_name":"Vegon s","balance":4000,"currency":"IDR"}}
+[2025-07-26 12:18:01] GameXa: Saldo terbaru dari GameXa untuk demodoang1 adalah 4000.
+[2025-07-26 12:18:01] DB: Status deposit QRIS TRX ID 02N49a46b58751f1 diupdate ke 'disetujui'.
+[2025-07-26 12:18:01] DB: Saldo anggota demodoang1 diupdate ke 4000 (dari GameXa).
+[2025-07-26 12:18:01] Referral found for demodoang1: demodoang. Calculating bonus.
+[2025-07-26 12:18:01] Referral Bonus: Inserted 20 for referer 'demodoang' from 'demodoang1'.
+[2025-07-26 12:18:01] DB: Transaksi COMMIT sukses untuk QRIS TRX ID: 02N49a46b58751f1. Termasuk bonus referral.
+[2025-07-26 12:24:25] Raw data callback QRIS diterima: {"amount":2000,"terminal_id":"demodoang1","merchant_id":"3c1eb8b7-f7f4-482c-82ea-195530fd573a","trx_id":"02N679dbe303fef6","rrn":"877887135997","custom_ref":"","vendor":"MNCNEW","status":"success","created_at":"2025-07-26T05:24:04.000Z","finish_at":"2025-07-26T05:24:23.642Z"}
+[2025-07-26 12:24:25] Data JSON callback QRIS berhasil di-decode: Array
+(
+    [amount] => 2000
+    [terminal_id] => demodoang1
+    [merchant_id] => 3c1eb8b7-f7f4-482c-82ea-195530fd573a
+    [trx_id] => 02N679dbe303fef6
+    [rrn] => 877887135997
+    [custom_ref] => 
+    [vendor] => MNCNEW
+    [status] => success
+    [created_at] => 2025-07-26T05:24:04.000Z
+    [finish_at] => 2025-07-26T05:24:23.642Z
+)
+
+[2025-07-26 12:24:25] Status Polling 'SUCCESS' untuk TRX ID QRIS 02N679dbe303fef6 disimpan.
+[2025-07-26 12:24:25] Gambar QR /home/buhwhbjg/live2.sigmabet.pro/folder_qr/02N679dbe303fef6.png dihapus untuk TRX ID QRIS 02N679dbe303fef6.
+[2025-07-26 12:24:25] Pembayaran QRIS BERHASIL: TRX_ID_QRIS=02N679dbe303fef6, User=demodoang1, Amount=2000
+[2025-07-26 12:24:25] Current status_deposit_lokal for 02N679dbe303fef6: diproses
+[2025-07-26 12:24:25] Memulai transaksi DB. QRIS_TRX_ID: 02N679dbe303fef6
+[2025-07-26 12:24:25] GameXa Call: DepositToPlayer untuk ID Sigma '73', Amount 2000, Reference ID: 02N679dbe303fef6.
+[2025-07-26 12:24:25] GameXa Resp (Deposit): {"success":true,"data":{"message":"Deposit successful","data":{"player_id":"73","amount":2000,"balance_before":4000,"balance_after":6000,"transaction_type":"deposit","reference_id":"02N679dbe303fef6","agent_id":15,"agent_balance_before":64000,"agent_balance_after":62000,"hierarchy_level":"agent_to_player"}}}
+[2025-07-26 12:24:25] GameXa: Deposit sukses untuk demodoang1. Amount: 2000, Before: 4000, After: 6000.
+[2025-07-26 12:24:25] GameXa Call: GetPlayerBalance untuk ID Sigma '73'.
+[2025-07-26 12:24:25] GameXa Resp (GetPlayerBalance): {"success":true,"data":{"player_id":73,"username":"demodoang1","full_name":"Vegon s","balance":6000,"currency":"IDR"}}
+[2025-07-26 12:24:25] GameXa: Saldo terbaru dari GameXa untuk demodoang1 adalah 6000.
+[2025-07-26 12:24:25] DB: Status deposit QRIS TRX ID 02N679dbe303fef6 diupdate ke 'disetujui'.
+[2025-07-26 12:24:25] DB: Saldo anggota demodoang1 diupdate ke 6000 (dari GameXa).
+[2025-07-26 12:24:25] Referral found for demodoang1: demodoang. Calculating bonus.
+[2025-07-26 12:24:25] Referral Bonus: Inserted new entry for referer 'demodoang' from 'demodoang1'. Initial bonus: 20. Keterangan: 'Bonus dari deposit 02N679dbe303fef6 (Rp 2.000)'.
+[2025-07-26 12:24:25] DB: Transaksi COMMIT sukses untuk QRIS TRX ID: 02N679dbe303fef6. Termasuk bonus referral.
+[2025-07-26 12:25:10] Raw data callback QRIS diterima: {"amount":2000,"terminal_id":"demodoang1","merchant_id":"3c1eb8b7-f7f4-482c-82ea-195530fd573a","trx_id":"02Nab98f3270dae4","rrn":"877887465902","custom_ref":"","vendor":"MNCNEW","status":"success","created_at":"2025-07-26T05:24:53.000Z","finish_at":"2025-07-26T05:25:09.724Z"}
+[2025-07-26 12:25:10] Data JSON callback QRIS berhasil di-decode: Array
+(
+    [amount] => 2000
+    [terminal_id] => demodoang1
+    [merchant_id] => 3c1eb8b7-f7f4-482c-82ea-195530fd573a
+    [trx_id] => 02Nab98f3270dae4
+    [rrn] => 877887465902
+    [custom_ref] => 
+    [vendor] => MNCNEW
+    [status] => success
+    [created_at] => 2025-07-26T05:24:53.000Z
+    [finish_at] => 2025-07-26T05:25:09.724Z
+)
+
+[2025-07-26 12:25:10] Status Polling 'SUCCESS' untuk TRX ID QRIS 02Nab98f3270dae4 disimpan.
+[2025-07-26 12:25:10] Gambar QR /home/buhwhbjg/live2.sigmabet.pro/folder_qr/02Nab98f3270dae4.png dihapus untuk TRX ID QRIS 02Nab98f3270dae4.
+[2025-07-26 12:25:10] Pembayaran QRIS BERHASIL: TRX_ID_QRIS=02Nab98f3270dae4, User=demodoang1, Amount=2000
+[2025-07-26 12:25:10] Current status_deposit_lokal for 02Nab98f3270dae4: diproses
+[2025-07-26 12:25:10] Memulai transaksi DB. QRIS_TRX_ID: 02Nab98f3270dae4
+[2025-07-26 12:25:10] GameXa Call: DepositToPlayer untuk ID Sigma '73', Amount 2000, Reference ID: 02Nab98f3270dae4.
+[2025-07-26 12:25:11] GameXa Resp (Deposit): {"success":true,"data":{"message":"Deposit successful","data":{"player_id":"73","amount":2000,"balance_before":6000,"balance_after":8000,"transaction_type":"deposit","reference_id":"02Nab98f3270dae4","agent_id":15,"agent_balance_before":62000,"agent_balance_after":60000,"hierarchy_level":"agent_to_player"}}}
+[2025-07-26 12:25:11] GameXa: Deposit sukses untuk demodoang1. Amount: 2000, Before: 6000, After: 8000.
+[2025-07-26 12:25:11] GameXa Call: GetPlayerBalance untuk ID Sigma '73'.
+[2025-07-26 12:25:11] GameXa Resp (GetPlayerBalance): {"success":true,"data":{"player_id":73,"username":"demodoang1","full_name":"Vegon s","balance":8000,"currency":"IDR"}}
+[2025-07-26 12:25:11] GameXa: Saldo terbaru dari GameXa untuk demodoang1 adalah 8000.
+[2025-07-26 12:25:11] DB: Status deposit QRIS TRX ID 02Nab98f3270dae4 diupdate ke 'disetujui'.
+[2025-07-26 12:25:11] DB: Saldo anggota demodoang1 diupdate ke 8000 (dari GameXa).
+[2025-07-26 12:25:11] Referral found for demodoang1: demodoang. Calculating bonus.
+[2025-07-26 12:25:11] Referral Bonus: Updated bonus for referer 'demodoang' from 'demodoang1'. New total bonus: 40. Keterangan: 'Bonus dari deposit 02Nab98f3270dae4 (Rp 2.000)'.
+[2025-07-26 12:25:11] DB: Transaksi COMMIT sukses untuk QRIS TRX ID: 02Nab98f3270dae4. Termasuk bonus referral.
+[2025-08-10 15:12:47] Raw data callback QRIS diterima: {"amount":2000,"terminal_id":"demouser","merchant_id":"3c1eb8b7-f7f4-482c-82ea-195530fd573a","trx_id":"02N190c8bc79c66f","rrn":"885534465369","custom_ref":"","vendor":"MNCNEW","status":"success","created_at":"2025-08-10T08:09:14.000Z","finish_at":"2025-08-10T08:12:47.277Z"}
+[2025-08-10 15:12:47] Data JSON callback QRIS berhasil di-decode: Array
+(
+    [amount] => 2000
+    [terminal_id] => demouser
+    [merchant_id] => 3c1eb8b7-f7f4-482c-82ea-195530fd573a
+    [trx_id] => 02N190c8bc79c66f
+    [rrn] => 885534465369
+    [custom_ref] => 
+    [vendor] => MNCNEW
+    [status] => success
+    [created_at] => 2025-08-10T08:09:14.000Z
+    [finish_at] => 2025-08-10T08:12:47.277Z
+)
+
+[2025-08-10 15:12:47] Status Polling 'SUCCESS' untuk TRX ID QRIS 02N190c8bc79c66f disimpan.
+[2025-08-10 15:12:47] Gambar QR /home/gyijmhwe/public_html/folder_qr/02N190c8bc79c66f.png dihapus untuk TRX ID QRIS 02N190c8bc79c66f.
+[2025-08-10 15:12:47] Pembayaran QRIS BERHASIL: TRX_ID_QRIS=02N190c8bc79c66f, User=demouser, Amount=2000
+[2025-08-10 15:12:47] Current status_deposit_lokal for 02N190c8bc79c66f: diproses
+[2025-08-10 15:12:47] Memulai transaksi DB. QRIS_TRX_ID: 02N190c8bc79c66f
+[2025-08-10 15:12:47] GameXa Call: DepositToPlayer untuk ID Sigma '254', Amount 2000, Reference ID: 02N190c8bc79c66f.
+[2025-08-10 15:12:48] GameXa Resp (Deposit): {"success":true,"data":{"message":"Deposit successful","data":{"player_id":"254","amount":2000,"balance_before":25000,"balance_after":27000,"transaction_type":"deposit","reference_id":"02N190c8bc79c66f","agent_id":123,"agent_balance_before":65740,"agent_balance_after":63740,"hierarchy_level":"agent_to_player"}}}
+[2025-08-10 15:12:48] GameXa: Deposit sukses untuk demouser. Amount: 2000, Before: 25000, After: 27000.
+[2025-08-10 15:12:48] GameXa Call: GetPlayerBalance untuk ID Sigma '254'.
+[2025-08-10 15:12:48] GameXa Resp (GetPlayerBalance): {"success":true,"data":{"player_id":254,"username":"demouser","full_name":"Vegon Shella","balance":27000,"currency":"IDR"}}
+[2025-08-10 15:12:48] GameXa: Saldo terbaru dari GameXa untuk demouser adalah 27000.
+[2025-08-10 15:12:48] DB: Status deposit QRIS TRX ID 02N190c8bc79c66f diupdate ke 'disetujui'.
+[2025-08-10 15:12:48] DB: Saldo anggota demouser diupdate ke 27000 (dari GameXa).
+[2025-08-10 15:12:48] No referer found for user 'demouser'. Skipping referral bonus.
+[2025-08-10 15:12:48] DB: Transaksi COMMIT sukses untuk QRIS TRX ID: 02N190c8bc79c66f. Termasuk bonus referral.
+[2025-08-10 15:18:06] Raw data callback QRIS diterima: {"amount":2000,"terminal_id":"demouser","merchant_id":"3c1eb8b7-f7f4-482c-82ea-195530fd573a","trx_id":"02Nbddf3c4ae163d","rrn":"885536456412","custom_ref":"","vendor":"MNCNEW","status":"success","created_at":"2025-08-10T08:17:41.000Z","finish_at":"2025-08-10T08:18:06.260Z"}
+[2025-08-10 15:18:06] Data JSON callback QRIS berhasil di-decode: Array
+(
+    [amount] => 2000
+    [terminal_id] => demouser
+    [merchant_id] => 3c1eb8b7-f7f4-482c-82ea-195530fd573a
+    [trx_id] => 02Nbddf3c4ae163d
+    [rrn] => 885536456412
+    [custom_ref] => 
+    [vendor] => MNCNEW
+    [status] => success
+    [created_at] => 2025-08-10T08:17:41.000Z
+    [finish_at] => 2025-08-10T08:18:06.260Z
+)
+
+[2025-08-10 15:18:06] Status Polling 'SUCCESS' untuk TRX ID QRIS 02Nbddf3c4ae163d disimpan.
+[2025-08-10 15:18:06] Gambar QR /home/gyijmhwe/public_html/folder_qr/02Nbddf3c4ae163d.png dihapus untuk TRX ID QRIS 02Nbddf3c4ae163d.
+[2025-08-10 15:18:06] Pembayaran QRIS BERHASIL: TRX_ID_QRIS=02Nbddf3c4ae163d, User=demouser, Amount=2000
+[2025-08-10 15:18:06] Current status_deposit_lokal for 02Nbddf3c4ae163d: diproses
+[2025-08-10 15:18:06] Memulai transaksi DB. QRIS_TRX_ID: 02Nbddf3c4ae163d
+[2025-08-10 15:18:06] GameXa Call: DepositToPlayer untuk ID Sigma '254', Amount 2000, Reference ID: 02Nbddf3c4ae163d.
+[2025-08-10 15:18:07] GameXa Resp (Deposit): {"success":true,"data":{"message":"Deposit successful","data":{"player_id":"254","amount":2000,"balance_before":27000,"balance_after":29000,"transaction_type":"deposit","reference_id":"02Nbddf3c4ae163d","agent_id":123,"agent_balance_before":63740,"agent_balance_after":61740,"hierarchy_level":"agent_to_player"}}}
+[2025-08-10 15:18:07] GameXa: Deposit sukses untuk demouser. Amount: 2000, Before: 27000, After: 29000.
+[2025-08-10 15:18:07] GameXa Call: GetPlayerBalance untuk ID Sigma '254'.
+[2025-08-10 15:18:07] GameXa Resp (GetPlayerBalance): {"success":true,"data":{"player_id":254,"username":"demouser","full_name":"Vegon Shella","balance":29000,"currency":"IDR"}}
+[2025-08-10 15:18:07] GameXa: Saldo terbaru dari GameXa untuk demouser adalah 29000.
+[2025-08-10 15:18:07] DB: Status deposit QRIS TRX ID 02Nbddf3c4ae163d diupdate ke 'disetujui'.
+[2025-08-10 15:18:07] DB: Saldo anggota demouser diupdate ke 29000 (dari GameXa).
+[2025-08-10 15:18:07] No referer found for user 'demouser'. Skipping referral bonus.
+[2025-08-10 15:18:07] DB: Transaksi COMMIT sukses untuk QRIS TRX ID: 02Nbddf3c4ae163d. Termasuk bonus referral.
+[2025-08-15 00:40:22] Raw data callback QRIS diterima: {"amount":2000,"terminal_id":"Uhuy23","merchant_id":"3c1eb8b7-f7f4-482c-82ea-195530fd573a","trx_id":"02N18cc0b0a80d55","rrn":"887602823663","custom_ref":"","vendor":"MNCNEW","status":"success","created_at":"2025-08-14T17:39:58.000Z","finish_at":"2025-08-14T17:40:21.974Z"}
+[2025-08-15 00:40:22] Data JSON callback QRIS berhasil di-decode: Array
+(
+    [amount] => 2000
+    [terminal_id] => Uhuy23
+    [merchant_id] => 3c1eb8b7-f7f4-482c-82ea-195530fd573a
+    [trx_id] => 02N18cc0b0a80d55
+    [rrn] => 887602823663
+    [custom_ref] => 
+    [vendor] => MNCNEW
+    [status] => success
+    [created_at] => 2025-08-14T17:39:58.000Z
+    [finish_at] => 2025-08-14T17:40:21.974Z
+)
+
+[2025-08-15 00:40:22] Status Polling 'SUCCESS' untuk TRX ID QRIS 02N18cc0b0a80d55 disimpan.
+[2025-08-15 00:40:22] Gambar QR /home/pxevcpmz/demo2.zhero.site/folder_qr/02N18cc0b0a80d55.png dihapus untuk TRX ID QRIS 02N18cc0b0a80d55.
+[2025-08-15 00:40:22] Pembayaran QRIS BERHASIL: TRX_ID_QRIS=02N18cc0b0a80d55, User=Uhuy23, Amount=2000
+[2025-08-15 00:40:22] Current status_deposit_lokal for 02N18cc0b0a80d55: diproses
+[2025-08-15 00:40:22] Memulai transaksi DB. QRIS_TRX_ID: 02N18cc0b0a80d55
+[2025-08-15 00:40:22] GameXa Call: DepositToPlayer untuk ID Sigma '541', Amount 2000, Reference ID: 02N18cc0b0a80d55.
+[2025-08-15 00:40:22] GameXa Resp (Deposit): {"success":true,"data":{"message":"Deposit successful","data":{"player_id":"541","amount":2000,"balance_before":1000,"balance_after":3000,"transaction_type":"deposit","reference_id":"02N18cc0b0a80d55","agent_id":123,"agent_balance_before":80540,"agent_balance_after":78540,"hierarchy_level":"agent_to_player"}}}
+[2025-08-15 00:40:22] GameXa: Deposit sukses untuk Uhuy23. Amount: 2000, Before: 1000, After: 3000.
+[2025-08-15 00:40:22] GameXa Call: GetPlayerBalance untuk ID Sigma '541'.
+[2025-08-15 00:40:22] GameXa Resp (GetPlayerBalance): {"success":true,"data":{"player_id":541,"username":"Uhuy23","full_name":"Uhuy","balance":3000,"currency":"IDR"}}
+[2025-08-15 00:40:22] GameXa: Saldo terbaru dari GameXa untuk Uhuy23 adalah 3000.
+[2025-08-15 00:40:22] DB: Status deposit QRIS TRX ID 02N18cc0b0a80d55 diupdate ke 'disetujui'.
+[2025-08-15 00:40:22] DB: Saldo anggota Uhuy23 diupdate ke 3000 (dari GameXa).
+[2025-08-15 00:40:22] No referer found for user 'Uhuy23'. Skipping referral bonus.
+[2025-08-15 00:40:22] DB: Transaksi COMMIT sukses untuk QRIS TRX ID: 02N18cc0b0a80d55. Termasuk bonus referral.
+[2025-08-17 21:02:27] Raw data callback QRIS diterima: {"amount":2000,"terminal_id":"uhuy23","merchant_id":"3c1eb8b7-f7f4-482c-82ea-195530fd573a","trx_id":"02Na3c439d5d8bd4","rrn":"888881777946","custom_ref":"","vendor":"MNCNEW","status":"success","created_at":"2025-08-17T14:01:18.000Z","finish_at":"2025-08-17T14:02:26.841Z"}
+[2025-08-17 21:02:27] Data JSON callback QRIS berhasil di-decode: Array
+(
+    [amount] => 2000
+    [terminal_id] => uhuy23
+    [merchant_id] => 3c1eb8b7-f7f4-482c-82ea-195530fd573a
+    [trx_id] => 02Na3c439d5d8bd4
+    [rrn] => 888881777946
+    [custom_ref] => 
+    [vendor] => MNCNEW
+    [status] => success
+    [created_at] => 2025-08-17T14:01:18.000Z
+    [finish_at] => 2025-08-17T14:02:26.841Z
+)
+
+[2025-08-17 21:02:27] Status Polling 'SUCCESS' untuk TRX ID QRIS 02Na3c439d5d8bd4 disimpan.
+[2025-08-17 21:02:27] Gambar QR /home/pxevcpmz/demo2.zhero.site/folder_qr/02Na3c439d5d8bd4.png dihapus untuk TRX ID QRIS 02Na3c439d5d8bd4.
+[2025-08-17 21:02:27] Pembayaran QRIS BERHASIL: TRX_ID_QRIS=02Na3c439d5d8bd4, User=uhuy23, Amount=2000
+[2025-08-17 21:02:27] Current status_deposit_lokal for 02Na3c439d5d8bd4: diproses
+[2025-08-17 21:02:27] Memulai transaksi DB. QRIS_TRX_ID: 02Na3c439d5d8bd4
+[2025-08-17 21:02:27] GameXa Call: DepositToPlayer untuk ID Sigma '541', Amount 2000, Reference ID: 02Na3c439d5d8bd4.
+[2025-08-17 21:02:27] GameXa Resp (Deposit): {"success":true,"data":{"message":"Deposit successful","data":{"player_id":"541","amount":2000,"balance_before":54410,"balance_after":56410,"transaction_type":"deposit","reference_id":"02Na3c439d5d8bd4","agent_id":123,"agent_balance_before":115513,"agent_balance_after":113513,"hierarchy_level":"agent_to_player"}}}
+[2025-08-17 21:02:27] GameXa: Deposit sukses untuk uhuy23. Amount: 2000, Before: 54410, After: 56410.
+[2025-08-17 21:02:27] GameXa Call: GetPlayerBalance untuk ID Sigma '541'.
+[2025-08-17 21:02:27] GameXa Resp (GetPlayerBalance): {"success":true,"data":{"player_id":541,"username":"Uhuy23","full_name":"Uhuy","balance":56410,"currency":"IDR"}}
+[2025-08-17 21:02:27] GameXa: Saldo terbaru dari GameXa untuk uhuy23 adalah 56410.
+[2025-08-17 21:02:27] DB: Status deposit QRIS TRX ID 02Na3c439d5d8bd4 diupdate ke 'disetujui'.
+[2025-08-17 21:02:27] DB: Saldo anggota uhuy23 diupdate ke 56410 (dari GameXa).
+[2025-08-17 21:02:27] No referer found for user 'uhuy23'. Skipping referral bonus.
+[2025-08-17 21:02:27] DB: Transaksi COMMIT sukses untuk QRIS TRX ID: 02Na3c439d5d8bd4. Termasuk bonus referral.
+[2025-08-17 21:17:53] Raw data callback QRIS diterima: {"amount":2000,"terminal_id":"uhuy23","merchant_id":"3c1eb8b7-f7f4-482c-82ea-195530fd573a","trx_id":"02Ne2037f79f6f67","rrn":"888887136880","custom_ref":"","vendor":"MNCNEW","status":"success","created_at":"2025-08-17T14:04:04.000Z","finish_at":"2025-08-17T14:17:52.344Z"}
+[2025-08-17 21:17:53] Data JSON callback QRIS berhasil di-decode: Array
+(
+    [amount] => 2000
+    [terminal_id] => uhuy23
+    [merchant_id] => 3c1eb8b7-f7f4-482c-82ea-195530fd573a
+    [trx_id] => 02Ne2037f79f6f67
+    [rrn] => 888887136880
+    [custom_ref] => 
+    [vendor] => MNCNEW
+    [status] => success
+    [created_at] => 2025-08-17T14:04:04.000Z
+    [finish_at] => 2025-08-17T14:17:52.344Z
+)
+
+[2025-08-17 21:17:53] Status Polling 'SUCCESS' untuk TRX ID QRIS 02Ne2037f79f6f67 disimpan.
+[2025-08-17 21:17:53] Gambar QR /home/pxevcpmz/demo2.zhero.site/folder_qr/02Ne2037f79f6f67.png dihapus untuk TRX ID QRIS 02Ne2037f79f6f67.
+[2025-08-17 21:17:53] Pembayaran QRIS BERHASIL: TRX_ID_QRIS=02Ne2037f79f6f67, User=uhuy23, Amount=2000
+[2025-08-17 21:17:53] Current status_deposit_lokal for 02Ne2037f79f6f67: diproses
+[2025-08-17 21:17:53] Memulai transaksi DB. QRIS_TRX_ID: 02Ne2037f79f6f67
+[2025-08-17 21:17:53] GameXa Call: DepositToPlayer untuk ID Sigma '541', Amount 2000, Reference ID: 02Ne2037f79f6f67.
+[2025-08-17 21:17:54] GameXa Resp (Deposit): {"success":true,"data":{"message":"Deposit successful","data":{"player_id":"541","amount":2000,"balance_before":56410,"balance_after":58410,"transaction_type":"deposit","reference_id":"02Ne2037f79f6f67","agent_id":123,"agent_balance_before":113513,"agent_balance_after":111513,"hierarchy_level":"agent_to_player"}}}
+[2025-08-17 21:17:54] GameXa: Deposit sukses untuk uhuy23. Amount: 2000, Before: 56410, After: 58410.
+[2025-08-17 21:17:54] GameXa Call: GetPlayerBalance untuk ID Sigma '541'.
+[2025-08-17 21:17:54] GameXa Resp (GetPlayerBalance): {"success":true,"data":{"player_id":541,"username":"Uhuy23","full_name":"Uhuy","balance":58410,"currency":"IDR"}}
+[2025-08-17 21:17:54] GameXa: Saldo terbaru dari GameXa untuk uhuy23 adalah 58410.
+[2025-08-17 21:17:54] DB: Status deposit QRIS TRX ID 02Ne2037f79f6f67 diupdate ke 'disetujui'.
+[2025-08-17 21:17:54] DB: Saldo anggota uhuy23 diupdate ke 58410 (dari GameXa).
+[2025-08-17 21:17:54] No referer found for user 'uhuy23'. Skipping referral bonus.
+[2025-08-17 21:17:54] DB: Transaksi COMMIT sukses untuk QRIS TRX ID: 02Ne2037f79f6f67. Termasuk bonus referral.
+[2025-08-17 21:19:29] Raw data callback QRIS diterima: {"amount":2000,"terminal_id":"uhuy23","merchant_id":"3c1eb8b7-f7f4-482c-82ea-195530fd573a","trx_id":"02N9c956df764da8","rrn":"888887677971","custom_ref":"","vendor":"MNCNEW","status":"success","created_at":"2025-08-17T14:18:54.000Z","finish_at":"2025-08-17T14:19:29.697Z"}
+[2025-08-17 21:19:29] Data JSON callback QRIS berhasil di-decode: Array
+(
+    [amount] => 2000
+    [terminal_id] => uhuy23
+    [merchant_id] => 3c1eb8b7-f7f4-482c-82ea-195530fd573a
+    [trx_id] => 02N9c956df764da8
+    [rrn] => 888887677971
+    [custom_ref] => 
+    [vendor] => MNCNEW
+    [status] => success
+    [created_at] => 2025-08-17T14:18:54.000Z
+    [finish_at] => 2025-08-17T14:19:29.697Z
+)
+
+[2025-08-17 21:19:29] Status Polling 'SUCCESS' untuk TRX ID QRIS 02N9c956df764da8 disimpan.
+[2025-08-17 21:19:29] Gambar QR /home/pxevcpmz/demo2.zhero.site/folder_qr/02N9c956df764da8.png dihapus untuk TRX ID QRIS 02N9c956df764da8.
+[2025-08-17 21:19:29] Pembayaran QRIS BERHASIL: TRX_ID_QRIS=02N9c956df764da8, User=uhuy23, Amount=2000
+[2025-08-17 21:19:29] Current status_deposit_lokal for 02N9c956df764da8: diproses
+[2025-08-17 21:19:29] Memulai transaksi DB. QRIS_TRX_ID: 02N9c956df764da8
+[2025-08-17 21:19:29] GameXa Call: DepositToPlayer untuk ID Sigma '541', Amount 2000, Reference ID: 02N9c956df764da8.
+[2025-08-17 21:19:30] GameXa Resp (Deposit): {"success":true,"data":{"message":"Deposit successful","data":{"player_id":"541","amount":2000,"balance_before":58410,"balance_after":60410,"transaction_type":"deposit","reference_id":"02N9c956df764da8","agent_id":123,"agent_balance_before":111513,"agent_balance_after":109513,"hierarchy_level":"agent_to_player"}}}
+[2025-08-17 21:19:30] GameXa: Deposit sukses untuk uhuy23. Amount: 2000, Before: 58410, After: 60410.
+[2025-08-17 21:19:30] GameXa Call: GetPlayerBalance untuk ID Sigma '541'.
+[2025-08-17 21:19:30] GameXa Resp (GetPlayerBalance): {"success":true,"data":{"player_id":541,"username":"Uhuy23","full_name":"Uhuy","balance":60410,"currency":"IDR"}}
+[2025-08-17 21:19:30] GameXa: Saldo terbaru dari GameXa untuk uhuy23 adalah 60410.
+[2025-08-17 21:19:30] DB: Status deposit QRIS TRX ID 02N9c956df764da8 diupdate ke 'disetujui'.
+[2025-08-17 21:19:30] DB: Saldo anggota uhuy23 diupdate ke 60410 (dari GameXa).
+[2025-08-17 21:19:30] No referer found for user 'uhuy23'. Skipping referral bonus.
+[2025-08-17 21:19:30] DB: Transaksi COMMIT sukses untuk QRIS TRX ID: 02N9c956df764da8. Termasuk bonus referral.
+[2025-08-17 21:33:45] Raw data callback QRIS diterima: {"amount":2000,"terminal_id":"uhuy23","merchant_id":"3c1eb8b7-f7f4-482c-82ea-195530fd573a","trx_id":"02N1f55a9db564b8","rrn":"888892345718","custom_ref":"","vendor":"MNCNEW","status":"success","created_at":"2025-08-17T14:25:55.000Z","finish_at":"2025-08-17T14:33:43.797Z"}
+[2025-08-17 21:33:45] Data JSON callback QRIS berhasil di-decode: Array
+(
+    [amount] => 2000
+    [terminal_id] => uhuy23
+    [merchant_id] => 3c1eb8b7-f7f4-482c-82ea-195530fd573a
+    [trx_id] => 02N1f55a9db564b8
+    [rrn] => 888892345718
+    [custom_ref] => 
+    [vendor] => MNCNEW
+    [status] => success
+    [created_at] => 2025-08-17T14:25:55.000Z
+    [finish_at] => 2025-08-17T14:33:43.797Z
+)
+
+[2025-08-17 21:33:45] Status Polling 'SUCCESS' untuk TRX ID QRIS 02N1f55a9db564b8 disimpan.
+[2025-08-17 21:33:45] Gambar QR /home/pxevcpmz/demo2.zhero.site/folder_qr/02N1f55a9db564b8.png dihapus untuk TRX ID QRIS 02N1f55a9db564b8.
+[2025-08-17 21:33:45] Pembayaran QRIS BERHASIL: TRX_ID_QRIS=02N1f55a9db564b8, User=uhuy23, Amount=2000
+[2025-08-17 21:33:45] Current status_deposit_lokal for 02N1f55a9db564b8: diproses
+[2025-08-17 21:33:45] Memulai transaksi DB. QRIS_TRX_ID: 02N1f55a9db564b8
+[2025-08-17 21:33:45] GameXa Call: DepositToPlayer untuk ID Sigma '541', Amount 2000, Reference ID: 02N1f55a9db564b8.
+[2025-08-17 21:33:45] GameXa Resp (Deposit): {"success":true,"data":{"message":"Deposit successful","data":{"player_id":"541","amount":2000,"balance_before":60410,"balance_after":62410,"transaction_type":"deposit","reference_id":"02N1f55a9db564b8","agent_id":123,"agent_balance_before":109513,"agent_balance_after":107513,"hierarchy_level":"agent_to_player"}}}
+[2025-08-17 21:33:45] GameXa: Deposit sukses untuk uhuy23. Amount: 2000, Before: 60410, After: 62410.
+[2025-08-17 21:33:45] GameXa Call: GetPlayerBalance untuk ID Sigma '541'.
+[2025-08-17 21:33:45] GameXa Resp (GetPlayerBalance): {"success":true,"data":{"player_id":541,"username":"Uhuy23","full_name":"Uhuy","balance":62410,"currency":"IDR"}}
+[2025-08-17 21:33:45] GameXa: Saldo terbaru dari GameXa untuk uhuy23 adalah 62410.
+[2025-08-17 21:33:45] DB: Status deposit QRIS TRX ID 02N1f55a9db564b8 diupdate ke 'disetujui'.
+[2025-08-17 21:33:45] DB: Saldo anggota uhuy23 diupdate ke 62410 (dari GameXa).
+[2025-08-17 21:33:45] No referer found for user 'uhuy23'. Skipping referral bonus.
+[2025-08-17 21:33:45] DB: Transaksi COMMIT sukses untuk QRIS TRX ID: 02N1f55a9db564b8. Termasuk bonus referral.
+[2025-08-17 22:07:14] Raw data callback QRIS diterima: {"amount":2000,"terminal_id":"uhuy23","merchant_id":"3c1eb8b7-f7f4-482c-82ea-195530fd573a","trx_id":"02N21dc0553f494d","rrn":"888902305581","custom_ref":"","vendor":"MNCNEW","status":"success","created_at":"2025-08-17T15:06:01.000Z","finish_at":"2025-08-17T15:07:13.170Z"}
+[2025-08-17 22:07:14] Data JSON callback QRIS berhasil di-decode: Array
+(
+    [amount] => 2000
+    [terminal_id] => uhuy23
+    [merchant_id] => 3c1eb8b7-f7f4-482c-82ea-195530fd573a
+    [trx_id] => 02N21dc0553f494d
+    [rrn] => 888902305581
+    [custom_ref] => 
+    [vendor] => MNCNEW
+    [status] => success
+    [created_at] => 2025-08-17T15:06:01.000Z
+    [finish_at] => 2025-08-17T15:07:13.170Z
+)
+
+[2025-08-17 22:07:14] Status Polling 'SUCCESS' untuk TRX ID QRIS 02N21dc0553f494d disimpan.
+[2025-08-17 22:07:14] Gambar QR /home/pxevcpmz/demo2.zhero.site/folder_qr/02N21dc0553f494d.png dihapus untuk TRX ID QRIS 02N21dc0553f494d.
+[2025-08-17 22:07:14] Pembayaran QRIS BERHASIL: TRX_ID_QRIS=02N21dc0553f494d, User=uhuy23, Amount=2000
+[2025-08-17 22:07:14] Current status_deposit_lokal for 02N21dc0553f494d: diproses
+[2025-08-17 22:07:14] Memulai transaksi DB. QRIS_TRX_ID: 02N21dc0553f494d
+[2025-08-17 22:07:14] GameXa Call: DepositToPlayer untuk ID Sigma '541', Amount 2000, Reference ID: 02N21dc0553f494d.
+[2025-08-17 22:07:14] GameXa Resp (Deposit): {"success":true,"data":{"message":"Deposit successful","data":{"player_id":"541","amount":2000,"balance_before":62410,"balance_after":64410,"transaction_type":"deposit","reference_id":"02N21dc0553f494d","agent_id":123,"agent_balance_before":107513,"agent_balance_after":105513,"hierarchy_level":"agent_to_player"}}}
+[2025-08-17 22:07:14] GameXa: Deposit sukses untuk uhuy23. Amount: 2000, Before: 62410, After: 64410.
+[2025-08-17 22:07:14] GameXa Call: GetPlayerBalance untuk ID Sigma '541'.
+[2025-08-17 22:07:15] GameXa Resp (GetPlayerBalance): {"success":true,"data":{"player_id":541,"username":"Uhuy23","full_name":"Uhuy","balance":64410,"currency":"IDR"}}
+[2025-08-17 22:07:15] GameXa: Saldo terbaru dari GameXa untuk uhuy23 adalah 64410.
+[2025-08-17 22:07:15] DB: Status deposit QRIS TRX ID 02N21dc0553f494d diupdate ke 'disetujui'.
+[2025-08-17 22:07:15] DB: Saldo anggota uhuy23 diupdate ke 64410 (dari GameXa).
+[2025-08-17 22:07:15] No referer found for user 'uhuy23'. Skipping referral bonus.
+[2025-08-17 22:07:15] DB: Transaksi COMMIT sukses untuk QRIS TRX ID: 02N21dc0553f494d. Termasuk bonus referral.
+[2025-09-04 14:33:12] Raw data callback QRIS diterima: {"amount":2000,"terminal_id":"developer","merchant_id":"3c1eb8b7-f7f4-482c-82ea-195530fd573a","trx_id":"02Ndb361e864902e","rrn":"509043490884","custom_ref":"","vendor":"MNCNEW","status":"success","created_at":"2025-09-04T07:32:43.000Z","finish_at":"2025-09-04T07:33:10.762Z"}
+[2025-09-04 14:33:12] Data JSON callback QRIS berhasil di-decode: Array
+(
+    [amount] => 2000
+    [terminal_id] => developer
+    [merchant_id] => 3c1eb8b7-f7f4-482c-82ea-195530fd573a
+    [trx_id] => 02Ndb361e864902e
+    [rrn] => 509043490884
+    [custom_ref] => 
+    [vendor] => MNCNEW
+    [status] => success
+    [created_at] => 2025-09-04T07:32:43.000Z
+    [finish_at] => 2025-09-04T07:33:10.762Z
+)
+
+[2025-09-04 14:33:12] Status Polling 'SUCCESS' untuk TRX ID QRIS 02Ndb361e864902e disimpan.
+[2025-09-04 14:33:12] Gambar QR /home/pxevcpmz/demo2.zhero.site/folder_qr/02Ndb361e864902e.png dihapus untuk TRX ID QRIS 02Ndb361e864902e.
+[2025-09-04 14:33:12] Pembayaran QRIS BERHASIL: TRX_ID_QRIS=02Ndb361e864902e, User=developer, Amount=2000
+[2025-09-04 14:33:12] Current status_deposit_lokal for 02Ndb361e864902e: diproses
+[2025-09-04 14:33:12] Memulai transaksi DB. QRIS_TRX_ID: 02Ndb361e864902e
+[2025-09-04 14:33:12] GameXa Call: DepositToPlayer untuk ID Sigma '723', Amount 2000, Reference ID: 02Ndb361e864902e.
+[2025-09-04 14:33:12] GameXa Resp (Deposit): {"success":true,"data":{"message":"Deposit successful","data":{"player_id":"723","amount":2000,"balance_before":49600,"balance_after":51600,"transaction_type":"deposit","reference_id":"02Ndb361e864902e","agent_id":123,"agent_balance_before":92562,"agent_balance_after":90562,"hierarchy_level":"agent_to_player"}}}
+[2025-09-04 14:33:12] GameXa: Deposit sukses untuk developer. Amount: 2000, Before: 49600, After: 51600.
+[2025-09-04 14:33:12] GameXa Call: GetPlayerBalance untuk ID Sigma '723'.
+[2025-09-04 14:33:12] GameXa Resp (GetPlayerBalance): {"success":true,"data":{"player_id":723,"username":"developer","full_name":"Vegon Shella","balance":51600,"currency":"IDR"}}
+[2025-09-04 14:33:12] GameXa: Saldo terbaru dari GameXa untuk developer adalah 51600.
+[2025-09-04 14:33:12] DB: Status deposit QRIS TRX ID 02Ndb361e864902e diupdate ke 'disetujui'.
+[2025-09-04 14:33:12] DB: Saldo anggota developer diupdate ke 51600 (dari GameXa).
+[2025-09-04 14:33:12] No referer found for user 'developer'. Skipping referral bonus.
+[2025-09-04 14:33:12] DB: Transaksi COMMIT sukses untuk QRIS TRX ID: 02Ndb361e864902e. Termasuk bonus referral.
+[2025-09-04 14:36:52] Raw data callback QRIS diterima: {"amount":2000,"terminal_id":"developer","merchant_id":"3c1eb8b7-f7f4-482c-82ea-195530fd573a","trx_id":"02Ndb361e864902e","rrn":"509043490884","custom_ref":"","vendor":"MNC NEW","status":"success","created_at":"2025-09-04T07:32:43.000Z","finish_at":"2025-09-04T07:33:11.000Z"}
+[2025-09-04 14:36:52] Data JSON callback QRIS berhasil di-decode: Array
+(
+    [amount] => 2000
+    [terminal_id] => developer
+    [merchant_id] => 3c1eb8b7-f7f4-482c-82ea-195530fd573a
+    [trx_id] => 02Ndb361e864902e
+    [rrn] => 509043490884
+    [custom_ref] => 
+    [vendor] => MNC NEW
+    [status] => success
+    [created_at] => 2025-09-04T07:32:43.000Z
+    [finish_at] => 2025-09-04T07:33:11.000Z
+)
+
+[2025-09-04 14:36:52] Status Polling 'SUCCESS' untuk TRX ID QRIS 02Ndb361e864902e disimpan.
+[2025-09-04 14:36:52] Pembayaran QRIS BERHASIL: TRX_ID_QRIS=02Ndb361e864902e, User=developer, Amount=2000
+[2025-09-04 14:36:52] Current status_deposit_lokal for 02Ndb361e864902e: disetujui
+[2025-09-04 14:36:52] Deposit untuk QRIS TRX ID 02Ndb361e864902e sudah 'disetujui'. Skipping duplicate.
+[2025-09-04 17:33:00] Raw data callback QRIS diterima: {"amount":2000,"terminal_id":"developer","merchant_id":"3c1eb8b7-f7f4-482c-82ea-195530fd573a","trx_id":"02N7459683fab3ec","rrn":"509043854637","custom_ref":"","vendor":"MNCNEW","status":"success","created_at":"2025-09-04T10:32:29.000Z","finish_at":"2025-09-04T10:32:59.017Z"}
+[2025-09-04 17:33:00] Data JSON callback QRIS berhasil di-decode: Array
+(
+    [amount] => 2000
+    [terminal_id] => developer
+    [merchant_id] => 3c1eb8b7-f7f4-482c-82ea-195530fd573a
+    [trx_id] => 02N7459683fab3ec
+    [rrn] => 509043854637
+    [custom_ref] => 
+    [vendor] => MNCNEW
+    [status] => success
+    [created_at] => 2025-09-04T10:32:29.000Z
+    [finish_at] => 2025-09-04T10:32:59.017Z
+)
+
+[2025-09-04 17:33:00] Status Polling 'SUCCESS' untuk TRX ID QRIS 02N7459683fab3ec disimpan.
+[2025-09-04 17:33:00] Gambar QR /home/pxevcpmz/demo2.zhero.site/folder_qr/02N7459683fab3ec.png dihapus untuk TRX ID QRIS 02N7459683fab3ec.
+[2025-09-04 17:33:00] Pembayaran QRIS BERHASIL: TRX_ID_QRIS=02N7459683fab3ec, User=developer, Amount=2000
+[2025-09-04 17:33:00] Current status_deposit_lokal for 02N7459683fab3ec: diproses
+[2025-09-04 17:33:00] Memulai transaksi DB. QRIS_TRX_ID: 02N7459683fab3ec
+[2025-09-04 17:33:00] GameXa Call: DepositToPlayer untuk ID Sigma '723', Amount 2000, Reference ID: 02N7459683fab3ec.
+[2025-09-04 17:33:00] GameXa Resp (Deposit): {"success":true,"data":{"message":"Deposit successful","data":{"player_id":"723","amount":2000,"balance_before":51600,"balance_after":53600,"transaction_type":"deposit","reference_id":"02N7459683fab3ec","agent_id":123,"agent_balance_before":90562,"agent_balance_after":88562,"hierarchy_level":"agent_to_player"}}}
+[2025-09-04 17:33:00] GameXa: Deposit sukses untuk developer. Amount: 2000, Before: 51600, After: 53600.
+[2025-09-04 17:33:00] GameXa Call: GetPlayerBalance untuk ID Sigma '723'.
+[2025-09-04 17:33:01] GameXa Resp (GetPlayerBalance): {"success":true,"data":{"player_id":723,"username":"developer","full_name":"Vegon Shella","balance":53600,"currency":"IDR"}}
+[2025-09-04 17:33:01] GameXa: Saldo terbaru dari GameXa untuk developer adalah 53600.
+[2025-09-04 17:33:01] DB: Status deposit QRIS TRX ID 02N7459683fab3ec diupdate ke 'disetujui'.
+[2025-09-04 17:33:01] DB: Saldo anggota developer diupdate ke 53600 (dari GameXa).
+[2025-09-04 17:33:01] Mempersiapkan notifikasi Telegram untuk deposit sukses.
+[2025-09-04 17:33:02] Notifikasi Telegram berhasil dikirim untuk deposit sukses ID: 64
+[2025-09-04 17:33:02] No referer found for user 'developer'. Skipping referral bonus.
+[2025-09-04 17:33:02] DB: Transaksi COMMIT sukses untuk QRIS TRX ID: 02N7459683fab3ec. Termasuk bonus referral.
+[2025-09-04 19:26:08] Raw data callback QRIS diterima: {"amount":1000,"terminal_id":"developer","merchant_id":"3c1eb8b7-f7f4-482c-82ea-195530fd573a","trx_id":"02N51f096d5c0ce4","rrn":"509044135833","custom_ref":"","vendor":"MNCNEW","status":"success","created_at":"2025-09-04T12:25:36.000Z","finish_at":"2025-09-04T12:26:07.685Z"}
+[2025-09-04 19:26:08] Data JSON callback QRIS berhasil di-decode: Array
+(
+    [amount] => 1000
+    [terminal_id] => developer
+    [merchant_id] => 3c1eb8b7-f7f4-482c-82ea-195530fd573a
+    [trx_id] => 02N51f096d5c0ce4
+    [rrn] => 509044135833
+    [custom_ref] => 
+    [vendor] => MNCNEW
+    [status] => success
+    [created_at] => 2025-09-04T12:25:36.000Z
+    [finish_at] => 2025-09-04T12:26:07.685Z
+)
+
+[2025-09-04 19:26:08] Status Polling 'SUCCESS' untuk TRX ID QRIS 02N51f096d5c0ce4 disimpan.
+[2025-09-04 19:26:08] Pembayaran QRIS BERHASIL: TRX_ID_QRIS=02N51f096d5c0ce4, User=developer, Amount=1000
+[2025-09-04 19:26:08] Current status_deposit_lokal for 02N51f096d5c0ce4: NULL
+[2025-09-04 19:26:08] Memulai transaksi DB. QRIS_TRX_ID: 02N51f096d5c0ce4
+[2025-09-04 19:26:08] GameXa Call: DepositToPlayer untuk ID Sigma '723', Amount 1000, Reference ID: 02N51f096d5c0ce4.
+[2025-09-04 19:26:09] GameXa Resp (Deposit): {"success":true,"data":{"message":"Deposit successful","data":{"player_id":"723","amount":1000,"balance_before":0,"balance_after":1000,"transaction_type":"deposit","reference_id":"02N51f096d5c0ce4","agent_id":123,"agent_balance_before":142162,"agent_balance_after":141162,"hierarchy_level":"agent_to_player"}}}
+[2025-09-04 19:26:09] GameXa: Deposit sukses untuk developer. Amount: 1000, Before: 0, After: 1000.
+[2025-09-04 19:26:09] GameXa Call: GetPlayerBalance untuk ID Sigma '723'.
+[2025-09-04 19:26:09] GameXa Resp (GetPlayerBalance): {"success":true,"data":{"player_id":723,"username":"developer","full_name":"Vegon Shella","balance":1000,"currency":"IDR"}}
+[2025-09-04 19:26:09] GameXa: Saldo terbaru dari GameXa untuk developer adalah 1000.
+[2025-09-04 19:26:09] DB Warning: Tidak ada baris deposit diupdate untuk QRIS TRX ID 02N51f096d5c0ce4. Mungkin sudah diproses atau record tidak memenuhi kriteria update. Proses GameXa tetap berhasil.
+[2025-09-06 19:13:09] Raw data callback QRIS diterima: {"amount":2000,"terminal_id":"Developer","merchant_id":"9b7543c6-5e54-475c-b21f-bd7339264259","trx_id":"02N198b31eaa908c","rrn":"898499484503","custom_ref":"","vendor":"MNCNEW","status":"success","created_at":"2025-09-06T12:12:46.000Z","finish_at":"2025-09-06T12:13:07.579Z"}
+[2025-09-06 19:13:09] Data JSON callback QRIS berhasil di-decode: Array
+(
+    [amount] => 2000
+    [terminal_id] => Developer
+    [merchant_id] => 9b7543c6-5e54-475c-b21f-bd7339264259
+    [trx_id] => 02N198b31eaa908c
+    [rrn] => 898499484503
+    [custom_ref] => 
+    [vendor] => MNCNEW
+    [status] => success
+    [created_at] => 2025-09-06T12:12:46.000Z
+    [finish_at] => 2025-09-06T12:13:07.579Z
+)
+
+[2025-09-06 19:13:09] Status Polling 'SUCCESS' untuk TRX ID QRIS 02N198b31eaa908c disimpan.
+[2025-09-06 19:13:09] Gambar QR /home/ibojatoe/public_html/folder_qr/02N198b31eaa908c.png dihapus untuk TRX ID QRIS 02N198b31eaa908c.
+[2025-09-06 19:13:09] Pembayaran QRIS BERHASIL: TRX_ID_QRIS=02N198b31eaa908c, User=Developer, Amount=2000
+[2025-09-06 19:13:09] Current status_deposit_lokal for 02N198b31eaa908c: diproses
+[2025-09-06 19:13:09] Memulai transaksi DB. QRIS_TRX_ID: 02N198b31eaa908c
+[2025-09-06 19:13:09] GameXa Call: DepositToPlayer untuk ID Sigma '967', Amount 2000, Reference ID: 02N198b31eaa908c.
+[2025-09-06 19:13:09] GameXa Resp (Deposit): {"success":true,"data":{"message":"Deposit successful","data":{"player_id":"967","amount":2000,"balance_before":2000,"balance_after":4000,"transaction_type":"deposit","reference_id":"02N198b31eaa908c","agent_id":234,"agent_balance_before":48000,"agent_balance_after":46000,"hierarchy_level":"agent_to_player"}}}
+[2025-09-06 19:13:09] GameXa: Deposit sukses untuk Developer. Amount: 2000, Before: 2000, After: 4000.
+[2025-09-06 19:13:09] GameXa Call: GetPlayerBalance untuk ID Sigma '967'.
+[2025-09-06 19:13:09] GameXa Resp (GetPlayerBalance): {"success":true,"data":{"player_id":967,"username":"Developer","full_name":"Developer","balance":4000,"currency":"IDR"}}
+[2025-09-06 19:13:09] GameXa: Saldo terbaru dari GameXa untuk Developer adalah 4000.
+[2025-09-06 19:13:09] DB: Status deposit QRIS TRX ID 02N198b31eaa908c diupdate ke 'disetujui'.
+[2025-09-06 19:13:09] DB: Saldo anggota Developer diupdate ke 4000 (dari GameXa).
+[2025-09-06 19:13:09] Mempersiapkan notifikasi Telegram untuk deposit sukses.
+[2025-09-06 19:13:10] Notifikasi Telegram berhasil dikirim untuk deposit sukses ID: 2
+[2025-09-06 19:13:10] No referer found for user 'Developer'. Skipping referral bonus.
+[2025-09-06 19:13:10] DB: Transaksi COMMIT sukses untuk QRIS TRX ID: 02N198b31eaa908c. Termasuk bonus referral.
+[2025-09-07 14:03:07] Raw data callback QRIS diterima: {"amount":25000,"terminal_id":"waktu23","merchant_id":"9b7543c6-5e54-475c-b21f-bd7339264259","trx_id":"02Nd17c986e45ddb","rrn":"0000009HWX01","custom_ref":"","vendor":"MNCNEW","status":"success","created_at":"2025-09-07T07:02:34.000Z","finish_at":"2025-09-07T07:03:06.897Z"}
+[2025-09-07 14:03:07] Data JSON callback QRIS berhasil di-decode: Array
+(
+    [amount] => 25000
+    [terminal_id] => waktu23
+    [merchant_id] => 9b7543c6-5e54-475c-b21f-bd7339264259
+    [trx_id] => 02Nd17c986e45ddb
+    [rrn] => 0000009HWX01
+    [custom_ref] => 
+    [vendor] => MNCNEW
+    [status] => success
+    [created_at] => 2025-09-07T07:02:34.000Z
+    [finish_at] => 2025-09-07T07:03:06.897Z
+)
+
+[2025-09-07 14:03:07] Status Polling 'SUCCESS' untuk TRX ID QRIS 02Nd17c986e45ddb disimpan.
+[2025-09-07 14:03:07] Gambar QR /home/ibojatoe/public_html/folder_qr/02Nd17c986e45ddb.png dihapus untuk TRX ID QRIS 02Nd17c986e45ddb.
+[2025-09-07 14:03:07] Pembayaran QRIS BERHASIL: TRX_ID_QRIS=02Nd17c986e45ddb, User=waktu23, Amount=25000
+[2025-09-07 14:03:07] Current status_deposit_lokal for 02Nd17c986e45ddb: diproses
+[2025-09-07 14:03:07] Memulai transaksi DB. QRIS_TRX_ID: 02Nd17c986e45ddb
+[2025-09-07 14:03:07] GameXa Call: DepositToPlayer untuk ID Sigma '992', Amount 25000, Reference ID: 02Nd17c986e45ddb.
+[2025-09-07 14:03:07] GameXa Resp (Deposit): {"success":true,"data":{"message":"Deposit successful","data":{"player_id":"992","amount":25000,"balance_before":0,"balance_after":25000,"transaction_type":"deposit","reference_id":"02Nd17c986e45ddb","agent_id":234,"agent_balance_before":1046000,"agent_balance_after":1021000,"hierarchy_level":"agent_to_player"}}}
+[2025-09-07 14:03:07] GameXa: Deposit sukses untuk waktu23. Amount: 25000, Before: 0, After: 25000.
+[2025-09-07 14:03:07] GameXa Call: GetPlayerBalance untuk ID Sigma '992'.
+[2025-09-07 14:03:08] GameXa Resp (GetPlayerBalance): {"success":true,"data":{"player_id":992,"username":"waktu23","full_name":"asfsafasfasf","balance":25000,"currency":"IDR"}}
+[2025-09-07 14:03:08] GameXa: Saldo terbaru dari GameXa untuk waktu23 adalah 25000.
+[2025-09-07 14:03:08] DB: Status deposit QRIS TRX ID 02Nd17c986e45ddb diupdate ke 'disetujui'.
+[2025-09-07 14:03:08] DB: Saldo anggota waktu23 diupdate ke 25000 (dari GameXa).
+[2025-09-07 14:03:08] Mempersiapkan notifikasi Telegram untuk deposit sukses.
+[2025-09-07 14:03:09] Notifikasi Telegram berhasil dikirim untuk deposit sukses ID: 5
+[2025-09-07 14:03:09] No referer found for user 'waktu23'. Skipping referral bonus.
+[2025-09-07 14:03:09] DB: Transaksi COMMIT sukses untuk QRIS TRX ID: 02Nd17c986e45ddb. Termasuk bonus referral.
+[2025-10-01 15:33:10] Metode request bukan POST. Diterima: GET
+[2025-10-01 16:01:53] Metode request bukan POST. Diterima: GET
+[2025-11-03 08:46:25] Metode request bukan POST. Diterima: GET
+[2025-11-03 09:26:26] Raw data callback QRIS diterima: {"amount":1000,"terminal_id":"cobaexa","merchant_id":"f0470e36-3904-4488-82e8-259d9acbe879","trx_id":"02Ndd13a9d5c6057","rrn":"AX4UR564MFD4","custom_ref":"","vendor":"MNCNEW","status":"success","created_at":"2025-11-03T02:25:33.000Z","finish_at":"2025-11-03T02:26:24.677Z"}
+[2025-11-03 09:26:26] Data JSON callback QRIS berhasil di-decode: Array
+(
+    [amount] => 1000
+    [terminal_id] => cobaexa
+    [merchant_id] => f0470e36-3904-4488-82e8-259d9acbe879
+    [trx_id] => 02Ndd13a9d5c6057
+    [rrn] => AX4UR564MFD4
+    [custom_ref] => 
+    [vendor] => MNCNEW
+    [status] => success
+    [created_at] => 2025-11-03T02:25:33.000Z
+    [finish_at] => 2025-11-03T02:26:24.677Z
+)
+
+[2025-11-03 09:26:26] Status Polling 'SUCCESS' untuk TRX ID QRIS 02Ndd13a9d5c6057 disimpan.
+[2025-11-03 09:26:26] Gambar QR /home/cairxyz/cuby138s.my.id/folder_qr/02Ndd13a9d5c6057.png dihapus untuk TRX ID QRIS 02Ndd13a9d5c6057.
+[2025-11-03 09:26:26] Pembayaran QRIS BERHASIL: TRX_ID_QRIS=02Ndd13a9d5c6057, User=cobaexa, Amount=1000
+[2025-11-03 09:26:26] Current status_deposit_lokal for 02Ndd13a9d5c6057: diproses
+[2025-11-03 09:26:26] Memulai transaksi DB. QRIS_TRX_ID: 02Ndd13a9d5c6057
+[2025-11-03 09:26:26] GameXa Call: DepositToPlayer untuk ID Sigma '6445', Amount 1000, Reference ID: 02Ndd13a9d5c6057.
+[2025-11-03 09:26:26] GameXa Resp (Deposit): {"success":false,"message":"Unknown error","code":400,"data":{"error":"Insufficient agent balance for deposit","agent_balance":0,"requested_amount":1000}}
+[2025-11-03 09:26:26] CRITICAL Exception QRIS SUCCESS processing. QRIS_TRX_ID 02Ndd13a9d5c6057, User cobaexa: Gagal proses deposit di GameXa API (struktur respon GameXa tidak sesuai harapan). Respon: {"success":false,"message":"Unknown error","code":400,"data":{"error":"Insufficient agent balance for deposit","agent_balance":0,"requested_amount":1000}}. DB di-ROLLBACK.
+[2025-11-03 09:37:02] Raw data callback QRIS diterima: {"amount":1000,"terminal_id":"cobaexa","merchant_id":"f0470e36-3904-4488-82e8-259d9acbe879","trx_id":"02Ndd13a9d5c6057","rrn":"AX4UR564MFD4","custom_ref":"","vendor":"MNC NEW","status":"success","created_at":"2025-11-03T02:25:33.000Z","finish_at":"2025-11-03T02:26:25.000Z"}
+[2025-11-03 09:37:02] Data JSON callback QRIS berhasil di-decode: Array
+(
+    [amount] => 1000
+    [terminal_id] => cobaexa
+    [merchant_id] => f0470e36-3904-4488-82e8-259d9acbe879
+    [trx_id] => 02Ndd13a9d5c6057
+    [rrn] => AX4UR564MFD4
+    [custom_ref] => 
+    [vendor] => MNC NEW
+    [status] => success
+    [created_at] => 2025-11-03T02:25:33.000Z
+    [finish_at] => 2025-11-03T02:26:25.000Z
+)
+
+[2025-11-03 09:37:02] Status Polling 'SUCCESS' untuk TRX ID QRIS 02Ndd13a9d5c6057 disimpan.
+[2025-11-03 09:37:02] Pembayaran QRIS BERHASIL: TRX_ID_QRIS=02Ndd13a9d5c6057, User=cobaexa, Amount=1000
+[2025-11-03 09:37:02] Current status_deposit_lokal for 02Ndd13a9d5c6057: diproses
+[2025-11-03 09:37:02] Memulai transaksi DB. QRIS_TRX_ID: 02Ndd13a9d5c6057
+[2025-11-03 09:37:02] GameXa Call: DepositToPlayer untuk ID Sigma '6445', Amount 1000, Reference ID: 02Ndd13a9d5c6057.
+[2025-11-03 09:37:02] GameXa Resp (Deposit): {"success":false,"message":"Unknown error","code":400,"data":{"error":"Insufficient agent balance for deposit","agent_balance":0,"requested_amount":1000}}
+[2025-11-03 09:37:02] CRITICAL Exception QRIS SUCCESS processing. QRIS_TRX_ID 02Ndd13a9d5c6057, User cobaexa: Gagal proses deposit di GameXa API (struktur respon GameXa tidak sesuai harapan). Respon: {"success":false,"message":"Unknown error","code":400,"data":{"error":"Insufficient agent balance for deposit","agent_balance":0,"requested_amount":1000}}. DB di-ROLLBACK.
+[2025-11-03 09:37:38] Metode request bukan POST. Diterima: GET
+[2025-11-03 09:39:36] Metode request bukan POST. Diterima: GET
+[2025-11-03 10:01:21] Metode request bukan POST. Diterima: GET
+[2025-11-03 10:01:32] Metode request bukan POST. Diterima: GET
+[2025-11-08 08:03:06] Metode request bukan POST. Diterima: GET
+[2025-11-08 19:37:04] Metode request bukan POST. Diterima: GET
+[2025-11-09 03:05:48] Raw data callback QRIS diterima: {"amount":1000,"terminal_id":"test123","merchant_id":"f0470e36-3904-4488-82e8-259d9acbe879","trx_id":"02Ne589378a82f02","rrn":"511092131900","custom_ref":"","vendor":"MNCNEW","status":"success","created_at":"2025-11-08T20:05:33.000Z","finish_at":"2025-11-08T20:05:47.023Z"}
+[2025-11-09 03:05:48] Data JSON callback QRIS berhasil di-decode: Array
+(
+    [amount] => 1000
+    [terminal_id] => test123
+    [merchant_id] => f0470e36-3904-4488-82e8-259d9acbe879
+    [trx_id] => 02Ne589378a82f02
+    [rrn] => 511092131900
+    [custom_ref] => 
+    [vendor] => MNCNEW
+    [status] => success
+    [created_at] => 2025-11-08T20:05:33.000Z
+    [finish_at] => 2025-11-08T20:05:47.023Z
+)
+
+[2025-11-09 03:05:48] Status Polling 'SUCCESS' untuk TRX ID QRIS 02Ne589378a82f02 disimpan.
+[2025-11-09 03:05:48] Pembayaran QRIS BERHASIL: TRX_ID_QRIS=02Ne589378a82f02, User=test123, Amount=1000
+[2025-11-09 03:05:48] CRITICAL: id_anggota atau id_sigma tidak ditemukan untuk 'test123'. Tidak bisa proses. QRIS_TRX_ID: 02Ne589378a82f02
+[2025-11-10 11:53:43] Metode request bukan POST. Diterima: GET

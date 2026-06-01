@@ -1,0 +1,19 @@
+Options All -Indexes
+ErrorDocument 404 /404notfound/
+<files .htaccess>
+order allow,deny
+deny from all
+</files>
+<files koneksi.php>
+order allow,deny
+deny from all
+</files>
+<IfModule mod_rewrite.c>
+Options +FollowSymlinks
+RewriteEngine on
+RewriteBase /gameplay/
+RewriteRule ^([a-zA-Z0-9_-]+)/$ $1.php [L]
+RewriteRule ^([a-zA-Z0-9_-]+)$ $1.php [L]
+</ifModule>
+
+

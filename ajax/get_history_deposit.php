@@ -1,0 +1,101 @@
+<?php
+// Pastikan sesi sudah dimulai dan koneksi database tersedia
+session_start();
+include_once '../koneksi.php';
+
+// Periksa apakah pengguna sudah login
+if (!isset($_SESSION['id_anggota'])) {
+    http_response_code(401); // Unauthorized
+    echo "Unauthorized access.";
+    exit;
+}
+
+$id_anggota = $_SESSION['id_anggota'];
+
+// Ambil parameter dari request GET, dengan nilai default
+$start_date = isset($_GET['start_date']) ? $_GET['start_date'] : date('Y-m-d');
+$end_date = isset($_GET['end_date']) ? $_GET['end_date'] : date('Y-m-d');
+$transaction_type = isset($_GET['transaction_type']) ? $_GET['transaction_type'] : 'deposit';
+
+// Tentukan tabel dan kolom yang akan digunakan berdasarkan jenis transaksi
+$table_name = '';
+$id_column = '';
+$date_column = '';
+$amount_column = '';
+$status_column = '';
+$kode_column = '';
+
+if ($transaction_type === 'deposit') {
+    $table_name = 'deposit';
+    $id_column = 'id_anggota_deposit';
+    $date_column = 'tanggal_deposit';
+    $amount_column = 'jumlah_deposit';
+    $status_column = 'status_deposit';
+    $kode_column = 'kode_deposit';
+    $transaction_label = 'Deposit';
+} elseif ($transaction_type === 'withdraw') {
+    $table_name = 'withdraw';
+    $id_column = 'id_anggota_withdraw';
+    $date_column = 'tanggal_withdraw';
+    $amount_column = 'jumlah_withdraw';
+    $status_column = 'status_withdraw';
+    $kode_column = 'kode_withdraw';
+    $transaction_label = 'Withdraw';
+} else {
+    // Jika jenis transaksi tidak valid
+    http_response_code(400); // Bad Request
+    echo "Invalid transaction type.";
+    exit;
+}
+
+// Query untuk mengambil data
+$sql = "SELECT * FROM `$table_name` WHERE `$id_column` = '$id_anggota' AND DATE(`$date_column`) BETWEEN '$start_date' AND '$end_date' ORDER BY `$date_column` DESC";
+$result = mysqli_query($koneksi, $sql);
+
+if (mysqli_num_rows($result) >= 1) {
+    while ($data = mysqli_fetch_array($result)) {
+        $kode_transaksi = htmlspecialchars($data[$kode_column]);
+        $jumlah_transaksi = htmlspecialchars($data[$amount_column]);
+        $tanggal_transaksi = htmlspecialchars($data[$date_column]);
+        $status_transaksi = htmlspecialchars($data[$status_column]);
+        
+        $tanggal_transaksi_timestamp = strtotime($tanggal_transaksi);
+        $tanggal_transaksi_fix = date('d-M-Y H:i:s', $tanggal_transaksi_timestamp);
+        
+        $status_transaksi_fix = "";
+        if ($status_transaksi == "diproses") {
+            $status_transaksi_fix = "cf8300";
+        } else if ($status_transaksi == "dibatalkan") {
+            $status_transaksi_fix = "c20000";
+        } else {
+            $status_transaksi_fix = "1c9401";
+        }
+?>
+    <div class="mb-3">
+        <div class="bg-background-tertiary flex items-center rounded-lg px-3 py-4 w-full justify-between">
+            <div class="w-2/12 sm:w-1/12">
+                <img alt="Bank Assets" loading="lazy" width="0" height="0" decoding="async" data-nimg="1" class="w-4/5 lg:w-full h-full mx-auto" src="assets/img/BANK-LOGO.webp" style="color: transparent;">
+            </div>
+            <div class="w-5/12 sm:w-6/12 pl-2 text-left">
+                <p class="text-sm font-medium"><?php echo $transaction_label; ?></p>
+                <span class="text-xs"><?php echo $kode_transaksi; ?></span>
+                <div class="text-xs mt-1"> <?php echo $tanggal_transaksi_fix; ?></div>
+            </div>
+            <div class="w-5/12 pr-1 text-right">
+                <p class="text-sm font-medium">IDR&nbsp;<?php echo number_format($jumlah_transaksi); ?></p>
+                <span class="text-xs font-semibold text-success"><label style="color: #<?php echo $status_transaksi_fix; ?>;"><?php echo ucwords($status_transaksi); ?></label></span>
+            </div>
+        </div>
+    </div>
+<?php
+    }
+} else {
+?>
+    <div class="empty-list-message">
+        <img alt="Empty List" loading="lazy" width="0" height="0" decoding="async" data-nimg="1" class="w-20 mx-auto mt-16 lg:mt-16" src="https://cdn.databerjalan.com/cdn-cgi/image/width=auto,quality=75,fit=contain,format=auto//assets/images/static/v3/icon/empty-list.webp" style="color: transparent;">
+        <p class="text-center mt-3">Anda belum memiliki riwayat transaksi</p>
+        <p class="text-xs lg:text-sm text-center mt-3 opacity-70"></p>
+    </div>
+<?php
+}
+?>

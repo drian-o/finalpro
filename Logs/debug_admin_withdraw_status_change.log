@@ -1,0 +1,66 @@
+[2025-07-26 10:33:31] ==== ADMIN WITHDRAW STATUS CHANGE (LOCAL ONLY) ====
+Admin: F3FtlEaMzBJlHzBr9fQl
+Withdraw ID: 313
+Target User: demodoang
+Jumlah Withdraw: 50000
+Status Lama: diproses, Status Baru: disetujui
+DB Update: Sukses update status withdraw di database lokal.
+==== DEBUG END ====
+
+[2025-07-26 12:49:29] ==== ADMIN WITHDRAW STATUS CHANGE (LOCAL ONLY) ====
+Admin: EvJLAXMyZtKKc7OgPomI
+Withdraw ID: 314
+Target User: demodoang
+Jumlah Withdraw: 87200
+Status Lama: diproses, Status Baru: disetujui
+DB Update: Sukses update status withdraw di database lokal.
+==== DEBUG END ====
+
+[2025-08-15 01:09:35] ==== ADMIN WITHDRAW STATUS CHANGE (LOCAL ONLY) ====
+Admin: 6QJ76zlBztbjvWhd9pgV
+Withdraw ID: 1
+Target User: demotheo
+Jumlah Withdraw: 50000
+Status Lama: diproses, Status Baru: disetujui
+DB Update: Sukses update status withdraw di database lokal.
+==== DEBUG END ====
+
+[2025-08-16 19:46:28] ==== ADMIN WITHDRAW STATUS CHANGE (LOCAL ONLY) ====
+Admin: n8bh8SWR4VR0hOe6e2oV
+Withdraw ID: 2
+Target User: demotheo
+Jumlah Withdraw: 50000
+Status Lama: diproses, Status Baru: dibatalkan
+DB Update: Sukses update status withdraw di database lokal.
+==== DEBUG END ====
+
+[2025-08-16 20:29:06] ==== ADMIN WITHDRAW STATUS CHANGE ====
+Admin: PB1lBssHfVOwyD3uJ5OD
+Withdraw ID: 3
+Target User: uhuy23
+Jumlah Withdraw: 50000
+Status Lama: diproses, Status Baru: dibatalkan
+ID Sigma Anggota: 541
+Generated new reference_id for cancellation: withdraw_68a08010348e0
+Request Params (depositToPlayer for cancellation): {"playerId":541,"amount":50000,"referenceId":"withdraw_68a08010348e0"}
+API Deposit (untuk pembatalan withdraw) sukses.
+Saldo final dari getPlayerBalance: 54410
+DB Update: Sukses update saldo anggota.
+DB Update: Sukses update status withdraw di database lokal.
+==== DEBUG END ====
+
+[2025-08-16 20:32:57] ==== ADMIN WITHDRAW STATUS CHANGE ====
+Admin: ueHyZChy67meSVB5OBu9
+Withdraw ID: 4
+Target User: demotheo
+Jumlah Withdraw: 50000
+Status Lama: diproses, Status Baru: dibatalkan
+ID Sigma Anggota: 543
+Generated new reference_id for cancellation: withdraw_68a08877b674e
+Request Params (depositToPlayer for cancellation): {"playerId":543,"amount":50000,"referenceId":"withdraw_68a08877b674e"}
+API Deposit (untuk pembatalan withdraw) sukses.
+Saldo final dari getPlayerBalance: 51290
+DB Update: Sukses update saldo anggota.
+DB Update: Sukses update status withdraw di database lokal.
+==== DEBUG END ====
+

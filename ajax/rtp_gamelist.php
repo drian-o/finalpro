@@ -1,0 +1,249 @@
+<?php
+
+header('Content-Type: application/json');
+if (session_status() == PHP_SESSION_NONE) {
+    session_start();
+}
+require_once '../koneksi.php';
+
+if (!isset($koneksi) || !$koneksi instanceof mysqli) {
+    echo json_encode(['success' => false, 'message' => 'Database connection error.']);
+    exit();
+}
+
+$provider_code_from_req = isset($_GET['provider_code']) ? mysqli_real_escape_string($koneksi, $_GET['provider_code']) : '';
+$server_from_req = isset($_GET['server']) ? mysqli_real_escape_string($koneksi, $_GET['server']) : '';
+$game_type = isset($_GET['game_type']) ? mysqli_real_escape_string($koneksi, $_GET['game_type']) : 'slot';
+$search_term = isset($_GET['search']) ? mysqli_real_escape_string($koneksi, $_GET['search']) : '';
+$limit = isset($_GET['limit']) ? (int)$_GET['limit'] : 20;
+$offset = isset($_GET['offset']) ? (int)$_GET['offset'] : 0;
+$response_data = [
+    'success' => false,
+    'message' => 'Error.',
+    'gamesHtml' => '',
+    'totalGamesOverall' => 0,
+    'totalGamesLoaded' => 0,
+    'hasMore' => false,
+    'providerName' => ''
+];
+
+$is_featured = ($provider_code_from_req === 'featured' && $server_from_req === 'nexus_featured');
+$cache_dir = '../cache/';
+$cache_file = $cache_dir . 'rtp_data_cache.json';
+$cache_duration = 1800; // 30 menit dalam detik (30 * 60)
+
+if (!is_dir($cache_dir)) {
+    mkdir($cache_dir, 0755, true);
+}
+
+function generateRTPPercentage() {
+    $rand = mt_rand(1, 100);
+    if ($rand <= 10) {
+        return mt_rand(50, 60);
+    } elseif ($rand <= 30) {
+        return mt_rand(61, 70);
+    } elseif ($rand <= 60) {
+        return mt_rand(71, 80);
+    } else {
+        return mt_rand(81, 98);
+    }
+}
+
+function generatePolaMain() {
+    $pola = [];
+    $spin_modes = ['Auto', 'Manual'];
+    $spin_types = ['XX', 'XXX'];
+    $spin_counts = [10, 20, 30, 50, 80];
+
+    $num_pola = mt_rand(2, 4);
+    for ($i = 0; $i < $num_pola; $i++) {
+        $pola[] = [
+            'spins' => $spin_counts[array_rand($spin_counts)],
+            'type' => $spin_types[array_rand($spin_types)],
+            'mode' => $spin_modes[array_rand($spin_modes)]
+        ];
+    }
+    return $pola;
+}
+
+function generateGacorTime() {
+    $start_hour = mt_rand(7, 23);
+    $start_minute = mt_rand(0, 59);
+    $end_hour = $start_hour + mt_rand(1, 3);
+    if ($end_hour > 23) $end_hour = 23;
+    $end_minute = mt_rand(0, 59);
+
+    return sprintf('%02d:%02d - %02d:%02d', $start_hour, $start_minute, $end_hour, $end_minute);
+}
+
+// Cek dan generate data cache jika diperlukan
+if (!file_exists($cache_file) || (time() - filemtime($cache_file) > $cache_duration)) {
+    $all_games_data = [];
+    $query_all_games = "SELECT game_code, game_name, game_image_local, game_image_url_api, provider_code FROM nexus_gamelist WHERE game_type = '{$game_type}' AND game_status = 'open'";
+    $result_all_games = mysqli_query($koneksi, $query_all_games);
+    if ($result_all_games) {
+        while ($game = mysqli_fetch_assoc($result_all_games)) {
+            $game['rtp_percentage'] = generateRTPPercentage();
+            $game['gacor_time'] = generateGacorTime();
+            $game['pola_main'] = generatePolaMain();
+            $all_games_data[] = $game;
+        }
+        file_put_contents($cache_file, json_encode($all_games_data));
+    }
+}
+
+$all_games_data_from_cache = json_decode(file_get_contents($cache_file), true);
+
+$filtered_games = [];
+$total_games_overall = 0;
+$total_games_loaded_this_request = 0;
+$games_html = '';
+
+try {
+    if ($is_featured) {
+        $count_query = "SELECT COUNT(*) AS total_games FROM slot_gamelist WHERE is_featured = 1 AND game_type = '{$game_type}'";
+        if (!empty($search_term)) {
+            $count_query .= " AND (game_name LIKE '%{$search_term}%' OR game_code LIKE '%{$search_term}%')";
+        }
+        $count_result = mysqli_query($koneksi, $count_query);
+        if ($count_result) {
+            $count_row = mysqli_fetch_assoc($count_result);
+            $total_games_overall = $count_row['total_games'];
+        }
+
+        $query_games = "SELECT sg.game_code, sg.provider_code, sg.game_name, sg.game_type, sg.custom_image_path, sg.display_order,
+                               ngl.game_image_local AS ngl_img_local, ngl.game_image_url_api AS ngl_img_api
+                        FROM slot_gamelist sg
+                        LEFT JOIN nexus_gamelist ngl ON sg.game_code = ngl.game_code AND sg.provider_code = ngl.provider_code
+                        WHERE sg.is_featured = 1 AND sg.game_type = '{$game_type}'";
+        if (!empty($search_term)) {
+            $query_games .= " AND (sg.game_name LIKE '%{$search_term}%' OR sg.game_code LIKE '%{$search_term}%')";
+        }
+        $query_games .= " ORDER BY (CASE WHEN sg.display_order = 0 THEN 2 ELSE 1 END) ASC, sg.display_order ASC, sg.game_name ASC LIMIT {$limit} OFFSET {$offset}";
+        
+        $result_games = mysqli_query($koneksi, $query_games);
+        if (!$result_games) {
+            throw new Exception("Failed to query featured games from database: " . mysqli_error($koneksi));
+        }
+
+        $total_games_loaded_this_request = mysqli_num_rows($result_games);
+        while ($game = mysqli_fetch_assoc($result_games)) {
+            $game_rtp_data = null;
+            foreach ($all_games_data_from_cache as $cached_game) {
+                if ($cached_game['game_code'] === $game['game_code'] && $cached_game['provider_code'] === $game['provider_code']) {
+                    $game_rtp_data = $cached_game;
+                    break;
+                }
+            }
+
+            if (!$game_rtp_data) continue;
+
+            $gambar_src = '';
+            if (!empty($game['custom_image_path'])) {
+                $gambar_src = htmlspecialchars($game['custom_image_path']);
+            } elseif (!empty($game['ngl_img_local']) && file_exists('../' . $game['ngl_img_local'])) {
+                $gambar_src = '../' . htmlspecialchars($game['ngl_img_local']);
+            } elseif (!empty($game['ngl_img_api'])) {
+                $gambar_src = htmlspecialchars($game['ngl_img_api']);
+            } else {
+                $gambar_src = '../upload/no-image.png';
+            }
+
+            $games_html .= generateGameHtml($game_rtp_data, $gambar_src, 'nexus');
+        }
+
+    } else { // Normal provider
+        $count_query = "SELECT COUNT(*) AS total_games FROM nexus_gamelist WHERE game_type = '{$game_type}' AND game_status = 'open' AND provider_code = '{$provider_code_from_req}'";
+        if (!empty($search_term)) {
+            $count_query .= " AND (game_name LIKE '%{$search_term}%' OR game_code LIKE '%{$search_term}%')";
+        }
+        $count_result = mysqli_query($koneksi, $count_query);
+        if ($count_result) {
+            $count_row = mysqli_fetch_assoc($count_result);
+            $total_games_overall = $count_row['total_games'];
+        }
+
+        $query_games = "SELECT game_code, game_name, game_image_local, game_image_url_api, provider_code, urutan 
+                        FROM nexus_gamelist 
+                        WHERE game_type = '{$game_type}' AND game_status = 'open' AND provider_code = '{$provider_code_from_req}'";
+        if (!empty($search_term)) {
+            $query_games .= " AND (game_name LIKE '%{$search_term}%' OR game_code LIKE '%{$search_term}%')";
+        }
+        $query_games .= " ORDER BY (urutan = 0) ASC, urutan ASC, game_name ASC LIMIT {$limit} OFFSET {$offset}";
+        
+        $result_games = mysqli_query($koneksi, $query_games);
+        if (!$result_games) {
+            throw new Exception("Failed to query games from database: " . mysqli_error($koneksi));
+        }
+
+        $total_games_loaded_this_request = mysqli_num_rows($result_games);
+        while ($game = mysqli_fetch_assoc($result_games)) {
+            $game_rtp_data = null;
+            foreach ($all_games_data_from_cache as $cached_game) {
+                if ($cached_game['game_code'] === $game['game_code'] && $cached_game['provider_code'] === $game['provider_code']) {
+                    $game_rtp_data = $cached_game;
+                    break;
+                }
+            }
+            if (!$game_rtp_data) continue;
+
+            $gambar_src = '';
+            if (!empty($game['game_image_local']) && file_exists('../' . $game['game_image_local'])) {
+                $gambar_src = '../' . htmlspecialchars($game['game_image_local']);
+            } elseif (!empty($game['game_image_url_api'])) {
+                $gambar_src = htmlspecialchars($game['game_image_url_api']);
+            } else {
+                $gambar_src = '../upload/no-image.png';
+            }
+
+            $games_html .= generateGameHtml($game_rtp_data, $gambar_src, 'nexus');
+        }
+    }
+
+    if ($total_games_loaded_this_request > 0) {
+        $response_data['success'] = true;
+        $response_data['gamesHtml'] = $games_html;
+        $response_data['totalGamesLoaded'] = $total_games_loaded_this_request;
+        $response_data['hasMore'] = ($offset + $total_games_loaded_this_request) < $total_games_overall;
+    } else {
+        $response_data['success'] = true;
+        $response_data['message'] = 'Tidak ada game yang tersedia untuk provider ini atau tidak ditemukan dengan kata kunci tersebut.';
+        if ($offset == 0) {
+            $response_data['gamesHtml'] = '<p class="col-span-full text-center py-5 text-gray-400">Tidak ada game yang tersedia untuk provider ini atau tidak ditemukan dengan kata kunci tersebut.</p>';
+        }
+    }
+
+} catch (Exception $e) {
+    $response_data['message'] = 'Error: ' . $e->getMessage();
+    error_log("AJAX rtp_gamelist error: " . $e->getMessage());
+}
+
+function generateGameHtml($game_data, $gambar_src, $server_attribute_value) {
+    $game_name = htmlspecialchars($game_data['game_name']);
+    $game_code = htmlspecialchars($game_data['game_code']);
+    $provider_code = htmlspecialchars($game_data['provider_code']);
+    $game_type = htmlspecialchars($game_data['game_type'] ?? 'slot');
+    $rtp_percentage = $game_data['rtp_percentage'] ?? 0;
+    $gacor_time = htmlspecialchars($game_data['gacor_time'] ?? '');
+    $pola_main_json = htmlspecialchars(json_encode($game_data['pola_main'] ?? []), ENT_QUOTES, 'UTF-8');
+
+    // Mengembalikan struktur HTML yang benar agar JavaScript bisa mendeteksi klik
+    return '
+        <a href="#" class="game-grid-item play-game-trigger rtp-game-card-link"
+           data-game-code="' . $game_code . '" 
+           data-provider="' . $provider_code . '" 
+           data-game-type="' . $game_type . '"
+           data-server="' . $server_attribute_value . '"
+           data-rtp="' . $rtp_percentage . '"
+           data-gacor-time="' . $gacor_time . '"
+           data-pola-main=\'' . $pola_main_json . '\'>
+            <figure class="game-grid-figure">
+                <img alt="' . $game_name . '" loading="lazy" src="' . $gambar_src . '">
+            </figure>
+            <p class="game-grid-name">' . $game_name . '</p>
+        </a>
+    ';
+}
+
+echo json_encode($response_data);
+?>

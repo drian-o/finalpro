@@ -1,0 +1,74 @@
+<?php
+session_start();
+header('Content-Type: application/json');
+
+// Cek apakah user sudah login dan permintaan valid
+if (!isset($_SESSION['id_anggota']) || !isset($_SESSION['nama_pengguna_anggota'])) {
+    http_response_code(403);
+    echo json_encode(['status' => 'error', 'message' => 'Akses ditolak. Mohon login terlebih dahulu.']);
+    exit;
+}
+
+// Cek apakah parameter tanggal dan paginasi disediakan
+if (!isset($_GET['start_date']) || !isset($_GET['end_date']) || !isset($_GET['page']) || !isset($_GET['perPage'])) {
+    http_response_code(400);
+    echo json_encode(['status' => 'error', 'message' => 'Data tidak lengkap.']);
+    exit;
+}
+
+// Lokasi file
+require_once '../classes/connectAPI.php';
+require_once '../classes/class.nexusggr.php';
+
+$nama_pengguna_anggota = $_SESSION['nama_pengguna_anggota'];
+$start_date_input = $_GET['start_date'];
+$end_date_input = $_GET['end_date'];
+$page = (int)$_GET['page'];
+$perPage = (int)$_GET['perPage'];
+
+// Format tanggal dan waktu sesuai kebutuhan API (yaitu 'YYYY-MM-DD HH:MM:SS')
+$start_datetime = $start_date_input . ' 00:00:00';
+$end_datetime = $end_date_input . ' 23:59:59';
+
+try {
+    // Inisialisasi objek API
+    $api = new API($user_agent, $signature);
+    
+    // Panggil API history_game dengan parameter yang sudah difilter
+    $response = $api->history_game(
+        $nama_pengguna_anggota,
+        'slot', // Ganti dengan game_type yang relevan jika perlu
+        $start_datetime,
+        $end_datetime,
+        $page - 1, // API menggunakan indeks 0 untuk halaman pertama
+        $perPage
+    );
+
+    // Periksa apakah respons API valid
+    if (isset($response['status']) && $response['status'] === 1 && isset($response['slot'])) {
+        $bets = $response['slot'];
+        $total_items = $response['total_count'];
+        $total_pages = ceil($total_items / $perPage);
+        
+        // Format tanggal untuk tampilan
+        foreach ($bets as &$bet) {
+             $bet['created_at'] = date('Y-m-d H:i:s', strtotime($bet['created_at']));
+        }
+        unset($bet); // Lepas referensi
+
+        echo json_encode([
+            'status' => 'success',
+            'data' => $bets,
+            'totalItems' => $total_items,
+            'totalPages' => $total_pages,
+            'currentPage' => $page
+        ]);
+    } else {
+        $message = isset($response['error']) ? $response['error'] : 'Gagal mengambil data riwayat taruhan dari API. Respons API tidak sesuai.';
+        echo json_encode(['status' => 'error', 'message' => $message]);
+    }
+} catch (Exception $e) {
+    http_response_code(500);
+    echo json_encode(['status' => 'error', 'message' => 'Terjadi kesalahan internal: ' . $e->getMessage()]);
+}
+?>

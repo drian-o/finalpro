@@ -1,0 +1,215 @@
+[07-Sep-2025 11:05:56 Asia/Jakarta] PHP Notice:  session_start(): Ignoring session_start() because a session is already active (started from /home/ibojatoe/public_html/koneksi.php on line 3) in /home/ibojatoe/public_html/logout.php on line 3
+[07-Sep-2025 11:08:08 Asia/Jakarta] PHP Notice:  session_start(): Ignoring session_start() because a session is already active (started from /home/ibojatoe/public_html/koneksi.php on line 3) in /home/ibojatoe/public_html/logout.php on line 3
+[07-Sep-2025 13:44:03 Asia/Jakarta] PHP Warning:  Undefined array key "nama_pengguna_anggota" in /home/ibojatoe/public_html/referal.php on line 8
+[07-Sep-2025 13:44:03 Asia/Jakarta] PHP Warning:  Undefined array key "saldo_anggota" in /home/ibojatoe/public_html/referal.php on line 88
+[07-Sep-2025 13:44:03 Asia/Jakarta] PHP Warning:  Undefined variable $user in /home/ibojatoe/public_html/referal.php on line 182
+[07-Sep-2025 13:44:03 Asia/Jakarta] PHP Warning:  Trying to access array offset on null in /home/ibojatoe/public_html/referal.php on line 182
+[07-Sep-2025 14:22:39 Asia/Jakarta] PHP Notice:  session_start(): Ignoring session_start() because a session is already active (started from /home/ibojatoe/public_html/koneksi.php on line 3) in /home/ibojatoe/public_html/logout.php on line 3
+[07-Sep-2025 21:47:29 Asia/Jakarta] PHP Warning:  Undefined array key "nama_pengguna_anggota" in /home/ibojatoe/public_html/referal.php on line 8
+[07-Sep-2025 21:47:29 Asia/Jakarta] PHP Warning:  Undefined array key "saldo_anggota" in /home/ibojatoe/public_html/referal.php on line 88
+[07-Sep-2025 21:47:29 Asia/Jakarta] PHP Warning:  Undefined variable $user in /home/ibojatoe/public_html/referal.php on line 182
+[07-Sep-2025 21:47:29 Asia/Jakarta] PHP Warning:  Trying to access array offset on null in /home/ibojatoe/public_html/referal.php on line 182
+[08-Sep-2025 00:48:32 Asia/Jakarta] PHP Notice:  session_start(): Ignoring session_start() because a session is already active (started from /home/ibojatoe/public_html/koneksi.php on line 3) in /home/ibojatoe/public_html/logout.php on line 3
+[08-Sep-2025 01:18:20 Asia/Jakarta] PHP Warning:  Undefined array key "nama_pengguna_anggota" in /home/ibojatoe/public_html/referal.php on line 8
+[08-Sep-2025 01:18:20 Asia/Jakarta] PHP Warning:  Undefined array key "saldo_anggota" in /home/ibojatoe/public_html/referal.php on line 88
+[08-Sep-2025 01:18:20 Asia/Jakarta] PHP Warning:  Undefined variable $user in /home/ibojatoe/public_html/referal.php on line 182
+[08-Sep-2025 01:18:20 Asia/Jakarta] PHP Warning:  Trying to access array offset on null in /home/ibojatoe/public_html/referal.php on line 182
+[08-Sep-2025 20:21:51 Asia/Jakarta] PHP Warning:  Undefined array key "nama_pengguna_anggota" in /home/ibojatoe/public_html/referal.php on line 8
+[08-Sep-2025 20:21:51 Asia/Jakarta] PHP Warning:  Undefined array key "saldo_anggota" in /home/ibojatoe/public_html/referal.php on line 88
+[08-Sep-2025 20:21:51 Asia/Jakarta] PHP Warning:  Undefined variable $user in /home/ibojatoe/public_html/referal.php on line 182
+[08-Sep-2025 20:21:51 Asia/Jakarta] PHP Warning:  Trying to access array offset on null in /home/ibojatoe/public_html/referal.php on line 182
+[08-Sep-2025 23:03:12 Asia/Jakarta] PHP Warning:  Undefined array key "nama_pengguna_anggota" in /home/ibojatoe/public_html/referal.php on line 8
+[08-Sep-2025 23:03:12 Asia/Jakarta] PHP Warning:  Undefined array key "saldo_anggota" in /home/ibojatoe/public_html/referal.php on line 88
+[08-Sep-2025 23:03:12 Asia/Jakarta] PHP Warning:  Undefined variable $user in /home/ibojatoe/public_html/referal.php on line 182
+[08-Sep-2025 23:03:12 Asia/Jakarta] PHP Warning:  Trying to access array offset on null in /home/ibojatoe/public_html/referal.php on line 182
+[08-Sep-2025 23:30:16 Asia/Jakarta] PHP Warning:  Undefined array key "nama_pengguna_anggota" in /home/ibojatoe/public_html/referal.php on line 8
+[08-Sep-2025 23:30:16 Asia/Jakarta] PHP Warning:  Undefined array key "saldo_anggota" in /home/ibojatoe/public_html/referal.php on line 88
+[08-Sep-2025 23:30:16 Asia/Jakarta] PHP Warning:  Undefined variable $user in /home/ibojatoe/public_html/referal.php on line 182
+[08-Sep-2025 23:30:16 Asia/Jakarta] PHP Warning:  Trying to access array offset on null in /home/ibojatoe/public_html/referal.php on line 182
+[09-Sep-2025 01:00:00 Asia/Jakarta] PHP Notice:  session_start(): Ignoring session_start() because a session is already active (started from /home/ibojatoe/public_html/koneksi.php on line 3) in /home/ibojatoe/public_html/logout.php on line 3
+[09-Sep-2025 03:15:46 Asia/Jakarta] PHP Warning:  Undefined array key "nama_pengguna_anggota" in /home/ibojatoe/public_html/referal.php on line 8
+[09-Sep-2025 03:15:47 Asia/Jakarta] PHP Warning:  Undefined array key "saldo_anggota" in /home/ibojatoe/public_html/referal.php on line 88
+[09-Sep-2025 03:15:47 Asia/Jakarta] PHP Warning:  Undefined variable $user in /home/ibojatoe/public_html/referal.php on line 182
+[09-Sep-2025 03:15:47 Asia/Jakarta] PHP Warning:  Trying to access array offset on null in /home/ibojatoe/public_html/referal.php on line 182
+[01-Oct-2025 15:18:40 Asia/Jakarta] CRITICAL (update_saldo.php): ID GameXa/Nexus tidak ditemukan di DB lokal untuk user: testmaja | Details: User: testmaja
+[01-Oct-2025 15:18:46 Asia/Jakarta] CRITICAL (update_saldo.php): ID GameXa/Nexus tidak ditemukan di DB lokal untuk user: testmaja | Details: User: testmaja
+[01-Oct-2025 15:18:54 Asia/Jakarta] CRITICAL (update_saldo.php): ID GameXa/Nexus tidak ditemukan di DB lokal untuk user: testmaja | Details: User: testmaja
+[01-Oct-2025 15:18:54 Asia/Jakarta] CRITICAL (update_saldo.php): ID GameXa/Nexus tidak ditemukan di DB lokal untuk user: testmaja | Details: User: testmaja
+[01-Oct-2025 15:19:22 Asia/Jakarta] CRITICAL (update_saldo.php): ID GameXa/Nexus tidak ditemukan di DB lokal untuk user: testmaja | Details: User: testmaja
+[01-Oct-2025 15:19:23 Asia/Jakarta] CRITICAL (update_saldo.php): ID GameXa/Nexus tidak ditemukan di DB lokal untuk user: testmaja | Details: User: testmaja
+[01-Oct-2025 15:19:27 Asia/Jakarta] CRITICAL (update_saldo.php): ID GameXa/Nexus tidak ditemukan di DB lokal untuk user: testmaja | Details: User: testmaja
+[01-Oct-2025 15:19:35 Asia/Jakarta] CRITICAL (update_saldo.php): ID GameXa/Nexus tidak ditemukan di DB lokal untuk user: testmaja | Details: User: testmaja
+[01-Oct-2025 15:19:40 Asia/Jakarta] CRITICAL (update_saldo.php): ID GameXa/Nexus tidak ditemukan di DB lokal untuk user: testmaja | Details: User: testmaja
+[01-Oct-2025 15:23:46 Asia/Jakarta] CRITICAL (update_saldo.php): ID GameXa/Nexus tidak ditemukan di DB lokal untuk user: testmaja | Details: User: testmaja
+[01-Oct-2025 15:23:47 Asia/Jakarta] CRITICAL (update_saldo.php): ID GameXa/Nexus tidak ditemukan di DB lokal untuk user: testmaja | Details: User: testmaja
+[01-Oct-2025 15:24:07 Asia/Jakarta] CRITICAL (update_saldo.php): ID GameXa/Nexus tidak ditemukan di DB lokal untuk user: testmaja | Details: User: testmaja
+[01-Oct-2025 15:24:08 Asia/Jakarta] CRITICAL (update_saldo.php): ID GameXa/Nexus tidak ditemukan di DB lokal untuk user: testmaja | Details: User: testmaja
+[01-Oct-2025 15:24:18 Asia/Jakarta] PHP Notice:  session_start(): Ignoring session_start() because a session is already active (started from /home/cairxyz/public_html/koneksi.php on line 3) in /home/cairxyz/public_html/logout.php on line 3
+[01-Oct-2025 15:27:01 Asia/Jakarta] CRITICAL (update_saldo.php): ID GameXa/Nexus tidak ditemukan di DB lokal untuk user: testqris | Details: User: testqris
+[01-Oct-2025 15:27:05 Asia/Jakarta] CRITICAL (update_saldo.php): ID GameXa/Nexus tidak ditemukan di DB lokal untuk user: testqris | Details: User: testqris
+[01-Oct-2025 15:29:23 Asia/Jakarta] CRITICAL (update_saldo.php): ID GameXa/Nexus tidak ditemukan di DB lokal untuk user: testqris | Details: User: testqris
+[01-Oct-2025 15:38:50 Asia/Jakarta] CRITICAL (update_saldo.php): ID GameXa/Nexus tidak ditemukan di DB lokal untuk user: testqris | Details: User: testqris
+[01-Oct-2025 15:39:29 Asia/Jakarta] CRITICAL (update_saldo.php): ID GameXa/Nexus tidak ditemukan di DB lokal untuk user: testqris | Details: User: testqris
+[01-Oct-2025 16:11:54 Asia/Jakarta] CRITICAL (update_saldo.php): ID GameXa/Nexus tidak ditemukan di DB lokal untuk user: testlagi | Details: User: testlagi
+[01-Oct-2025 16:11:57 Asia/Jakarta] CRITICAL (update_saldo.php): ID GameXa/Nexus tidak ditemukan di DB lokal untuk user: testlagi | Details: User: testlagi
+[01-Oct-2025 16:12:05 Asia/Jakarta] CRITICAL (update_saldo.php): ID GameXa/Nexus tidak ditemukan di DB lokal untuk user: testlagi | Details: User: testlagi
+[01-Oct-2025 16:12:09 Asia/Jakarta] CRITICAL (update_saldo.php): ID GameXa/Nexus tidak ditemukan di DB lokal untuk user: testlagi | Details: User: testlagi
+[01-Oct-2025 16:12:52 Asia/Jakarta] CRITICAL (update_saldo.php): ID GameXa/Nexus tidak ditemukan di DB lokal untuk user: testlagi | Details: User: testlagi
+[01-Oct-2025 16:12:56 Asia/Jakarta] CRITICAL (update_saldo.php): ID GameXa/Nexus tidak ditemukan di DB lokal untuk user: testlagi | Details: User: testlagi
+[01-Oct-2025 16:13:02 Asia/Jakarta] CRITICAL (update_saldo.php): ID GameXa/Nexus tidak ditemukan di DB lokal untuk user: testlagi | Details: User: testlagi
+[01-Oct-2025 16:13:03 Asia/Jakarta] CRITICAL (update_saldo.php): ID GameXa/Nexus tidak ditemukan di DB lokal untuk user: testlagi | Details: User: testlagi
+[01-Oct-2025 16:13:12 Asia/Jakarta] CRITICAL (update_saldo.php): ID GameXa/Nexus tidak ditemukan di DB lokal untuk user: testlagi | Details: User: testlagi
+[01-Oct-2025 16:13:39 Asia/Jakarta] CRITICAL (update_saldo.php): ID GameXa/Nexus tidak ditemukan di DB lokal untuk user: testlagi | Details: User: testlagi
+[01-Oct-2025 20:34:37 Asia/Jakarta] PHP Warning:  Undefined array key "nama_pengguna_anggota" in /home/cairxyz/public_html/referal.php on line 8
+[01-Oct-2025 20:34:37 Asia/Jakarta] PHP Warning:  Undefined array key "saldo_anggota" in /home/cairxyz/public_html/referal.php on line 88
+[01-Oct-2025 20:34:37 Asia/Jakarta] PHP Warning:  Undefined variable $user in /home/cairxyz/public_html/referal.php on line 182
+[01-Oct-2025 20:34:37 Asia/Jakarta] PHP Warning:  Trying to access array offset on null in /home/cairxyz/public_html/referal.php on line 182
+[01-Oct-2025 22:04:34 Asia/Jakarta] PHP Warning:  Undefined array key "nama_pengguna_anggota" in /home/cairxyz/public_html/referal.php on line 8
+[01-Oct-2025 22:04:34 Asia/Jakarta] PHP Warning:  Undefined array key "saldo_anggota" in /home/cairxyz/public_html/referal.php on line 88
+[01-Oct-2025 22:04:34 Asia/Jakarta] PHP Warning:  Undefined variable $user in /home/cairxyz/public_html/referal.php on line 182
+[01-Oct-2025 22:04:34 Asia/Jakarta] PHP Warning:  Trying to access array offset on null in /home/cairxyz/public_html/referal.php on line 182
+[01-Oct-2025 23:02:47 Asia/Jakarta] PHP Notice:  session_start(): Ignoring session_start() because a session is already active (started from /home/cairxyz/public_html/koneksi.php on line 3) in /home/cairxyz/public_html/logout.php on line 3
+[01-Oct-2025 23:11:28 Asia/Jakarta] PHP Notice:  session_start(): Ignoring session_start() because a session is already active (started from /home/cairxyz/public_html/koneksi.php on line 3) in /home/cairxyz/public_html/logout.php on line 3
+[02-Oct-2025 01:04:01 Asia/Jakarta] PHP Warning:  Undefined array key "nama_pengguna_anggota" in /home/cairxyz/public_html/referal.php on line 8
+[02-Oct-2025 01:04:01 Asia/Jakarta] PHP Warning:  Undefined array key "saldo_anggota" in /home/cairxyz/public_html/referal.php on line 88
+[02-Oct-2025 01:04:01 Asia/Jakarta] PHP Warning:  Undefined variable $user in /home/cairxyz/public_html/referal.php on line 182
+[02-Oct-2025 01:04:01 Asia/Jakarta] PHP Warning:  Trying to access array offset on null in /home/cairxyz/public_html/referal.php on line 182
+[02-Oct-2025 05:10:20 Asia/Jakarta] PHP Notice:  session_start(): Ignoring session_start() because a session is already active (started from /home/cairxyz/public_html/koneksi.php on line 3) in /home/cairxyz/public_html/logout.php on line 3
+[03-Oct-2025 09:05:15 Asia/Jakarta] CRITICAL (update_saldo.php): ID GameXa/Nexus tidak ditemukan di DB lokal untuk user: testlagi | Details: User: testlagi
+[03-Oct-2025 13:41:52 Asia/Jakarta] CRITICAL (update_saldo.php): ID GameXa/Nexus tidak ditemukan di DB lokal untuk user: pelerfaking | Details: User: pelerfaking
+[03-Oct-2025 13:42:12 Asia/Jakarta] CRITICAL (update_saldo.php): ID GameXa/Nexus tidak ditemukan di DB lokal untuk user: pelerfaking | Details: User: pelerfaking
+[03-Oct-2025 13:42:50 Asia/Jakarta] CRITICAL (update_saldo.php): ID GameXa/Nexus tidak ditemukan di DB lokal untuk user: pelerfaking | Details: User: pelerfaking
+[01-Nov-2025 17:01:29 Asia/Jakarta] PHP Fatal error:  Uncaught mysqli_sql_exception: Table 'cairxyz_nuks.pengaturan' doesn't exist in /home/cairxyz/cuby138s.my.id/koneksi.php:18
+Stack trace:
+#0 /home/cairxyz/cuby138s.my.id/koneksi.php(18): mysqli_query()
+#1 /home/cairxyz/cuby138s.my.id/index.php(3): include_once('/home/cairxyz/c...')
+#2 {main}
+  thrown in /home/cairxyz/cuby138s.my.id/koneksi.php on line 18
+[01-Nov-2025 17:01:48 Asia/Jakarta] PHP Fatal error:  Uncaught mysqli_sql_exception: Table 'cairxyz_nuks.pengaturan' doesn't exist in /home/cairxyz/cuby138s.my.id/koneksi.php:18
+Stack trace:
+#0 /home/cairxyz/cuby138s.my.id/koneksi.php(18): mysqli_query()
+#1 /home/cairxyz/cuby138s.my.id/index.php(3): include_once('/home/cairxyz/c...')
+#2 {main}
+  thrown in /home/cairxyz/cuby138s.my.id/koneksi.php on line 18
+[01-Nov-2025 17:01:50 Asia/Jakarta] PHP Fatal error:  Uncaught mysqli_sql_exception: Table 'cairxyz_nuks.pengaturan' doesn't exist in /home/cairxyz/cuby138s.my.id/koneksi.php:18
+Stack trace:
+#0 /home/cairxyz/cuby138s.my.id/koneksi.php(18): mysqli_query()
+#1 /home/cairxyz/cuby138s.my.id/index.php(3): include_once('/home/cairxyz/c...')
+#2 {main}
+  thrown in /home/cairxyz/cuby138s.my.id/koneksi.php on line 18
+[01-Nov-2025 17:01:52 Asia/Jakarta] PHP Fatal error:  Uncaught mysqli_sql_exception: Table 'cairxyz_nuks.pengaturan' doesn't exist in /home/cairxyz/cuby138s.my.id/koneksi.php:18
+Stack trace:
+#0 /home/cairxyz/cuby138s.my.id/koneksi.php(18): mysqli_query()
+#1 /home/cairxyz/cuby138s.my.id/index.php(3): include_once('/home/cairxyz/c...')
+#2 {main}
+  thrown in /home/cairxyz/cuby138s.my.id/koneksi.php on line 18
+[01-Nov-2025 17:01:54 Asia/Jakarta] PHP Fatal error:  Uncaught mysqli_sql_exception: Table 'cairxyz_nuks.pengaturan' doesn't exist in /home/cairxyz/cuby138s.my.id/koneksi.php:18
+Stack trace:
+#0 /home/cairxyz/cuby138s.my.id/koneksi.php(18): mysqli_query()
+#1 /home/cairxyz/cuby138s.my.id/index.php(3): include_once('/home/cairxyz/c...')
+#2 {main}
+  thrown in /home/cairxyz/cuby138s.my.id/koneksi.php on line 18
+[01-Nov-2025 17:01:57 Asia/Jakarta] PHP Fatal error:  Uncaught mysqli_sql_exception: Table 'cairxyz_nuks.pengaturan' doesn't exist in /home/cairxyz/cuby138s.my.id/koneksi.php:18
+Stack trace:
+#0 /home/cairxyz/cuby138s.my.id/koneksi.php(18): mysqli_query()
+#1 /home/cairxyz/cuby138s.my.id/index.php(3): include_once('/home/cairxyz/c...')
+#2 {main}
+  thrown in /home/cairxyz/cuby138s.my.id/koneksi.php on line 18
+[01-Nov-2025 17:01:57 Asia/Jakarta] PHP Fatal error:  Uncaught mysqli_sql_exception: Table 'cairxyz_nuks.pengaturan' doesn't exist in /home/cairxyz/cuby138s.my.id/koneksi.php:18
+Stack trace:
+#0 /home/cairxyz/cuby138s.my.id/koneksi.php(18): mysqli_query()
+#1 /home/cairxyz/cuby138s.my.id/index.php(3): include_once('/home/cairxyz/c...')
+#2 {main}
+  thrown in /home/cairxyz/cuby138s.my.id/koneksi.php on line 18
+[01-Nov-2025 17:01:59 Asia/Jakarta] PHP Fatal error:  Uncaught mysqli_sql_exception: Table 'cairxyz_nuks.pengaturan' doesn't exist in /home/cairxyz/cuby138s.my.id/koneksi.php:18
+Stack trace:
+#0 /home/cairxyz/cuby138s.my.id/koneksi.php(18): mysqli_query()
+#1 /home/cairxyz/cuby138s.my.id/index.php(3): include_once('/home/cairxyz/c...')
+#2 {main}
+  thrown in /home/cairxyz/cuby138s.my.id/koneksi.php on line 18
+[01-Nov-2025 17:01:59 Asia/Jakarta] PHP Fatal error:  Uncaught mysqli_sql_exception: Table 'cairxyz_nuks.pengaturan' doesn't exist in /home/cairxyz/cuby138s.my.id/koneksi.php:18
+Stack trace:
+#0 /home/cairxyz/cuby138s.my.id/koneksi.php(18): mysqli_query()
+#1 /home/cairxyz/cuby138s.my.id/index.php(3): include_once('/home/cairxyz/c...')
+#2 {main}
+  thrown in /home/cairxyz/cuby138s.my.id/koneksi.php on line 18
+[01-Nov-2025 17:02:00 Asia/Jakarta] PHP Fatal error:  Uncaught mysqli_sql_exception: Table 'cairxyz_nuks.pengaturan' doesn't exist in /home/cairxyz/cuby138s.my.id/koneksi.php:18
+Stack trace:
+#0 /home/cairxyz/cuby138s.my.id/koneksi.php(18): mysqli_query()
+#1 /home/cairxyz/cuby138s.my.id/index.php(3): include_once('/home/cairxyz/c...')
+#2 {main}
+  thrown in /home/cairxyz/cuby138s.my.id/koneksi.php on line 18
+[01-Nov-2025 17:03:05 Asia/Jakarta] PHP Fatal error:  Uncaught mysqli_sql_exception: Table 'cairxyz_nuks.pengaturan' doesn't exist in /home/cairxyz/cuby138s.my.id/koneksi.php:18
+Stack trace:
+#0 /home/cairxyz/cuby138s.my.id/koneksi.php(18): mysqli_query()
+#1 /home/cairxyz/cuby138s.my.id/index.php(3): include_once('/home/cairxyz/c...')
+#2 {main}
+  thrown in /home/cairxyz/cuby138s.my.id/koneksi.php on line 18
+[01-Nov-2025 17:03:06 Asia/Jakarta] PHP Fatal error:  Uncaught mysqli_sql_exception: Table 'cairxyz_nuks.pengaturan' doesn't exist in /home/cairxyz/cuby138s.my.id/koneksi.php:18
+Stack trace:
+#0 /home/cairxyz/cuby138s.my.id/koneksi.php(18): mysqli_query()
+#1 /home/cairxyz/cuby138s.my.id/index.php(3): include_once('/home/cairxyz/c...')
+#2 {main}
+  thrown in /home/cairxyz/cuby138s.my.id/koneksi.php on line 18
+[01-Nov-2025 17:03:24 Asia/Jakarta] PHP Fatal error:  Uncaught mysqli_sql_exception: Table 'cairxyz_nuks.pengaturan' doesn't exist in /home/cairxyz/cuby138s.my.id/koneksi.php:18
+Stack trace:
+#0 /home/cairxyz/cuby138s.my.id/koneksi.php(18): mysqli_query()
+#1 /home/cairxyz/cuby138s.my.id/index.php(3): include_once('/home/cairxyz/c...')
+#2 {main}
+  thrown in /home/cairxyz/cuby138s.my.id/koneksi.php on line 18
+[01-Nov-2025 18:15:04 Asia/Jakarta] CRITICAL (update_saldo.php): ID GameXa/Nexus tidak ditemukan di DB lokal untuk user: kentutbau77 | Details: User: kentutbau77
+[01-Nov-2025 18:15:09 Asia/Jakarta] CRITICAL (update_saldo.php): ID GameXa/Nexus tidak ditemukan di DB lokal untuk user: kentutbau77 | Details: User: kentutbau77
+[02-Nov-2025 22:58:20 Asia/Jakarta] CRITICAL (update_saldo.php): ID GameXa/Nexus tidak ditemukan di DB lokal untuk user: jemnut2292 | Details: User: jemnut2292
+[02-Nov-2025 22:58:23 Asia/Jakarta] CRITICAL (update_saldo.php): ID GameXa/Nexus tidak ditemukan di DB lokal untuk user: jemnut2292 | Details: User: jemnut2292
+[02-Nov-2025 23:04:43 Asia/Jakarta] CRITICAL (update_saldo.php): ID GameXa/Nexus tidak ditemukan di DB lokal untuk user: jemnut2292 | Details: User: jemnut2292
+[02-Nov-2025 23:04:53 Asia/Jakarta] CRITICAL (update_saldo.php): ID GameXa/Nexus tidak ditemukan di DB lokal untuk user: jemnut2292 | Details: User: jemnut2292
+[02-Nov-2025 23:05:00 Asia/Jakarta] CRITICAL (update_saldo.php): ID GameXa/Nexus tidak ditemukan di DB lokal untuk user: jemnut2292 | Details: User: jemnut2292
+[02-Nov-2025 23:05:04 Asia/Jakarta] CRITICAL (update_saldo.php): ID GameXa/Nexus tidak ditemukan di DB lokal untuk user: jemnut2292 | Details: User: jemnut2292
+[02-Nov-2025 23:05:09 Asia/Jakarta] CRITICAL (update_saldo.php): ID GameXa/Nexus tidak ditemukan di DB lokal untuk user: jemnut2292 | Details: User: jemnut2292
+[02-Nov-2025 23:05:39 Asia/Jakarta] CRITICAL (update_saldo.php): ID GameXa/Nexus tidak ditemukan di DB lokal untuk user: jemnut2292 | Details: User: jemnut2292
+[02-Nov-2025 23:05:49 Asia/Jakarta] CRITICAL (update_saldo.php): ID GameXa/Nexus tidak ditemukan di DB lokal untuk user: jemnut2292 | Details: User: jemnut2292
+[02-Nov-2025 23:06:34 Asia/Jakarta] CRITICAL (update_saldo.php): ID GameXa/Nexus tidak ditemukan di DB lokal untuk user: jemnut2292 | Details: User: jemnut2292
+[02-Nov-2025 23:06:55 Asia/Jakarta] CRITICAL (update_saldo.php): ID GameXa/Nexus tidak ditemukan di DB lokal untuk user: jemnut2292 | Details: User: jemnut2292
+[02-Nov-2025 23:07:04 Asia/Jakarta] CRITICAL (update_saldo.php): ID GameXa/Nexus tidak ditemukan di DB lokal untuk user: jemnut2292 | Details: User: jemnut2292
+[02-Nov-2025 23:07:07 Asia/Jakarta] CRITICAL (update_saldo.php): ID GameXa/Nexus tidak ditemukan di DB lokal untuk user: jemnut2292 | Details: User: jemnut2292
+[02-Nov-2025 23:07:09 Asia/Jakarta] CRITICAL (update_saldo.php): ID GameXa/Nexus tidak ditemukan di DB lokal untuk user: jemnut2292 | Details: User: jemnut2292
+[02-Nov-2025 23:07:15 Asia/Jakarta] CRITICAL (update_saldo.php): ID GameXa/Nexus tidak ditemukan di DB lokal untuk user: jemnut2292 | Details: User: jemnut2292
+[02-Nov-2025 23:07:17 Asia/Jakarta] CRITICAL (update_saldo.php): ID GameXa/Nexus tidak ditemukan di DB lokal untuk user: jemnut2292 | Details: User: jemnut2292
+[02-Nov-2025 23:07:27 Asia/Jakarta] CRITICAL (update_saldo.php): ID GameXa/Nexus tidak ditemukan di DB lokal untuk user: jemnut2292 | Details: User: jemnut2292
+[02-Nov-2025 23:07:37 Asia/Jakarta] CRITICAL (update_saldo.php): ID GameXa/Nexus tidak ditemukan di DB lokal untuk user: jemnut2292 | Details: User: jemnut2292
+[02-Nov-2025 23:07:43 Asia/Jakarta] CRITICAL (update_saldo.php): ID GameXa/Nexus tidak ditemukan di DB lokal untuk user: jemnut2292 | Details: User: jemnut2292
+[02-Nov-2025 23:07:49 Asia/Jakarta] CRITICAL (update_saldo.php): ID GameXa/Nexus tidak ditemukan di DB lokal untuk user: jemnut2292 | Details: User: jemnut2292
+[02-Nov-2025 23:07:54 Asia/Jakarta] CRITICAL (update_saldo.php): ID GameXa/Nexus tidak ditemukan di DB lokal untuk user: jemnut2292 | Details: User: jemnut2292
+[02-Nov-2025 23:07:58 Asia/Jakarta] CRITICAL (update_saldo.php): ID GameXa/Nexus tidak ditemukan di DB lokal untuk user: jemnut2292 | Details: User: jemnut2292
+[02-Nov-2025 23:08:08 Asia/Jakarta] CRITICAL (update_saldo.php): ID GameXa/Nexus tidak ditemukan di DB lokal untuk user: jemnut2292 | Details: User: jemnut2292
+[02-Nov-2025 23:08:24 Asia/Jakarta] CRITICAL (update_saldo.php): ID GameXa/Nexus tidak ditemukan di DB lokal untuk user: jemnut2292 | Details: User: jemnut2292
+[02-Nov-2025 23:08:28 Asia/Jakarta] CRITICAL (update_saldo.php): ID GameXa/Nexus tidak ditemukan di DB lokal untuk user: jemnut2292 | Details: User: jemnut2292
+[02-Nov-2025 23:08:35 Asia/Jakarta] CRITICAL (update_saldo.php): ID GameXa/Nexus tidak ditemukan di DB lokal untuk user: jemnut2292 | Details: User: jemnut2292
+[02-Nov-2025 23:10:14 Asia/Jakarta] CRITICAL (update_saldo.php): ID GameXa/Nexus tidak ditemukan di DB lokal untuk user: jemnut2292 | Details: User: jemnut2292
+[02-Nov-2025 23:10:41 Asia/Jakarta] CRITICAL (update_saldo.php): ID GameXa/Nexus tidak ditemukan di DB lokal untuk user: jemnut2292 | Details: User: jemnut2292
+[02-Nov-2025 23:10:51 Asia/Jakarta] CRITICAL (update_saldo.php): ID GameXa/Nexus tidak ditemukan di DB lokal untuk user: jemnut2292 | Details: User: jemnut2292
+[02-Nov-2025 23:10:54 Asia/Jakarta] CRITICAL (update_saldo.php): ID GameXa/Nexus tidak ditemukan di DB lokal untuk user: jemnut2292 | Details: User: jemnut2292
+[02-Nov-2025 23:11:37 Asia/Jakarta] CRITICAL (update_saldo.php): ID GameXa/Nexus tidak ditemukan di DB lokal untuk user: jemnut2292 | Details: User: jemnut2292
+[02-Nov-2025 23:12:53 Asia/Jakarta] CRITICAL (update_saldo.php): ID GameXa/Nexus tidak ditemukan di DB lokal untuk user: jemnut2292 | Details: User: jemnut2292
+[02-Nov-2025 23:24:35 Asia/Jakarta] CRITICAL (update_saldo.php): ID GameXa/Nexus tidak ditemukan di DB lokal untuk user: jemnut2292 | Details: User: jemnut2292
+[02-Nov-2025 23:24:41 Asia/Jakarta] CRITICAL (update_saldo.php): ID GameXa/Nexus tidak ditemukan di DB lokal untuk user: jemnut2292 | Details: User: jemnut2292
+[02-Nov-2025 23:28:46 Asia/Jakarta] CRITICAL (update_saldo.php): ID GameXa/Nexus tidak ditemukan di DB lokal untuk user: jemnut2292 | Details: User: jemnut2292
+[02-Nov-2025 23:28:51 Asia/Jakarta] CRITICAL (update_saldo.php): ID GameXa/Nexus tidak ditemukan di DB lokal untuk user: jemnut2292 | Details: User: jemnut2292
+[03-Nov-2025 08:47:04 Asia/Jakarta] CRITICAL (update_saldo.php): ID GameXa/Nexus tidak ditemukan di DB lokal untuk user: cekajacoba | Details: User: cekajacoba
+[03-Nov-2025 08:47:11 Asia/Jakarta] CRITICAL (update_saldo.php): ID GameXa/Nexus tidak ditemukan di DB lokal untuk user: cekajacoba | Details: User: cekajacoba
+[03-Nov-2025 08:48:29 Asia/Jakarta] CRITICAL (update_saldo.php): ID GameXa/Nexus tidak ditemukan di DB lokal untuk user: cekajacoba | Details: User: cekajacoba
+[03-Nov-2025 08:48:30 Asia/Jakarta] CRITICAL (update_saldo.php): ID GameXa/Nexus tidak ditemukan di DB lokal untuk user: cekajacoba | Details: User: cekajacoba
+[03-Nov-2025 09:10:00 Asia/Jakarta] CRITICAL (update_saldo.php): ID GameXa/Nexus tidak ditemukan di DB lokal untuk user: cekajacoba | Details: User: cekajacoba
+[03-Nov-2025 09:10:12 Asia/Jakarta] CRITICAL (update_saldo.php): ID GameXa/Nexus tidak ditemukan di DB lokal untuk user: cekajacoba | Details: User: cekajacoba
+[03-Nov-2025 09:11:40 Asia/Jakarta] CRITICAL (update_saldo.php): ID GameXa/Nexus tidak ditemukan di DB lokal untuk user: cekajacoba | Details: User: cekajacoba
+[03-Nov-2025 09:17:54 Asia/Jakarta] CRITICAL (update_saldo.php): ID GameXa/Nexus tidak ditemukan di DB lokal untuk user: cekajacoba | Details: User: cekajacoba
+[03-Nov-2025 09:26:26 Asia/Jakarta] API Error: HTTP Code 400, Response: {"error":"Insufficient agent balance for deposit","agent_balance":0,"requested_amount":1000}
+[03-Nov-2025 09:26:26 Asia/Jakarta] CRITICAL Exception qris_callback.php: Gagal proses deposit di GameXa API (struktur respon GameXa tidak sesuai harapan). Respon: {"success":false,"message":"Unknown error","code":400,"data":{"error":"Insufficient agent balance for deposit","agent_balance":0,"requested_amount":1000}}. QRIS_TRX_ID: 02Ndd13a9d5c6057, User: cobaexa
+[03-Nov-2025 09:37:02 Asia/Jakarta] API Error: HTTP Code 400, Response: {"error":"Insufficient agent balance for deposit","agent_balance":0,"requested_amount":1000}
+[03-Nov-2025 09:37:02 Asia/Jakarta] CRITICAL Exception qris_callback.php: Gagal proses deposit di GameXa API (struktur respon GameXa tidak sesuai harapan). Respon: {"success":false,"message":"Unknown error","code":400,"data":{"error":"Insufficient agent balance for deposit","agent_balance":0,"requested_amount":1000}}. QRIS_TRX_ID: 02Ndd13a9d5c6057, User: cobaexa
+[08-Nov-2025 08:03:16 Asia/Jakarta] Callback Handler: Update tidak valid atau bukan callback query. Input: 
+[09-Nov-2025 03:05:48 Asia/Jakarta] CRITICAL: id_anggota or id_sigma not found for 'test123'. QRIS_TRX_ID: 02Ne589378a82f02
+[10-Nov-2025 11:53:53 Asia/Jakarta] Callback Handler: Update tidak valid atau bukan callback query. Input: 
+[20-Nov-2025 08:50:14 Asia/Jakarta] API Error: HTTP Code 403, Response: {"error":"Account is not active"}
+[20-Nov-2025 08:50:17 Asia/Jakarta] CRITICAL (update_saldo.php): ID GameXa/Nexus tidak ditemukan di DB lokal untuk user: cekcikcok | Details: User: cekcikcok
+[20-Nov-2025 10:24:01 Asia/Jakarta] CRITICAL (update_saldo.php): ID GameXa/Nexus tidak ditemukan di DB lokal untuk user: cekcikcok | Details: User: cekcikcok

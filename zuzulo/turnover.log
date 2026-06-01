@@ -1,0 +1,41 @@
+2025-08-16 10:58:48 - --- Memeriksa permintaan POST ---
+2025-08-16 10:58:48 - --- Permintaan selesai ---
+2025-08-16 10:58:55 - --- Memeriksa permintaan POST ---
+2025-08-16 10:58:55 - Permintaan POST diterima untuk update turnover.
+2025-08-16 10:58:55 - Data dari form: id_anggota=, turnover_amount=5000
+2025-08-16 10:58:55 - Statement SQL berhasil disiapkan.
+2025-08-16 10:58:55 - Parameter di-bind: new_turnover_amount=5000, current_time=2025-08-16 10:58:55, id_anggota=
+2025-08-16 10:58:55 - Eksekusi statement berhasil. Affected rows: 0
+2025-08-16 10:58:55 - --- Memeriksa permintaan POST ---
+2025-08-16 10:58:55 - --- Permintaan selesai ---
+2025-08-16 11:00:48 - --- Memeriksa permintaan POST ---
+2025-08-16 11:00:48 - --- Permintaan selesai ---
+2025-08-16 11:00:52 - --- Memeriksa permintaan POST ---
+2025-08-16 11:00:52 - Permintaan POST diterima untuk update turnover.
+2025-08-16 11:00:52 - Data dari form: id_anggota=, turnover_amount=5000
+2025-08-16 11:00:52 - Gagal: id_anggota tidak valid atau kosong.
+2025-08-16 11:00:55 - --- Memeriksa permintaan POST ---
+2025-08-16 11:00:55 - --- Permintaan selesai ---
+2025-08-16 11:03:18 - --- Memeriksa permintaan POST ---
+2025-08-16 11:03:18 - --- Permintaan selesai ---
+2025-08-16 11:03:23 - --- Memeriksa permintaan POST ---
+2025-08-16 11:03:23 - Permintaan POST diterima untuk update turnover.
+2025-08-16 11:03:23 - Data dari form: id_anggota=, turnover_amount=5000
+2025-08-16 11:03:23 - Gagal: id_anggota tidak valid atau kosong.
+2025-08-16 11:03:24 - --- Memeriksa permintaan POST ---
+2025-08-16 11:03:24 - --- Permintaan selesai ---
+2025-08-16 11:40:45 - --- Memeriksa permintaan POST untuk update turnover ---
+2025-08-16 11:40:45 - --- Permintaan selesai ---
+2025-08-16 11:40:49 - --- Memeriksa permintaan POST untuk update turnover ---
+2025-08-16 11:40:49 - Data dari form: id_anggota=, turnover_amount=5000
+2025-08-16 11:40:49 - Gagal: ID Anggota tidak valid atau kosong.
+2025-08-16 11:40:50 - --- Memeriksa permintaan POST untuk update turnover ---
+2025-08-16 11:40:50 - --- Permintaan selesai ---
+2025-08-16 14:43:20 - --- Memeriksa permintaan POST ---
+2025-08-16 14:43:20 - --- Permintaan selesai ---
+2025-08-16 14:43:25 - --- Memeriksa permintaan POST ---
+2025-08-16 14:43:25 - Permintaan POST diterima untuk update turnover.
+2025-08-16 14:43:25 - Data dari form: id_anggota=, turnover_amount=1000
+2025-08-16 14:43:25 - Gagal: id_anggota tidak valid atau kosong.
+2025-08-16 14:43:26 - --- Memeriksa permintaan POST ---
+2025-08-16 14:43:26 - --- Permintaan selesai ---

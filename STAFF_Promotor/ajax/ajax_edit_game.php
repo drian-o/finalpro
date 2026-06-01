@@ -1,0 +1,37 @@
+<?php
+header('Content-Type: application/json');
+
+session_start();
+include_once '../../koneksi.php';
+
+
+if (!isset($_SESSION['kode_admin'])) {
+    echo json_encode(['success' => false, 'message' => 'Akses ditolak.']);
+    exit();
+}
+
+$provider_code = isset($_POST['provider_code']) ? mysqli_real_escape_string($koneksi, $_POST['provider_code']) : null;
+$game_code = isset($_POST['game_code']) ? mysqli_real_escape_string($koneksi, $_POST['game_code']) : null;
+$game_status = isset($_POST['game_status']) ? mysqli_real_escape_string($koneksi, $_POST['game_status']) : null;
+
+$response = [
+    'success' => false,
+    'message' => 'Data tidak lengkap.'
+];
+
+if ($provider_code && $game_code && $game_status) {
+    $stmt = $koneksi->prepare("UPDATE nexus_gamelist SET game_status = ? WHERE provider_code = ? AND game_code = ?");
+    $stmt->bind_param("sss", $game_status, $provider_code, $game_code);
+
+    if ($stmt->execute()) {
+        $response['success'] = true;
+        $response['message'] = 'Status game berhasil diubah.';
+    } else {
+        $response['message'] = 'Gagal memperbarui database: ' . $stmt->error;
+    }
+    $stmt->close();
+}
+
+echo json_encode($response);
+exit();
+?>

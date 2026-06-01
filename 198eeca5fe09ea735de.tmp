@@ -1,0 +1,53 @@
+# ======================================================================
+# KONFIGURASI DASAR & KEAMANAN SERVER
+# ======================================================================
+
+# Mengaktifkan rewrite engine (mesin untuk memanipulasi URL)
+RewriteEngine On
+
+# Nonaktifkan directory listing untuk mencegah orang melihat isi folder
+Options -Indexes
+
+# Lindungi file konfigurasi dan sensitif dari akses web
+<Files ~ "^\.(htaccess|htpasswd|ini|log|bak|sql|swp)$">
+    Require all denied
+</Files>
+
+# ======================================================================
+# ATURAN REWRITE URL (URL Manipulation)
+# ======================================================================
+
+# Paksa penggunaan HTTPS (SSL) - SANGAT DIREKOMENDASIKAN
+# Pastikan sertifikat SSL sudah terpasang dengan benar sebelum mengaktifkan ini.
+# Hapus tanda '#' di dua baris di bawah ini untuk mengaktifkan.
+RewriteCond %{HTTPS} off
+RewriteRule ^(.*)$ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
+
+# Paksa penggunaan WWW atau non-WWW (Pilih salah satu untuk konsistensi SEO)
+# Opsi 1: Paksa menggunakan WWW (misal: domain.com -> www.domain.com)
+# Hapus tanda '#' di dua baris di bawah ini untuk mengaktifkan.
+# RewriteCond %{HTTP_HOST} !^www\. [NC]
+# RewriteRule ^(.*)$ https://www.%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
+
+# Opsi 2: Paksa menggunakan non-WWW (misal: www.domain.com -> domain.com)
+# Hapus tanda '#' di dua baris di bawah ini untuk mengaktifkan.
+# RewriteCond %{HTTP_HOST} ^www\.(.+)$ [NC]
+# RewriteRule ^(.*)$ https://%1%{REQUEST_URI} [L,R=301]
+
+# Sembunyikan ekstensi .php (Aturan Anda sudah bagus, dipertahankan)
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteCond %{REQUEST_FILENAME}\.php -f
+RewriteRule ^(.*)$ $1.php [L]
+
+# ======================================================================
+# ATURAN KEAMANAN TAMBAHAN (Anti-Intrusion)
+# ======================================================================
+
+# Redirect permintaan dengan parameter URL yang mencurigakan ke halaman error_param.php
+# Ini menangani string seperti '--+-', '/*', 'UNION SELECT', '<script>', dll.
+RewriteCond %{QUERY_STRING} (select|concat|cast|declare|--|%23|union|%27|%22|%3c|%3e|%0a|%0d|%00|%bf%27|xp_cmdshell|exec|decode|insert|drop|alert|sleep|benchmark) [NC,OR]
+RewriteCond %{QUERY_STRING} (%20union%20|%20select%20|%20insert%20|%20drop%20|%20delete%20|%20-- |%20xp_cmdshell |%20exec%20|%20cast%20|%20declare%20|%20concat%20|%20alert%20|%20sleep%20|%20benchmark%20) [NC,OR]
+RewriteCond %{QUERY_STRING} (base64_decode|eval|shell_exec|system|passthru|assert|phpinfo) [NC]
+RewriteRule ^(.*)$ error_param.php [R=301,L]
+
+# Aturan untuk menangani permintaan dengan string '--+-' secara spe

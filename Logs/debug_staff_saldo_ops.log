@@ -1,0 +1,39 @@
+[2025-09-07 14:25:45] ==== staff SALDO OPERATION DEBUG ====
+staff: t7Gx1b9tvxt86sinKsC1
+Target User DB ID: 55 (Username: Jpjp88)
+Target API Player ID (id_sigma): 990
+Operation: Withdraw Sejumlah: 25000
+Request Params (Transaksi): {"player_id_api":990,"amount":25000,"reference_id":"ADM-WITHDRAW-Jpjp88-1757229945","type":"withdraw"}
+API Response (Transaksi): {"success":true,"data":{"message":"Player withdraw successful - Balance returned to agent","data":{"player_id":"990","amount":25000,"balance_before":50000,"balance_after":25000,"transaction_type":"withdrawal","reference_id":"ADM-WITHDRAW-Jpjp88-1757229945","agent_id":234,"agent_role":"affiliate","agent_balance_before":971000,"agent_balance_after":996000,"hierarchy_level":"player_to_agent"}}}
+Transaksi API sukses. Memanggil getPlayerBalance untuk player ID: 990
+Saldo final dari API Response: 25000
+DB Update & Insert: SUKSES, transaksi commit.
+DB Update: Sukses update saldo anggota ke: 25000
+==== DEBUG END ====
+
+[2025-09-07 14:37:57] ==== staff SALDO OPERATION DEBUG ====
+staff: t7Gx1b9tvxt86sinKsC1
+Target User DB ID: 55 (Username: Jpjp88)
+Target API Player ID (id_sigma): 990
+Operation: Withdraw Sejumlah: 25000
+Request Params (Transaksi): {"player_id_api":990,"amount":25000,"reference_id":"ADM-WITHDRAW-Jpjp88-1757230677","type":"withdraw"}
+API Response (Transaksi): {"success":true,"data":{"message":"Player withdraw successful - Balance returned to agent","data":{"player_id":"990","amount":25000,"balance_before":25000,"balance_after":0,"transaction_type":"withdrawal","reference_id":"ADM-WITHDRAW-Jpjp88-1757230677","agent_id":234,"agent_role":"affiliate","agent_balance_before":996000,"agent_balance_after":1021000,"hierarchy_level":"player_to_agent"}}}
+Transaksi API sukses. Memanggil getPlayerBalance untuk player ID: 990
+Saldo final dari API Response: 0
+DB Update & Insert: SUKSES, transaksi commit.
+DB Update: Sukses update saldo anggota ke: 0
+==== DEBUG END ====
+
+[2025-09-07 15:21:12] ==== staff SALDO OPERATION DEBUG ====
+staff: Wn8oSZqy7CnMv26s5w0X
+Target User DB ID: 55 (Username: Jpjp88)
+Target API Player ID (id_sigma): 990
+Operation: Deposit Sejumlah: 25000
+Request Params (Transaksi): {"player_id_api":990,"amount":25000,"reference_id":"ADM-DEPOSIT-Jpjp88-1757233272","type":"deposit"}
+API Response (Transaksi): {"success":true,"data":{"message":"Deposit successful","data":{"player_id":"990","amount":25000,"balance_before":0,"balance_after":25000,"transaction_type":"deposit","reference_id":"ADM-DEPOSIT-Jpjp88-1757233272","agent_id":234,"agent_balance_before":1021000,"agent_balance_after":996000,"hierarchy_level":"agent_to_player"}}}
+Transaksi API sukses. Memanggil getPlayerBalance untuk player ID: 990
+Saldo final dari API Response: 25000
+DB Update & Insert: SUKSES, transaksi commit.
+DB Update: Sukses update saldo anggota ke: 25000
+==== DEBUG END ====
+

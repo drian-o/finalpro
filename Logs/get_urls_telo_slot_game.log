@@ -1,0 +1,33 @@
+[2025-07-10 20:36:09] [TELO SLOT LAUNCH] [INFO] Permintaan diterima dari IP: 182.6.78.255
+[2025-07-10 20:36:09] [TELO SLOT LAUNCH] [DEBUG] Isi $_SESSION setelah session_start(): array (
+  'id_admin' => 4,
+  'kode_admin' => 'ffONkyaYeM57eX0Vh147',
+  'lastDepositCount' => '1037000',
+  'lastWithdrawCount' => '560000',
+  'lastAnggotaCount' => 26,
+  'lastPromosiCount' => 6,
+  'lastStaffCount' => 1,
+  'loggedin' => true,
+  'id_anggota' => 2048,
+  'nama_pengguna_anggota' => 'Halodek11',
+  'saldo_anggota' => 4000.0,
+  'welcome_modal_shown' => true,
+)
+[2025-07-10 20:36:09] [TELO SLOT LAUNCH] [INFO] Mencoba membuka game TELO Slot untuk Player: 'Halodek11', Provider Code: 'PRAGMATIC', Game Code: 'vs243lions', Game Type: 'slot', Lang: 'en'
+[2025-07-10 20:36:09] [TELO SLOT LAUNCH] [INFO] Memanggil metode WL->openGame()...
+[2025-07-10 20:36:10] [TELO SLOT LAUNCH] [DEBUG] Respons mentah dari API:
+{
+    "status": 1,
+    "msg": "SUCCESS",
+    "launch_url": "https://p3rtqbweud.avsubpcst.vip/html5Game.do?cb_target=exist_tab&ext=0&extGame=1&gameSymbol=vs243lions&gname=5%20Lions&jackpotid=0&jurisdictionID=99&lang=id&mgckey=AUTHTOKEN%40ce0ed69ce3565bde9a2b1acfd6761044stylename%40gameplayresellSESSION&minilobby=false&minimode=0&rhost=https%253A%252F%252Freplay.avsubpcst.vip&tabName=",
+    "agent_code": "gs2c",
+    "agent_balance": 1775359,
+    "agent_type": "Transfer",
+    "user_code": "Halodek11",
+    "user_balance": 0,
+    "user_created": false,
+    "user_deposit": true,
+    "currency": "IDR",
+    "lang": "id"
+}
+[2025-07-10 20:36:10] [TELO SLOT LAUNCH] [SUCCESS] Game TELO Slot berhasil dibuka untuk player 'Halodek11'. Mengalihkan ke URL game: https://p3rtqbweud.avsubpcst.vip/html5Game.do?cb_target=exist_tab&ext=0&extGame=1&gameSymbol=vs243lions&gname=5%20Lions&jackpotid=0&jurisdictionID=99&lang=id&mgckey=AUTHTOKEN%40ce0ed69ce3565bde9a2b1acfd6761044stylename%40gameplayresellSESSION&minilobby=false&minimode=0&rhost=https%253A%252F%252Freplay.avsubpcst.vip&tabName=

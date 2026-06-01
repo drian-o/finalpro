@@ -1,0 +1,210 @@
+<?php
+
+session_start();
+require_once '../koneksi.php';
+require_once '../classes/class.exa.php';
+require_once '../classes/class.nexusggr.php';
+require_once '../classes/connectAPI.php';
+require_once '../classes/log_helper.php';
+
+ini_set('display_errors', 0);
+ini_set('display_startup_errors', 0);
+error_reporting(0);
+
+// --- Konfigurasi Log ---
+$logFileDir = __DIR__ . '/../logs/';
+$logFilePath = $logFileDir . 'playgame.log';
+$syncLogFilePath = $logFileDir . 'balance_sync_nexus_to_exa.log';
+
+function write_log_playgame($message) {
+    global $logFilePath;
+    write_log($logFilePath, $message);
+}
+
+function write_log_sync($message) {
+    global $syncLogFilePath;
+    write_log($syncLogFilePath, $message);
+}
+
+write_log_playgame("==== PLAYGAME ATTEMPT ====");
+
+$game_uid = isset($_GET['game_uid']) ? $_GET['game_uid'] : null;
+$provider_code = isset($_GET['provider_code']) ? $_GET['provider_code'] : null;
+$game_type = isset($_GET['game_type']) ? $_GET['game_type'] : null;
+$server = isset($_GET['server']) ? $_GET['server'] : null;
+
+write_log_playgame("Received parameters: game_uid={$game_uid}, provider_code={$provider_code}, game_type={$game_type}, server={$server}");
+
+if (!isset($_SESSION['id_anggota'])) {
+    write_log_playgame("ERROR: User is not logged in. Redirecting to login page.");
+    $msg = "Silakan login untuk bermain game.";
+    header("Location: ../login?msg=" . urlencode($msg));
+    exit();
+}
+
+$id_anggota_session = $_SESSION['id_anggota'];
+write_log_playgame("User logged in with id_anggota: {$id_anggota_session}");
+
+// --- Lanjutan logika playGame.php ---
+$player_id_gamexa = null;
+
+if (!$koneksi) {
+    write_log_playgame("CRITICAL ERROR: Database connection failed.");
+    echo htmlspecialchars("Koneksi database gagal.");
+    exit();
+}
+
+// Mengambil ID GameXa dan Nexus dari database
+$query = "SELECT id_sigma, id_nexus, saldo_anggota FROM anggota WHERE id_anggota = ?";
+if ($stmt = mysqli_prepare($koneksi, $query)) {
+    mysqli_stmt_bind_param($stmt, "i", $id_anggota_session);
+    mysqli_stmt_execute($stmt);
+    mysqli_stmt_bind_result($stmt, $id_sigma_from_db, $id_nexus_from_db, $local_db_balance);
+    mysqli_stmt_fetch($stmt);
+    mysqli_stmt_close($stmt);
+
+    if ($id_sigma_from_db !== null) {
+        $player_id_gamexa = $id_sigma_from_db;
+    }
+} else {
+    write_log_playgame("CRITICAL ERROR: Failed to prepare database query: " . mysqli_error($koneksi));
+    echo htmlspecialchars("Gagal menyiapkan query database: " . mysqli_error($koneksi));
+    exit();
+}
+
+if (!$player_id_gamexa) {
+    write_log_playgame("ERROR: id_sigma not found for id_anggota: {$id_anggota_session}. Cannot launch game.");
+    echo htmlspecialchars("id_sigma tidak ditemukan untuk akun ini. Pastikan pemain terdaftar di GameXa.");
+    exit();
+}
+if (!$id_nexus_from_db) {
+    write_log_playgame("ERROR: id_nexus not found for id_anggota: {$id_anggota_session}. Cannot launch game.");
+    echo htmlspecialchars("id_nexus tidak ditemukan untuk akun ini. Pastikan pemain terdaftar di Nexus.");
+    exit();
+}
+
+if (!$game_uid || !$provider_code || !$game_type) {
+    write_log_playgame("ERROR: Missing game parameters (game_uid, provider_code, game_type).");
+    echo htmlspecialchars("Parameter game tidak lengkap.");
+    exit();
+}
+
+// --- Logika Sinkronisasi Saldo (disalin dari update_saldo.php) ---
+$script_start_time = microtime(true);
+write_log_sync("==== BALANCE SYNC ATTEMPT from playGame.php ====");
+
+try {
+    $GameXaAPI = new GameXaAPI();
+    $NexusAPI = new API($user_agent, $signature);
+
+    $koneksi->begin_transaction();
+
+    $nexus_balance_response = $NexusAPI->money_info_user($id_nexus_from_db);
+    write_log_sync("STEP 1: GetBalance from Nexus. Response: " . json_encode($nexus_balance_response));
+
+    $nexus_current_balance = 0;
+    if (($nexus_balance_response['status'] ?? 0) == 1 && isset($nexus_balance_response['user']['balance'])) {
+        $nexus_current_balance = floatval($nexus_balance_response['user']['balance']);
+        write_log_sync("STEP 1: Saldo Nexus ditemukan: {$nexus_current_balance}");
+    } else {
+        write_log_sync("STEP 1: Gagal menemukan saldo Nexus. Respon: " . json_encode($nexus_balance_response));
+    }
+    
+    $transferred_amount = 0;
+    if ($nexus_current_balance > 0) {
+        $reference_id_nexus = "withdraw_" . uniqid(time());
+        $nexus_withdraw_response = $NexusAPI->user_withdraw($id_nexus_from_db, $nexus_current_balance);
+        write_log_sync("STEP 2: Withdraw from Nexus (Amount: {$nexus_current_balance}). Response: " . json_encode($nexus_withdraw_response));
+
+        if (($nexus_withdraw_response['status'] ?? 0) == 1) {
+            $transferred_amount = $nexus_current_balance;
+            write_log_sync("STEP 2: Withdraw Nexus berhasil. Jumlah yang ditarik: {$transferred_amount}");
+        } else {
+            throw new Exception("Withdraw dari Nexus gagal: " . ($nexus_withdraw_response['msg'] ?? 'Unknown error.'));
+        }
+    } else {
+        write_log_sync("STEP 2: Saldo Nexus nol, tidak ada yang ditarik.");
+    }
+    
+    $exa_total_deposit_amount = $transferred_amount;
+    
+    if ($exa_total_deposit_amount > 0) {
+        $reference_id_exa = "deposit_" . uniqid(time());
+        $exa_deposit_response = $GameXaAPI->depositToPlayer($player_id_gamexa, $exa_total_deposit_amount, $reference_id_exa);
+        write_log_sync("STEP 3: Deposit to GameXa (Amount: {$exa_total_deposit_amount}). Response: " . json_encode($exa_deposit_response));
+
+        if (!($exa_deposit_response['success'] ?? false)) {
+            throw new Exception("Deposit ke GameXa gagal: " . ($exa_deposit_response['message'] ?? 'Unknown error.'));
+        }
+    }
+
+    $gamexa_balance_response = $GameXaAPI->getPlayerBalance($player_id_gamexa);
+    write_log_sync("STEP 4: Get Final Balance from GameXa. Response: " . json_encode($gamexa_balance_response));
+    
+    $gamexa_final_balance = 0;
+    if (($gamexa_balance_response['success'] ?? false) && isset($gamexa_balance_response['data']['balance'])) {
+        $gamexa_final_balance = floatval($gamexa_balance_response['data']['balance']);
+        write_log_sync("STEP 4: Saldo GameXa final: {$gamexa_final_balance}");
+    } else {
+        throw new Exception("Gagal mendapatkan saldo akhir dari GameXa.");
+    }
+    
+    $stmt_update_local_saldo = $koneksi->prepare("UPDATE anggota SET saldo_anggota = ? WHERE id_sigma = ?");
+    $stmt_update_local_saldo->bind_param("ds", $gamexa_final_balance, $player_id_gamexa); 
+    
+    if (!$stmt_update_local_saldo->execute()) {
+        throw new Exception("DB Error (execute update local saldo): " . $stmt_update_local_saldo->error);
+    }
+    $stmt_update_local_saldo->close();
+    write_log_sync("STEP 5: Saldo lokal berhasil diupdate menjadi {$gamexa_final_balance}.");
+    
+    $koneksi->commit();
+    write_log_sync("Transaksi database berhasil di-commit.");
+
+    $_SESSION['saldo_anggota'] = $gamexa_final_balance; 
+    $saldo_formatted = "IDR " . number_format($gamexa_final_balance, 0, ',', '.'); 
+    write_log_sync("Final Saldo Disinkronkan: {$saldo_formatted}.");
+
+    $duration = number_format(microtime(true) - $script_start_time, 4);
+    write_log_sync("Total Script Execution Duration: {$duration}s");
+    write_log_playgame("SUCCESS: Balance sync finished successfully. Final balance: {$gamexa_final_balance}");
+
+} catch (Exception $e) {
+    $koneksi->rollback();
+    write_log_sync("ERROR: PHP Exception during sync: " . $e->getMessage() . " di baris " . $e->getLine());
+    echo htmlspecialchars("Terjadi kesalahan sistem saat sinkronisasi saldo: " . $e->getMessage());
+    exit();
+}
+
+// --- Logika Peluncuran Game ---
+$gameXaAPI = new GameXaAPI();
+
+try {
+    $currency_for_game = 'IDR';
+
+    write_log_playgame("STEP 2: Launching game for GameXa API (player_id: {$player_id_gamexa}, game_uid: {$game_uid}).");
+    
+    $launch_response = $gameXaAPI->launchGame($player_id_gamexa, $game_uid, $currency_for_game);
+
+    write_log_playgame("STEP 2: GameXa launch API response: " . json_encode($launch_response));
+
+    if ($launch_response['success'] && isset($launch_response['data']['game_launch_url'])) {
+        $game_url = $launch_response['data']['game_launch_url'];
+        write_log_playgame("SUCCESS: Game launched successfully. Redirecting to URL: {$game_url}");
+        header("Location: " . $game_url);
+        exit();
+    } else {
+        $errorMessage = $launch_response['message'] ?? 'Error tidak diketahui saat meluncurkan game.';
+        write_log_playgame("ERROR: Failed to launch game. Message: " . $errorMessage);
+        echo "Gagal meluncurkan game: " . htmlspecialchars($errorMessage);
+        exit();
+    }
+
+} catch (Exception $e) {
+    write_log_playgame("CRITICAL ERROR: Exception occurred during game launch: " . $e->getMessage());
+    echo "Terjadi kesalahan saat meluncurkan game: " . htmlspecialchars($e->getMessage());
+    exit();
+}
+
+write_log_playgame("==== PLAYGAME END ====\n");
+?>

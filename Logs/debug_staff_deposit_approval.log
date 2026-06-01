@@ -1,0 +1,18 @@
+[2025-09-07 14:24:31] ==== staff DEPOSIT APPROVAL DEBUG ====
+staff: t7Gx1b9tvxt86sinKsC1
+Deposit ID: 7
+Player ID (id_sigma): 990
+Target User: Jpjp88
+Jumlah Deposit: 50000
+Status Lama: diproses, Status Baru: disetujui
+Generated new reference_id: dep_27024328268bd332fd47f57.87069253
+Request Params (depositToPlayer): {"playerId":990,"amount":50000,"referenceId":"dep_27024328268bd332fd47f57.87069253"}
+API Response (depositToPlayer): {"success":true,"data":{"message":"Deposit successful","data":{"player_id":"990","amount":50000,"balance_before":0,"balance_after":50000,"transaction_type":"deposit","reference_id":"dep_27024328268bd332fd47f57.87069253","agent_id":234,"agent_balance_before":1021000,"agent_balance_after":971000,"hierarchy_level":"agent_to_player"}}}
+Deposit API sukses. Memanggil getPlayerBalance untuk player ID: 990
+API Response (getPlayerBalance): {"success":true,"data":{"player_id":990,"username":"Jpjp88","full_name":"Iwan","balance":50000,"currency":"IDR"}}
+Saldo final dari getPlayerBalance: 50000
+DB Update: Sukses update saldo anggota, reference_id, dan status deposit.
+No referer found for user 'Jpjp88'. Skipping referral bonus.
+DB Update: Transaksi COMMIT sukses.
+==== DEBUG END ====
+

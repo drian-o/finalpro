@@ -1,0 +1,138 @@
+[06-Sep-2025 10:24:19 Asia/Jakarta] PHP Notice:  session_start(): Ignoring session_start() because a session is already active (started from /home/ibojatoe/public_html/koneksi.php on line 3) in /home/ibojatoe/public_html/zuzulo/keluar.php on line 3
+[06-Sep-2025 10:43:36 Asia/Jakarta] PHP Warning:  Undefined variable $data_anggata in /home/ibojatoe/public_html/zuzulo/ubah_anggota.php on line 25
+[06-Sep-2025 10:43:36 Asia/Jakarta] PHP Warning:  Trying to access array offset on null in /home/ibojatoe/public_html/zuzulo/ubah_anggota.php on line 25
+[06-Sep-2025 10:43:40 Asia/Jakarta] PHP Warning:  Undefined variable $data_anggata in /home/ibojatoe/public_html/zuzulo/ubah_anggota.php on line 25
+[06-Sep-2025 10:43:40 Asia/Jakarta] PHP Warning:  Trying to access array offset on null in /home/ibojatoe/public_html/zuzulo/ubah_anggota.php on line 25
+[06-Sep-2025 11:16:54 Asia/Jakarta] API Error: HTTP Code 400, Response: {"error":"Invalid credentials"}
+[06-Sep-2025 11:16:54 Asia/Jakarta] API Error: HTTP Code 400, Response: {"error":"Invalid credentials"}
+[06-Sep-2025 11:23:21 Asia/Jakarta] API Error: HTTP Code 400, Response: {"error":"Invalid credentials"}
+[06-Sep-2025 11:23:21 Asia/Jakarta] API Error: HTTP Code 400, Response: {"error":"Invalid credentials"}
+[06-Sep-2025 11:28:11 Asia/Jakarta] API Error: HTTP Code 400, Response: {"error":"Invalid credentials"}
+[06-Sep-2025 11:28:11 Asia/Jakarta] API Error: HTTP Code 400, Response: {"error":"Invalid credentials"}
+[06-Sep-2025 16:52:30 Asia/Jakarta] API Error: HTTP Code 400, Response: {"error":"Invalid credentials"}
+[06-Sep-2025 16:52:30 Asia/Jakarta] API Error: HTTP Code 400, Response: {"error":"Invalid credentials"}
+[06-Sep-2025 18:33:49 Asia/Jakarta] API Error: HTTP Code 400, Response: {"error":"Invalid credentials"}
+[06-Sep-2025 18:33:49 Asia/Jakarta] API Error: HTTP Code 400, Response: {"error":"Invalid credentials"}
+[07-Sep-2025 10:33:59 Asia/Jakarta] PHP Notice:  session_start(): Ignoring session_start() because a session is already active (started from /home/ibojatoe/public_html/zuzulo/index.php on line 3) in /home/ibojatoe/public_html/zuzulo/nexus_provider.php on line 2
+[07-Sep-2025 10:34:20 Asia/Jakarta] PHP Warning:  Undefined variable $data_anggata in /home/ibojatoe/public_html/zuzulo/ubah_anggota.php on line 25
+[07-Sep-2025 10:34:20 Asia/Jakarta] PHP Warning:  Trying to access array offset on null in /home/ibojatoe/public_html/zuzulo/ubah_anggota.php on line 25
+[07-Sep-2025 10:34:23 Asia/Jakarta] PHP Warning:  Undefined variable $data_anggata in /home/ibojatoe/public_html/zuzulo/ubah_anggota.php on line 25
+[07-Sep-2025 10:34:23 Asia/Jakarta] PHP Warning:  Trying to access array offset on null in /home/ibojatoe/public_html/zuzulo/ubah_anggota.php on line 25
+[07-Sep-2025 10:34:30 Asia/Jakarta] PHP Warning:  Undefined variable $data_anggata in /home/ibojatoe/public_html/zuzulo/ubah_anggota.php on line 25
+[07-Sep-2025 10:34:30 Asia/Jakarta] PHP Warning:  Trying to access array offset on null in /home/ibojatoe/public_html/zuzulo/ubah_anggota.php on line 25
+[07-Sep-2025 10:34:33 Asia/Jakarta] PHP Warning:  Undefined variable $data_anggata in /home/ibojatoe/public_html/zuzulo/ubah_anggota.php on line 25
+[07-Sep-2025 10:34:33 Asia/Jakarta] PHP Warning:  Trying to access array offset on null in /home/ibojatoe/public_html/zuzulo/ubah_anggota.php on line 25
+[07-Sep-2025 10:34:37 Asia/Jakarta] PHP Warning:  Undefined variable $data_anggata in /home/ibojatoe/public_html/zuzulo/ubah_anggota.php on line 25
+[07-Sep-2025 10:34:37 Asia/Jakarta] PHP Warning:  Trying to access array offset on null in /home/ibojatoe/public_html/zuzulo/ubah_anggota.php on line 25
+[07-Sep-2025 10:34:41 Asia/Jakarta] PHP Warning:  Undefined variable $data_anggata in /home/ibojatoe/public_html/zuzulo/ubah_anggota.php on line 25
+[07-Sep-2025 10:34:41 Asia/Jakarta] PHP Warning:  Trying to access array offset on null in /home/ibojatoe/public_html/zuzulo/ubah_anggota.php on line 25
+[07-Sep-2025 10:34:45 Asia/Jakarta] PHP Warning:  Undefined variable $data_anggata in /home/ibojatoe/public_html/zuzulo/ubah_anggota.php on line 25
+[07-Sep-2025 10:34:45 Asia/Jakarta] PHP Warning:  Trying to access array offset on null in /home/ibojatoe/public_html/zuzulo/ubah_anggota.php on line 25
+[07-Sep-2025 10:34:48 Asia/Jakarta] PHP Warning:  Undefined variable $data_anggata in /home/ibojatoe/public_html/zuzulo/ubah_anggota.php on line 25
+[07-Sep-2025 10:34:48 Asia/Jakarta] PHP Warning:  Trying to access array offset on null in /home/ibojatoe/public_html/zuzulo/ubah_anggota.php on line 25
+[07-Sep-2025 10:34:51 Asia/Jakarta] PHP Warning:  Undefined variable $data_anggata in /home/ibojatoe/public_html/zuzulo/ubah_anggota.php on line 25
+[07-Sep-2025 10:34:51 Asia/Jakarta] PHP Warning:  Trying to access array offset on null in /home/ibojatoe/public_html/zuzulo/ubah_anggota.php on line 25
+[07-Sep-2025 10:34:54 Asia/Jakarta] PHP Warning:  Undefined variable $data_anggata in /home/ibojatoe/public_html/zuzulo/ubah_anggota.php on line 25
+[07-Sep-2025 10:34:54 Asia/Jakarta] PHP Warning:  Trying to access array offset on null in /home/ibojatoe/public_html/zuzulo/ubah_anggota.php on line 25
+[07-Sep-2025 10:41:20 Asia/Jakarta] PHP Warning:  Undefined variable $jenis_promosi in /home/ibojatoe/public_html/zuzulo/pengaturan.php on line 557
+[07-Sep-2025 10:41:20 Asia/Jakarta] PHP Warning:  Undefined variable $jenis_promosi in /home/ibojatoe/public_html/zuzulo/pengaturan.php on line 580
+[07-Sep-2025 10:41:20 Asia/Jakarta] PHP Warning:  Undefined variable $jenis_promosi in /home/ibojatoe/public_html/zuzulo/pengaturan.php on line 696
+[07-Sep-2025 11:01:29 Asia/Jakarta] PHP Warning:  Undefined variable $jenis_promosi in /home/ibojatoe/public_html/zuzulo/pengaturan.php on line 557
+[07-Sep-2025 11:01:29 Asia/Jakarta] PHP Warning:  Undefined variable $jenis_promosi in /home/ibojatoe/public_html/zuzulo/pengaturan.php on line 580
+[07-Sep-2025 11:01:29 Asia/Jakarta] PHP Warning:  Undefined variable $jenis_promosi in /home/ibojatoe/public_html/zuzulo/pengaturan.php on line 696
+[07-Sep-2025 14:07:40 Asia/Jakarta] PHP Notice:  session_start(): Ignoring session_start() because a session is already active (started from /home/ibojatoe/public_html/zuzulo/index.php on line 3) in /home/ibojatoe/public_html/zuzulo/kyc.php on line 3
+[07-Sep-2025 14:07:48 Asia/Jakarta] PHP Warning:  Undefined array key "Deposit" in /home/ibojatoe/public_html/zuzulo/refferal.php on line 49
+[07-Sep-2025 14:07:48 Asia/Jakarta] PHP Warning:  Undefined array key "Deposit" in /home/ibojatoe/public_html/zuzulo/refferal.php on line 49
+[07-Sep-2025 14:15:27 Asia/Jakarta] PHP Warning:  Undefined variable $jenis_promosi in /home/ibojatoe/public_html/zuzulo/pengaturan.php on line 557
+[07-Sep-2025 14:15:27 Asia/Jakarta] PHP Warning:  Undefined variable $jenis_promosi in /home/ibojatoe/public_html/zuzulo/pengaturan.php on line 580
+[07-Sep-2025 14:15:27 Asia/Jakarta] PHP Warning:  Undefined variable $jenis_promosi in /home/ibojatoe/public_html/zuzulo/pengaturan.php on line 696
+[07-Sep-2025 14:44:49 Asia/Jakarta] PHP Notice:  session_start(): Ignoring session_start() because a session is already active (started from /home/ibojatoe/public_html/zuzulo/index.php on line 3) in /home/ibojatoe/public_html/zuzulo/kyc.php on line 3
+[07-Sep-2025 14:44:59 Asia/Jakarta] PHP Notice:  session_start(): Ignoring session_start() because a session is already active (started from /home/ibojatoe/public_html/koneksi.php on line 3) in /home/ibojatoe/public_html/zuzulo/ubah_kyc.php on line 3
+[07-Sep-2025 14:45:00 Asia/Jakarta] PHP Notice:  session_start(): Ignoring session_start() because a session is already active (started from /home/ibojatoe/public_html/zuzulo/index.php on line 3) in /home/ibojatoe/public_html/zuzulo/kyc.php on line 3
+[07-Sep-2025 14:45:38 Asia/Jakarta] PHP Warning:  Undefined array key "Deposit" in /home/ibojatoe/public_html/zuzulo/refferal.php on line 49
+[07-Sep-2025 14:45:38 Asia/Jakarta] PHP Warning:  Undefined array key "Deposit" in /home/ibojatoe/public_html/zuzulo/refferal.php on line 49
+[01-Oct-2025 11:18:25 Asia/Jakarta] PHP Warning:  Undefined variable $jenis_promosi in /home/cairxyz/public_html/zuzulo/pengaturan.php on line 557
+[01-Oct-2025 11:18:25 Asia/Jakarta] PHP Warning:  Undefined variable $jenis_promosi in /home/cairxyz/public_html/zuzulo/pengaturan.php on line 580
+[01-Oct-2025 11:18:25 Asia/Jakarta] PHP Warning:  Undefined variable $jenis_promosi in /home/cairxyz/public_html/zuzulo/pengaturan.php on line 696
+[01-Oct-2025 11:18:33 Asia/Jakarta] PHP Notice:  session_start(): Ignoring session_start() because a session is already active (started from /home/cairxyz/public_html/zuzulo/index.php on line 3) in /home/cairxyz/public_html/zuzulo/nexus_provider.php on line 2
+[01-Oct-2025 11:18:39 Asia/Jakarta] PHP Notice:  session_start(): Ignoring session_start() because a session is already active (started from /home/cairxyz/public_html/zuzulo/index.php on line 3) in /home/cairxyz/public_html/zuzulo/nexus_provider.php on line 2
+[01-Oct-2025 11:18:48 Asia/Jakarta] PHP Warning:  Undefined variable $jenis_promosi in /home/cairxyz/public_html/zuzulo/pengaturan.php on line 557
+[01-Oct-2025 11:18:48 Asia/Jakarta] PHP Warning:  Undefined variable $jenis_promosi in /home/cairxyz/public_html/zuzulo/pengaturan.php on line 580
+[01-Oct-2025 11:18:48 Asia/Jakarta] PHP Warning:  Undefined variable $jenis_promosi in /home/cairxyz/public_html/zuzulo/pengaturan.php on line 696
+[01-Oct-2025 11:19:20 Asia/Jakarta] PHP Notice:  session_start(): Ignoring session_start() because a session is already active (started from /home/cairxyz/public_html/zuzulo/index.php on line 3) in /home/cairxyz/public_html/zuzulo/nexus_gamelist.php on line 3
+[01-Oct-2025 11:20:43 Asia/Jakarta] PHP Warning:  Undefined variable $jenis_promosi in /home/cairxyz/public_html/zuzulo/pengaturan.php on line 557
+[01-Oct-2025 11:20:43 Asia/Jakarta] PHP Warning:  Undefined variable $jenis_promosi in /home/cairxyz/public_html/zuzulo/pengaturan.php on line 580
+[01-Oct-2025 11:20:43 Asia/Jakarta] PHP Warning:  Undefined variable $jenis_promosi in /home/cairxyz/public_html/zuzulo/pengaturan.php on line 696
+[01-Oct-2025 11:22:59 Asia/Jakarta] PHP Notice:  session_start(): Ignoring session_start() because a session is already active (started from /home/cairxyz/public_html/zuzulo/index.php on line 3) in /home/cairxyz/public_html/zuzulo/nexus_provider.php on line 2
+[01-Oct-2025 11:23:02 Asia/Jakarta] PHP Notice:  session_start(): Ignoring session_start() because a session is already active (started from /home/cairxyz/public_html/zuzulo/index.php on line 3) in /home/cairxyz/public_html/zuzulo/nexus_provider.php on line 2
+[01-Oct-2025 11:23:08 Asia/Jakarta] PHP Notice:  session_start(): Ignoring session_start() because a session is already active (started from /home/cairxyz/public_html/zuzulo/index.php on line 3) in /home/cairxyz/public_html/zuzulo/nexus_gamelist.php on line 3
+[01-Oct-2025 11:24:59 Asia/Jakarta] PHP Notice:  session_start(): Ignoring session_start() because a session is already active (started from /home/cairxyz/public_html/zuzulo/index.php on line 3) in /home/cairxyz/public_html/zuzulo/nexus_gamelist.php on line 3
+[01-Oct-2025 11:27:57 Asia/Jakarta] PHP Warning:  Undefined variable $jenis_promosi in /home/cairxyz/public_html/zuzulo/pengaturan.php on line 557
+[01-Oct-2025 11:27:57 Asia/Jakarta] PHP Warning:  Undefined variable $jenis_promosi in /home/cairxyz/public_html/zuzulo/pengaturan.php on line 580
+[01-Oct-2025 11:27:57 Asia/Jakarta] PHP Warning:  Undefined variable $jenis_promosi in /home/cairxyz/public_html/zuzulo/pengaturan.php on line 696
+[03-Oct-2025 08:57:25 Asia/Jakarta] PHP Warning:  Undefined variable $jenis_promosi in /home/cairxyz/public_html/zuzulo/pengaturan.php on line 557
+[03-Oct-2025 08:57:25 Asia/Jakarta] PHP Warning:  Undefined variable $jenis_promosi in /home/cairxyz/public_html/zuzulo/pengaturan.php on line 580
+[03-Oct-2025 08:57:25 Asia/Jakarta] PHP Warning:  Undefined variable $jenis_promosi in /home/cairxyz/public_html/zuzulo/pengaturan.php on line 696
+[03-Oct-2025 08:58:34 Asia/Jakarta] PHP Notice:  session_start(): Ignoring session_start() because a session is already active (started from /home/cairxyz/public_html/koneksi.php on line 3) in /home/cairxyz/public_html/zuzulo/keluar.php on line 3
+[03-Oct-2025 09:05:00 Asia/Jakarta] PHP Notice:  session_start(): Ignoring session_start() because a session is already active (started from /home/cairxyz/public_html/koneksi.php on line 3) in /home/cairxyz/public_html/zuzulo/keluar.php on line 3
+[03-Oct-2025 09:11:21 Asia/Jakarta] PHP Warning:  Undefined variable $jenis_promosi in /home/cairxyz/public_html/zuzulo/pengaturan.php on line 557
+[03-Oct-2025 09:11:21 Asia/Jakarta] PHP Warning:  Undefined variable $jenis_promosi in /home/cairxyz/public_html/zuzulo/pengaturan.php on line 580
+[03-Oct-2025 09:11:21 Asia/Jakarta] PHP Warning:  Undefined variable $jenis_promosi in /home/cairxyz/public_html/zuzulo/pengaturan.php on line 696
+[03-Oct-2025 09:11:44 Asia/Jakarta] PHP Warning:  Undefined array key "bg_2_web" in /home/cairxyz/public_html/zuzulo/pengaturan.php on line 38
+[03-Oct-2025 09:11:44 Asia/Jakarta] PHP Warning:  Undefined array key "bg_3_web" in /home/cairxyz/public_html/zuzulo/pengaturan.php on line 39
+[03-Oct-2025 09:11:44 Asia/Jakarta] PHP Warning:  Undefined variable $jenis_promosi in /home/cairxyz/public_html/zuzulo/pengaturan.php on line 557
+[03-Oct-2025 09:11:44 Asia/Jakarta] PHP Warning:  Undefined variable $jenis_promosi in /home/cairxyz/public_html/zuzulo/pengaturan.php on line 580
+[03-Oct-2025 09:11:44 Asia/Jakarta] PHP Warning:  Undefined variable $jenis_promosi in /home/cairxyz/public_html/zuzulo/pengaturan.php on line 696
+[03-Oct-2025 09:11:46 Asia/Jakarta] PHP Warning:  Undefined variable $jenis_promosi in /home/cairxyz/public_html/zuzulo/pengaturan.php on line 557
+[03-Oct-2025 09:11:46 Asia/Jakarta] PHP Warning:  Undefined variable $jenis_promosi in /home/cairxyz/public_html/zuzulo/pengaturan.php on line 580
+[03-Oct-2025 09:11:46 Asia/Jakarta] PHP Warning:  Undefined variable $jenis_promosi in /home/cairxyz/public_html/zuzulo/pengaturan.php on line 696
+[03-Oct-2025 09:12:00 Asia/Jakarta] PHP Warning:  Undefined array key "bg_2_web" in /home/cairxyz/public_html/zuzulo/pengaturan.php on line 38
+[03-Oct-2025 09:12:00 Asia/Jakarta] PHP Warning:  Undefined array key "bg_3_web" in /home/cairxyz/public_html/zuzulo/pengaturan.php on line 39
+[03-Oct-2025 09:12:00 Asia/Jakarta] PHP Warning:  Undefined variable $jenis_promosi in /home/cairxyz/public_html/zuzulo/pengaturan.php on line 557
+[03-Oct-2025 09:12:00 Asia/Jakarta] PHP Warning:  Undefined variable $jenis_promosi in /home/cairxyz/public_html/zuzulo/pengaturan.php on line 580
+[03-Oct-2025 09:12:00 Asia/Jakarta] PHP Warning:  Undefined variable $jenis_promosi in /home/cairxyz/public_html/zuzulo/pengaturan.php on line 696
+[03-Oct-2025 09:12:07 Asia/Jakarta] PHP Warning:  Undefined variable $jenis_promosi in /home/cairxyz/public_html/zuzulo/pengaturan.php on line 557
+[03-Oct-2025 09:12:07 Asia/Jakarta] PHP Warning:  Undefined variable $jenis_promosi in /home/cairxyz/public_html/zuzulo/pengaturan.php on line 580
+[03-Oct-2025 09:12:07 Asia/Jakarta] PHP Warning:  Undefined variable $jenis_promosi in /home/cairxyz/public_html/zuzulo/pengaturan.php on line 696
+[03-Oct-2025 09:12:15 Asia/Jakarta] PHP Warning:  Undefined array key "bg_2_web" in /home/cairxyz/public_html/zuzulo/pengaturan.php on line 38
+[03-Oct-2025 09:12:15 Asia/Jakarta] PHP Warning:  Undefined array key "bg_3_web" in /home/cairxyz/public_html/zuzulo/pengaturan.php on line 39
+[03-Oct-2025 09:12:15 Asia/Jakarta] PHP Warning:  Undefined variable $jenis_promosi in /home/cairxyz/public_html/zuzulo/pengaturan.php on line 557
+[03-Oct-2025 09:12:15 Asia/Jakarta] PHP Warning:  Undefined variable $jenis_promosi in /home/cairxyz/public_html/zuzulo/pengaturan.php on line 580
+[03-Oct-2025 09:12:15 Asia/Jakarta] PHP Warning:  Undefined variable $jenis_promosi in /home/cairxyz/public_html/zuzulo/pengaturan.php on line 696
+[03-Oct-2025 09:12:17 Asia/Jakarta] PHP Warning:  Undefined variable $jenis_promosi in /home/cairxyz/public_html/zuzulo/pengaturan.php on line 557
+[03-Oct-2025 09:12:17 Asia/Jakarta] PHP Warning:  Undefined variable $jenis_promosi in /home/cairxyz/public_html/zuzulo/pengaturan.php on line 580
+[03-Oct-2025 09:12:17 Asia/Jakarta] PHP Warning:  Undefined variable $jenis_promosi in /home/cairxyz/public_html/zuzulo/pengaturan.php on line 696
+[03-Oct-2025 09:13:18 Asia/Jakarta] PHP Notice:  session_start(): Ignoring session_start() because a session is already active (started from /home/cairxyz/public_html/zuzulo/index.php on line 3) in /home/cairxyz/public_html/zuzulo/nexus_gamelist.php on line 3
+[03-Oct-2025 13:42:40 Asia/Jakarta] PHP Notice:  session_start(): Ignoring session_start() because a session is already active (started from /home/cairxyz/public_html/zuzulo/index.php on line 3) in /home/cairxyz/public_html/zuzulo/nexus_provider.php on line 2
+[04-Nov-2025 12:13:37 Asia/Jakarta] API Error: HTTP Code 403, Response: {"error":"Account is not active"}
+[04-Nov-2025 12:13:37 Asia/Jakarta] API Error: HTTP Code 403, Response: {"error":"Account is not active"}
+[04-Nov-2025 12:14:00 Asia/Jakarta] API Error: HTTP Code 403, Response: {"error":"Account is not active"}
+[04-Nov-2025 12:14:00 Asia/Jakarta] API Error: HTTP Code 403, Response: {"error":"Account is not active"}
+[04-Nov-2025 12:48:43 Asia/Jakarta] API Error: HTTP Code 403, Response: {"error":"Account is not active"}
+[04-Nov-2025 12:48:43 Asia/Jakarta] API Error: HTTP Code 403, Response: {"error":"Account is not active"}
+[04-Nov-2025 12:49:17 Asia/Jakarta] API Error: HTTP Code 403, Response: {"error":"Account is not active"}
+[04-Nov-2025 12:49:17 Asia/Jakarta] API Error: HTTP Code 403, Response: {"error":"Account is not active"}
+[04-Nov-2025 12:51:03 Asia/Jakarta] API Error: HTTP Code 403, Response: {"error":"Account is not active"}
+[04-Nov-2025 12:51:03 Asia/Jakarta] API Error: HTTP Code 403, Response: {"error":"Account is not active"}
+[04-Nov-2025 12:54:21 Asia/Jakarta] API Error: HTTP Code 403, Response: {"error":"Account is not active"}
+[04-Nov-2025 12:54:21 Asia/Jakarta] API Error: HTTP Code 403, Response: {"error":"Account is not active"}
+[04-Nov-2025 16:09:10 Asia/Jakarta] API Error: HTTP Code 403, Response: {"error":"Account is not active"}
+[04-Nov-2025 16:09:10 Asia/Jakarta] API Error: HTTP Code 403, Response: {"error":"Account is not active"}
+[04-Nov-2025 16:10:29 Asia/Jakarta] API Error: HTTP Code 403, Response: {"error":"Account is not active"}
+[04-Nov-2025 16:10:29 Asia/Jakarta] API Error: HTTP Code 403, Response: {"error":"Account is not active"}
+[04-Nov-2025 16:10:32 Asia/Jakarta] API Error: HTTP Code 403, Response: {"error":"Account is not active"}
+[04-Nov-2025 16:10:32 Asia/Jakarta] API Error: HTTP Code 403, Response: {"error":"Account is not active"}
+[04-Nov-2025 17:19:10 Asia/Jakarta] API Error: HTTP Code 403, Response: {"error":"Account is not active"}
+[04-Nov-2025 17:19:10 Asia/Jakarta] API Error: HTTP Code 403, Response: {"error":"Account is not active"}
+[04-Nov-2025 17:52:13 Asia/Jakarta] API Error: HTTP Code 403, Response: {"error":"Account is not active"}
+[04-Nov-2025 17:52:13 Asia/Jakarta] API Error: HTTP Code 403, Response: {"error":"Account is not active"}
+[06-Nov-2025 07:23:30 Asia/Jakarta] API Error: HTTP Code 403, Response: {"error":"Account is not active"}
+[06-Nov-2025 07:23:30 Asia/Jakarta] API Error: HTTP Code 403, Response: {"error":"Account is not active"}
+[10-Nov-2025 16:10:19 Asia/Jakarta] API Error: HTTP Code 403, Response: {"error":"Account is not active"}
+[10-Nov-2025 16:10:19 Asia/Jakarta] API Error: HTTP Code 403, Response: {"error":"Account is not active"}
+[10-Nov-2025 16:10:33 Asia/Jakarta] API Error: HTTP Code 403, Response: {"error":"Account is not active"}
+[10-Nov-2025 16:10:33 Asia/Jakarta] API Error: HTTP Code 403, Response: {"error":"Account is not active"}
+[10-Nov-2025 20:38:37 Asia/Jakarta] API Error: HTTP Code 403, Response: {"error":"Account is not active"}
+[10-Nov-2025 20:38:37 Asia/Jakarta] API Error: HTTP Code 403, Response: {"error":"Account is not active"}
+[20-Nov-2025 10:24:58 Asia/Jakarta] API Error: HTTP Code 403, Response: {"error":"Account is not active"}
+[20-Nov-2025 10:24:58 Asia/Jakarta] API Error: HTTP Code 403, Response: {"error":"Account is not active"}

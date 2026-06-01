@@ -1,0 +1,12 @@
+[2025-07-12 01:13:26] [SRG CASINO LAUNCH] [INFO] Permintaan diterima dari IP: 182.6.79.111
+[2025-07-12 01:13:26] [SRG CASINO LAUNCH] [DEBUG] Isi $_SESSION setelah session_start(): array (
+  'loggedin' => true,
+  'id_anggota' => 2048,
+  'nama_pengguna_anggota' => 'Halodek11',
+  'saldo_anggota' => 800.0,
+  'welcome_modal_shown' => true,
+)
+[2025-07-12 01:13:26] [SRG CASINO LAUNCH] [INFO] Mencoba membuka game SRG Casino untuk Player: 'Halodek11', Provider Code: '1149', Game Code: 'HASH_ANDAR_BAHAR', Game Type: 'undefined'
+[2025-07-12 01:13:26] [SRG CASINO LAUNCH] [INFO] Memanggil metode SRG->launchGame()...
+[2025-07-12 01:13:26] [SRG CASINO LAUNCH] [DEBUG] Respons dari API SRG (URL atau false): https://prod.alccasino.com/hash/HASH_ANDAR_BAHAR/?game_name=HASH_ANDAR_BAHAR&locale=en-us&once=0Yyr6PrsPv1752257606&platform_name=ARSI0000&room_level=1
+[2025-07-12 01:13:26] [SRG CASINO LAUNCH] [SUCCESS] Game SRG Casino berhasil dibuka untuk player 'Halodek11'. Mengalihkan ke URL game: https://prod.alccasino.com/hash/HASH_ANDAR_BAHAR/?game_name=HASH_ANDAR_BAHAR&locale=en-us&once=0Yyr6PrsPv1752257606&platform_name=ARSI0000&room_level=1

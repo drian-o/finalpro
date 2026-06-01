@@ -1,0 +1,35 @@
+[15-Aug-2025 05:31:58 UTC] PHP Fatal error:  Uncaught ArgumentCountError: Too few arguments to function API::history_bet(), 0 passed in /home/pxevcpmz/demo2.zhero.site/ajax/get_history_taruhan.php on line 34 and exactly 2 expected in /home/pxevcpmz/demo2.zhero.site/classes/class.nexusggr.php:97
+Stack trace:
+#0 /home/pxevcpmz/demo2.zhero.site/ajax/get_history_taruhan.php(34): API->history_bet()
+#1 {main}
+  thrown in /home/pxevcpmz/demo2.zhero.site/classes/class.nexusggr.php on line 97
+[15-Aug-2025 05:32:01 UTC] PHP Fatal error:  Uncaught ArgumentCountError: Too few arguments to function API::history_bet(), 0 passed in /home/pxevcpmz/demo2.zhero.site/ajax/get_history_taruhan.php on line 34 and exactly 2 expected in /home/pxevcpmz/demo2.zhero.site/classes/class.nexusggr.php:97
+Stack trace:
+#0 /home/pxevcpmz/demo2.zhero.site/ajax/get_history_taruhan.php(34): API->history_bet()
+#1 {main}
+  thrown in /home/pxevcpmz/demo2.zhero.site/classes/class.nexusggr.php on line 97
+[15-Aug-2025 05:34:14 UTC] PHP Fatal error:  Uncaught ArgumentCountError: Too few arguments to function API::history_bet(), 0 passed in /home/pxevcpmz/demo2.zhero.site/ajax/get_history_taruhan.php on line 34 and exactly 2 expected in /home/pxevcpmz/demo2.zhero.site/classes/class.nexusggr.php:97
+Stack trace:
+#0 /home/pxevcpmz/demo2.zhero.site/ajax/get_history_taruhan.php(34): API->history_bet()
+#1 {main}
+  thrown in /home/pxevcpmz/demo2.zhero.site/classes/class.nexusggr.php on line 97
+[15-Aug-2025 05:34:15 UTC] PHP Fatal error:  Uncaught ArgumentCountError: Too few arguments to function API::history_bet(), 0 passed in /home/pxevcpmz/demo2.zhero.site/ajax/get_history_taruhan.php on line 34 and exactly 2 expected in /home/pxevcpmz/demo2.zhero.site/classes/class.nexusggr.php:97
+Stack trace:
+#0 /home/pxevcpmz/demo2.zhero.site/ajax/get_history_taruhan.php(34): API->history_bet()
+#1 {main}
+  thrown in /home/pxevcpmz/demo2.zhero.site/classes/class.nexusggr.php on line 97
+[15-Aug-2025 05:34:15 UTC] PHP Fatal error:  Uncaught ArgumentCountError: Too few arguments to function API::history_bet(), 0 passed in /home/pxevcpmz/demo2.zhero.site/ajax/get_history_taruhan.php on line 34 and exactly 2 expected in /home/pxevcpmz/demo2.zhero.site/classes/class.nexusggr.php:97
+Stack trace:
+#0 /home/pxevcpmz/demo2.zhero.site/ajax/get_history_taruhan.php(34): API->history_bet()
+#1 {main}
+  thrown in /home/pxevcpmz/demo2.zhero.site/classes/class.nexusggr.php on line 97
+[15-Aug-2025 05:34:16 UTC] PHP Fatal error:  Uncaught ArgumentCountError: Too few arguments to function API::history_bet(), 0 passed in /home/pxevcpmz/demo2.zhero.site/ajax/get_history_taruhan.php on line 34 and exactly 2 expected in /home/pxevcpmz/demo2.zhero.site/classes/class.nexusggr.php:97
+Stack trace:
+#0 /home/pxevcpmz/demo2.zhero.site/ajax/get_history_taruhan.php(34): API->history_bet()
+#1 {main}
+  thrown in /home/pxevcpmz/demo2.zhero.site/classes/class.nexusggr.php on line 97
+[15-Aug-2025 05:34:16 UTC] PHP Fatal error:  Uncaught ArgumentCountError: Too few arguments to function API::history_bet(), 0 passed in /home/pxevcpmz/demo2.zhero.site/ajax/get_history_taruhan.php on line 34 and exactly 2 expected in /home/pxevcpmz/demo2.zhero.site/classes/class.nexusggr.php:97
+Stack trace:
+#0 /home/pxevcpmz/demo2.zhero.site/ajax/get_history_taruhan.php(34): API->history_bet()
+#1 {main}
+  thrown in /home/pxevcpmz/demo2.zhero.site/classes/class.nexusggr.php on line 97

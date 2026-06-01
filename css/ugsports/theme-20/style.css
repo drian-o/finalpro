@@ -1,0 +1,23 @@
+/* Media query untuk desktop */
+@media only screen and (min-width: 768px) {
+
+    /* Gaya khusus untuk desktop */
+    body {
+        font-size: 18px;
+    }
+
+    /* Import file CSS desktop langsung tanpa @import */
+    @import url('../css/ugsports/theme-20/app-desktop.css');
+}
+
+/* Media query untuk mobile */
+@media only screen and (max-width: 767px) {
+
+    /* Gaya khusus untuk mobile */
+    body {
+        font-size: 14px;
+    }
+
+    /* Import file CSS mobile langsung tanpa @import */
+    @import url('../css/ugsports/theme-20/app-mobile.css');
+}

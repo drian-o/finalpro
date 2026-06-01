@@ -1,0 +1,362 @@
+<?php
+	if (!isset($_SESSION)) { session_start(); }
+	include_once 'koneksi.php';
+	$nama_pengguna = isset($_SESSION['nama_pengguna_anggota']) ? $_SESSION['nama_pengguna_anggota'] : '';
+	
+	// Ambil inisial huruf pertama dari nama pengguna
+	$inisial = strtoupper(substr($nama_pengguna, 0, 1));
+	// Cek jika pengguna sudah login
+	if (isset($_SESSION['loggedin']) && $_SESSION['loggedin'] === true) {
+		// Ambil ID anggota dari session
+		$id_anggota = $_SESSION['id_anggota'];
+		
+		// Query untuk mendapatkan saldo terbaru dari database
+		$query = "SELECT saldo_anggota FROM anggota WHERE id_anggota = ?";
+		$stmt = mysqli_prepare($koneksi, $query);
+		mysqli_stmt_bind_param($stmt, 'i', $id_anggota);
+		mysqli_stmt_execute($stmt);
+		$result = mysqli_stmt_get_result($stmt);
+		
+		if ($result && mysqli_num_rows($result) == 1) {
+			$row = mysqli_fetch_assoc($result);
+			// Update saldo di session dengan nilai terbaru dari database
+			$_SESSION['saldo_anggota'] = $row['saldo_anggota'];
+		}
+	}
+	// Tambahkan logika untuk menentukan tema pengguna (contoh: 'dark' atau 'light')
+    // Anda bisa mendapatkan ini dari database, session, atau default
+    $user_theme = 'dark'; // Ubah 'dark' menjadi 'light' jika Anda ingin tema terang sebagai default
+	
+	// Ambil nilai warna dari database
+	$theme_color_query = mysqli_query($koneksi, "SELECT * FROM pengaturan WHERE nama_pengaturan IN ('bg_1_web', 'bg_2_web', 'bg_3_web')");
+	
+	// Ambil data warna
+	$colors = [];
+	while ($row = mysqli_fetch_array($theme_color_query)) {
+		$colors[$row['nama_pengaturan']] = $row['isi_1_pengaturan'];
+	}
+?>
+
+<!DOCTYPE html>
+<html lang="id" class="notranslate __className_7df6af" translate="no" data-theme="<?php echo htmlspecialchars($user_theme); ?>" style="--primary: <?php echo htmlspecialchars($colors['bg_1_web']); ?>;">
+	
+	<head>
+		<meta charSet="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+		<link rel="stylesheet" href="_next/static/css/0a4ae62ed810513b.css" data-precedence="next" />
+		<link rel="stylesheet" href="_next/static/css/54fc46000f7e20bc.css" data-precedence="next" />
+		<link rel="preload" href="_next/static/chunks/webpack-e30d72a36c0ae6d3.js" as="script" fetchPriority="low" />
+		<script src="_next/static/chunks/1179-e1ca092b8d3f3375.js" async=""></script>
+		<script src="_next/static/chunks/main-app-12309b691508e534.js" async=""></script>
+		<title><?php echo $isi_1_judul_web; ?> | Situs Permainan Online, betting Bola &amp;Live Casino, 24/7, Terbesar di Indonesia</title>
+		<meta name="description" content="<?php echo $isi_1_deskripsi_web; ?>">
+		<meta name="application-name" content="<?php echo $isi_1_judul_web; ?>" />
+		<link rel="author" href="" />
+		<meta name="author" content="<?php echo $isi_1_judul_web; ?>" />
+		<meta name="generator" content="<?php echo $alamat_website; ?>" />
+		<meta name="keywords" content="<?php echo $isi_1_judul_web; ?> 88,<?php echo $isi_1_judul_web; ?>" />
+		<meta name="referrer" content="origin-when-cross-origin" />
+		<meta name="color-scheme" content="dark" />
+		<meta name="creator" content="<?php echo $isi_1_judul_web; ?>" />
+		<meta name="publisher" content="<?php echo $isi_1_judul_web; ?> - Best E-Gaming Provider" />
+		<link rel="bookmarks" href="/" />
+		<meta name="category" content="games" />
+		<meta name="robots" content="index,follow" />
+		<meta name="author" content="<?php echo $isi_1_judul_web; ?>" />
+		<meta name="geo.region" content="ID" />
+		<meta name="geo.placename" content="Indonesia" />
+		<meta name="publisher" content="<?php echo $isi_1_judul_web; ?>" />
+		<meta name="copyright" content="<?php echo $isi_1_judul_web; ?>" />
+		<meta name="categories" content="website" />
+		<meta name="apple-mobile-web-app-capable" content="yes" />
+		<meta name="mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-title" content="<?php echo $isi_1_judul_web; ?> | Cepat Dan Pasti" />
+		<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+		<meta property="og:title" content="<?php echo $isi_1_judul_web; ?> | Cepat Dan Pasti" />
+		<meta property="og:description" content="<?php echo $isi_1_judul_web; ?>: Mengedepankan keinginan pemain untuk dapat kesuksesan yang nyata dan cepat." />
+		<meta property="og:site_name" content="<?php echo $isi_1_judul_web; ?>" />
+		<meta property="og:image:width" content="800" />
+		<meta property="og:image:height" content="600" />
+		<meta property="og:image:alt" content="<?php echo $isi_1_judul_web; ?>" />
+		<meta property="og:image:width" content="1800" />
+		<meta property="og:image:height" content="1600" />
+		<meta property="og:image:alt" content="<?php echo $isi_1_judul_web; ?>" />
+		<meta property="og:type" content="website" />
+		<link rel="shortcut icon" href="<?php echo 'assets/img/' . $isi_1_favicon_web; ?>" />
+		<link rel="icon" href="<?php echo 'assets/img/' . $isi_1_favicon_web; ?>" />
+		<link rel="apple-touch-icon" href="<?php echo 'assets/img/' . $isi_1_favicon_web; ?>" />
+		<link rel="apple-touch-icon-precomposed" href="<?php echo 'assets/img/' . $isi_1_favicon_web; ?>" />
+		<meta name="next-size-adjust" />
+		<script src="_next/static/chunks/polyfills-c67a75d1b6f99dc8.js" noModule=""></script>
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+		
+		<style>
+			.header-transition {
+			transition: top 0.5s ease-out;
+			}
+			
+			.header-fixed {
+			position: fixed;
+			top : 0;
+			left: 0;
+			right: 0;
+			background: var(--background-default);
+			z-index: 97;
+			width: 100%;
+			}
+			
+			.header-hidden {
+			top: 0px;
+			/* Atur sesuai kebutuhan untuk menyembunyikan header */
+			
+			}
+			.overflow-auto {
+    overflow: auto
+}
+
+.overflow-hidden {
+    overflow: hidden
+}
+
+.overflow-x-auto {
+    overflow-x: auto
+}
+
+.overflow-y-hidden {
+    overflow-y: hidden
+}
+
+.overflow-x-scroll {
+    overflow-x: scroll
+}
+
+.overflow-y-scroll {
+    overflow-y: scroll
+}
+
+.overscroll-contain {
+    overscroll-behavior: contain
+}
+
+.scroll-smooth {
+    scroll-behavior: smooth
+}
+			
+		</style>
+		<style>
+			.sidebar {
+			position: fixed;
+			top: 0;
+			right: 0;
+			width: 350px;
+			height: 110%;
+			background-color: #1b1b1b;
+			color: #fff;
+			transform: translateX(100%);
+			transition: transform 0.3s ease-in-out;
+			z-index: 1001;
+			}
+			
+			.sidebar.active {
+			transform: translateX(0);
+			}
+			
+			.toggle-btn {
+			position: flex;
+			top: 20px;
+			right: 20px;
+			z-index: 1001;
+			}
+
+			.overlay {
+				position: fixed;
+				top: 0;
+				left: 0;
+				width: 100%;
+				height: 100%;
+				background-color: rgba(0, 0, 0, 0.5);
+				backdrop-filter: blur(5px); /* Efek blur */
+				z-index: 1000;
+				display: none; /* Sembunyikan secara default */
+			}
+
+		</style>
+	</head>
+	
+	<?php echo $isi_1_script_livechat_web; ?>
+	<body>
+		<div id="sidebar-overlay" class="overlay"></div>
+
+		<div id="notification" class="fixed z-[9999] px-4 pt-3 pb-5 top-3 sm:top-4 sm:right-6 left-3 right-3 sm:ml-auto sm:w-2/3 md:w-1/2 lg:w-[410px] rounded-xl bg-gradient-to-r from-[#710000] to-background-secondary to-50%" style="display:none;">
+			<button class="h-6 w-6 ml-auto absolute right-3 top-2 z-50" onclick="document.getElementById('notification').style.display='none';">
+				<svg width="100%" height="100%" viewBox="0 0 24 24" fill="var(--base)" xmlns="http://www.w3.org/2000/svg">
+					<path d="M18 6L6 18M6 6l12 12" stroke="var(--base)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
+				</svg>
+			</button>
+			<div class="flex items-center">
+				<figure class="flex-none h-12 w-12">
+					<svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 60 60" fill="none">
+						<path stroke="#FF3B30" stroke-linecap="round" stroke-width="5" d="M30 52.5a22.5 22.5 0 1 0-15.91-6.59M22.5 22.5l15 15M37.5 22.5l-15 15"></path>
+					</svg>
+				</figure>
+				<article class="pl-3">
+					<p class="font-medium">Cancelled</p>
+					<p class="text-xs mt-1" id="notification-text">
+						</p>
+				</article>
+			</div>
+		</div>
+		<script>
+			function registerPopup(options) {
+				const notification = document.getElementById('notification');
+				const notificationText = document.getElementById('notification-text');
+				
+				if (options && options.content) {
+					notificationText.textContent = options.content;
+					notification.style.display = 'block';
+				}
+			}
+		</script>
+		<script>
+			function updateSaldo() {
+				fetch('update_saldo')
+				.then(response => response.text())
+				.catch(error => {
+					console.error('Terjadi kesalahan:', error);
+				});
+			}
+			
+			window.addEventListener('load', updateSaldo);
+		</script>
+		<header id="header" class="fixed z-[97] left-0 right-0 bg-background-default transition-all duration-500 ease-out top-0">
+	
+					
+					<script>
+						document.addEventListener('DOMContentLoaded', function() {
+							const hideButton = document.getElementById('hideButton');
+							const hideableElement = document.getElementById('hideableElement');
+							
+							if (hideButton && hideableElement) {
+								hideButton.addEventListener('click', function() {
+									hideableElement.style.display = 'none';
+								});
+							}
+						});
+					</script>
+					
+					<section class="container mx-auto px-3 lg:h-[66px]">
+						<div class="flex items-center justify-between py-4"> 
+                            <div class="flex items-center">
+                                <a href="<?php echo $alamat_website . 'home'; ?>">
+                                    <img alt="Logo Brand" fetchpriority="high" loading="eager" width="0" height="0" decoding="async" data-nimg="1" class="h-6 lg:h-8 w-auto" style="height: 60px; width: auto; color: transparent;" src="<?php echo 'assets/img/' . $isi_1_logo_web; ?>">
+                                </a>
+                            </div>
+                            
+                            <button class="toggle-btn" aria-label="Sidebar Toggle Button">
+                                <svg width="30" height="30" viewBox="0 0 24 24" fill="var(--base)" xmlns="http://www.w3.org/2000/svg" size="30">
+                                    <path d="M5 7h14M5 12h14M5 17h14" stroke="var(--base)" stroke-linecap="round"></path>
+                                </svg>
+                            </button>
+                        </div>
+					</section>
+					
+	<div class="h-[120px] lg:h-[53px] transition-all duration-500 ease-out overflow-hidden">
+		<section class="bg-background-secondary">
+			<div class="container mx-auto px-0 py-2 overflow-auto flex justify-between lg:justify-center navigation">
+				<div class="lg:flex py-2 lg:py-3 whitespace-nowrap overflow-x-auto lg:justify-center"></div>
+				<div class="hidden lg:flex">
+					<a class="inline-block lg:flex w-[18%] lg:w-auto lg:mx-5 lg:px-1 lg:py-1 border-b border-b-background-secondary hover:lg:border-b-primary transition-all duration-300 ease-in-out" href="<?php echo $alamat_website . 'home'; ?>">
+						<div class="w-6 h-6 lg:w-7 lg:h-7 mx-auto">
+							<svg width="100%" height="100%" viewBox="0 0 24 24" fill="var(--primary)" xmlns="http://www.w3.org/2000/svg">
+								<path d="M21.462 13.303c-.348.348-.81.54-1.302.54h-.302v6.004a2.157 2.157 0 0 1-2.155 2.155h-3.778v-5.294a.984.984 0 0 0-.984-.983H11.06a.984.984 0 0 0-.984.983v5.294H6.297a2.158 2.158 0 0 1-2.155-2.155v-6.005h-.325c-.02 0-.038 0-.057-.002a1.843 1.843 0 0 1-1.225-3.137l.008-.009 8.155-8.155A1.83 1.83 0 0 1 12 2c.492 0 .954.193 1.302.54l8.16 8.16a1.844 1.844 0 0 1 0 2.604Z" fill="var(--primary)"></path>
+							</svg>
+						</div>
+						<p class="text-[10px] lg:text-sm mt-1 lg:mt-0 lg:ml-1 uppercase text-center false">BERANDA</p>
+					</a>
+				</div>				
+				<a class="inline-block lg:flex w-[18%] lg:w-auto lg:mx-5 lg:px-1 lg:py-1 border-b border-b-background-secondary hover:lg:border-b-primary transition-all duration-300 ease-in-out" href="<?php echo $alamat_website . 'lottery'; ?>">
+    <div class="w-6 h-6 lg:w-7 lg:h-7 mx-auto flex justify-center items-center">
+        <img src="<?php echo $alamat_website . 'assets/menu/lottery.png'; ?>" alt="Togel" class="icon-menu-png">
+    </div>
+    <p class="text-[10px] lg:text-sm mt-1 lg:mt-0 lg:ml-1 uppercase text-center false">TOGEL</p>
+</a>
+
+<a class="inline-block lg:flex w-[18%] lg:w-auto lg:mx-5 lg:px-1 lg:py-1 border-b border-b-background-secondary hover:lg:border-b-primary transition-all duration-300 ease-in-out" href="<?php echo $alamat_website . 'slot'; ?>">
+    <div class="w-6 h-6 lg:w-7 lg:h-7 mx-auto flex justify-center items-center">
+        <img src="<?php echo $alamat_website . 'assets/menu/slot.png'; ?>" alt="Slot" class="icon-menu-png">
+    </div>
+    <p class="text-[10px] lg:text-sm mt-1 lg:mt-0 lg:ml-1 uppercase text-center false">SLOT</p>
+</a>
+
+<a class="inline-block lg:flex w-[18%] lg:w-auto lg:mx-5 lg:px-1 lg:py-1 border-b border-b-background-secondary hover:lg:border-b-primary transition-all duration-300 ease-in-out" href="<?php echo $alamat_website . 'casino'; ?>">
+    <div class="w-6 h-6 lg:w-7 lg:h-7 mx-auto flex justify-center items-center">
+        <img src="<?php echo $alamat_website . 'assets/menu/casino.png'; ?>" alt="Casino" class="icon-menu-png">
+    </div>
+    <p class="text-[10px] lg:text-sm mt-1 lg:mt-0 lg:ml-1 uppercase text-center false">CASINO</p>
+</a>
+
+<a class="inline-block lg:flex w-[18%] lg:w-auto lg:mx-5 lg:px-1 lg:py-1 border-b border-b-background-secondary hover:lg:border-b-primary transition-all duration-300 ease-in-out" href="<?php echo $alamat_website . 'table'; ?>">
+    <div class="w-6 h-6 lg:w-7 lg:h-7 mx-auto flex justify-center items-center">
+        <img src="<?php echo $alamat_website . 'assets/menu/games.png'; ?>" alt="Games" class="icon-menu-png">
+    </div>
+    <p class="text-[10px] lg:text-sm mt-1 lg:mt-0 lg:ml-1 uppercase text-center false">TABLE</p>
+</a>
+
+<a class="inline-block lg:flex w-[18%] lg:w-auto lg:mx-5 lg:px-1 lg:py-1 border-b border-b-background-secondary hover:lg:border-b-primary transition-all duration-300 ease-in-out" href="<?php echo $alamat_website . 'sports'; ?>">
+    <div class="w-6 h-6 lg:w-7 lg:h-7 mx-auto flex justify-center items-center">
+        <img src="<?php echo $alamat_website . 'assets/menu/sports.png'; ?>" alt="Sport" class="icon-menu-png">
+    </div>
+    <p class="text-[10px] lg:text-sm mt-1 lg:mt-0 lg:ml-1 uppercase text-center false">SPORT</p>
+</a>
+
+<a class="inline-block lg:flex w-[18%] lg:w-auto lg:mx-5 lg:px-1 lg:py-1 border-b border-b-background-secondary hover:lg:border-b-primary transition-all duration-300 ease-in-out" href="<?php echo $alamat_website . 'promo'; ?>">
+    <div class="w-6 h-6 lg:w-7 lg:h-7 mx-auto flex justify-center items-center">
+        <img src="<?php echo $alamat_website . 'assets/menu/promo.png'; ?>" alt="Promo" class="icon-menu-png">
+    </div>
+    <p class="text-[10px] lg:text-sm mt-1 lg:mt-0 lg:ml-1 uppercase text-center false">PROMO</p>
+</a>
+			</div>
+			<div class="container mx-auto px-0 py-2 overflow-auto flex justify-between lg:justify-center navigation">
+				<a class="inline-block lg:flex w-[18%] lg:w-auto lg:mx-5 lg:px-1 lg:py-1 border-b border-b-background-secondary hover:lg:border-b-primary transition-all duration-300 ease-in-out" href="<?php echo $alamat_website . 'arcade'; ?>">
+    <div class="w-6 h-6 lg:w-7 lg:h-7 mx-auto flex justify-center items-center">
+        <img src="<?php echo $alamat_website . 'assets/menu/arcade.png'; ?>" alt="Arcade" class="icon-menu-png">
+    </div>
+    <p class="text-[10px] lg:text-sm mt-1 lg:mt-0 lg:ml-1 uppercase text-center false">ARCADE</p>
+</a>
+<a class="inline-block lg:flex w-[18%] lg:w-auto lg:mx-5 lg:px-1 lg:py-1 border-b border-b-background-secondary hover:lg:border-b-primary transition-all duration-300 ease-in-out" href="<?php echo $alamat_website . '#'; ?>">
+    <div class="w-6 h-6 lg:w-7 lg:h-7 mx-auto flex justify-center items-center">
+        <img src="<?php echo $alamat_website . 'assets/menu/poker.png'; ?>" alt="Poker" class="icon-menu-png">
+    </div>
+    <p class="text-[10px] lg:text-sm mt-1 lg:mt-0 lg:ml-1 uppercase text-center false">POKER</p>
+</a>
+<a class="inline-block lg:flex w-[18%] lg:w-auto lg:mx-5 lg:px-1 lg:py-1 border-b border-b-background-secondary hover:lg:border-b-primary transition-all duration-300 ease-in-out" href="<?php echo $alamat_website . 'fishing'; ?>">
+    <div class="w-6 h-6 lg:w-7 lg:h-7 mx-auto flex justify-center items-center">
+        <img src="<?php echo $alamat_website . 'assets/menu/fishing.png'; ?>" alt="Fishing" class="icon-menu-png">
+    </div>
+    <p class="text-[10px] lg:text-sm mt-1 lg:mt-0 lg:ml-1 uppercase text-center false">FISHING</p>
+</a>
+<a class="inline-block lg:flex w-[18%] lg:w-auto lg:mx-5 lg:px-1 lg:py-1 border-b border-b-background-secondary hover:lg:border-b-primary transition-all duration-300 ease-in-out" href="<?php echo $alamat_website . 'comming_soon'; ?>">
+    <div class="w-6 h-6 lg:w-7 lg:h-7 mx-auto flex justify-center items-center">
+        <img src="<?php echo $alamat_website . 'assets/menu/cockfight.png'; ?>" alt="Cockfight" class="icon-menu-png">
+    </div>
+    <p class="text-[10px] lg:text-sm mt-1 lg:mt-0 lg:ml-1 uppercase text-center false">COCKFIGHT</p>
+</a>
+<a class="inline-block lg:flex w-[18%] lg:w-auto lg:mx-5 lg:px-1 lg:py-1 border-b border-b-background-secondary hover:lg:border-b-primary transition-all duration-300 ease-in-out" href="<?php echo $alamat_website . 'crash'; ?>">
+    <div class="w-6 h-6 lg:w-7 lg:h-7 mx-auto flex justify-center items-center">
+        <img src="<?php echo $alamat_website . 'assets/menu/esports.png'; ?>" alt="E-Sports" class="icon-menu-png">
+    </div>
+    <p class="text-[10px] lg:text-sm mt-1 lg:mt-0 lg:ml-1 uppercase text-center false">CRASH</p>
+</a>
+<a class="inline-block lg:flex w-[18%] lg:w-auto lg:mx-5 lg:px-1 lg:py-1 border-b border-b-background-secondary hover:lg:border-b-primary transition-all duration-300 ease-in-out" href="<?php echo $alamat_website . 'rtp'; ?>">
+    <div class="w-6 h-6 lg:w-7 lg:h-7 mx-auto flex justify-center items-center">
+        <img src="<?php echo $alamat_website . 'assets/menu/other.png'; ?>" alt="RTP Games" class="icon-menu-png">
+    </div>
+    <p class="text-[10px] lg:text-sm mt-1 lg:mt-0 lg:ml-1 uppercase text-center false">RTP</p>
+</a>
+			</div>
+		</section>
+	</header>
+<?php
+include 'side_navbar.php';
+?>

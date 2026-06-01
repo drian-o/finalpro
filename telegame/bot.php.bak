@@ -1,0 +1,247 @@
+<?php
+// bot.php (di dalam folder telegame)
+include_once '../koneksi.php';
+
+// Ganti [TOKEN_ANDA] dengan token bot Anda
+$token = "8302489087:AAGNcx87DzYWxOzzV4uMnAfzB-9npzPK5mQ";
+$website = "https://api.telegram.org/bot" . $token;
+
+// Fungsi untuk mengirim pesan ke Telegram
+function sendTelegramMessage($website, $parameters) {
+    $ch = curl_init($website . "/sendMessage");
+    curl_setopt($ch, CURLOPT_HEADER, false);
+    curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+    curl_setopt($ch, CURLOPT_POST, 1);
+    curl_setopt($ch, CURLOPT_POSTFIELDS, ($parameters));
+    curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
+    curl_exec($ch);
+    curl_close($ch);
+}
+
+// Fungsi untuk merespons callback query
+function answerCallbackQuery($website, $callbackQueryId, $text, $showAlert = false) {
+    $parameters = [
+        "callback_query_id" => $callbackQueryId,
+        "text" => $text,
+        "show_alert" => $showAlert
+    ];
+    $ch = curl_init($website . "/answerCallbackQuery");
+    curl_setopt($ch, CURLOPT_HEADER, false);
+    curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+    curl_setopt($ch, CURLOPT_POST, 1);
+    curl_setopt($ch, CURLOPT_POSTFIELDS, ($parameters));
+    curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
+    curl_exec($ch);
+    curl_close($ch);
+}
+
+// Fungsi untuk menampilkan dashboard dengan inline keyboard
+function showDashboard($koneksi, $website, $chatId, $id_anggota) {
+    $query_anggota = "SELECT * FROM anggota WHERE id_anggota = ?";
+    $stmt_anggota = mysqli_prepare($koneksi, $query_anggota);
+    mysqli_stmt_bind_param($stmt_anggota, 'i', $id_anggota);
+    mysqli_stmt_execute($stmt_anggota);
+    $result_anggota = mysqli_stmt_get_result($stmt_anggota);
+    $data_anggota = mysqli_fetch_assoc($result_anggota);
+    mysqli_stmt_close($stmt_anggota);
+
+    if (!$data_anggota) {
+        $parameters = ["chat_id" => $chatId, "text" => "Data anggota tidak ditemukan."];
+        sendTelegramMessage($website, $parameters);
+        return;
+    }
+
+    $info_text = "Dashboard Akun Anda:"
+              . "\n--------------------------------------\n"
+              . "ID Telegram: " . ($data_anggota['id_telegram'] ?? 'N/A') . "\n"
+              . "Saldo: " . number_format($data_anggota['saldo_anggota'] ?? 0, 2) . "\n"
+              . "Bonus Balance: " . number_format($data_anggota['bonus_balance'] ?? 0, 2) . "\n"
+              . "Turnover Balance: " . number_format($data_anggota['turnover_amount'] ?? 0, 2) . "\n";
+    
+    $inline_keyboard = [
+        'inline_keyboard' => [
+            [['text' => 'Deposit', 'callback_data' => 'deposit'], ['text' => 'Withdraw', 'callback_data' => 'withdraw']],
+            [['text' => 'PlayGame', 'callback_data' => 'playgame'], ['text' => 'Logout', 'callback_data' => 'logout']]
+        ]
+    ];
+    $encoded_inline_keyboard = json_encode($inline_keyboard);
+    
+    $parameters = [
+        "chat_id" => $chatId,
+        "text" => $info_text,
+        "reply_markup" => $encoded_inline_keyboard
+    ];
+    sendTelegramMessage($website, $parameters);
+}
+
+// Fungsi untuk menampilkan menu game
+function showGameMenu($website, $chatId) {
+    $replyText = "Silakan pilih kategori game:";
+    $inline_keyboard = [
+        'inline_keyboard' => [
+            [['text' => 'Lottery/Binary', 'callback_data' => 'games_lottery'], ['text' => 'Slot', 'callback_data' => 'games_slot'], ['text' => 'Live Casino', 'callback_data' => 'games_live_casino']],
+            [['text' => 'Table', 'callback_data' => 'games_table'], ['text' => 'Sports', 'callback_data' => 'games_sports'], ['text' => 'Poker', 'callback_data' => 'games_poker']],
+            [['text' => 'Arcade', 'callback_data' => 'games_arcade'], ['text' => 'Fishing', 'callback_data' => 'games_fishing'], ['text' => 'Crash', 'callback_data' => 'games_crash']]
+        ]
+    ];
+    $parameters = [
+        "chat_id" => $chatId,
+        "text" => $replyText,
+        "reply_markup" => json_encode($inline_keyboard)
+    ];
+    sendTelegramMessage($website, $parameters);
+}
+
+// Fungsi untuk menampilkan daftar game berdasarkan game_type
+function showGamesByType($koneksi, $website, $chatId, $gameType) {
+    $query = "SELECT game_name FROM srg_gamelist WHERE game_type = ? AND game_status = 'aktif' ORDER BY urutan ASC";
+    $stmt = mysqli_prepare($koneksi, $query);
+    mysqli_stmt_bind_param($stmt, 's', $gameType);
+    mysqli_stmt_execute($stmt);
+    $result = mysqli_stmt_get_result($stmt);
+
+    $games = [];
+    while ($row = mysqli_fetch_assoc($result)) {
+        $games[] = $row['game_name'];
+    }
+    mysqli_stmt_close($stmt);
+
+    if (empty($games)) {
+        $replyText = "Maaf, tidak ada game yang ditemukan untuk kategori ini.";
+    } else {
+        $replyText = "Daftar game kategori " . ucfirst(str_replace('_', ' ', $gameType)) . ":\n\n";
+        $replyText .= implode("\n", $games);
+    }
+
+    $parameters = [
+        "chat_id" => $chatId,
+        "text" => $replyText
+    ];
+    sendTelegramMessage($website, $parameters);
+}
+
+// Menerima data dari Telegram
+$update = file_get_contents('php://input');
+$update = json_decode($update, true);
+
+if (empty($update)) exit;
+
+$chatId = $update["message"]["chat"]["id"] ?? $update["callback_query"]["message"]["chat"]["id"] ?? null;
+if (!$chatId) exit;
+
+$messageText = $update["message"]["text"] ?? null;
+$callbackData = $update["callback_query"]["data"] ?? null;
+$callbackQueryId = $update["callback_query"]["id"] ?? null;
+
+// Cek data di tabel telegame
+$query_telegame = "SELECT * FROM telegame WHERE chat_id_telegram = ?";
+$stmt_telegame = mysqli_prepare($koneksi, $query_telegame);
+mysqli_stmt_bind_param($stmt_telegame, 's', $chatId);
+mysqli_stmt_execute($stmt_telegame);
+$result_telegame = mysqli_stmt_get_result($stmt_telegame);
+$data_telegame = mysqli_fetch_assoc($result_telegame);
+mysqli_stmt_close($stmt_telegame);
+
+// Logika utama bot
+if ($data_telegame == null) {
+    if ($messageText == "/start") {
+        $replyText = "Halo! Silakan masukkan ID Telegram Anda untuk menghubungkan akun.\n\nContoh: SGMB_userbaru1";
+        $parameters = ["chat_id" => $chatId, "text" => $replyText];
+        sendTelegramMessage($website, $parameters);
+    } else {
+        $id_telegram_input = mysqli_real_escape_string($koneksi, $messageText);
+        $query_anggota = "SELECT id_anggota FROM anggota WHERE id_telegram = ?";
+        $stmt_anggota = mysqli_prepare($koneksi, $query_anggota);
+        mysqli_stmt_bind_param($stmt_anggota, 's', $id_telegram_input);
+        mysqli_stmt_execute($stmt_anggota);
+        $result_anggota = mysqli_stmt_get_result($stmt_anggota);
+        $data_anggota = mysqli_fetch_assoc($result_anggota);
+
+        if ($data_anggota) {
+            $id_anggota = $data_anggota['id_anggota'];
+            $query_insert = "INSERT INTO telegame (chat_id_telegram, id_anggota) VALUES (?, ?)";
+            $stmt_insert = mysqli_prepare($koneksi, $query_insert);
+            mysqli_stmt_bind_param($stmt_insert, 'si', $chatId, $id_anggota);
+            mysqli_stmt_execute($stmt_insert);
+            showDashboard($koneksi, $website, $chatId, $id_anggota);
+        } else {
+            $replyText = "Maaf, ID Telegram yang Anda masukkan tidak ditemukan.";
+            $parameters = ["chat_id" => $chatId, "text" => $replyText];
+            sendTelegramMessage($website, $parameters);
+        }
+        mysqli_stmt_close($stmt_anggota);
+    }
+} else {
+    $id_anggota = $data_telegame['id_anggota'];
+    
+    if ($messageText == "/start") {
+        showDashboard($koneksi, $website, $chatId, $id_anggota);
+    } else if ($callbackData == 'deposit') {
+        answerCallbackQuery($website, $callbackQueryId, "Memproses permintaan deposit...", false);
+        
+        $replyText = "Silakan melakukan deposit melalui website kami:";
+        $inline_keyboard = [
+            'inline_keyboard' => [
+                [['text' => 'Deposit Sekarang', 'url' => $alamat_website . 'qris']]
+            ]
+        ];
+        $parameters = [
+            "chat_id" => $chatId,
+            "text" => $replyText,
+            "reply_markup" => json_encode($inline_keyboard)
+        ];
+        sendTelegramMessage($website, $parameters);
+    } else if ($callbackData == 'withdraw') {
+        answerCallbackQuery($website, $callbackQueryId, "Memproses permintaan withdraw...", false);
+
+        $replyText = "Silakan melakukan penarikan dana melalui website kami:";
+        $inline_keyboard = [
+            'inline_keyboard' => [
+                [['text' => 'Withdraw Sekarang', 'url' => $alamat_website . 'withdraw']]
+            ]
+        ];
+        $parameters = [
+            "chat_id" => $chatId,
+            "text" => $replyText,
+            "reply_markup" => json_encode($inline_keyboard)
+        ];
+        sendTelegramMessage($website, $parameters);
+    } else if ($callbackData == 'playgame') {
+        answerCallbackQuery($website, $callbackQueryId, "Menampilkan menu game...", false);
+        showGameMenu($website, $chatId);
+    } else if (strpos($callbackData, 'games_') === 0) {
+        $gameType = substr($callbackData, 6);
+        answerCallbackQuery($website, $callbackQueryId, "Mencari game...", false);
+        showGamesByType($koneksi, $website, $chatId, $gameType);
+    } else if ($callbackData == 'logout') {
+        answerCallbackQuery($website, $callbackQueryId, "Melakukan logout...", false);
+
+        $query_delete_connection = "DELETE FROM telegame WHERE chat_id_telegram = ?";
+        $stmt_delete = mysqli_prepare($koneksi, $query_delete_connection);
+        mysqli_stmt_bind_param($stmt_delete, 's', $chatId);
+        mysqli_stmt_execute($stmt_delete);
+        mysqli_stmt_close($stmt_delete);
+
+        $replyText = "Anda telah berhasil logout. Untuk menggunakan bot lagi, ketik /start.";
+        $parameters = [
+            "chat_id" => $chatId,
+            "text" => $replyText
+        ];
+        sendTelegramMessage($website, $parameters);
+    } else {
+        $replyText = "Perintah tidak dikenali. Silakan gunakan menu di bawah ini atau ketik /start untuk kembali ke dashboard.";
+        $inline_keyboard = [
+            'inline_keyboard' => [
+                [['text' => 'Deposit', 'callback_data' => 'deposit'], ['text' => 'Withdraw', 'callback_data' => 'withdraw']],
+                [['text' => 'PlayGame', 'callback_data' => 'playgame'], ['text' => 'Logout', 'callback_data' => 'logout']]
+            ]
+        ];
+        $parameters = [
+            "chat_id" => $chatId,
+            "text" => $replyText,
+            "reply_markup" => json_encode($inline_keyboard)
+        ];
+        sendTelegramMessage($website, $parameters);
+    }
+}
+?>

@@ -1,0 +1,24 @@
+# robots.txt untuk https://sigmabet.pro
+# Diperbarui pada 9 Juni 2025
+
+User-agent: *
+
+# Blokir area akun pengguna dan halaman transaksi yang bersifat privat.
+# Ini adalah praktik terbaik dan JANGAN DIUBAH.
+Disallow: /auth-register
+Disallow: /auth-login
+Disallow: /withdraw
+Disallow: /deposit
+Disallow: /my-account
+Disallow: /change-password
+Disallow: /kyc
+
+# Blokir halaman .php duplikat.
+# Catatan: Solusi terbaik untuk ini adalah menggunakan tag kanonis (rel="canonical").
+# Blokir ini dipertahankan sebagai lapisan kedua.
+Disallow: /home.php
+Disallow: /referal.php
+Disallow: /details.php
+
+# Izinkan Google mengakses sitemap untuk menemukan halaman penting.
+Sitemap: https://sigmabet.pro/sitemap.xml

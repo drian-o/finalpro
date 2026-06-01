@@ -1,0 +1,25 @@
+[04-Jul-2023 11:59:11 Asia/Jakarta] PHP Warning:  Trying to access array offset on value of type null in /home/maxwinmy/public_html/gameplay/PragmaticPlay.php on line 38
+[04-Jul-2023 11:59:13 Asia/Jakarta] PHP Warning:  Undefined array key "description" in /home/maxwinmy/public_html/gameplay/PragmaticPlay.php on line 157
+[04-Jul-2023 12:23:14 Asia/Jakarta] PHP Warning:  Trying to access array offset on value of type null in /home/maxwinmy/public_html/gameplay/PragmaticPlay.php on line 38
+[04-Jul-2023 12:23:16 Asia/Jakarta] PHP Warning:  Undefined array key "description" in /home/maxwinmy/public_html/gameplay/PragmaticPlay.php on line 157
+[22-Jun-2024 14:19:16 Asia/Jakarta] PHP Notice:  Undefined index: providercode in /home/pastiijp/public_html/gameplay/opengame.php on line 5
+[23-Jun-2024 15:53:55 Asia/Jakarta] PHP Notice:  Undefined index: providercode in /home/pastiijp/public_html/gameplay/opengame.php on line 5
+[23-Jun-2024 16:05:30 Asia/Jakarta] PHP Notice:  Undefined index: providercode in /home/pastiijp/public_html/gameplay/opengame.php on line 5
+[23-Jun-2024 16:05:33 Asia/Jakarta] PHP Notice:  Undefined index: providercode in /home/pastiijp/public_html/gameplay/opengame.php on line 5
+[19-Dec-2024 21:04:35 Asia/Jakarta] PHP Notice:  Undefined index: providercode in /home/starboy108biz/public_html/gameplay/opengame.php on line 5
+[22-Feb-2025 09:57:30 Asia/Jakarta] PHP Warning:  include(/home/jlrsdjle/public_html/config/class_telo.php): failed to open stream: Permission denied in /home/jlrsdjle/public_html/gameplay/session.php on line 6
+[22-Feb-2025 09:57:30 Asia/Jakarta] PHP Warning:  include(): Failed opening '../config/class_telo.php' for inclusion (include_path='.:/opt/cpanel/ea-php74/root/usr/share/pear') in /home/jlrsdjle/public_html/gameplay/session.php on line 6
+[22-Feb-2025 09:57:30 Asia/Jakarta] PHP Notice:  Undefined variable: WL in /home/jlrsdjle/public_html/gameplay/opengame.php on line 14
+[22-Feb-2025 09:57:30 Asia/Jakarta] PHP Fatal error:  Uncaught Error: Call to a member function openGame() on null in /home/jlrsdjle/public_html/gameplay/opengame.php:14
+Stack trace:
+#0 {main}
+  thrown in /home/jlrsdjle/public_html/gameplay/opengame.php on line 14
+[22-Feb-2025 09:57:41 Asia/Jakarta] PHP Warning:  include(/home/jlrsdjle/public_html/config/class_telo.php): failed to open stream: Permission denied in /home/jlrsdjle/public_html/gameplay/session.php on line 6
+[22-Feb-2025 09:57:41 Asia/Jakarta] PHP Warning:  include(): Failed opening '../config/class_telo.php' for inclusion (include_path='.:/opt/cpanel/ea-php74/root/usr/share/pear') in /home/jlrsdjle/public_html/gameplay/session.php on line 6
+[22-Feb-2025 09:57:41 Asia/Jakarta] PHP Notice:  Undefined variable: WL in /home/jlrsdjle/public_html/gameplay/opengame.php on line 14
+[22-Feb-2025 09:57:41 Asia/Jakarta] PHP Fatal error:  Uncaught Error: Call to a member function openGame() on null in /home/jlrsdjle/public_html/gameplay/opengame.php:14
+Stack trace:
+#0 {main}
+  thrown in /home/jlrsdjle/public_html/gameplay/opengame.php on line 14
+[22-Feb-2025 03:04:04 UTC] PHP Warning:  Unknown: failed to open stream: Permission denied in Unknown on line 0
+[22-Feb-2025 03:04:04 UTC] PHP Fatal error:  Unknown: Failed opening required '/home/jlrsdjle/public_html/gameplay/opengame.php' (include_path='.:/opt/cpanel/ea-php74/root/usr/share/pear') in Unknown on line 0

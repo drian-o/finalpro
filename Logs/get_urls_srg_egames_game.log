@@ -1,0 +1,19 @@
+[2025-07-10 21:14:56] [SRG EGAMES LAUNCH] [INFO] Permintaan diterima dari IP: 182.6.78.255
+[2025-07-10 21:14:56] [SRG EGAMES LAUNCH] [DEBUG] Isi $_SESSION setelah session_start(): array (
+  'id_admin' => 4,
+  'kode_admin' => 'ffONkyaYeM57eX0Vh147',
+  'lastDepositCount' => '1037000',
+  'lastWithdrawCount' => '560000',
+  'lastAnggotaCount' => 26,
+  'lastPromosiCount' => 6,
+  'lastStaffCount' => 1,
+  'loggedin' => true,
+  'id_anggota' => 2048,
+  'nama_pengguna_anggota' => 'Halodek11',
+  'saldo_anggota' => 4000.0,
+  'welcome_modal_shown' => true,
+)
+[2025-07-10 21:14:56] [SRG EGAMES LAUNCH] [INFO] Mencoba membuka game SRG E-Games untuk Player: 'Halodek11', Provider Code: '1165', Game Code: 'nft-aviatrix', Game Type: 'OTHER'
+[2025-07-10 21:14:56] [SRG EGAMES LAUNCH] [INFO] Memanggil metode SRG->launchGame()...
+[2025-07-10 21:14:56] [SRG EGAMES LAUNCH] [DEBUG] Respons dari API SRG (URL atau false): https://game.aviatrix.bet?productId=nft-aviatrix&lang=id&cid=gsisw&sessionToken=kBTtYGHxsxHpCLHZ8h8uMC
+[2025-07-10 21:14:56] [SRG EGAMES LAUNCH] [SUCCESS] Game SRG E-Games berhasil dibuka untuk player 'Halodek11'. Mengalihkan ke URL game: https://game.aviatrix.bet?productId=nft-aviatrix&lang=id&cid=gsisw&sessionToken=kBTtYGHxsxHpCLHZ8h8uMC
