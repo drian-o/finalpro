@@ -4,15 +4,15 @@
   }
   date_default_timezone_set("Asia/Jakarta");
   $host = "localhost";
-  $username = "cairxyz_nuke";
-  $password = '@Social123';
-  $database = "cairxyz_nuke";
+  $username = "mysql";
+  $password = 'tkgs585XFckRoqum8keyAQKu9EjezXsrsZx8wNNHQQNI9nBY5K1RrC26jIuK6gci';
+  $database = "default";
   $koneksi = mysqli_connect($host, $username, $password, $database);
   if ($koneksi) {
     include_once 'fungsi_umum.php';
-    $alamat_website = 'https://cuby138s.biz.id/';
-    $alamat_admin = 'https://cuby138s.biz.id/zuzulo/';
-    $alamat_staff = 'https://cuby138s.biz.id/STAFF_Promotor/';
+    $alamat_website = 'http://sfpho7xg4jjpep1xpnaf8y8o.137.184.155.151.sslip.io/';
+    $alamat_admin = 'http://sfpho7xg4jjpep1xpnaf8y8o.137.184.155.151.sslip.io/zuzulo/';
+    $alamat_staff = 'http://sfpho7xg4jjpep1xpnaf8y8o.137.184.155.151.sslip.io/STAFF_Promotor/';
     
    // Judul Web
    $judul_web = mysqli_query($koneksi, "SELECT * FROM pengaturan WHERE nama_pengaturan = 'judul_web'");
