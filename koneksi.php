@@ -3,7 +3,7 @@
       session_start();
   }
   date_default_timezone_set("Asia/Jakarta");
-  $host = "localhost";
+  $host = "137.184.155.151";
   $username = "mysql";
   $password = 'tkgs585XFckRoqum8keyAQKu9EjezXsrsZx8wNNHQQNI9nBY5K1RrC26jIuK6gci';
   $database = "default";
