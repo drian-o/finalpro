@@ -1,5 +1,5 @@
 # Pakai mesin PHP dan Apache (kayak cPanel)
-FROM php:8.2-apache
+FROM php:7.4-apache
 
 # Aktifkan ekstensi database MySQLi
 RUN docker-php-ext-install mysqli pdo pdo_mysql
