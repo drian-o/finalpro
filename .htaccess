@@ -1,6 +1,12 @@
 <IfModule mod_rewrite.c>
-RewriteEngine on
-RewriteCond %{REQUEST_FILENAME} !-d
-RewriteCond %{REQUEST_FILENAME}.php -f
-RewriteRule ^(.*)$ $1.php
+  RewriteEngine on
+
+  # 1. Jika yang diakses bukan folder beneran
+  RewriteCond %{REQUEST_FILENAME} !-d
+
+  # 2. Dan jika file tersebut ditambahin .php itu ada wujudnya
+  RewriteCond %{REQUEST_FILENAME}.php -f
+
+  # 3. Maka ubah URL-nya diam-diam ke file .php terkait
+  RewriteRule ^(.*)$ $1.php [L,QSA]
 </IfModule>
