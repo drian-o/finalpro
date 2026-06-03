@@ -1,18 +1,18 @@
-# Pake base image PHP 7.4 yang udah ada server Apache-nya
-FROM php:7.4-apache
+# Pakai mesin PHP dan Apache (kayak cPanel)
+FROM php:8.2-apache
 
-# Install ekstensi database biar bisa konek ke MySQL lu
+# Aktifkan ekstensi database MySQLi
 RUN docker-php-ext-install mysqli pdo pdo_mysql
 
-# Aktifin rewrite module buat Apache (wajib kalau kode lu pake .htaccess)
+# Aktifkan fitur baca .htaccess (URL Rewrite)
 RUN a2enmod rewrite
 
-# Pindahin semua kode lu dari GitHub ke folder web server
+# Copy semua kodingan lu ke folder server
 COPY . /var/www/html/
 
-# Benerin hak akses foldernya biar server bisa baca kodenya
-RUN chown -R www-data:www-data /var/www/html/ \
-    && chmod -R 755 /var/www/html/
+# Beri akses ke .htaccess
+RUN echo "<Directory /var/www/html>\n\tAllowOverride All\n</Directory>" > /etc/apache2/conf-available/override.conf
+RUN a2enconf override
 
-# Buka port 80 biar Zeabur tau jalurnya
+# Buka port standar web
 EXPOSE 80
