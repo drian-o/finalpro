@@ -11,8 +11,48 @@ $database = "default";
 
 $koneksi = mysqli_connect($host, $username, $password, $database);
 
+// Masukkan email akun Cloudflare Anda di sini
+define('CF_EMAIL', 'adrnsyah18@gmail.com'); 
+define('CF_GLOBAL_KEY', 'cfk_SGAFjlk0QcYYYc7wyh6Nrz7eSECQLs3Wa0hFXM3R5309d073');
+define('CF_ZONE_ID', '8b3db279f639e2e3b1d0c5a7c5c6252d');
+
+// ========================================================
+// FUNGSI SAKTI ADD DOMAIN KE CLOUDFLARE VIA PHP NATIVE (cURL)
+// ========================================================
+function tambahDomainKeCloudflare($domainBaru) {
+    $data = [
+        "hostname" => $domainBaru,
+        "ssl" => [
+            "method" => "http",
+            "type" => "dv"
+        ]
+    ];
+
+    $ch = curl_init("https://api.cloudflare.com/client/v4/zones/" . CF_ZONE_ID . "/custom_hostnames");
+    curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+    curl_setopt($ch, CURLOPT_POST, true);
+    curl_setopt($ch, CURLOPT_POSTFIELDS, json_encode($data));
+    curl_setopt($ch, CURLOPT_HTTPHEADER, [
+        'X-Auth-Email: ' . CF_EMAIL,
+        'X-Auth-Key: ' . CF_GLOBAL_KEY,
+        'Content-Type: application/json'
+    ]);
+
+    $response = curl_exec($ch);
+    $err = curl_error($ch);
+    curl_close($ch);
+
+    if ($err) {
+        return ['success' => false, 'error' => 'cURL Error: ' . $err];
+    } else {
+        return json_decode($response, true);
+    }
+}
+// ========================================================
+
 if ($koneksi) {
-    include_once 'fungsi_umum.php';
+    // FIX: Ditambahkan titik (.) dan slash (/) agar tidak syntax error
+    include_once __DIR__ . '/fungsi_umum.php'; 
     
     // ========================================================
     // LOGIK SAKTI ANTI-NAWALA (OTOMATIS DETEKSI DOMAIN AKTIF)
