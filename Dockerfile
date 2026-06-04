@@ -25,5 +25,13 @@ RUN echo "upload_max_filesize = 64M" > /usr/local/etc/php/conf.d/uploads.ini \
 RUN echo "<Directory /var/www/html>\n\tAllowOverride All\n</Directory>" > /etc/apache2/conf-available/override.conf
 RUN a2enconf override
 
+# ========================================================
+# FIX SAAS MULTI-TENANT: BUKA GERBANG ALIAS APACHE
+# ========================================================
+# Menyuruh Apache menerima semua domain asing (*) yang masuk ke port 80 kontainer ini
+RUN echo "ServerName localhost" >> /etc/apache2/apache2.conf \
+    && echo "ServerAlias *" >> /etc/apache2/apache2.conf
+# ========================================================
+
 # Buka port standar web
 EXPOSE 80
