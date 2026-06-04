@@ -10,7 +10,7 @@
       </div>
       <div>
         Versi : 2.9
-        Pembuat : <a href="https://t.me/kuisidev" target="_blank" class="footer-link me-4">MJH</a>
+        Made in : <a href="https://t.me/khintilin" target="_blank" class="footer-link me-4">DrianProjects</a>
       </div>
     </div>
   </div>
