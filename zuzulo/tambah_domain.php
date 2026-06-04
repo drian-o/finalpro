@@ -57,6 +57,32 @@ function hapusSiteDariCloudflareLokal($zone_id) {
 }
 
 // ========================================================
+// FUNGSI SAKTI 3: CEK STATUS TERBARU DOMAIN DI CLOUDFLARE
+// ========================================================
+function cekStatusZoneCloudflare($zone_id) {
+    $cf_email = 'adrnsyah' . '18' . '@' . 'gmail.com';
+    $cf_key   = 'cfk_' . 'I4b6ZygMhnUoCSYEnPVfupCDOyAHan7ZIs9YbzGpa5e33a56'; 
+
+    $ch = curl_init("https://api.cloudflare.com/client/v4/zones/" . $zone_id);
+    curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+    curl_setopt($ch, CURLOPT_HTTPHEADER, [
+        'X-Auth-Email: ' . $cf_email,
+        'X-Auth-Key: ' . $cf_key,
+        'Content-Type: application/json'
+    ]);
+
+    $response = curl_exec($ch);
+    $err = curl_error($ch);
+    curl_close($ch);
+
+    if ($err) return 'pending';
+    $res_data = json_decode($response, true);
+    
+    // Mengembalikan status asli dari Cloudflare: 'active' / 'pending'
+    return $res_data['result']['status'] ?? 'pending';
+}
+
+// ========================================================
 // LOGIKA PROSES TOMBOL: HAPUS SITE DOMAIN
 // ========================================================
 if (isset($_GET['aksi']) && $_GET['aksi'] == 'hapus' && isset($_GET['id']) && isset($_GET['cf_id'])) {
@@ -96,21 +122,19 @@ if (isset($_POST['submit_domain'])) {
             $ns2 = $hasil['result']['name_servers'][1] ?? 'ns2.cloudflare.com';
 
             // --------------------------------------------------------
-            // PENTING: PROSES OTOMATISASI ARTI (MEMBUAT A RECORD KE VPS)
+            // PROSES OTOMATISASI (MEMBUAT A RECORD KE VPS)
             // --------------------------------------------------------
             $cf_email = 'adrnsyah' . '18' . '@' . 'gmail.com';
             $cf_key   = 'cfk_' . 'I4b6ZygMhnUoCSYEnPVfupCDOyAHan7ZIs9YbzGpa5e33a56'; 
 
-            // PENTING: Ganti string di bawah ini dengan IP VPS Coolify kamu!
             $ip_server_kamu = '137.184.155.151'; 
 
-            // Payload untuk mengarahkan root domain (@) ke IP VPS
             $dns_data = [
                 "type" => "A",
                 "name" => "@",
                 "content" => $ip_server_kamu,
                 "ttl" => 1, 
-                "proxied" => true // Wajib true agar dapet SSL/HTTPS otomatis dari Cloudflare
+                "proxied" => true 
             ];
 
             $ch_dns = curl_init("https://api.cloudflare.com/client/v4/zones/" . $zone_id . "/dns_records");
@@ -220,7 +244,23 @@ if (isset($_POST['submit_domain'])) {
             $query_tampil = mysqli_query($koneksi, "SELECT * FROM custom_domains ORDER BY id DESC");
             if (mysqli_num_rows($query_tampil) > 0) {
                 while ($row = mysqli_fetch_assoc($query_tampil)) {
-                    $status_badge = ($row['status'] === 'active') 
+                    
+                    $status_sekarang = $row['status'];
+
+                    // --------------------------------------------------------
+                    // AUTO CHECK TERBARU: Jika status lokal masih pending, cek ke Cloudflare
+                    // --------------------------------------------------------
+                    if ($status_sekarang === 'pending') {
+                        $status_cf = cekStatusZoneCloudflare($row['cloudflare_id']);
+                        if ($status_cf === 'active') {
+                            // Update status di database lokal agar jadi active
+                            mysqli_query($koneksi, "UPDATE custom_domains SET status = 'active' WHERE id = '{$row['id']}'");
+                            $status_sekarang = 'active'; // Ubah variabel untuk tampilan langsung
+                        }
+                    }
+                    // --------------------------------------------------------
+
+                    $status_badge = ($status_sekarang === 'active') 
                         ? "<span class='badge badge-active'>ACTIVE</span>" 
                         : "<span class='badge badge-pending'>PENDING</span>";
                     
