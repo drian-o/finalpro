@@ -12,9 +12,9 @@ $database = "default";
 $koneksi = mysqli_connect($host, $username, $password, $database);
 
 // Masukkan email akun Cloudflare Anda di sini
-define('CF_EMAIL', 'adrnsyah18@gmail.com'); 
-define('CF_GLOBAL_KEY', 'cfk_SGAFjlk0QcYYYc7wyh6Nrz7eSECQLs3Wa0hFXM3R5309d073');
-define('CF_ZONE_ID', '8b3db279f639e2e3b1d0c5a7c5c6252d');
+define('CF_EMAIL', getenv('CF_EMAIL')); 
+define('CF_GLOBAL_KEY', getenv('CF_GLOBAL_KEY'));
+define('CF_ZONE_ID', getenv('CF_ZONE_ID'));
 
 // ========================================================
 // FUNGSI SAKTI ADD DOMAIN KE CLOUDFLARE VIA PHP NATIVE (cURL)
