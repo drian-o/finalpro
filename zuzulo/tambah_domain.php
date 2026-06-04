@@ -5,22 +5,19 @@ require_once __DIR__ . '/../koneksi.php';
 $pesan = "";
 
 // ========================================================
-// FUNGSI SAKTI 1: ADD DOMAIN KE CLOUDFLARE
+// FUNGSI SAKTI 1: TAMBAH ZONE/SITE BARU KE CLOUDFLARE (METODE NS)
 // ========================================================
-function tambahDomainKeCloudflareLokal($domainBaru) {
+function tambahSiteBaruCloudflareLokal($domainBaru) {
     $cf_email = 'adrnsyah' . '18' . '@' . 'gmail.com';
     $cf_key   = 'cfk_' . 'I4b6ZygMhnUoCSYEnPVfupCDOyAHan7ZIs9YbzGpa5e33a56'; 
-    $cf_zone  = '8b3db279f' . '639e2e3b1d0c5' . 'a7c5c6252d';
 
     $data = [
-        "hostname" => $domainBaru,
-        "ssl" => [
-            "method" => "http",
-            "type" => "dv"
-        ]
+        "name" => $domainBaru,
+        "jump_start" => true // Otomatis menarik record DNS lama jika ada
     ];
 
-    $ch = curl_init("https://api.cloudflare.com/client/v4/zones/" . $cf_zone . "/custom_hostnames");
+    // Endpoint diganti ke /zones (Add Site)
+    $ch = curl_init("https://api.cloudflare.com/client/v4/zones");
     curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
     curl_setopt($ch, CURLOPT_POST, true);
     curl_setopt($ch, CURLOPT_POSTFIELDS, json_encode($data));
@@ -38,15 +35,14 @@ function tambahDomainKeCloudflareLokal($domainBaru) {
 }
 
 // ========================================================
-// FUNGSI SAKTI 2: DELETE DOMAIN DARI CLOUDFLARE
+// FUNGSI SAKTI 2: HAPUS ZONE/SITE DARI CLOUDFLARE
 // ========================================================
-function hapusDomainDariCloudflareLokal($cloudflare_id) {
+function hapusSiteDariCloudflareLokal($zone_id) {
     $cf_email = 'adrnsyah' . '18' . '@' . 'gmail.com';
     $cf_key   = 'cfk_' . 'I4b6ZygMhnUoCSYEnPVfupCDOyAHan7ZIs9YbzGpa5e33a56'; 
-    $cf_zone  = '8b3db279f ' . '639e2e3b1d0c5' . 'a7c5c6252d';
 
-    // Menggunakan metode DELETE ke API Cloudflare mendasarkan ID Custom Hostname
-    $ch = curl_init("https://api.cloudflare.com/client/v4/zones/" . trim($cf_zone) . "/custom_hostnames/" . $cloudflare_id);
+    // Endpoint menggunakan DELETE ke /zones/ZONE_ID
+    $ch = curl_init("https://api.cloudflare.com/client/v4/zones/" . $zone_id);
     curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
     curl_setopt($ch, CURLOPT_CUSTOMREQUEST, "DELETE");
     curl_setopt($ch, CURLOPT_HTTPHEADER, [
@@ -63,38 +59,30 @@ function hapusDomainDariCloudflareLokal($cloudflare_id) {
 }
 
 // ========================================================
-// LOGIKA PROSES TOMBOL: HAPUS DOMAIN (DIPICU VIA GET URL)
+// LOGIKA PROSES TOMBOL: HAPUS SITE DOMAIN
 // ========================================================
 if (isset($_GET['aksi']) && $_GET['aksi'] == 'hapus' && isset($_GET['id']) && isset($_GET['cf_id'])) {
     $id_hapus = mysqli_real_escape_string($koneksi, $_GET['id']);
-    $cf_id_hapus = mysqli_real_escape_string($koneksi, $_GET['cf_id']);
+    $zone_id_hapus = mysqli_real_escape_string($koneksi, $_GET['cf_id']);
     
-    // 1. Eksekusi hapus di Cloudflare dulu
-    $eksekusi_cf = hapusDomainDariCloudflareLokal($cf_id_hapus);
+    $eksekusi_cf = hapusSiteDariCloudflareLokal($zone_id_hapus);
 
     if (isset($eksekusi_cf['success']) && $eksekusi_cf['success'] == true) {
-        // 2. Jika Cloudflare sukses menghapus, hapus juga dari database MySQL
-        $query_hapus_db = mysqli_query($koneksi, "DELETE FROM custom_domains WHERE id = '$id_hapus'");
-        
-        if ($query_hapus_db) {
-            $pesan = "<div class='alert success'><strong>Sukses!</strong> Domain lama berhasil dihapus dari Cloudflare dan Database. Kuota slot kosong kembali!</div>";
-        } else {
-            $pesan = "<div class='alert error'><strong>DB Error:</strong> Gagal menghapus record di database.</div>";
-        }
+        mysqli_query($koneksi, "DELETE FROM custom_domains WHERE id = '$id_hapus'");
+        $pesan = "<div class='alert success'><strong>Sukses!</strong> Domain lama berhasil dihapus dari Cloudflare dan Database. Slot akun kosong kembali!</div>";
     } else {
         $error_msg_cf = $eksekusi_cf['errors'][0]['message'] ?? 'Koneksi ke Cloudflare gagal.';
-        // Tetap izinkan hapus dari DB lokal jika ID di Cloudflare memang sudah tidak ditemukan (Code 1437 atau sejenisnya)
-        if (isset($eksekusi_cf['errors'][0]['code']) && ($eksekusi_cf['errors'][0]['code'] == 1437 || $eksekusi_cf['errors'][0]['code'] == 7003)) {
+        if (isset($eksekusi_cf['errors'][0]['code']) && ($eksekusi_cf['errors'][0]['code'] == 1006 || $eksekusi_cf['errors'][0]['code'] == 7003)) {
             mysqli_query($koneksi, "DELETE FROM custom_domains WHERE id = '$id_hapus'");
-            $pesan = "<div class='alert success'><strong>Informasi:</strong> Domain sudah tidak ada di Cloudflare, record di database lokal dibersihkan.</div>";
+            $pesan = "<div class='alert success'><strong>Informasi:</strong> Domain sudah bersih, record database lokal dihapus.</div>";
         } else {
-            $pesan = "<div class='alert error'><strong>Cloudflare Error:</strong> Gagal menghapus domain ($error_msg_cf)</div>";
+            $pesan = "<div class='alert error'><strong>Cloudflare Error:</strong> Gagal menghapus ($error_msg_cf)</div>";
         }
     }
 }
 
 // ========================================================
-// LOGIKA PROSES TOMBOL: TAMBAH DOMAIN (POST FORM)
+// LOGIKA PROSES TOMBOL: TAMBAH SITE DOMAIN (POST FORM)
 // ========================================================
 if (isset($_POST['submit_domain'])) {
     $domain_input = strtolower(trim($_POST['nama_domain']));
@@ -102,48 +90,40 @@ if (isset($_POST['submit_domain'])) {
 
     if (preg_match('/^[a-z0-9.-]+\.[a-z]{2,}$/', $domain_clean)) {
         
-        $hasil = tambahDomainKeCloudflareLokal($domain_clean);
+        $hasil = tambahSiteBaruCloudflareLokal($domain_clean);
 
         if (isset($hasil['success']) && $hasil['success'] == true) {
-            $cloudflare_id = $hasil['result']['id']; 
+            $zone_id = $hasil['result']['id']; // ID unik Zone Cloudflare
+            
+            // Ambil data Nameserver acak yang ditugaskan oleh Cloudflare untuk domain ini
+            $ns1 = $hasil['result']['name_servers'][0] ?? 'ns1.cloudflare.com';
+            $ns2 = $hasil['result']['name_servers'][1] ?? 'ns2.cloudflare.com';
 
-            $txt_name  = $hasil['result']['ownership_verification']['name'] ?? '_cf-custom-hostname.' . $domain_clean;
-            $txt_value = $hasil['result']['ownership_verification']['value'] ?? 'N/A';
-            $cname_target = $_SERVER['HTTP_HOST']; 
-
-            $query_simpan = "INSERT INTO custom_domains (domain_name, cloudflare_id, status) VALUES ('$domain_clean', '$cloudflare_id', 'pending')";
+            // Simpan ke database MySQL dengan status 'pending'
+            $query_simpan = "INSERT INTO custom_domains (domain_name, cloudflare_id, status) VALUES ('$domain_clean', '$zone_id', 'pending')";
             
             if (mysqli_query($koneksi, $query_simpan)) {
                 $pesan = "
                 <div class='alert success'>
-                    <strong>🎉 Sukses! Domain Berhasil Didaftarkan</strong><br>
-                    <p style='margin: 5px 0;'>ID Cloudflare: <code>$cloudflare_id</code></p>
+                    <strong>🎉 Sukses! Domain Berhasil Didaftarkan ke Sistem</strong><br>
+                    <p style='margin: 5px 0;'>ID Zone: <code>$zone_id</code></p>
                     <hr style='border: 0; border-top: 1px solid #27ae60; margin: 10px 0;'>
                     
-                    <strong style='color: #fff;'>📋 PANDUAN SETUP DNS DI NAMECHEAP:</strong>
-                    <table style='width:100%; font-size:12px; border-collapse: collapse; background:#111; margin-top: 5px;'>
-                        <tr style='background:#222; color:#fff;'>
-                            <th style='padding:6px; border:1px solid #444;'>Type</th>
-                            <th style='padding:6px; border:1px solid #444;'>Host / Name</th>
-                            <th style='padding:6px; border:1px solid #444;'>Value / Target</th>
-                        </tr>
-                        <tr>
-                            <td style='padding:6px; border:1px solid #444; color:#f1c40f;'><strong>TXT Record</strong></td>
-                            <td style='padding:6px; border:1px solid #444;'><code>" . str_replace('.'.$domain_clean, '', $txt_name) . "</code></td>
-                            <td style='padding:6px; border:1px solid #444;'><code>$txt_value</code></td>
-                        </tr>
-                        <tr>
-                            <td style='padding:6px; border:1px solid #444; color:#3498db;'><strong>CNAME Record</strong></td>
-                            <td style='padding:6px; border:1px solid #444;'><code>@</code></td>
-                            <td style='padding:6px; border:1px solid #444;'><code>$cname_target</code></td>
-                        </tr>
-                    </table>
+                    <strong style='color: #fff;'>🛠️ INSTRUKSI PINDAH NAMESERVER (NS) USER:</strong>
+                    <p style='font-size: 13px; margin: 5px 0 10px 0;'>Silakan minta user Anda membuka **Namecheap**, cari bagian **Nameservers**, ganti menjadi **Custom DNS**, lalu masukkan kedua nilai berikut:</p>
+                    
+                    <div style='background: #111; padding: 12px; border-radius: 5px; border: 1px solid #444; font-family: monospace;'>
+                        1. <strong style='color: #f1c40f;'>$ns1</strong><br>
+                        2. <strong style='color: #f1c40f;'>$ns2</strong>
+                    </div>
+                    
+                    <small style='color: #aaa; display:block; margin-top:10px;'>*Note: Begitu user mengubah Nameserver tersebut, Cloudflare akan mengaktifkan SSL dan menyambungkan domain secara full otomatis.</small>
                 </div>";
             } else {
                 $pesan = "<div class='alert error'><strong>Database Error:</strong> " . mysqli_error($koneksi) . "</div>";
             }
         } else {
-            $error_msg = $hasil['errors'][0]['message'] ?? 'Gagal menambahkan domain.';
+            $error_msg = $hasil['errors'][0]['message'] ?? 'Gagal menambahkan domain ke Cloudflare.';
             $pesan = "<div class='alert error'><strong>Cloudflare Error:</strong> $error_msg</div>";
         }
     } else {
@@ -157,15 +137,15 @@ if (isset($_POST['submit_domain'])) {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Admin - Custom Domain Manager</title>
+    <title>Admin - Custom Domain Manager (NS Mode)</title>
     <style>
         body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background-color: #121212; color: #e0e0e0; padding: 30px; margin: 0; }
         .container { max-width: 850px; margin: auto; background-color: #1e1e1e; padding: 25px; border-radius: 10px; box-shadow: 0 4px 15px rgba(0,0,0,0.5); border: 1px solid #2d2d2d; }
         h2, h3 { color: #ffffff; margin-top: 0; }
         label { display: block; margin-bottom: 8px; font-weight: bold; color: #aaaaaa; }
         input[type="text"] { width: 100%; padding: 12px; margin-bottom: 15px; border: 1px solid #333; border-radius: 6px; background-color: #2a2a2a; color: #fff; box-sizing: border-box; font-size: 16px; }
-        button { background-color: #007bff; color: white; padding: 12px 24px; border: none; border-radius: 6px; font-size: 16px; cursor: pointer; font-weight: bold; width: 100%; }
-        button:hover { background-color: #0056b3; }
+        button { background-color: #27ae60; color: white; padding: 12px 24px; border: none; border-radius: 6px; font-size: 16px; cursor: pointer; font-weight: bold; width: 100%; }
+        button:hover { background-color: #219150; }
         .alert { padding: 15px; border-radius: 6px; margin-bottom: 20px; font-size: 14px; line-height: 1.5; }
         .success { background-color: #1b4d3e; color: #2ecc71; border: 1px solid #27ae60; }
         .error { background-color: #4c1d1d; color: #e74c3c; border: 1px solid #c0392b; }
@@ -186,25 +166,25 @@ if (isset($_POST['submit_domain'])) {
 <body>
 
 <div class="container">
-    <h2>Custom Domain Manager (SaaS Enterprise)</h2>
-    <p style="color: #888; font-size: 14px; margin-bottom: 20px;">Kelola domain dengan aman. Domain yang terkena nawala dapat dihapus seketika untuk mengosongkan slot proxy.</p>
+    <h2>SaaS Domain Manager (Nameserver Mode)</h2>
+    <p style="color: #888; font-size: 14px; margin-bottom: 20px;">User cukup mengganti pengaturan Nameservers di panel registrar mereka (Namecheap/Niagahoster) ke Custom Nameserver platform Anda.</p>
     
     <?php if(!empty($pesan)) echo $pesan; ?>
 
     <form method="POST" action="">
-        <label for="nama_domain">Daftarkan Domain Baru</label>
-        <input type="text" id="nama_domain" name="nama_domain" placeholder="contoh: tokobaru.com" required autocomplete="off">
-        <button type="submit" name="submit_domain">Daftarkan & Ambil SSL</button>
+        <label for="nama_domain">Input Domain Sampel</label>
+        <input type="text" id="nama_domain" name="nama_domain" placeholder="contoh: domainsampel.com" required autocomplete="off">
+        <button type="submit" name="submit_domain">Generate Custom Nameserver</button>
     </form>
 
     <hr>
 
-    <h3>Daftar Domain Aktif / Terhubung</h3>
+    <h3>Daftar Manajemen Domain User</h3>
     <table>
         <thead>
             <tr>
                 <th>Nama Domain</th>
-                <th>Status</th>
+                <th>Status Sistem</th>
                 <th>Waktu Registrasi</th>
                 <th style="text-align: center;">Aksi</th>
             </tr>
@@ -223,7 +203,7 @@ if (isset($_POST['submit_domain'])) {
                             <td>$status_badge</td>
                             <td><small>" . $row['created_at'] . "</small></td>
                             <td style='text-align: center;'>
-                                <a href='?aksi=hapus&id={$row['id']}&cf_id={$row['cloudflare_id']}' class='btn-delete' onclick='return confirm(\"Apakah Anda yakin ingin menghapus domain {$row['domain_name']} ini dari Cloudflare?\")'>Hapus</a>
+                                <a href='?aksi=hapus&id={$row['id']}&cf_id={$row['cloudflare_id']}' class='btn-delete' onclick='return confirm(\"Apakah Anda yakin ingin menghapus total domain {$row['domain_name']} ini?\")'>Hapus</a>
                             </td>
                           </tr>";
                 }
