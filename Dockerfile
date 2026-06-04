@@ -26,10 +26,10 @@ RUN echo "<Directory /var/www/html>\n\tAllowOverride All\n</Directory>" > /etc/a
 RUN a2enconf override
 
 # ========================================================
-# FIX SAAS MULTI-TENANT: FORCED CATCH-ALL VIRTUALHOST (SOLUSI 404)
+# FIX SAAS MULTI-TENANT: COPY VHOST CLEAN CONFIG
 # ========================================================
-# Menulis ulang config VirtualHost port 80 agar Apache mutlak menerima domain APAPUN (*) ke folder /var/www/html
-RUN echo '<VirtualHost *:80>\n\tServerAdmin webmaster@localhost\n\tDocumentRoot /var/www/html\n\tServerAlias *\n\t<Directory /var/www/html>\n\t\tAllowOverride All\n\t\tRequire all granted\n\t</Directory>\n\tErrorLog ${APACHE_LOG_DIR}/error.log\n\tCustomLog ${APACHE_LOG_DIR}/access.log combined\n</VirtualHost>' > /etc/apache2/sites-available/000-default.conf
+# Menyalin file vhost.conf dari GitHub langsung menimpa config default Apache
+COPY vhost.conf /etc/apache2/sites-available/000-default.conf
 
 RUN echo "ServerName localhost" >> /etc/apache2/apache2.conf
 # ========================================================
