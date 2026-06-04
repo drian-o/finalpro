@@ -26,11 +26,11 @@ RUN echo "<Directory /var/www/html>\n\tAllowOverride All\n</Directory>" > /etc/a
 RUN a2enconf override
 
 # ========================================================
-# FIX SAAS MULTI-TENANT: BUKA GERBANG ALIAS APACHE
+# FIX SAAS MULTI-TENANT: BUKA GERBANG ALIAS APACHE VIA VHOST
 # ========================================================
-# Menyuruh Apache menerima semua domain asing (*) yang masuk ke port 80 kontainer ini
-RUN echo "ServerName localhost" >> /etc/apache2/apache2.conf \
-    && echo "ServerAlias *" >> /etc/apache2/apache2.conf
+# Menyisipkan ServerAlias * tepat di dalam blok VirtualHost port 80 agar menerima semua domain eksternal
+RUN sed -i '/ServerAdmin/a \\tServerAlias *' /etc/apache2/sites-available/000-default.conf \
+    && echo "ServerName localhost" >> /etc/apache2/apache2.conf
 # ========================================================
 
 # Buka port standar web
