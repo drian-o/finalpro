@@ -13,10 +13,9 @@ function tambahSiteBaruCloudflareLokal($domainBaru) {
 
     $data = [
         "name" => $domainBaru,
-        "jump_start" => true // Otomatis menarik record DNS lama jika ada
+        "jump_start" => true 
     ];
 
-    // Endpoint diganti ke /zones (Add Site)
     $ch = curl_init("https://api.cloudflare.com/client/v4/zones");
     curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
     curl_setopt($ch, CURLOPT_POST, true);
@@ -41,7 +40,6 @@ function hapusSiteDariCloudflareLokal($zone_id) {
     $cf_email = 'adrnsyah' . '18' . '@' . 'gmail.com';
     $cf_key   = 'cfk_' . 'I4b6ZygMhnUoCSYEnPVfupCDOyAHan7ZIs9YbzGpa5e33a56'; 
 
-    // Endpoint menggunakan DELETE ke /zones/ZONE_ID
     $ch = curl_init("https://api.cloudflare.com/client/v4/zones/" . $zone_id);
     curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
     curl_setopt($ch, CURLOPT_CUSTOMREQUEST, "DELETE");
@@ -93,13 +91,42 @@ if (isset($_POST['submit_domain'])) {
         $hasil = tambahSiteBaruCloudflareLokal($domain_clean);
 
         if (isset($hasil['success']) && $hasil['success'] == true) {
-            $zone_id = $hasil['result']['id']; // ID unik Zone Cloudflare
-            
-            // Ambil data Nameserver acak yang ditugaskan oleh Cloudflare untuk domain ini
+            $zone_id = $hasil['result']['id']; 
             $ns1 = $hasil['result']['name_servers'][0] ?? 'ns1.cloudflare.com';
             $ns2 = $hasil['result']['name_servers'][1] ?? 'ns2.cloudflare.com';
 
-            // Simpan ke database MySQL dengan status 'pending'
+            // --------------------------------------------------------
+            // PENTING: PROSES OTOMATISASI ARTI (MEMBUAT A RECORD KE VPS)
+            // --------------------------------------------------------
+            $cf_email = 'adrnsyah' . '18' . '@' . 'gmail.com';
+            $cf_key   = 'cfk_' . 'I4b6ZygMhnUoCSYEnPVfupCDOyAHan7ZIs9YbzGpa5e33a56'; 
+
+            // PENTING: Ganti string di bawah ini dengan IP VPS Coolify kamu!
+            $ip_server_kamu = '147.93.111.144'; 
+
+            // Payload untuk mengarahkan root domain (@) ke IP VPS
+            $dns_data = [
+                "type" => "A",
+                "name" => "@",
+                "content" => $ip_server_kamu,
+                "ttl" => 1, 
+                "proxied" => true // Wajib true agar dapet SSL/HTTPS otomatis dari Cloudflare
+            ];
+
+            $ch_dns = curl_init("https://api.cloudflare.com/client/v4/zones/" . $zone_id . "/dns_records");
+            curl_setopt($ch_dns, CURLOPT_RETURNTRANSFER, true);
+            curl_setopt($ch_dns, CURLOPT_POST, true);
+            curl_setopt($ch_dns, CURLOPT_POSTFIELDS, json_encode($dns_data));
+            curl_setopt($ch_dns, CURLOPT_HTTPHEADER, [
+                'X-Auth-Email: ' . $cf_email,
+                'X-Auth-Key: ' . $cf_key,
+                'Content-Type: application/json'
+            ]);
+            curl_exec($ch_dns);
+            curl_close($ch_dns);
+            // --------------------------------------------------------
+
+            // Simpan ke database MySQL
             $query_simpan = "INSERT INTO custom_domains (domain_name, cloudflare_id, status) VALUES ('$domain_clean', '$zone_id', 'pending')";
             
             if (mysqli_query($koneksi, $query_simpan)) {
@@ -110,14 +137,13 @@ if (isset($_POST['submit_domain'])) {
                     <hr style='border: 0; border-top: 1px solid #27ae60; margin: 10px 0;'>
                     
                     <strong style='color: #fff;'>🛠️ INSTRUKSI PINDAH NAMESERVER (NS) USER:</strong>
-                    <p style='font-size: 13px; margin: 5px 0 10px 0;'>Silakan minta user Anda membuka **Namecheap**, cari bagian **Nameservers**, ganti menjadi **Custom DNS**, lalu masukkan kedua nilai berikut:</p>
+                    <p style='font-size: 13px; margin: 5px 0 10px 0;'>Silakan masukkan kedua nilai berikut ke pengaturan **Custom DNS** di Namecheap Anda:</p>
                     
                     <div style='background: #111; padding: 12px; border-radius: 5px; border: 1px solid #444; font-family: monospace;'>
                         1. <strong style='color: #f1c40f;'>$ns1</strong><br>
                         2. <strong style='color: #f1c40f;'>$ns2</strong>
                     </div>
-                    
-                    <small style='color: #aaa; display:block; margin-top:10px;'>*Note: Begitu user mengubah Nameserver tersebut, Cloudflare akan mengaktifkan SSL dan menyambungkan domain secara full otomatis.</small>
+                    <small style='color: #aaa; display:block; margin-top:10px;'>*Sistem telah otomatis membuatkan rute DNS ke server. Website akan langsung aktif begitu propagasi NS di Namecheap selesai.</small>
                 </div>";
             } else {
                 $pesan = "<div class='alert error'><strong>Database Error:</strong> " . mysqli_error($koneksi) . "</div>";
