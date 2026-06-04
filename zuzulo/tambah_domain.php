@@ -1,8 +1,47 @@
 <?php
 // zuzulo/tambah_domain.php
-require_once __DIR__ . '/../koneksi.php'; // Path aman naik 1 folder ke koneksi.php
+require_once __DIR__ . '/../koneksi.php'; // Ini tetap dipakai HANYA untuk mengambil koneksi database ($koneksi)
 
 $pesan = "";
+
+// ========================================================
+// FUNGSI SAKTI ADD DOMAIN KE CLOUDFLARE (DITARUH LANGSUNG DISINI)
+// ========================================================
+function tambahDomainKeCloudflareLokal($domainBaru) {
+    // Mengambil credentials dari Environment Variables Coolify
+    $cf_email = getenv('CF_EMAIL');
+    $cf_key   = getenv('CF_GLOBAL_KEY');
+    $cf_zone  = getenv('CF_ZONE_ID');
+
+    $data = [
+        "hostname" => $domainBaru,
+        "ssl" => [
+            "method" => "http",
+            "type" => "dv"
+        ]
+    ];
+
+    $ch = curl_init("https://api.cloudflare.com/client/v4/zones/" . $cf_zone . "/custom_hostnames");
+    curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+    curl_setopt($ch, CURLOPT_POST, true);
+    curl_setopt($ch, CURLOPT_POSTFIELDS, json_encode($data));
+    curl_setopt($ch, CURLOPT_HTTPHEADER, [
+        'X-Auth-Email: ' . $cf_email,
+        'X-Auth-Key: ' . $cf_key,
+        'Content-Type: application/json'
+    ]);
+
+    $response = curl_exec($ch);
+    $err = curl_error($ch);
+    curl_close($ch);
+
+    if ($err) {
+        return ['success' => false, 'error' => 'cURL Error: ' . $err];
+    } else {
+        return json_decode($response, true);
+    }
+}
+// ========================================================
 
 // Proses ketika tombol "Daftarkan Domain" diklik
 if (isset($_POST['submit_domain'])) {
@@ -11,16 +50,16 @@ if (isset($_POST['submit_domain'])) {
     // Bersihkan inputan untuk mencegah SQL Injection
     $domain_clean = mysqli_real_escape_string($koneksi, $domain_input);
 
-    // Validasi regex dasar untuk memastikan format domain benar (ex: domain.com)
-    if (preg_match('/^[a-zA-col0-9.-]+\.[a-z]{2,}$/', $domain_clean)) {
+    // Validasi dasar format domain (ex: domain.com)
+    if (preg_match('/^[a-z0-9.-]+\.[a-z]{2,}$/', $domain_clean)) {
         
-        // 1. Panggil fungsi cURL Cloudflare yang ada di koneksi.php
-        $hasil = tambahDomainKeCloudflare($domain_clean);
+        // MEMANGGIL FUNGSI LOKAL DI ATAS
+        $hasil = tambahDomainKeCloudflareLokal($domain_clean);
 
         if (isset($hasil['success']) && $hasil['success'] == true) {
             $cloudflare_id = $hasil['result']['id']; // Ambil ID Custom Hostname dari CF
 
-            // 2. Simpan ke database MySQL dengan status 'pending'
+            // Simpan ke database MySQL dengan status 'pending'
             $query_simpan = "INSERT INTO custom_domains (domain_name, cloudflare_id, status) VALUES ('$domain_clean', '$cloudflare_id', 'pending')";
             
             if (mysqli_query($koneksi, $query_simpan)) {
@@ -33,8 +72,8 @@ if (isset($_POST['submit_domain'])) {
                 $pesan = "<div class='alert error'><strong>Database Error:</strong> " . mysqli_error($koneksi) . "</div>";
             }
         } else {
-            // Jika ditolak Cloudflare (misal domain sudah pernah didaftarkan atau format salah)
-            $error_msg = $hasil['errors'][0]['message'] ?? 'Terjadi kesalahan pada internal Cloudflare.';
+            // Jika ditolak Cloudflare
+            $error_msg = $hasil['errors'][0]['message'] ?? 'Terjadi kesalahan pada internal Cloudflare / Env variabel belum terbaca.';
             $pesan = "<div class='alert error'><strong>Cloudflare Error:</strong> $error_msg</div>";
         }
     } else {
