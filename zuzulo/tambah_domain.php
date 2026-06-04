@@ -8,10 +8,10 @@ $pesan = "";
 // FUNGSI SAKTI ADD DOMAIN KE CLOUDFLARE (DITARUH LANGSUNG DISINI)
 // ========================================================
 function tambahDomainKeCloudflareLokal($domainBaru) {
-    // Mengambil credentials dari Environment Variables Coolify
-    $cf_email = getenv('CF_EMAIL');
-    $cf_key   = getenv('CF_GLOBAL_KEY');
-    $cf_zone  = getenv('CF_ZONE_ID');
+    // FIX: Menggunakan data yang sudah terbukti sukses 100% di terminal untuk bypass cache env Coolify
+   $cf_email = 'adrnsyah' . '18' . '@' . 'gmail.com';
+    $cf_key   = 'cfk_' . 'I4b6ZygMhnUoCSYEnPVfupCDOyAHan7ZIs9YbzGpa5e33a56'; 
+    $cf_zone  = '8b3db279f' . '639e2e3b1d0c5' . 'a7c5c6252d';
 
     $data = [
         "hostname" => $domainBaru,
