@@ -26,11 +26,12 @@ RUN echo "<Directory /var/www/html>\n\tAllowOverride All\n</Directory>" > /etc/a
 RUN a2enconf override
 
 # ========================================================
-# FIX SAAS MULTI-TENANT: BUKA GERBANG ALIAS APACHE VIA VHOST
+# FIX SAAS MULTI-TENANT: FORCED CATCH-ALL VIRTUALHOST (SOLUSI 404)
 # ========================================================
-# Menyisipkan ServerAlias * tepat di dalam blok VirtualHost port 80 agar menerima semua domain eksternal
-RUN sed -i '/ServerAdmin/a \\tServerAlias *' /etc/apache2/sites-available/000-default.conf \
-    && echo "ServerName localhost" >> /etc/apache2/apache2.conf
+# Menulis ulang config VirtualHost port 80 agar Apache mutlak menerima domain APAPUN (*) ke folder /var/www/html
+RUN echo '<VirtualHost *:80>\n\tServerAdmin webmaster@localhost\n\tDocumentRoot /var/www/html\n\tServerAlias *\n\t<Directory /var/www/html>\n\t\tAllowOverride All\n\t\tRequire all granted\n\t</Directory>\n\tErrorLog ${APACHE_LOG_DIR}/error.log\n\tCustomLog ${APACHE_LOG_DIR}/access.log combined\n</VirtualHost>' > /etc/apache2/sites-available/000-default.conf
+
+RUN echo "ServerName localhost" >> /etc/apache2/apache2.conf
 # ========================================================
 
 # Buka port standar web
