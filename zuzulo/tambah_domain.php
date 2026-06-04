@@ -102,7 +102,7 @@ if (isset($_POST['submit_domain'])) {
             $cf_key   = 'cfk_' . 'I4b6ZygMhnUoCSYEnPVfupCDOyAHan7ZIs9YbzGpa5e33a56'; 
 
             // PENTING: Ganti string di bawah ini dengan IP VPS Coolify kamu!
-            $ip_server_kamu = '147.93.111.144'; 
+            $ip_server_kamu = '137.184.155.151'; 
 
             // Payload untuk mengarahkan root domain (@) ke IP VPS
             $dns_data = [
