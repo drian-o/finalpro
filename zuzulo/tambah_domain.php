@@ -76,7 +76,7 @@ function tambahSiteBaruCloudflareLokal($domainBaru) {
 // ========================================================
 // FUNGSI SAKTI 2: HAPUS ZONE/SITE DARI CLOUDFLARE
 // ========================================================
-function hapusSiteDariCloudflareLokal($zone_id) {
+function deleteSiteDariCloudflareLokal($zone_id) {
     $cf_email = 'adrnsyah' . '18' . '@' . 'gmail.com';
     $cf_key   = 'cfk_' . 'I4b6ZygMhnUoCSYEnPVfupCDOyAHan7ZIs9YbzGpa5e33a56'; 
 
@@ -128,7 +128,7 @@ if (isset($_GET['aksi']) && $_GET['aksi'] == 'hapus' && isset($_GET['id']) && is
     $id_hapus = mysqli_real_escape_string($koneksi, $_GET['id']);
     $zone_id_hapus = mysqli_real_escape_string($koneksi, $_GET['cf_id']);
     
-    $eksekusi_cf = hapusSiteDariCloudflareLokal($zone_id_hapus);
+    $eksekusi_cf = deleteSiteDariCloudflareLokal($zone_id_hapus);
 
     if (isset($eksekusi_cf['success']) && $eksekusi_cf['success'] == true) {
         mysqli_query($koneksi, "DELETE FROM custom_domains WHERE id = '$id_hapus'");
@@ -181,7 +181,7 @@ if (isset($_POST['submit_domain'])) {
                 "name" => "@",
                 "content" => $ip_server_kamu,
                 "ttl" => 1, 
-                "proxied" => false // 🔥 PERBAIKAN 2: Wajib FALSE biar jadi Awan Abu-abu (DNS Only) agar tembus port 80 Coolify!
+                "proxied" => true // 🔥 Tetap TRUE biar dapet SSL otomatis dari Cloudflare untuk user!
             ];
 
             $ch_dns = curl_init("https://api.cloudflare.com/client/v4/zones/" . $zone_id . "/dns_records");
@@ -195,6 +195,24 @@ if (isset($_POST['submit_domain'])) {
             ]);
             curl_exec($ch_dns);
             curl_close($ch_dns);
+
+            // 🔥 SUNTIKAN SAKTI 2: Otomatis setel pengaturan SSL Cloudflare domain user ke FLEXIBLE
+            // Supaya dari Cloudflare dioper lewat HTTP biasa ke port 80 Coolify (Cocok ama http://*)
+            $ssl_payload = [
+                "id" => "ssl",
+                "value" => "flexible"
+            ];
+            $ch_ssl = curl_init("https://api.cloudflare.com/client/v4/zones/" . $zone_id . "/settings/ssl");
+            curl_setopt($ch_ssl, CURLOPT_RETURNTRANSFER, true);
+            curl_setopt($ch_ssl, CURLOPT_CUSTOMREQUEST, "PATCH");
+            curl_setopt($ch_ssl, CURLOPT_POSTFIELDS, json_encode($ssl_payload));
+            curl_setopt($ch_ssl, CURLOPT_HTTPHEADER, [
+                'X-Auth-Email: ' . $cf_email,
+                'X-Auth-Key: ' . $cf_key,
+                'Content-Type: application/json'
+            ]);
+            curl_exec($ch_ssl);
+            curl_close($ch_ssl);
             // --------------------------------------------------------
 
             // Simpan ke database MySQL
@@ -218,7 +236,7 @@ if (isset($_POST['submit_domain'])) {
                         1. <strong style='color: #f1c40f;'>$ns1</strong><br>
                         2. <strong style='color: #f1c40f;'>$ns2</strong>
                     </div>
-                    <small style='color: #aaa; display:block; margin-top:10px;'>*Sistem telah otomatis membuatkan rute DNS ke server. Website akan langsung aktif begitu propagasi NS selesai tanpa perlu disetujui admin!</small>
+                    <small style='color: #aaa; display:block; margin-top:10px;'>*Sistem telah otomatis membuatkan rute DNS & SSL Secure ke server. Website akan langsung aktif ber-SSL begitu propagasi NS selesai!</small>
                 </div>";
             } else {
                 $pesan = "<div class='alert error'><strong>Database Error:</strong> " . mysqli_error($koneksi) . "</div>";
