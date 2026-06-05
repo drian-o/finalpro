@@ -11,7 +11,9 @@ function sinkronisasiDomainKeCoolifyLokal() {
     global $koneksi;
 
     $api_key = "3|HIDG5O5obDUSuAWiuoDPFSpABtbF4yhALvo3C9Nb14c5fa2b";
-    $application_uuid = "sfpho7xg4jjpep1xpnaf8y8o";
+    
+    // 🔥 REVISI 1: Menggunakan UUID Aplikasi aktif yang sesuai dengan resource container Coolify lu
+    $application_uuid = "ndghrk488bw2hg8l7363bu7v";
     
     // Semua daftar domain platform wajib HTTPS murni
     $domain_utama = "https://exampleproject.my.id";
@@ -21,7 +23,7 @@ function sinkronisasiDomainKeCoolifyLokal() {
     $query_domains = mysqli_query($koneksi, "SELECT domain_name FROM custom_domains");
     while ($row = mysqli_fetch_array($query_domains)) {
         if (!empty($row['domain_name'])) {
-            // 🔥 PERBAIKAN: Wajib HTTPS murni agar sinkron dengan SSL Full Mode Cloudflare
+            // Wajib HTTPS murni agar sinkron dengan SSL Full Mode Cloudflare
             $list_domain[] = "https://" . trim($row['domain_name']);
         }
     }
@@ -46,8 +48,20 @@ function sinkronisasiDomainKeCoolifyLokal() {
         'Authorization: Bearer ' . $api_key
     ]);
 
-    curl_exec($ch);
-    curl_close($ch); // 🔥 PERBAIKAN: Gunakan curl_close standar PHP, jauh lebih aman
+    // 🔥 REVISI 2: Menangkap response & status code untuk pelacakan error sinkronisasi
+    $response = curl_exec($ch);
+    $err = curl_error($ch);
+    $http_code = curl_getinfo($ch, CURLINFO_HTTP_CODE);
+    curl_close($ch); 
+
+    // Jika ada error jaringan atau penolakan dari API Coolify, munculkan alert di browser
+    if ($err) {
+        echo "<script>alert('cURL Error: " . addslashes($err) . "');</script>";
+    } else {
+        if ($http_code !== 200 && $http_code !== 201) {
+            echo "<script>alert('Coolify API Error (Code " . $http_code . "): " . addslashes($response) . "');</script>";
+        }
+    }
 }
 
 // ========================================================
