@@ -11,8 +11,6 @@ function sinkronisasiDomainKeCoolifyLokal() {
     global $koneksi;
 
     $api_key = "3|HIDG5O5obDUSuAWiuoDPFSpABtbF4yhALvo3C9Nb14c5fa2b";
-    
-    // 🔥 PERBAIKAN MUTLAK 1: Menggunakan UUID Aplikasi asli dari URL browser lu!
     $application_uuid = "sfpho7xg4jjpep1xpnaf8y8o";
     
     // Semua daftar domain platform wajib HTTPS murni
@@ -23,7 +21,8 @@ function sinkronisasiDomainKeCoolifyLokal() {
     $query_domains = mysqli_query($koneksi, "SELECT domain_name FROM custom_domains");
     while ($row = mysqli_fetch_array($query_domains)) {
         if (!empty($row['domain_name'])) {
-            $list_domain[] = "http://" . trim($row['domain_name']);
+            // 🔥 PERBAIKAN: Wajib HTTPS murni agar sinkron dengan SSL Full Mode Cloudflare
+            $list_domain[] = "https://" . trim($row['domain_name']);
         }
     }
 
@@ -39,7 +38,7 @@ function sinkronisasiDomainKeCoolifyLokal() {
     curl_setopt($ch, CURLOPT_POSTFIELDS, $data_payload);
     curl_setopt($ch, CURLOPT_TIMEOUT, 10);
     
-    // Matikan verifikasi SSL agar cURL lokal mau tembus tanpa hambatan sertifikat
+    // Matikan verifikasi SSL jika Coolify belum pakai SSL valid di port manajemennya
     curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
     curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, false);
     curl_setopt($ch, CURLOPT_HTTPHEADER, [
@@ -48,14 +47,7 @@ function sinkronisasiDomainKeCoolifyLokal() {
     ]);
 
     curl_exec($ch);
-    close_curl($ch);
-}
-
-// Helper untuk menutup cURL dengan aman
-function close_curl($ch) {
-    if (is_resource($ch) || (is_object($ch) && $ch instanceof CurlHandle)) {
-        curl_close($ch);
-    }
+    curl_close($ch); // 🔥 PERBAIKAN: Gunakan curl_close standar PHP, jauh lebih aman
 }
 
 // ========================================================
@@ -82,7 +74,7 @@ function tambahSiteBaruCloudflareLokal($domainBaru) {
 
     $response = curl_exec($ch);
     $err = curl_error($ch);
-    close_curl($ch);
+    curl_close($ch);
 
     return $err ? ['success' => false, 'error' => $err] : json_decode($response, true);
 }
@@ -105,34 +97,9 @@ function deleteSiteDariCloudflareLokal($zone_id) {
 
     $response = curl_exec($ch);
     $err = curl_error($ch);
-    close_curl($ch);
+    curl_close($ch);
 
     return $err ? ['success' => false, 'error' => $err] : json_decode($response, true);
-}
-
-// ========================================================
-// FUNGSI SAKTI 3: CEK STATUS DOMAIN DI CLOUDFLARE
-// ========================================================
-function cekStatusZoneCloudflare($zone_id) {
-    $cf_email = 'adrnsyah' . '18' . '@' . 'gmail.com';
-    $cf_key   = 'cfk_' . 'I4b6ZygMhnUoCSYEnPVfupCDOyAHan7ZIs9YbzGpa5e33a56'; 
-
-    $ch = curl_init("https://api.cloudflare.com/client/v4/zones/" . $zone_id);
-    curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-    curl_setopt($ch, CURLOPT_HTTPHEADER, [
-        'X-Auth-Email: ' . $cf_email,
-        'X-Auth-Key: ' . $cf_key,
-        'Content-Type: application/json'
-    ]);
-
-    $response = curl_exec($ch);
-    $err = curl_error($ch);
-    close_curl($ch);
-
-    if ($err) return 'pending';
-    $res_data = json_decode($response, true);
-    
-    return $res_data['result']['status'] ?? 'pending';
 }
 
 // LOGIKA PROSES TOMBOL: HAPUS SITE DOMAIN
@@ -142,15 +109,9 @@ if (isset($_GET['aksi']) && $_GET['aksi'] == 'hapus' && isset($_GET['id']) && is
     
     $eksekusi_cf = deleteSiteDariCloudflareLokal($zone_id_hapus);
 
-    if (isset($eksekusi_cf['success']) && $eksekusi_cf['success'] == true) {
-        mysqli_query($koneksi, "DELETE FROM custom_domains WHERE id = '$id_hapus'");
-        sinkronisasiDomainKeCoolifyLokal();
-        $pesan = "<div class='alert success'><strong>Sukses!</strong> Domain lama berhasil dihapus.</div>";
-    } else {
-        mysqli_query($koneksi, "DELETE FROM custom_domains WHERE id = '$id_hapus'");
-        sinkronisasiDomainKeCoolifyLokal();
-        $pesan = "<div class='alert success'><strong>Informasi:</strong> Domain dibersihkan dari database lokal.</div>";
-    }
+    mysqli_query($koneksi, "DELETE FROM custom_domains WHERE id = '$id_hapus'");
+    sinkronisasiDomainKeCoolifyLokal();
+    $pesan = "<div class='alert success'><strong>Sukses!</strong> Domain berhasil dihapus dari sistem.</div>";
 }
 
 // LOGIKA PROSES TOMBOL: TAMBAH SITE DOMAIN (POST FORM)
@@ -171,7 +132,7 @@ if (isset($_POST['submit_domain'])) {
             $cf_key   = 'cfk_' . 'I4b6ZygMhnUoCSYEnPVfupCDOyAHan7ZIs9YbzGpa5e33a56'; 
             $ip_server_kamu = '137.184.155.151'; 
 
-            // 1. Buat A record di Cloudflare dengan Proxy ON (Awan Oranye) untuk SSL otomatis
+            // 1. Buat A record di Cloudflare dengan Proxy ON
             $dns_data = [
                 "type" => "A",
                 "name" => "@",
@@ -189,9 +150,9 @@ if (isset($_POST['submit_domain'])) {
                 'Content-Type: application/json'
             ]);
             curl_exec($ch_dns);
-            close_curl($ch_dns);
+            curl_close($ch_dns);
 
-            // 2. Set SSL Cloudflare ke "full" agar jabat tangan HTTPS murni ke https://* Coolify lolos
+            // 2. Set SSL Cloudflare ke "full"
             $ssl_payload = [
                 "id" => "ssl",
                 "value" => "full" 
@@ -206,14 +167,13 @@ if (isset($_POST['submit_domain'])) {
                 'Content-Type: application/json'
             ]);
             curl_exec($ch_ssl);
-            close_curl($ch_ssl);
+            curl_close($ch_ssl);
 
             // 3. Simpan data domain ke database MySQL
             $query_simpan = "INSERT INTO custom_domains (domain_name, cloudflare_id, status) VALUES ('$domain_clean', '$zone_id', 'pending')";
             
             if (mysqli_query($koneksi, $query_simpan)) {
-                
-                // 🔥 SAKTI UTAMA: Panggil otomatisasi pengisian kolom FQDN di Coolify
+                // Jalankan sinkronisasi otomatis ke Coolify FQDN
                 sinkronisasiDomainKeCoolifyLokal();
 
                 $pesan = "
