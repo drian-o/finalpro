@@ -1,6 +1,97 @@
-<?php include_once 'koneksi.php'; ?>
-<?php include_once 'header.php'; ?>
-<?php include_once 'carousel_slider.php';?>
+<?php 
+// -------------------------------------------------------------------------
+// 1. KONEKSI & AMANKAN ROUTER URL PHP NATIVE
+// -------------------------------------------------------------------------
+include_once 'koneksi.php'; 
+
+$request = $_SERVER['REQUEST_URI'];
+$request = explode('?', $request)[0];            // Pisahkan query string (?id=xx) jika ada
+$request = preg_replace('#/+#', '/', $request); // Hancurkan double slash akibat proxy
+$request = trim($request, '/');                  // Bersihkan slash depan & belakang
+
+// -------------------------------------------------------------------------
+// 2. LOGIKA MAPPING ROUTING MENURUT DAFTAR MENU GAMBAR (ANTI-STUCK)
+// -------------------------------------------------------------------------
+switch ($request) {
+    case 'togel':
+        if (file_exists('lottery.php')) { include_once 'lottery.php'; } 
+        else { echo "File lottery.php tidak ditemukan!"; }
+        exit;
+
+    case 'slot':
+        if (file_exists('slot.php')) { include_once 'slot.php'; } 
+        else { echo "File slot.php tidak ditemukan!"; }
+        exit;
+
+    case 'casino':
+        if (file_exists('casino.php')) { include_once 'casino.php'; } 
+        else { echo "File casino.php tidak ditemukan!"; }
+        exit;
+
+    case 'table':
+        if (file_exists('table.php')) { include_once 'table.php'; } 
+        else { echo "File table.php tidak ditemukan!"; }
+        exit;
+
+    case 'sport':
+        if (file_exists('sports.php')) { include_once 'sports.php'; } 
+        else { echo "File sports.php tidak ditemukan!"; }
+        exit;
+
+    case 'promo':
+        if (file_exists('promo.php')) { include_once 'promo.php'; } 
+        else { echo "File promo.php tidak ditemukan!"; }
+        exit;
+
+    case 'arcade':
+        if (file_exists('arcade.php')) { include_once 'arcade.php'; } 
+        else { echo "File arcade.php tidak ditemukan!"; }
+        exit;
+
+    case 'poker':
+        if (file_exists('casino.php')) { include_once 'casino.php'; } 
+        else { echo "File casino.php tidak ditemukan!"; }
+        exit;
+
+    case 'fishing':
+        if (file_exists('fishing.php')) { include_once 'fishing.php'; } 
+        else { echo "File fishing.php tidak ditemukan!"; }
+        exit;
+
+    case 'cockfight':
+        if (file_exists('cockfight.php')) { include_once 'cockfight.php'; } 
+        else { echo "File cockfight.php tidak ditemukan!"; }
+        exit;
+
+    case 'crash':
+        if (file_exists('crash.php')) { include_once 'crash.php'; } 
+        else { echo "File crash.php tidak ditemukan!"; }
+        exit;
+
+    case 'rtp':
+        if (file_exists('rtp.php')) { include_once 'rtp.php'; } 
+        else { echo "File rtp.php tidak ditemukan!"; }
+        exit;
+
+    case 'auth-register':
+    case 'register':
+        if (file_exists('auth-register.php')) { include_once 'auth-register.php'; } 
+        else { echo "File auth-register.php tidak ditemukan!"; }
+        exit;
+        
+    case 'auth-login':
+    case 'login':
+        if (file_exists('auth-login.php')) { include_once 'auth-login.php'; } 
+        else { echo "File auth-login.php tidak ditemukan!"; }
+        exit;
+}
+
+// -------------------------------------------------------------------------
+// 3. DEFAULT TAMPILAN: JIKA TIDAK ADA MENU YANG DIPILIH (HALAMAN BERANDA)
+// -------------------------------------------------------------------------
+include_once 'header.php'; 
+include_once 'carousel_slider.php';
+?>
 <style>
     .rfm-marquee-container {
         position: relative;
@@ -16,13 +107,8 @@
     }
 
     @keyframes marquee {
-        0% {
-            transform: translateX(10%);
-        }
-
-        100% {
-            transform: translateX(-50%);
-        }
+        0% { transform: translateX(10%); }
+        100% { transform: translateX(-50%); }
     }
 </style>
 </head>
@@ -46,7 +132,6 @@
             </div>
         </div>
     </div>
-    
 
     <div class="w-full px-3 mt-3 order-3 overflow-hidden">
         <div class="flex justify-between items-center mb-4 lg:mb-3">
@@ -85,25 +170,19 @@
                             </thead>
                             <tbody>
                                 <tr class="even:bg-background-default">
-                                    <td class="py-2 px-1 text-xs lg:text-sm underline">
-                                        <a target="_blank" rel="nofollow" href="http://www.hkpools1.com/">HONGKONG</a>
-                                    </td>
+                                    <td class="py-2 px-1 text-xs lg:text-sm underline"><a target="_blank" rel="nofollow" href="http://www.hkpools1.com/">HONGKONG</a></td>
                                     <td class="py-2 px-1 text-xs lg:text-sm">Everyday</td>
                                     <td class="py-2 px-1 text-xs lg:text-sm text-center">22:30</td>
                                     <td class="py-2 px-1 text-xs lg:text-sm text-center">23:59</td>
                                 </tr>
                                 <tr class="even:bg-background-default">
-                                    <td class="py-2 px-1 text-xs lg:text-sm underline">
-                                        <a target="_blank" rel="nofollow" href="https://online.singaporepools.com/en/lottery">SINGAPORE</a>
-                                    </td>
+                                    <td class="py-2 px-1 text-xs lg:text-sm underline"><a target="_blank" rel="nofollow" href="https://online.singaporepools.com/en/lottery">SINGAPORE</a></td>
                                     <td class="py-2 px-1 text-xs lg:text-sm">Closed Tuesday and Friday (conditional)</td>
                                     <td class="py-2 px-1 text-xs lg:text-sm text-center">17:25</td>
                                     <td class="py-2 px-1 text-xs lg:text-sm text-center">21:00</td>
                                 </tr>
                                 <tr class="even:bg-background-default">
-                                    <td class="py-2 px-1 text-xs lg:text-sm underline">
-                                        <a target="_blank" rel="nofollow" href="http://livedrawsydney.co/">SYDNEY</a>
-                                    </td>
+                                    <td class="py-2 px-1 text-xs lg:text-sm underline"><a target="_blank" rel="nofollow" href="http://livedrawsydney.co/">SYDNEY</a></td>
                                     <td class="py-2 px-1 text-xs lg:text-sm">Everyday</td>
                                     <td class="py-2 px-1 text-xs lg:text-sm text-center">13:30</td>
                                     <td class="py-2 px-1 text-xs lg:text-sm text-center">14:30</td>
@@ -118,7 +197,7 @@
         <div class="relative group">
             <button class="hidden lg:flex justify-center items-center absolute -right-12 top-1/3 w-8 h-8 rounded-full text-2xl text-caption group-hover:-right-3 bg-white/70 hover:bg-white transition-all duration-300 ease-in-out">&gt;</button>
             <div class="-mx-1 lg:mx-0 overflow-x-scroll whitespace-nowrap pb-3 scroll-smooth opacity-scroll">
-                <a class="inline-block justify-center md:w-[calc(100%/4-8px)] lg:w-[calc(100%/5-16px)] px-2 lg:px-3 py-3 lg:py-4 mx-2 rounded-lg transition-all duration-1000 ease-in-out bg-gradient-to-b from-primary to-background-secondary" href="game-lottery">
+                <a class="inline-block justify-center md:w-[calc(100%/4-8px)] lg:w-[calc(100%/5-16px)] px-2 lg:px-3 py-3 lg:py-4 mx-2 rounded-lg bg-gradient-to-b from-primary to-background-secondary" href="togel">
                     <div class="flex items-center justify-center">
                         <div>
                             <p class="font-bold text-[10px] md:text-xs lg:text-sm uppercase truncate w-28 lg:w-32 text-center text-white">HONGKONG</p>
@@ -127,7 +206,7 @@
                         </div>
                     </div>
                 </a>
-                <a class="inline-block justify-center md:w-[calc(100%/4-8px)] lg:w-[calc(100%/5-16px)] px-2 lg:px-3 py-3 lg:py-4 mx-2 rounded-lg transition-all duration-1000 ease-in-out bg-gradient-to-b from-primary to-background-secondary" href="game-lottery">
+                <a class="inline-block justify-center md:w-[calc(100%/4-8px)] lg:w-[calc(100%/5-16px)] px-2 lg:px-3 py-3 lg:py-4 mx-2 rounded-lg bg-gradient-to-b from-primary to-background-secondary" href="togel">
                     <div class="flex items-center justify-center">
                         <div>
                             <p class="font-bold text-[10px] md:text-xs lg:text-sm uppercase truncate w-28 lg:w-32 text-center text-white">SINGAPORE</p>
@@ -136,7 +215,7 @@
                         </div>
                     </div>
                 </a>
-                <a class="inline-block justify-center md:w-[calc(100%/4-8px)] lg:w-[calc(100%/5-16px)] px-2 lg:px-3 py-3 lg:py-4 mx-2 rounded-lg transition-all duration-1000 ease-in-out bg-gradient-to-b from-primary to-background-secondary" href="game-lottery">
+                <a class="inline-block justify-center md:w-[calc(100%/4-8px)] lg:w-[calc(100%/5-16px)] px-2 lg:px-3 py-3 lg:py-4 mx-2 rounded-lg bg-gradient-to-b from-primary to-background-secondary" href="togel">
                     <div class="flex items-center justify-center">
                         <div>
                             <p class="font-bold text-[10px] md:text-xs lg:text-sm uppercase truncate w-28 lg:w-32 text-center text-white">SYDNEY</p>
@@ -147,6 +226,7 @@
                 </a>
             </div>
         </div>
+
         <section class="w-full md:mx-auto px-3 mt-4 lg:mt-8 mb-3 lg:mb-4 order-4">
             <div class="relative w-full h-[18.5vw] sm:h-20 md:h-[11vh] lg:h-48">
                 <figure class="h-full relative z-20">
@@ -166,15 +246,12 @@
         
         <?php include 'game-popular.php'; ?>
         <?php include 'game-recomended.php'; ?>
-        
-        <!--$!-->
-        <template data-dgst="NEXT_DYNAMIC_NO_SSR_CODE"></template>
-        <!--/$-->
     </div>
+
     <div class="w-full px-3 mt-1 lg:mt-4 order-last">
         <div class="flex justify-between items-center">
             <p class="md:text-lg font-medium">Promo</p>
-            <a class="text-primary text-sm md:text-base transition-all duration-300 ease-in-out border-b border-transparent hover:lg:border-primary" href="promo">
+            <a class="text-primary text-sm md:text-base border-b border-transparent hover:lg:border-primary" href="promo">
                 Show All
                 <svg width="20" height="20" viewBox="0 0 24 24" fill="var(--primary)" xmlns="http://www.w3.org/2000/svg" size="20">
                     <path d="m15 12 .354-.354.353.354-.353.354L15 12ZM9.354 5.646l6 6-.708.708-6-6 .708-.708Zm6 6.708-6 6-.708-.708 6-6 .708.708Z" fill="var(--primary)"></path>
@@ -183,7 +260,6 @@
         </div>
 
         <?php
-        // Ambil data promosi dari database
         $promosi = mysqli_query($koneksi, "SELECT * FROM promosi");
         $promosi_data = [];
         while ($data_promosi = mysqli_fetch_array($promosi)) {
@@ -196,7 +272,7 @@
         <ul class="flex space-x-2 lg:space-x-3 mt-3">
             <?php foreach ($promosi_data as $index => $data_promosi) : ?>
                 <?php if ($index >= 3) break; ?>
-                <li aria-label="slide item <?php echo $index; ?>" role="listitem" class="w-2 lg:w-3 h-2 lg:h-3 ml-2 lg:ml-3 rounded-full inline-block lg:hover:opacity-80 border-[0.5px] border-base" style="background-color: var(--secondaryBackground)"></li>
+                <li aria-label="slide item <?php echo $index; ?>" role="listitem" class="w-2 lg:w-3 h-2 lg:h-3 ml-2 lg:ml-3 rounded-full inline-block border-[0.5px] border-base" style="background-color: var(--secondaryBackground)"></li>
             <?php endforeach; ?>
         </ul>
 
@@ -220,53 +296,37 @@
                             <p class="h-8 lg:h-10 flex flex-col items-start justify-center mt-2">
                                 <span class="text-xs lg:text-sm max-h-8 lg:max-h-10 overflow-hidden whitespace-normal"><?php echo htmlspecialchars($data_promosi['judul_promosi'], ENT_QUOTES, 'UTF-8'); ?></span>
                             </p>
-                            <div class="flex justify-between items-center lg:mt-1 relative lg:relative left-0 right-0 bottom-0">
-                                <p class="text-[10px] lg:text-xs opacity-60">
-                                </p>
-                            </div>
                         </article>
                     </a>
                 </div>
             <?php endforeach; ?>
         </div>
     </div>
-    <!--$-->
+    
     <?php include_once 'footer.php'; ?>
 
     <script>
         function formatDate(date) {
-            const options = {
-                weekday: 'short',
-                day: '2-digit',
-                month: '2-digit',
-                year: '2-digit'
-            };
+            const options = { weekday: 'short', day: '2-digit', month: '2-digit', year: '2-digit' };
             return date.toLocaleDateString('en-GB', options).replace(/,/g, '');
         }
-
         function addDays(date, days) {
             let result = new Date(date);
             result.setDate(result.getDate() + days);
             return result;
         }
-
         function generateRandomNumber() {
             return Math.floor(1000 + Math.random() * 9000);
         }
-
         function updateNumbersAndDates() {
             const today = new Date().toLocaleDateString('en-GB');
             const storedDate = localStorage.getItem('lastDate');
 
             if (storedDate !== today) {
                 localStorage.setItem('lastDate', today);
-
-                const hkNumber = generateRandomNumber();
-                const sgNumber = generateRandomNumber();
-                const syNumber = generateRandomNumber();
-                localStorage.setItem('hkNumber', hkNumber);
-                localStorage.setItem('sgNumber', sgNumber);
-                localStorage.setItem('syNumber', syNumber);
+                localStorage.setItem('hkNumber', generateRandomNumber());
+                localStorage.setItem('sgNumber', generateRandomNumber());
+                localStorage.setItem('syNumber', generateRandomNumber());
             }
 
             document.getElementById('hk-number').innerText = localStorage.getItem('hkNumber');
@@ -277,17 +337,14 @@
             document.getElementById('sg-date').innerText = formatDate(addDays(new Date(), 1));
             document.getElementById('sy-date').innerText = formatDate(addDays(new Date(), 1));
         }
-
         updateNumbersAndDates();
     </script>
     <script>
         document.getElementById('openPopupButton').addEventListener('click', function() {
             const overlay = document.getElementById('popupOverlay');
             const section = document.getElementById('popupSection');
-
             overlay.classList.remove('invisible', 'w-0');
             overlay.classList.add('w-full', 'visible'); 
-
             section.classList.remove('opacity-0', 'invisible', '-z-10', 'max-h-0');
             section.classList.add('opacity-100', 'z-[9999]', 'max-h-screen'); 
         });
@@ -295,30 +352,20 @@
         document.getElementById('closePopupButton').addEventListener('click', function() {
             const overlay = document.getElementById('popupOverlay');
             const section = document.getElementById('popupSection');
-
             section.classList.add('opacity-0', 'invisible', '-z-10', 'max-h-0');
             section.classList.remove('opacity-100', 'z-[9999]', 'max-h-screen');
-
             overlay.classList.add('invisible', 'w-0');
             overlay.classList.remove('w-full', 'visible');
         });
     </script>
     <script>
-        function getRandomIncrement() {
-            return Math.floor(Math.random() * 1000) + 1;
-        }
-
-        function formatNumber(num) {
-            return 'IDR ' + num.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".");
-        }
-
+        function getRandomIncrement() { return Math.floor(Math.random() * 1000) + 1; }
+        function formatNumber(num) { return 'IDR ' + num.toString().replace(/\B(?=(\d{3})+(?!\d))/g, "."); }
         let jackpotValue = 10762327720;
-
         function updateJackpotCounter() {
             jackpotValue += getRandomIncrement();
             document.getElementById('jackpot-counter').textContent = formatNumber(jackpotValue);
         }
-
         setInterval(updateJackpotCounter, 1000);
     </script>    
 </body>
