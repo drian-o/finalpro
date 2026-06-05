@@ -1,89 +1,93 @@
 <?php 
 // -------------------------------------------------------------------------
-// 1. KONEKSI & AMANKAN ROUTER URL PHP NATIVE
+// 1. KONEKSI & ENGINE ROUTER QUERY PARAMETER (?page=...) - ANTI STUCK
 // -------------------------------------------------------------------------
 include_once 'koneksi.php'; 
 
-$request = $_SERVER['REQUEST_URI'];
-$request = explode('?', $request)[0];            // Pisahkan query string (?id=xx) jika ada
-$request = preg_replace('#/+#', '/', $request); // Hancurkan double slash akibat proxy
-$request = trim($request, '/');                  // Bersihkan slash depan & belakang
+// Mengambil parameter halaman dari URL (?page=nama-halaman)
+$page = isset($_GET['page']) ? trim($_GET['page']) : '';
 
 // -------------------------------------------------------------------------
-// 2. LOGIKA MAPPING ROUTING MENURUT DAFTAR MENU GAMBAR (ANTI-STUCK)
+// 2. LOGIKA MAPPING ROUTING MENURUT DAFTAR MENU (FIX TYPO)
 // -------------------------------------------------------------------------
-switch ($request) {
-    case 'togel':
-        if (file_exists('lottery.php')) { include_once 'lottery.php'; } 
-        else { echo "File lottery.php tidak ditemukan!"; }
-        exit;
+if (!empty($page)) {
+    switch ($page) {
+        case 'togel':
+            if (file_exists('lottery.php')) { include_once 'lottery.php'; } 
+            else { echo "File lottery.php tidak ditemukan!"; }
+            exit;
 
-    case 'slot':
-        if (file_exists('slot.php')) { include_once 'slot.php'; } 
-        else { echo "File slot.php tidak ditemukan!"; }
-        exit;
+        case 'slot':
+            if (file_exists('slot.php')) { include_once 'slot.php'; } 
+            else { echo "File slot.php tidak ditemukan!"; }
+            exit;
 
-    case 'casino':
-        if (file_exists('casino.php')) { include_once 'casino.php'; } 
-        else { echo "File casino.php tidak ditemukan!"; }
-        exit;
+        case 'casino':
+            if (file_exists('casino.php')) { include_once 'casino.php'; } 
+            else { echo "File casino.php tidak ditemukan!"; }
+            exit;
 
-    case 'table':
-        if (file_exists('table.php')) { include_once 'table.php'; } 
-        else { echo "File table.php tidak ditemukan!"; }
-        exit;
+        case 'table':
+            if (file_exists('table.php')) { include_once 'table.php'; } 
+            else { echo "File table.php tidak ditemukan!"; }
+            exit;
 
-    case 'sport':
-        if (file_exists('sports.php')) { include_once 'sports.php'; } 
-        else { echo "File sports.php tidak ditemukan!"; }
-        exit;
+        case 'sport':
+            if (file_exists('sports.php')) { include_once 'sports.php'; } 
+            else { echo "File sports.php tidak ditemukan!"; }
+            exit;
 
-    case 'promo':
-        if (file_exists('promo.php')) { include_once 'promo.php'; } 
-        else { echo "File promo.php tidak ditemukan!"; }
-        exit;
+        case 'promo':
+            if (file_exists('promo.php')) { include_once 'promo.php'; } 
+            else { echo "File promo.php tidak ditemukan!"; }
+            exit;
 
-    case 'arcade':
-        if (file_exists('arcade.php')) { include_once 'arcade.php'; } 
-        else { echo "File arcade.php tidak ditemukan!"; }
-        exit;
+        case 'arcade':
+            if (file_exists('arcade.php')) { include_once 'arcade.php'; } 
+            else { echo "File arcade.php tidak ditemukan!"; }
+            exit;
 
-    case 'poker':
-        if (file_exists('casino.php')) { include_once 'casino.php'; } 
-        else { echo "File casino.php tidak ditemukan!"; }
-        exit;
+        case 'poker':
+            // 🔥 REVISI: Diperbaiki mengarah ke poker.php bukan casino.php
+            if (file_exists('poker.php')) { include_once 'poker.php'; } 
+            else { echo "File poker.php tidak ditemukan!"; }
+            exit;
 
-    case 'fishing':
-        if (file_exists('fishing.php')) { include_once 'fishing.php'; } 
-        else { echo "File fishing.php tidak ditemukan!"; }
-        exit;
+        case 'fishing':
+            if (file_exists('fishing.php')) { include_once 'fishing.php'; } 
+            else { echo "File fishing.php tidak ditemukan!"; }
+            exit;
 
-    case 'cockfight':
-        if (file_exists('cockfight.php')) { include_once 'cockfight.php'; } 
-        else { echo "File cockfight.php tidak ditemukan!"; }
-        exit;
+        case 'cockfight':
+            if (file_exists('cockfight.php')) { include_once 'cockfight.php'; } 
+            else { echo "File cockfight.php tidak ditemukan!"; }
+            exit;
 
-    case 'crash':
-        if (file_exists('crash.php')) { include_once 'crash.php'; } 
-        else { echo "File crash.php tidak ditemukan!"; }
-        exit;
+        case 'crash':
+            if (file_exists('crash.php')) { include_once 'crash.php'; } 
+            else { echo "File crash.php tidak ditemukan!"; }
+            exit;
 
-    case 'rtp':
-        if (file_exists('rtp.php')) { include_once 'rtp.php'; } 
-        else { echo "File rtp.php tidak ditemukan!"; }
-        exit;
+        case 'rtp':
+            if (file_exists('rtp.php')) { include_once 'rtp.php'; } 
+            else { echo "File rtp.php tidak ditemukan!"; }
+            exit;
 
-    case 'auth-register':
-    case 'register':
-        if (file_exists('auth-register.php')) { include_once 'auth-register.php'; } 
-        else { echo "File auth-register.php tidak ditemukan!"; }
-        exit;
-        
-    case 'auth-login':
-    case 'login':
-        if (file_exists('auth-login.php')) { include_once 'auth-login.php'; } 
-        else { echo "File auth-login.php tidak ditemukan!"; }
-        exit;
+        case 'auth-register':
+        case 'register':
+            if (file_exists('auth-register.php')) { include_once 'auth-register.php'; } 
+            else { echo "File auth-register.php tidak ditemukan!"; }
+            exit;
+            
+        case 'auth-login':
+        case 'login':
+            if (file_exists('auth-login.php')) { include_once 'auth-login.php'; } 
+            else { echo "File auth-login.php tidak ditemukan!"; }
+            exit;
+            
+        default:
+            break;
+    }
 }
 
 // -------------------------------------------------------------------------
@@ -197,7 +201,7 @@ include_once 'carousel_slider.php';
         <div class="relative group">
             <button class="hidden lg:flex justify-center items-center absolute -right-12 top-1/3 w-8 h-8 rounded-full text-2xl text-caption group-hover:-right-3 bg-white/70 hover:bg-white transition-all duration-300 ease-in-out">&gt;</button>
             <div class="-mx-1 lg:mx-0 overflow-x-scroll whitespace-nowrap pb-3 scroll-smooth opacity-scroll">
-                <a class="inline-block justify-center md:w-[calc(100%/4-8px)] lg:w-[calc(100%/5-16px)] px-2 lg:px-3 py-3 lg:py-4 mx-2 rounded-lg bg-gradient-to-b from-primary to-background-secondary" href="togel">
+                <a class="inline-block justify-center md:w-[calc(100%/4-8px)] lg:w-[calc(100%/5-16px)] px-2 lg:px-3 py-3 lg:py-4 mx-2 rounded-lg bg-gradient-to-b from-primary to-background-secondary" href="?page=togel">
                     <div class="flex items-center justify-center">
                         <div>
                             <p class="font-bold text-[10px] md:text-xs lg:text-sm uppercase truncate w-28 lg:w-32 text-center text-white">HONGKONG</p>
@@ -206,7 +210,7 @@ include_once 'carousel_slider.php';
                         </div>
                     </div>
                 </a>
-                <a class="inline-block justify-center md:w-[calc(100%/4-8px)] lg:w-[calc(100%/5-16px)] px-2 lg:px-3 py-3 lg:py-4 mx-2 rounded-lg bg-gradient-to-b from-primary to-background-secondary" href="togel">
+                <a class="inline-block justify-center md:w-[calc(100%/4-8px)] lg:w-[calc(100%/5-16px)] px-2 lg:px-3 py-3 lg:py-4 mx-2 rounded-lg bg-gradient-to-b from-primary to-background-secondary" href="?page=togel">
                     <div class="flex items-center justify-center">
                         <div>
                             <p class="font-bold text-[10px] md:text-xs lg:text-sm uppercase truncate w-28 lg:w-32 text-center text-white">SINGAPORE</p>
@@ -215,7 +219,7 @@ include_once 'carousel_slider.php';
                         </div>
                     </div>
                 </a>
-                <a class="inline-block justify-center md:w-[calc(100%/4-8px)] lg:w-[calc(100%/5-16px)] px-2 lg:px-3 py-3 lg:py-4 mx-2 rounded-lg bg-gradient-to-b from-primary to-background-secondary" href="togel">
+                <a class="inline-block justify-center md:w-[calc(100%/4-8px)] lg:w-[calc(100%/5-16px)] px-2 lg:px-3 py-3 lg:py-4 mx-2 rounded-lg bg-gradient-to-b from-primary to-background-secondary" href="?page=togel">
                     <div class="flex items-center justify-center">
                         <div>
                             <p class="font-bold text-[10px] md:text-xs lg:text-sm uppercase truncate w-28 lg:w-32 text-center text-white">SYDNEY</p>
@@ -251,7 +255,7 @@ include_once 'carousel_slider.php';
     <div class="w-full px-3 mt-1 lg:mt-4 order-last">
         <div class="flex justify-between items-center">
             <p class="md:text-lg font-medium">Promo</p>
-            <a class="text-primary text-sm md:text-base border-b border-transparent hover:lg:border-primary" href="promo">
+            <a class="text-primary text-sm md:text-base border-b border-transparent hover:lg:border-primary" href="?page=promo">
                 Show All
                 <svg width="20" height="20" viewBox="0 0 24 24" fill="var(--primary)" xmlns="http://www.w3.org/2000/svg" size="20">
                     <path d="m15 12 .354-.354.353.354-.353.354L15 12ZM9.354 5.646l6 6-.708.708-6-6 .708-.708Zm6 6.708-6 6-.708-.708 6-6 .708.708Z" fill="var(--primary)"></path>
@@ -280,7 +284,7 @@ include_once 'carousel_slider.php';
             <?php foreach ($promosi_data as $index => $data_promosi) : ?>
                 <?php if ($index >= 3) break; ?>
                 <div class="w-[80%] sm:w-2/3 md:w-[45%] lg:w-1/3 inline-block px-2 mt-4">
-                    <a class="block bg-background-tertiary px-3 lg:px-4 py-2 lg:pt-4 lg:pb-2 rounded-md relative" href="promo">
+                    <a class="block bg-background-tertiary px-3 lg:px-4 py-2 lg:pt-4 lg:pb-2 rounded-md relative" href="?page=promo">
                         <figure class="mb-2">
                             <img alt="<?php echo htmlspecialchars($data_promosi['judul_promosi'], ENT_QUOTES, 'UTF-8'); ?>" loading="lazy" width="0" height="0" decoding="async" data-nimg="1" class="rounded-md w-full min-h-[96px] lg:min-h-[150px] max-h-24 md:max-h-32 object-cover object-center" src="<?php echo htmlspecialchars($alamat_website . 'assets/img/' . $data_promosi['gambar_promosi'], ENT_QUOTES, 'UTF-8'); ?>" />
                             <span class=" absolute z-10 left-0 top-2 text-[10px] font-medium px-3 py-[1px] rounded-e-full bg-success">
