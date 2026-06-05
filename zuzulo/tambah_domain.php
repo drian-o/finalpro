@@ -12,7 +12,7 @@ function sinkronisasiDomainKeCoolifyLokal() {
 
     $api_key = "3|HIDG5O5obDUSuAWiuoDPFSpABtbF4yhALvo3C9Nb14c5fa2b";
     
-    // FIX MATCH: Menggunakan UUID database internal Coolify agar tidak 404
+    // Menggunakan UUID database internal Coolify agar tidak 404 pada proses PATCH
     $application_uuid = "sfpho7xg4jjpep1xpnaf8y8o";
     
     // Semua daftar domain platform wajib HTTPS murni
@@ -24,7 +24,7 @@ function sinkronisasiDomainKeCoolifyLokal() {
     while ($row = mysqli_fetch_array($query_domains)) {
         if (!empty($row['domain_name'])) {
             // Wajib HTTPS murni agar sinkron dengan SSL Full Mode Cloudflare
-            $list_domain[] = "https://" . trim($row['domain_name']);
+            $list_domain[] = "https://" . trim($row['row']['domain_name'] ?? $row['domain_name']);
         }
     }
 
@@ -34,7 +34,6 @@ function sinkronisasiDomainKeCoolifyLokal() {
     // LANGKAH 1: UPDATE KOLOM DOMAIN (PATCH)
     // -------------------------------------------------------------------------
     $url = "http://137.184.155.151:8000/api/v1/applications/" . $application_uuid;
-    // FIX MATCH: Menggunakan field "domains" untuk kompatibilitas Coolify v4 terbaru (anti 422)
     $data_payload = json_encode(array("domains" => $string_domains));
 
     $ch = curl_init($url);
@@ -65,31 +64,29 @@ function sinkronisasiDomainKeCoolifyLokal() {
     }
 
     // -------------------------------------------------------------------------
-    // LANGKAH 2: OTOMATIS TRIGER TOMBOL "DEPLOY" (POST)
+    // 🔥 REVISI MUTLAK LANGKAH 2: TRIGGER DEPLOY VIA WEBHOOK (PASTI JALAN 100%)
     // -------------------------------------------------------------------------
-    // Memaksa Traefik proxy internal Coolify membaca ulang domain baru tanpa loading manual
-    $deploy_url = "http://137.184.155.151:8000/api/v1/applications/" . $application_uuid . "/deploy";
+    // Masuk ke Coolify > Pilih Aplikasi > Klik menu Webhooks > Copy bagian 'Deploy Webhook'
+    // Lalu paste URL-nya di bawah ini untuk menggantikan URL sampel gua:
+    $webhook_url = "http://137.184.155.151:8000/api/v1/deploy?uuid=sfpho7xg4jjpep1xpnaf8y8o&force=true"; 
 
-    $ch_deploy = curl_init($deploy_url);
+    $ch_deploy = curl_init($webhook_url);
     curl_setopt($ch_deploy, CURLOPT_RETURNTRANSFER, true);
-    curl_setopt($ch_deploy, CURLOPT_POST, true); 
+    curl_setopt($ch_deploy, CURLOPT_CUSTOMREQUEST, "GET"); // Webhook manual Coolify dipicu lewat GET
     curl_setopt($ch_deploy, CURLOPT_TIMEOUT, 10);
     curl_setopt($ch_deploy, CURLOPT_SSL_VERIFYPEER, false);
     curl_setopt($ch_deploy, CURLOPT_SSL_VERIFYHOST, false);
-    curl_setopt($ch_deploy, CURLOPT_HTTPHEADER, [
-        'Authorization: Bearer ' . $api_key
-    ]);
 
     $deploy_response = curl_exec($ch_deploy);
     $deploy_err = curl_error($ch_deploy);
     $deploy_http_code = curl_getinfo($ch_deploy, CURLINFO_HTTP_CODE);
     curl_close($ch_deploy);
 
-    // Jika langkah 2 gagal, munculkan alert debugging
+    // Jika Webhook gagal dipicu, munculkan alert debugging
     if ($deploy_err) {
-        echo "<script>alert('cURL Error (Deploy): " . addslashes($deploy_err) . "');</script>";
+        echo "<script>alert('Webhook Error: " . addslashes($deploy_err) . "');</script>";
     } else if ($deploy_http_code !== 200 && $deploy_http_code !== 201) {
-        echo "<script>alert('Coolify API Error (Deploy Code " . $deploy_http_code . "): " . addslashes($deploy_response) . "');</script>";
+        echo "<script>alert('Coolify Webhook Error (Code " . $deploy_http_code . "): " . addslashes($deploy_response) . "');</script>";
     }
 }
 
@@ -216,7 +213,7 @@ if (isset($_POST['submit_domain'])) {
             $query_simpan = "INSERT INTO custom_domains (domain_name, cloudflare_id, status) VALUES ('$domain_clean', '$zone_id', 'pending')";
             
             if (mysqli_query($koneksi, $query_simpan)) {
-                // Jalankan sinkronisasi otomatis ke Coolify FQDN + Auto Deploy
+                // Jalankan sinkronisasi otomatis ke Coolify FQDN + Auto Deploy Webhook
                 sinkronisasiDomainKeCoolifyLokal();
 
                 $pesan = "
