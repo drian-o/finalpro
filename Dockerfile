@@ -1,7 +1,7 @@
 # Pakai mesin PHP dan Apache
 FROM php:8.2-apache
 
-# 🔥 REVISI 1: Gabungkan instalasi dasar di atas agar kena cache Docker (Build jadi super cepat)
+# Gabungkan instalasi dasar di atas agar kena cache Docker (Build jadi super cepat)
 RUN docker-php-ext-install mysqli pdo pdo_mysql \
     && a2enmod rewrite
 
@@ -19,7 +19,7 @@ RUN echo "upload_max_filesize = 64M" > /usr/local/etc/php/conf.d/uploads.ini \
     && echo "post_max_size = 64M" >> /usr/local/etc/php/conf.d/uploads.ini
 # ========================================================
 
-# 🔥 REVISI 2: Pake metode EOF biar penulisan syntax Apache aman tanpa ngetik \n\t manual
+# Pake metode EOF biar penulisan syntax Apache aman tanpa ngetik \n\t manual
 RUN cat << 'EOF' > /etc/apache2/conf-available/override.conf
 <Directory /var/www/html>
     AllowOverride All
