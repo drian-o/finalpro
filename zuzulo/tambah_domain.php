@@ -4,6 +4,46 @@ require_once __DIR__ . '/../koneksi.php';
 
 $pesan = "";
 
+// =========================================================================
+// FUNGSI SAKTI BARU: FUNGSI SINKRONISASI LIST DOMAIN DATABASE KE API COOLIFY
+// =========================================================================
+function sinkronisasiDomainKeCoolifyLokal() {
+    global $koneksi;
+
+    $api_key = "3|HIDG5O5obDUSuAWiuoDPFSpABtbF4yhALvo3C9Nb14c5fa2b";
+    $application_uuid = "ndghrk488bw2hg8l7363bu7v";
+    $domain_utama = "http://exampleproject.my.id";
+    
+    $list_domain = [$domain_utama];
+
+    // Ambil SEMUA domain dari database yang statusnya active maupun pending
+    $query_domains = mysqli_query($koneksi, "SELECT domain_name FROM custom_domains");
+    while ($row = mysqli_fetch_array($query_domains)) {
+        if (!empty($row['domain_name'])) {
+            $list_domain[] = "http://" . trim($row['domain_name']);
+        }
+    }
+
+    // Gabungkan jadi string dipisah koma untuk dikirim ke fqdn Coolify
+    $string_domains = implode(",", $list_domain);
+
+    // Kirim perintah PATCH ke API Coolify lokal lu
+    $url = "http://137.184.155.151:8000/api/v1/applications/" . $application_uuid;
+    $data_payload = json_encode(array("fqdn" => $string_domains));
+
+    $ch = curl_init($url);
+    curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+    curl_setopt($ch, CURLOPT_CUSTOMREQUEST, "PATCH");
+    curl_setopt($ch, CURLOPT_POSTFIELDS, $data_payload);
+    curl_setopt($ch, CURLOPT_HTTPHEADER, [
+        'Content-Type: application/json',
+        'Authorization: Bearer ' . $api_key
+    ]);
+
+    curl_exec($ch);
+    curl_close($ch);
+}
+
 // ========================================================
 // FUNGSI SAKTI 1: TAMBAH ZONE/SITE BARU KE CLOUDFLARE (METODE NS)
 // ========================================================
@@ -78,7 +118,6 @@ function cekStatusZoneCloudflare($zone_id) {
     if ($err) return 'pending';
     $res_data = json_decode($response, true);
     
-    // Mengembalikan status asli dari Cloudflare: 'active' / 'pending'
     return $res_data['result']['status'] ?? 'pending';
 }
 
@@ -93,11 +132,19 @@ if (isset($_GET['aksi']) && $_GET['aksi'] == 'hapus' && isset($_GET['id']) && is
 
     if (isset($eksekusi_cf['success']) && $eksekusi_cf['success'] == true) {
         mysqli_query($koneksi, "DELETE FROM custom_domains WHERE id = '$id_hapus'");
+        
+        // 🔥 UPDATE COOLIFY: Sinkronisasi ulang daftar domain setelah ada yang dihapus
+        sinkronisasiDomainKeCoolifyLokal();
+
         $pesan = "<div class='alert success'><strong>Sukses!</strong> Domain lama berhasil dihapus dari Cloudflare dan Database. Slot akun kosong kembali!</div>";
     } else {
         $error_msg_cf = $eksekusi_cf['errors'][0]['message'] ?? 'Koneksi ke Cloudflare gagal.';
         if (isset($eksekusi_cf['errors'][0]['code']) && ($eksekusi_cf['errors'][0]['code'] == 1006 || $eksekusi_cf['errors'][0]['code'] == 7003)) {
             mysqli_query($koneksi, "DELETE FROM custom_domains WHERE id = '$id_hapus'");
+            
+            // 🔥 UPDATE COOLIFY: Sinkronisasi ulang daftar domain setelah ada yang dihapus
+            sinkronisasiDomainKeCoolifyLokal();
+
             $pesan = "<div class='alert success'><strong>Informasi:</strong> Domain sudah bersih, record database lokal dihapus.</div>";
         } else {
             $pesan = "<div class='alert error'><strong>Cloudflare Error:</strong> Gagal menghapus ($error_msg_cf)</div>";
@@ -154,6 +201,10 @@ if (isset($_POST['submit_domain'])) {
             $query_simpan = "INSERT INTO custom_domains (domain_name, cloudflare_id, status) VALUES ('$domain_clean', '$zone_id', 'pending')";
             
             if (mysqli_query($koneksi, $query_simpan)) {
+                
+                // 🔥 SAKTI UTAMA: Panggil fungsi sinkronisasi otomatis agar domain langsung didaftarkan ke gerbang Coolify!
+                sinkronisasiDomainKeCoolifyLokal();
+
                 $pesan = "
                 <div class='alert success'>
                     <strong>🎉 Sukses! Domain Berhasil Didaftarkan ke Sistem</strong><br>
@@ -161,13 +212,13 @@ if (isset($_POST['submit_domain'])) {
                     <hr style='border: 0; border-top: 1px solid #27ae60; margin: 10px 0;'>
                     
                     <strong style='color: #fff;'>🛠️ INSTRUKSI PINDAH NAMESERVER (NS) USER:</strong>
-                    <p style='font-size: 13px; margin: 5px 0 10px 0;'>Silakan masukkan kedua nilai berikut ke pengaturan **Custom DNS** di Namecheap Anda:</p>
+                    <p style='font-size: 13px; margin: 5px 0 10px 0;'>Silakan masukkan kedua nilai berikut ke pengaturan **Custom DNS** di registrar domain Anda:</p>
                     
                     <div style='background: #111; padding: 12px; border-radius: 5px; border: 1px solid #444; font-family: monospace;'>
                         1. <strong style='color: #f1c40f;'>$ns1</strong><br>
                         2. <strong style='color: #f1c40f;'>$ns2</strong>
                     </div>
-                    <small style='color: #aaa; display:block; margin-top:10px;'>*Sistem telah otomatis membuatkan rute DNS ke server. Website akan langsung aktif begitu propagasi NS di Namecheap selesai.</small>
+                    <small style='color: #aaa; display:block; margin-top:10px;'>*Sistem telah otomatis membuatkan rute DNS ke server. Website akan langsung aktif begitu propagasi NS selesai tanpa perlu disetujui admin!</small>
                 </div>";
             } else {
                 $pesan = "<div class='alert error'><strong>Database Error:</strong> " . mysqli_error($koneksi) . "</div>";
@@ -255,7 +306,7 @@ if (isset($_POST['submit_domain'])) {
                         if ($status_cf === 'active') {
                             // Update status di database lokal agar jadi active
                             mysqli_query($koneksi, "UPDATE custom_domains SET status = 'active' WHERE id = '{$row['id']}'");
-                            $status_sekarang = 'active'; // Ubah variabel untuk tampilan langsung
+                            $status_sekarang = 'active'; 
                         }
                     }
                     // --------------------------------------------------------
