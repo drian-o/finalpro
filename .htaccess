@@ -1,7 +1,12 @@
 Options -Indexes
 
 RewriteEngine On
+
+# Jika yang diakses adalah file asli (seperti gambar, css, js), langsung buka filenya
 RewriteCond %{REQUEST_FILENAME} !-f
-RewriteCond %{REQUEST_FILENAME} !-f
+
+# Jika yang diakses adalah folder asli, langsung buka foldernya
 RewriteCond %{REQUEST_FILENAME} !-d
+
+# Sisa request URL cantik lainnya dialihkan ke index.php sebagai parameter 'url'
 RewriteRule ^(.*)$ index.php?url=$1 [L,QSA]
