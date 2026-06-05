@@ -5,14 +5,14 @@ require_once __DIR__ . '/../koneksi.php';
 $pesan = "";
 
 // =========================================================================
-// FUNGSI SAKTI: OTOMATIS DAFTARKAN SEMUA DOMAIN KE COOLIFY VIA API (HTTPS RESMI)
+// FUNGSI SAKTI: OTOMATIS DAFTARKAN SEMUA DOMAIN & LANGSUNG APPLY DEPLOYMENT
 // =========================================================================
 function sinkronisasiDomainKeCoolifyLokal() {
     global $koneksi;
 
     $api_key = "3|HIDG5O5obDUSuAWiuoDPFSpABtbF4yhALvo3C9Nb14c5fa2b";
     
-    // 🔥 REVISI 1: Menggunakan UUID Aplikasi aktif yang sesuai dengan resource container Coolify lu
+    // FIX MATCH: Menggunakan UUID database internal Coolify agar tidak 404
     $application_uuid = "sfpho7xg4jjpep1xpnaf8y8o";
     
     // Semua daftar domain platform wajib HTTPS murni
@@ -30,8 +30,11 @@ function sinkronisasiDomainKeCoolifyLokal() {
 
     $string_domains = implode(",", $list_domain);
 
-    // Tembak API Coolify port 8000 luar VPS
+    // -------------------------------------------------------------------------
+    // LANGKAH 1: UPDATE KOLOM DOMAIN (PATCH)
+    // -------------------------------------------------------------------------
     $url = "http://137.184.155.151:8000/api/v1/applications/" . $application_uuid;
+    // FIX MATCH: Menggunakan field "domains" untuk kompatibilitas Coolify v4 terbaru (anti 422)
     $data_payload = json_encode(array("domains" => $string_domains));
 
     $ch = curl_init($url);
@@ -40,7 +43,6 @@ function sinkronisasiDomainKeCoolifyLokal() {
     curl_setopt($ch, CURLOPT_POSTFIELDS, $data_payload);
     curl_setopt($ch, CURLOPT_TIMEOUT, 10);
     
-    // Matikan verifikasi SSL jika Coolify belum pakai SSL valid di port manajemennya
     curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
     curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, false);
     curl_setopt($ch, CURLOPT_HTTPHEADER, [
@@ -48,19 +50,46 @@ function sinkronisasiDomainKeCoolifyLokal() {
         'Authorization: Bearer ' . $api_key
     ]);
 
-    // 🔥 REVISI 2: Menangkap response & status code untuk pelacakan error sinkronisasi
     $response = curl_exec($ch);
     $err = curl_error($ch);
     $http_code = curl_getinfo($ch, CURLINFO_HTTP_CODE);
     curl_close($ch); 
 
-    // Jika ada error jaringan atau penolakan dari API Coolify, munculkan alert di browser
+    // Jika langkah 1 gagal, munculkan alert debugging
     if ($err) {
-        echo "<script>alert('cURL Error: " . addslashes($err) . "');</script>";
-    } else {
-        if ($http_code !== 200 && $http_code !== 201) {
-            echo "<script>alert('Coolify API Error (Code " . $http_code . "): " . addslashes($response) . "');</script>";
-        }
+        echo "<script>alert('cURL Error (Update): " . addslashes($err) . "');</script>";
+        return;
+    } else if ($http_code !== 200 && $http_code !== 201) {
+        echo "<script>alert('Coolify API Error (Update Code " . $http_code . "): " . addslashes($response) . "');</script>";
+        return;
+    }
+
+    // -------------------------------------------------------------------------
+    // LANGKAH 2: OTOMATIS TRIGER TOMBOL "DEPLOY" (POST)
+    // -------------------------------------------------------------------------
+    // Memaksa Traefik proxy internal Coolify membaca ulang domain baru tanpa loading manual
+    $deploy_url = "http://137.184.155.151:8000/api/v1/applications/" . $application_uuid . "/deploy";
+
+    $ch_deploy = curl_init($deploy_url);
+    curl_setopt($ch_deploy, CURLOPT_RETURNTRANSFER, true);
+    curl_setopt($ch_deploy, CURLOPT_POST, true); 
+    curl_setopt($ch_deploy, CURLOPT_TIMEOUT, 10);
+    curl_setopt($ch_deploy, CURLOPT_SSL_VERIFYPEER, false);
+    curl_setopt($ch_deploy, CURLOPT_SSL_VERIFYHOST, false);
+    curl_setopt($ch_deploy, CURLOPT_HTTPHEADER, [
+        'Authorization: Bearer ' . $api_key
+    ]);
+
+    $deploy_response = curl_exec($ch_deploy);
+    $deploy_err = curl_error($ch_deploy);
+    $deploy_http_code = curl_getinfo($ch_deploy, CURLINFO_HTTP_CODE);
+    curl_close($ch_deploy);
+
+    // Jika langkah 2 gagal, munculkan alert debugging
+    if ($deploy_err) {
+        echo "<script>alert('cURL Error (Deploy): " . addslashes($deploy_err) . "');</script>";
+    } else if ($deploy_http_code !== 200 && $deploy_http_code !== 201) {
+        echo "<script>alert('Coolify API Error (Deploy Code " . $deploy_http_code . "): " . addslashes($deploy_response) . "');</script>";
     }
 }
 
@@ -187,7 +216,7 @@ if (isset($_POST['submit_domain'])) {
             $query_simpan = "INSERT INTO custom_domains (domain_name, cloudflare_id, status) VALUES ('$domain_clean', '$zone_id', 'pending')";
             
             if (mysqli_query($koneksi, $query_simpan)) {
-                // Jalankan sinkronisasi otomatis ke Coolify FQDN
+                // Jalankan sinkronisasi otomatis ke Coolify FQDN + Auto Deploy
                 sinkronisasiDomainKeCoolifyLokal();
 
                 $pesan = "
