@@ -1,0 +1,12 @@
+version: '3.8'
+services:
+  web:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    labels:
+      - "traefik.enable=true"
+      # MANTRA UTAMA: Memaksa Traefik meloloskan DOMAIN APAPUN milik user ke PHP Native kamu
+      - "traefik.http.routers.saas-router.rule=HostRegexp(`{catchall:.*}`)"
+      - "traefik.http.routers.saas-router.entrypoints=web"
+      - "traefik.http.services.saas-service.loadbalancer.server.port=80"
