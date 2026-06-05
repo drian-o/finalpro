@@ -23,7 +23,7 @@ function sinkronisasiDomainKeCoolifyLokal() {
     $query_domains = mysqli_query($koneksi, "SELECT domain_name FROM custom_domains");
     while ($row = mysqli_fetch_array($query_domains)) {
         if (!empty($row['domain_name'])) {
-            $list_domain[] = "https://" . trim($row['domain_name']);
+            $list_domain[] = "http://" . trim($row['domain_name']);
         }
     }
 
