@@ -60,7 +60,7 @@
                 </svg>
             </button>
             <div id="popupOverlay" class="fixed z-[999] bg-black/60 top-0 bottom-0 left-0 right-0 w-0 invisible"></div>
-<section id="popupSection" class="fixed z-[9999] flex md:items-center left-0 right-0 bottom-0 md:top-0 md:bottom-0 transition-all duration-300 ease-in-out overflow-hidden -z-10 opacity-0 invisible max-h-full md:max-h-screen">
+            <section id="popupSection" class="fixed z-[9999] flex md:items-center left-0 right-0 bottom-0 md:top-0 md:bottom-0 transition-all duration-300 ease-in-out overflow-hidden -z-10 opacity-0 invisible max-h-full md:max-h-screen">
                 <div class="w-full md:w-2/3 lg:w-[450px] md:mx-auto bg-background-secondary p-3 pb-12 md:px-4 md:pb-6 rounded-t-3xl md:rounded-lg overflow-y-scroll">
                     <div class="flex justify-between items-center py-2">
                         <figure class="flex items-center">
@@ -164,9 +164,9 @@
             </div>
         </section>
         
-		<?php include 'game-popular.php'; ?>
-		<?php include 'game-recomended.php'; ?>
-		
+        <?php include 'game-popular.php'; ?>
+        <?php include 'game-recomended.php'; ?>
+        
         <!--$!-->
         <template data-dgst="NEXT_DYNAMIC_NO_SSR_CODE"></template>
         <!--/$-->
@@ -195,16 +195,14 @@
 
         <ul class="flex space-x-2 lg:space-x-3 mt-3">
             <?php foreach ($promosi_data as $index => $data_promosi) : ?>
-                <?php if ($index >= 3) break; // Membatasi maksimal 3 item 
-                ?>
+                <?php if ($index >= 3) break; ?>
                 <li aria-label="slide item <?php echo $index; ?>" role="listitem" class="w-2 lg:w-3 h-2 lg:h-3 ml-2 lg:ml-3 rounded-full inline-block lg:hover:opacity-80 border-[0.5px] border-base" style="background-color: var(--secondaryBackground)"></li>
             <?php endforeach; ?>
         </ul>
 
         <div class="mt-3 -mx-[5px] lg:-mx-2 pb-2 whitespace-nowrap overflow-x-scroll overflow-y-hidden lg:overflow-x-hidden opacity-scroll">
             <?php foreach ($promosi_data as $index => $data_promosi) : ?>
-                <?php if ($index >= 3) break; // Membatasi maksimal 3 item 
-                ?>
+                <?php if ($index >= 3) break; ?>
                 <div class="w-[80%] sm:w-2/3 md:w-[45%] lg:w-1/3 inline-block px-2 mt-4">
                     <a class="block bg-background-tertiary px-3 lg:px-4 py-2 lg:pt-4 lg:pb-2 rounded-md relative" href="promo">
                         <figure class="mb-2">
@@ -224,7 +222,6 @@
                             </p>
                             <div class="flex justify-between items-center lg:mt-1 relative lg:relative left-0 right-0 bottom-0">
                                 <p class="text-[10px] lg:text-xs opacity-60">
-                                    <!-- Additional Information Here -->
                                 </p>
                             </div>
                         </article>
@@ -233,8 +230,6 @@
             <?php endforeach; ?>
         </div>
     </div>
-    </section>
-    </main>
     <!--$-->
     <?php include_once 'footer.php'; ?>
 
@@ -256,7 +251,7 @@
         }
 
         function generateRandomNumber() {
-            return Math.floor(1000 + Math.random() * 9000); // Menghasilkan angka acak 4 digit
+            return Math.floor(1000 + Math.random() * 9000);
         }
 
         function updateNumbersAndDates() {
@@ -264,10 +259,8 @@
             const storedDate = localStorage.getItem('lastDate');
 
             if (storedDate !== today) {
-                // Update date in local storage
                 localStorage.setItem('lastDate', today);
 
-                // Generate and store new random numbers
                 const hkNumber = generateRandomNumber();
                 const sgNumber = generateRandomNumber();
                 const syNumber = generateRandomNumber();
@@ -276,73 +269,57 @@
                 localStorage.setItem('syNumber', syNumber);
             }
 
-            // Set numbers from local storage
             document.getElementById('hk-number').innerText = localStorage.getItem('hkNumber');
             document.getElementById('sg-number').innerText = localStorage.getItem('sgNumber');
             document.getElementById('sy-number').innerText = localStorage.getItem('syNumber');
 
-            // Set dates
-            document.getElementById('hk-date').innerText = formatDate(addDays(new Date(), 0)); // Hari ini
-            document.getElementById('sg-date').innerText = formatDate(addDays(new Date(), 1)); // Besok
-            document.getElementById('sy-date').innerText = formatDate(addDays(new Date(), 1)); // Besok
+            document.getElementById('hk-date').innerText = formatDate(addDays(new Date(), 0));
+            document.getElementById('sg-date').innerText = formatDate(addDays(new Date(), 1));
+            document.getElementById('sy-date').innerText = formatDate(addDays(new Date(), 1));
         }
 
-        // Call the function to update numbers and dates
         updateNumbersAndDates();
     </script>
     <script>
-    document.getElementById('openPopupButton').addEventListener('click', function() {
-        const overlay = document.getElementById('popupOverlay');
-        const section = document.getElementById('popupSection');
+        document.getElementById('openPopupButton').addEventListener('click', function() {
+            const overlay = document.getElementById('popupOverlay');
+            const section = document.getElementById('popupSection');
 
-        // Tampilkan Overlay (z-999)
-        overlay.classList.remove('invisible', 'w-0');
-        overlay.classList.add('w-full', 'visible'); 
+            overlay.classList.remove('invisible', 'w-0');
+            overlay.classList.add('w-full', 'visible'); 
 
-        // Tampilkan Section (Pop-up)
-        section.classList.remove('opacity-0', 'invisible', '-z-10', 'max-h-0');
-        section.classList.add('opacity-100', 'z-[9999]', 'max-h-screen'); 
-    });
+            section.classList.remove('opacity-0', 'invisible', '-z-10', 'max-h-0');
+            section.classList.add('opacity-100', 'z-[9999]', 'max-h-screen'); 
+        });
 
-    document.getElementById('closePopupButton').addEventListener('click', function() {
-        const overlay = document.getElementById('popupOverlay');
-        const section = document.getElementById('popupSection');
+        document.getElementById('closePopupButton').addEventListener('click', function() {
+            const overlay = document.getElementById('popupOverlay');
+            const section = document.getElementById('popupSection');
 
-        // Sembunyikan Section
-        section.classList.add('opacity-0', 'invisible', '-z-10', 'max-h-0');
-        section.classList.remove('opacity-100', 'z-[9999]', 'max-h-screen');
+            section.classList.add('opacity-0', 'invisible', '-z-10', 'max-h-0');
+            section.classList.remove('opacity-100', 'z-[9999]', 'max-h-screen');
 
-        // Sembunyikan Overlay
-        overlay.classList.add('invisible', 'w-0');
-        overlay.classList.remove('w-full', 'visible');
-    });
-</script>
+            overlay.classList.add('invisible', 'w-0');
+            overlay.classList.remove('w-full', 'visible');
+        });
+    </script>
     <script>
-        // Function to generate a random increment value
         function getRandomIncrement() {
-            return Math.floor(Math.random() * 1000) + 1; // Adjust range as needed
+            return Math.floor(Math.random() * 1000) + 1;
         }
 
-        // Function to format the number with commas and currency symbol
         function formatNumber(num) {
             return 'IDR ' + num.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".");
         }
 
-        // Initialize the jackpot counter value
         let jackpotValue = 10762327720;
 
-        // Function to update the jackpot counter
         function updateJackpotCounter() {
-            // Increment the jackpot value
             jackpotValue += getRandomIncrement();
-
-            // Update the display value
             document.getElementById('jackpot-counter').textContent = formatNumber(jackpotValue);
         }
 
-        // Update the jackpot counter every second
         setInterval(updateJackpotCounter, 1000);
     </script>    
-    <script src="_next/static/chunks/webpack-e30d72a36c0ae6d3.js" async=""></script>
 </body>
 </html>
