@@ -58,19 +58,19 @@ include_once 'header.php';
 </style>
 
 <section class="lg:bg-background-tertiary min-h-content pb-16 lg:pb-0">
-	<div class="container mx-auto md:py-4 lg:py-8 lg:px-3">
-		<div class="bg-background-default rounded-2xl p-4 lg:px-10 mx-auto md:w-4/5 lg:w-3/5">
-			<section class="flex justify-center rounded-full bg-separator w-full lg:w-3/5 mx-auto overflow-hidden lg:mt-3 mb-6">
-				<a class="w-1/2 justify-center bg-inverse rounded-full text-primary font-semibold py-2" href="<?php echo $alamat_website . 'auth-register'; ?>">Daftar</a>
-				<a class="w-1/2 justify-center opacity-70" href="<?php echo $alamat_website . 'auth-login'; ?>">Login</a>
-			</section>
+    <div class="container mx-auto md:py-4 lg:py-8 lg:px-3">
+        <div class="bg-background-default rounded-2xl p-4 lg:px-10 mx-auto md:w-4/5 lg:w-3/5">
+            <section class="flex justify-center rounded-full bg-separator w-full lg:w-3/5 mx-auto overflow-hidden lg:mt-3 mb-6">
+                <a class="w-1/2 justify-center bg-inverse rounded-full text-primary font-semibold py-2 text-center" href="?page=auth-register">Daftar</a>
+                <a class="w-1/2 justify-center opacity-70 text-center py-2" href="?page=auth-login">Login</a>
+            </section>
 
-			<form id="registrationForm"> <?php // Hapus action dan method="POST" ?>
-				<div class="relative mt-4 lg:mt-5 rounded-xl group border border-separator focus-within:border-primary focus-within:ring-1" id="username_wrapper">
-					<div class="absolute left-0 -top-4 lg:-top-[14px] mx-2 z-20 bg-background-default "><label class="text-[10px] lg:text-xs opacity-70 px-1 bg-background-default rounded-full ">Username</label></div>
-					<div class="relative"><input name="nama_pengguna_anggota" id="user_name" placeholder="6-14 Karakter Huruf Atau Angka" class="input-realtime-check p-3 pr-10 text-sm lg:text-base w-full rounded-lg border bg-transparent border-transparent focus:outline-none" type="text" required minlength="6" maxlength="14" data-field-name="username"><span class="status-icon" id="username_icon"></span></div>
+            <form id="registrationForm">
+                <div class="relative mt-4 lg:mt-5 rounded-xl group border border-separator focus-within:border-primary focus-within:ring-1" id="username_wrapper">
+                    <div class="absolute left-0 -top-4 lg:-top-[14px] mx-2 z-20 bg-background-default "><label class="text-[10px] lg:text-xs opacity-70 px-1 bg-background-default rounded-full ">Username</label></div>
+                    <div class="relative"><input name="nama_pengguna_anggota" id="user_name" placeholder="6-14 Karakter Huruf Atau Angka" class="input-realtime-check p-3 pr-10 text-sm lg:text-base w-full rounded-lg border bg-transparent border-transparent focus:outline-none" type="text" required minlength="6" maxlength="14" data-field-name="username"><span class="status-icon" id="username_icon"></span></div>
                     <span id="username_status_message" class="status-message text-xs px-3 pt-1"></span>
-				</div>
+                </div>
                 
                 <div class="relative mt-4 lg:mt-5 rounded-xl group border border-separator focus-within:border-primary focus-within:ring-1" id="password_wrapper">
                     <div class="absolute left-0 -top-4 lg:-top-[14px] mx-2 z-20 bg-background-default">
@@ -84,6 +84,7 @@ include_once 'header.php';
                     </div>
                     <span id="password_status_message" class="status-message text-xs px-3 pt-1"></span>
                 </div>
+
                 <div class="relative mt-4 lg:mt-5 rounded-xl group border border-separator focus-within:border-primary focus-within:ring-1" id="confirm_password_wrapper">
                     <div class="absolute left-0 -top-4 lg:-top-[14px] mx-2 z-20 bg-background-default">
                         <label class="text-[10px] lg:text-xs opacity-70 px-1 bg-background-default rounded-full">Konfirmasi Password</label>
@@ -96,18 +97,19 @@ include_once 'header.php';
                     </div>
                     <span id="confirm_password_status_message" class="status-message text-xs px-3 pt-1"></span>
                 </div>
+
                 <div class="flex -mx-1">
-					<div class="w-4/12 lg:w-1/4 px-1">
+                    <div class="w-4/12 lg:w-1/4 px-1">
                         <div class="relative mt-4 lg:mt-5 rounded-xl group border border-separator"><div class="absolute left-0 -top-4 lg:-top-[14px] mx-2 z-20 bg-background-default "><label class="text-[10px] lg:text-xs opacity-70 px-1 bg-background-default rounded-full ">Kode Negara</label></div><div class="relative"><input class="p-3 text-sm lg:text-base w-full rounded-lg border bg-transparent border-transparent focus:outline-none" value="+62" readonly></div></div>
-					</div>
-					<div class="w-8/12 lg:w-3/4 px-1">
-						<div class="relative mt-4 lg:mt-5 rounded-xl group border border-separator focus-within:border-primary focus-within:ring-1" id="telepon_wrapper">
-							<div class="absolute left-0 -top-4 lg:-top-[14px] mx-2 z-20 bg-background-default "><label class="text-[10px] lg:text-xs opacity-70 px-1 bg-background-default rounded-full ">No. Telepon</label></div>
-							<div class="relative"><input placeholder="Contoh: 8123456789" name="telepon_anggota" id="telepon_anggota" class="input-realtime-check p-3 pr-10 text-sm lg:text-base w-full rounded-lg border bg-transparent border-transparent focus:outline-none" type="number" required data-field-name="telepon"><span class="status-icon" id="telepon_icon"></span></div>
+                    </div>
+                    <div class="w-8/12 lg:w-3/4 px-1">
+                        <div class="relative mt-4 lg:mt-5 rounded-xl group border border-separator focus-within:border-primary focus-within:ring-1" id="telepon_wrapper">
+                            <div class="absolute left-0 -top-4 lg:-top-[14px] mx-2 z-20 bg-background-default "><label class="text-[10px] lg:text-xs opacity-70 px-1 bg-background-default rounded-full ">No. Telepon</label></div>
+                            <div class="relative"><input placeholder="Contoh: 8123456789" name="telepon_anggota" id="telepon_anggota" class="input-realtime-check p-3 pr-10 text-sm lg:text-base w-full rounded-lg border bg-transparent border-transparent focus:outline-none" type="number" required data-field-name="telepon"><span class="status-icon" id="telepon_icon"></span></div>
                             <span id="telepon_status_message" class="status-message text-xs px-3 pt-1"></span>
-						</div>
-					</div>
-				</div>
+                        </div>
+                    </div>
+                </div>
 
                 <div class="relative mt-4 lg:mt-5 rounded-xl group border-separator">
                     <div class="absolute left-0 -top-4 lg:-top-[14px] mx-2 z-20 bg-background-default">
@@ -132,23 +134,24 @@ include_once 'header.php';
                         <button type="button" class="quick-bank-btn p-2 text-xs lg:text-sm bg-error rounded-lg text-white" data-bank-key="<?= htmlspecialchars($qbank['key']) ?>"><?= htmlspecialchars($qbank['label']) ?></button>
                     <?php endforeach; ?>
                 </div>
+
                 <div class="relative mt-4 lg:mt-5 rounded-xl group border border-separator focus-within:border-primary focus-within:ring-1" id="nomor_rekening_wrapper">
-					<div class="absolute left-0 -top-4 lg:-top-[14px] mx-2 z-20 bg-background-default "><label class="text-[10px] lg:text-xs opacity-70 px-1 bg-background-default rounded-full ">Nomor Rekening / Telepon</label></div>
-					<div class="relative">
-						<input placeholder="Nomor Rekening" name="nomor_rekening_anggota" id="nomor_rekening_anggota" class="p-3 pr-10 text-sm lg:text-base w-full rounded-lg border bg-transparent border-transparent focus:outline-none" type="number" required>
+                    <div class="absolute left-0 -top-4 lg:-top-[14px] mx-2 z-20 bg-background-default "><label class="text-[10px] lg:text-xs opacity-70 px-1 bg-background-default rounded-full ">Nomor Rekening / Telepon</label></div>
+                    <div class="relative">
+                        <input placeholder="Nomor Rekening" name="nomor_rekening_anggota" id="nomor_rekening_anggota" class="p-3 pr-10 text-sm lg:text-base w-full rounded-lg border bg-transparent border-transparent focus:outline-none" type="number" required>
                         <span class="status-icon" id="nomor_rekening_icon"></span>
-					</div>
+                    </div>
                     <span id="nomor_rekening_status_message" class="status-message text-xs px-3 pt-1"></span>
-				</div>
-				<div class="relative mt-4 lg:mt-5 rounded-xl group border border-separator focus-within:border-primary focus-within:ring-1">
-					<div class="absolute left-0 -top-4 lg:-top-[14px] mx-2 z-20 bg-background-default "><label class="text-[10px] lg:text-xs opacity-70 px-1 bg-background-default rounded-full ">Nama Lengkap sesuai Rekening</label></div>
-					<div class="relative"><input placeholder="Masukkan nama sesuai rekening Anda" name="nama_rekening_anggota" id="nama_rekening_anggota" class="p-3 text-sm lg:text-base w-full rounded-lg border bg-transparent border-transparent focus:outline-none" type="text" required></div>
-				</div>
+                </div>
+                <div class="relative mt-4 lg:mt-5 rounded-xl group border border-separator focus-within:border-primary focus-within:ring-1">
+                    <div class="absolute left-0 -top-4 lg:-top-[14px] mx-2 z-20 bg-background-default "><label class="text-[10px] lg:text-xs opacity-70 px-1 bg-background-default rounded-full ">Nama Lengkap sesuai Rekening</label></div>
+                    <div class="relative"><input placeholder="Masukkan nama sesuai rekening Anda" name="nama_rekening_anggota" id="nama_rekening_anggota" class="p-3 text-sm lg:text-base w-full rounded-lg border bg-transparent border-transparent focus:outline-none" type="text" required></div>
+                </div>
                 <div class="relative mt-4 lg:mt-5 rounded-xl group border border-separator focus-within:border-primary focus-within:ring-1" id="email_wrapper">
-					<div class="absolute left-0 -top-4 lg:-top-[14px] mx-2 z-20 bg-background-default "><label class="text-[10px] lg:text-xs opacity-70 px-1 bg-background-default rounded-full ">Email (Opsional)</label></div>
-					<div class="relative"><input name="email_anggota" id="email_anggota" placeholder="Masukkan alamat email Anda (untuk reset password)" class="input-realtime-check p-3 pr-10 text-sm lg:text-base w-full rounded-lg border bg-transparent border-transparent focus:outline-none" type="email" data-field-name="email"><span class="status-icon" id="email_icon"></span></div>
+                    <div class="absolute left-0 -top-4 lg:-top-[14px] mx-2 z-20 bg-background-default "><label class="text-[10px] lg:text-xs opacity-70 px-1 bg-background-default rounded-full ">Email (Opsional)</label></div>
+                    <div class="relative"><input name="email_anggota" id="email_anggota" placeholder="Masukkan alamat email Anda (untuk reset password)" class="input-realtime-check p-3 pr-10 text-sm lg:text-base w-full rounded-lg border bg-transparent border-transparent focus:outline-none" type="email" data-field-name="email"><span class="status-icon" id="email_icon"></span></div>
                     <span id="email_status_message" class="status-message text-xs px-3 pt-1"></span>
-				</div>
+                </div>
                 <div class="relative mt-4 lg:mt-5 rounded-xl group border border-separator focus-within:border-primary focus-within:ring-1">
                     <div class="absolute left-0 -top-4 lg:-top-[14px] mx-2 z-20 bg-background-default"><label class="text-[10px] lg:text-xs opacity-70 px-1 bg-background-default rounded-full">Kode Referensi (Opsional)</label></div>
                     <div class="relative"><input name="upline" placeholder="Masukkan kode referral jika ada" class="p-3 text-sm lg:text-base w-full rounded-lg border bg-transparent border-transparent focus:outline-none" type="text" value="<?php echo isset($_GET['refferal']) ? htmlspecialchars(trim($_GET['refferal'])) : ''; ?>" <?php echo isset($_GET['refferal']) && !empty(trim($_GET['refferal'])) ? 'readonly' : ''; ?> ></div>
@@ -161,9 +164,9 @@ include_once 'header.php';
                 <div class="flex justify-center my-4">
                     <button type="submit" id="registerSubmitBtn" class="bg-primary lg:hover:brightness-95 text-white rounded-xl text-sm lg:text-base font-semibold w-full lg:w-1/2 justify-center py-3">Daftar</button>
                 </div>
-			</form>
-		</div>
-	</div>
+            </form>
+        </div>
+    </div>
 </section>
 
 <?php include_once 'footer.php'; ?>
@@ -281,8 +284,6 @@ document.addEventListener('DOMContentLoaded', function() {
     const loadingMessageElement = document.getElementById('loadingMessage');
     const loadingSpinnerElement = globalLoadingIndicator.querySelector('.spinner');
     const termsCheckbox = document.getElementById('terms_checkbox');
-    const termsText = document.querySelector('a.text-error');
-    
     const quickBankButtons = document.querySelectorAll('.quick-bank-btn');
 
     // --- Loading Indicator Functions ---
@@ -372,47 +373,46 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // Realtime check untuk username & email
     inputsToCheck.forEach(inputElement => {
-    const fieldName = inputElement.dataset.fieldName;
-    inputElement.addEventListener('input', function() {
-        const fieldValue = this.value.trim();
-        clearTimeout(debounceTimer);
-        setFieldStatus(fieldName + '_wrapper', fieldName + '_status_message', fieldName + '_icon', 'reset', '');
+        const fieldName = inputElement.dataset.fieldName;
+        inputElement.addEventListener('input', function() {
+            const fieldValue = this.value.trim();
+            clearTimeout(debounceTimer);
+            setFieldStatus(fieldName + '_wrapper', fieldName + '_status_message', fieldName + '_icon', 'reset', '');
 
-        if (fieldName === 'username') {
-            if (fieldValue.includes(' ')) {
-                setFieldStatus(fieldName + '_wrapper', fieldName + '_status_message', fieldName + '_icon', 'error', 'Username tidak boleh mengandung spasi.');
-                return;
-            }
-            if (!/^[a-zA-Z0-9]+$/.test(fieldValue) && fieldValue.length > 0) {
-                 setFieldStatus(fieldName + '_wrapper', fieldName + '_status_message', fieldName + '_icon', 'error', 'Username hanya boleh huruf dan angka.');
-                 return;
-            }
-        }
-
-        if (fieldValue === '' && fieldName !== 'email') return;
-        if (fieldValue === '' && fieldName === 'email') { setFieldStatus('email_wrapper', 'email_status_message', 'email_icon', 'neutral', 'Email (opsional)', ''); return; }
-
-        setFieldStatus(fieldName + '_wrapper', fieldName + '_status_message', fieldName + '_icon', 'checking', 'Mengecek...', iconLoadingSvg);
-        debounceTimer = setTimeout(() => {
-            const formData = new FormData(); formData.append('field_name', fieldName); formData.append('field_value', fieldValue);
-            fetch('check_availability.php', { method: 'POST', body: formData })
-            .then(response => response.json())
-            .then(data => {
-                if (data.field === fieldName) {
-                    setFieldStatus(fieldName + '_wrapper', fieldName + '_status_message', fieldName + '_icon', data.status, data.message, data.status === 'available' ? iconCheckSvg : iconCrossSvg);
+            if (fieldName === 'username') {
+                if (fieldValue.includes(' ')) {
+                    setFieldStatus(fieldName + '_wrapper', fieldName + '_status_message', fieldName + '_icon', 'error', 'Username tidak boleh mengandung spasi.');
+                    return;
                 }
-            })
-            .catch(error => setFieldStatus(fieldName + '_wrapper', fieldName + '_status_message', fieldName + '_icon', 'error', 'Error pengecekan.', iconCrossSvg));
-        }, 500);
-    });
-});
+                if (!/^[a-zA-Z0-9]+$/.test(fieldValue) && fieldValue.length > 0) {
+                     setFieldStatus(fieldName + '_wrapper', fieldName + '_status_message', fieldName + '_icon', 'error', 'Username hanya boleh huruf dan angka.');
+                     return;
+                }
+            }
 
-    // --- PERBAIKAN: Validasi Password Confirmation ---
+            if (fieldValue === '' && fieldName !== 'email') return;
+            if (fieldValue === '' && fieldName === 'email') { setFieldStatus('email_wrapper', 'email_status_message', 'email_icon', 'neutral', 'Email (opsional)', ''); return; }
+
+            setFieldStatus(fieldName + '_wrapper', fieldName + '_status_message', fieldName + '_icon', 'checking', 'Mengecek...', iconLoadingSvg);
+            debounceTimer = setTimeout(() => {
+                const formData = new FormData(); formData.append('field_name', fieldName); formData.append('field_value', fieldValue);
+                fetch('check_availability.php', { method: 'POST', body: formData })
+                .then(response => response.json())
+                .then(data => {
+                    if (data.field === fieldName) {
+                        setFieldStatus(fieldName + '_wrapper', fieldName + '_status_message', fieldName + '_icon', data.status, data.message, data.status === 'available' ? iconCheckSvg : iconCrossSvg);
+                    }
+                })
+                .catch(error => setFieldStatus(fieldName + '_wrapper', fieldName + '_status_message', fieldName + '_icon', 'error', 'Error pengecekan.', iconCrossSvg));
+            }, 500);
+        });
+    });
+
+    // --- Validasi Password Confirmation ---
     function validatePasswordConfirmation() {
         const passVal = passwordInput.value;
         const confirmPassVal = confirmPasswordInput.value;
 
-        // Validasi password utama
         if (passVal.length > 0) {
             if (passVal.length < 6 || passVal.length > 14) {
                 setFieldStatus('password_wrapper', 'password_status_message', 'password_icon', 'invalid_length', 'Password harus 6-14 karakter.');
@@ -423,7 +423,6 @@ document.addEventListener('DOMContentLoaded', function() {
             setFieldStatus('password_wrapper', 'password_status_message', 'password_icon', 'reset', '');
         }
 
-        // Validasi konfirmasi password
         if (confirmPassVal.length > 0) {
             if (passVal === confirmPassVal) {
                 if (confirmPassVal.length < 6 || confirmPassVal.length > 14) {
@@ -473,7 +472,8 @@ document.addEventListener('DOMContentLoaded', function() {
 
         const formData = new FormData(form);
 
-        fetch('<?php echo $alamat_website . 'process_register'; ?>', {
+        // 🔥 REVISI: Mengubah target endpoint AJAX langsung menembak ke file process_register.php murni
+        fetch('process_register.php', {
             method: 'POST',
             body: formData,
             headers: {
@@ -507,5 +507,5 @@ document.addEventListener('DOMContentLoaded', function() {
             registerSubmitBtn.disabled = false;
         });
     });
-});
+}); // 🔥 CLOSING DOMCONTENTLOADED PINDAH KE SINI BIAR TIDAK BUBAR KODENYA
 </script>
