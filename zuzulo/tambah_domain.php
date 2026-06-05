@@ -11,11 +11,8 @@ function sinkronisasiDomainKeCoolifyLokal() {
     global $koneksi;
 
     $api_key = "3|HIDG5O5obDUSuAWiuoDPFSpABtbF4yhALvo3C9Nb14c5fa2b";
-    
-    // Menggunakan UUID database internal Coolify agar tidak 404 pada proses PATCH
     $application_uuid = "sfpho7xg4jjpep1xpnaf8y8o";
     
-    // Semua daftar domain platform wajib HTTPS murni
     $domain_utama = "https://exampleproject.my.id";
     $list_domain = [$domain_utama];
 
@@ -23,7 +20,6 @@ function sinkronisasiDomainKeCoolifyLokal() {
     $query_domains = mysqli_query($koneksi, "SELECT domain_name FROM custom_domains");
     while ($row = mysqli_fetch_array($query_domains)) {
         if (!empty($row['domain_name'])) {
-            // Wajib HTTPS murni agar sinkron dengan SSL Full Mode Cloudflare
             $list_domain[] = "https://" . trim($row['domain_name']);
         }
     }
@@ -41,7 +37,6 @@ function sinkronisasiDomainKeCoolifyLokal() {
     curl_setopt($ch, CURLOPT_CUSTOMREQUEST, "PATCH");
     curl_setopt($ch, CURLOPT_POSTFIELDS, $data_payload);
     curl_setopt($ch, CURLOPT_TIMEOUT, 10);
-    
     curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
     curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, false);
     curl_setopt($ch, CURLOPT_HTTPHEADER, [
@@ -54,47 +49,31 @@ function sinkronisasiDomainKeCoolifyLokal() {
     $http_code = curl_getinfo($ch, CURLINFO_HTTP_CODE);
     curl_close($ch); 
 
-    // Jika langkah 1 gagal, munculkan alert debugging
-    if ($err) {
-        echo "<script>alert('cURL Error (Update): " . addslashes($err) . "');</script>";
-        return;
-    } else if ($http_code !== 200 && $http_code !== 201) {
-        echo "<script>alert('Coolify API Error (Update Code " . $http_code . "): " . addslashes($response) . "');</script>";
-        return;
+    if ($err || ($http_code !== 200 && $http_code !== 201)) {
+        return; // Mengurangi interupsi alert jika flow sudah lancar
     }
 
     // -------------------------------------------------------------------------
-    // 🔥 REVISI MUTLAK LANGKAH 2: TRIGGER DEPLOY VIA WEBHOOK + AUTH BEARER (ANTI 401)
+    // LANGKAH 2: RESTART PROXY (POST) - AKTIF DALAM 2 DETIK
     // -------------------------------------------------------------------------
-    $webhook_url = "http://137.184.155.151:8000/api/v1/deploy?uuid=sfpho7xg4jjpep1xpnaf8y8o&force=true"; 
+    $restart_url = "http://137.184.155.151:8000/api/v1/applications/" . $application_uuid . "/restart"; 
 
-    $ch_deploy = curl_init($webhook_url);
+    $ch_deploy = curl_init($restart_url);
     curl_setopt($ch_deploy, CURLOPT_RETURNTRANSFER, true);
-    curl_setopt($ch_deploy, CURLOPT_CUSTOMREQUEST, "GET"); // Webhook manual Coolify dipicu lewat GET
+    curl_setopt($ch_deploy, CURLOPT_CUSTOMREQUEST, "POST"); 
     curl_setopt($ch_deploy, CURLOPT_TIMEOUT, 10);
     curl_setopt($ch_deploy, CURLOPT_SSL_VERIFYPEER, false);
     curl_setopt($ch_deploy, CURLOPT_SSL_VERIFYHOST, false);
-    
-    // Menyertakan token API agar disetujui oleh pengaman webhook Coolify
     curl_setopt($ch_deploy, CURLOPT_HTTPHEADER, [
         'Authorization: Bearer ' . $api_key
     ]);
 
-    $deploy_response = curl_exec($ch_deploy);
-    $deploy_err = curl_error($ch_deploy);
-    $deploy_http_code = curl_getinfo($ch_deploy, CURLINFO_HTTP_CODE);
+    curl_exec($ch_deploy);
     curl_close($ch_deploy);
-
-    // Jika Webhook gagal dipicu, munculkan alert debugging
-    if ($deploy_err) {
-        echo "<script>alert('Webhook Error: " . addslashes($deploy_err) . "');</script>";
-    } else if ($deploy_http_code !== 200 && $deploy_http_code !== 201) {
-        echo "<script>alert('Coolify Webhook Error (Code " . $deploy_http_code . "): " . addslashes($deploy_response) . "');</script>";
-    }
 }
 
 // ========================================================
-// FUNGSI SAKTI 1: TAMBAH ZONE BARU KE CLOUDFLARE (METODE NS)
+// FUNGSI SAKTI 1: TAMBAH ZONE BARU KE CLOUDFLARE
 // ========================================================
 function tambahSiteBaruCloudflareLokal($domainBaru) {
     $cf_email = 'adrnsyah' . '18' . '@' . 'gmail.com';
@@ -145,13 +124,36 @@ function deleteSiteDariCloudflareLokal($zone_id) {
     return $err ? ['success' => false, 'error' => $err] : json_decode($response, true);
 }
 
+// ========================================================
+// 🔥 REVISI TAMBAHAN: FUNGSI CEK STATUS ZONE CLOUDFLARE
+// ========================================================
+function cekStatusZoneCloudflareLokal($zone_id) {
+    $cf_email = 'adrnsyah' . '18' . '@' . 'gmail.com';
+    $cf_key   = 'cfk_' . 'I4b6ZygMhnUoCSYEnPVfupCDOyAHan7ZIs9YbzGpa5e33a56'; 
+
+    $ch = curl_init("https://api.cloudflare.com/client/v4/zones/" . $zone_id);
+    curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+    curl_setopt($ch, CURLOPT_HTTPHEADER, [
+        'X-Auth-Email: ' . $cf_email,
+        'X-Auth-Key: ' . $cf_key,
+        'Content-Type: application/json'
+    ]);
+
+    $response = curl_exec($ch);
+    $err = curl_error($ch);
+    curl_close($ch);
+
+    if ($err) return 'pending';
+    $res_data = json_decode($response, true);
+    return $res_data['result']['status'] ?? 'pending'; // Mengembalikan 'active' atau 'pending'
+}
+
 // LOGIKA PROSES TOMBOL: HAPUS SITE DOMAIN
 if (isset($_GET['aksi']) && $_GET['aksi'] == 'hapus' && isset($_GET['id']) && isset($_GET['cf_id'])) {
     $id_hapus = mysqli_real_escape_string($koneksi, $_GET['id']);
     $zone_id_hapus = mysqli_real_escape_string($koneksi, $_GET['cf_id']);
     
-    $eksekusi_cf = deleteSiteDariCloudflareLokal($zone_id_hapus);
-
+    deleteSiteDariCloudflareLokal($zone_id_hapus);
     mysqli_query($koneksi, "DELETE FROM custom_domains WHERE id = '$id_hapus'");
     sinkronisasiDomainKeCoolifyLokal();
     $pesan = "<div class='alert success'><strong>Sukses!</strong> Domain berhasil dihapus dari sistem.</div>";
@@ -163,7 +165,6 @@ if (isset($_POST['submit_domain'])) {
     $domain_clean = mysqli_real_escape_string($koneksi, $domain_input);
 
     if (preg_match('/^[a-z0-9.-]+\.[a-z]{2,}$/', $domain_clean)) {
-        
         $hasil = tambahSiteBaruCloudflareLokal($domain_clean);
 
         if (isset($hasil['success']) && $hasil['success'] == true) {
@@ -216,7 +217,6 @@ if (isset($_POST['submit_domain'])) {
             $query_simpan = "INSERT INTO custom_domains (domain_name, cloudflare_id, status) VALUES ('$domain_clean', '$zone_id', 'pending')";
             
             if (mysqli_query($koneksi, $query_simpan)) {
-                // Jalankan sinkronisasi otomatis ke Coolify FQDN + Auto Deploy Webhook
                 sinkronisasiDomainKeCoolifyLokal();
 
                 $pesan = "
@@ -260,6 +260,9 @@ if (isset($_POST['submit_domain'])) {
         th, td { padding: 12px; border: 1px solid #2d2d2d; text-align: left; }
         th { background-color: #252525; }
         .btn-delete { background-color: #c0392b; color: white; padding: 5px 10px; text-decoration: none; border-radius: 4px; font-size: 12px; }
+        .badge { padding: 4px 8px; border-radius: 4px; font-size: 11px; font-weight: bold; text-transform: uppercase; }
+        .badge-active { background-color: #1b4d3e; color: #2ecc71; border: 1px solid #27ae60; }
+        .badge-pending { background-color: #4d4d1b; color: #f1c40f; border: 1px solid #f39c12; }
     </style>
 </head>
 <body>
@@ -283,9 +286,21 @@ if (isset($_POST['submit_domain'])) {
             <?php
             $query_tampil = mysqli_query($koneksi, "SELECT * FROM custom_domains ORDER BY id DESC");
             while ($row = mysqli_fetch_assoc($query_tampil)) {
+                
+                // 🔥 REVISI MUTLAK: Ambil status aktual dari Cloudflare API secara live
+                $status_sekarang = cekStatusZoneCloudflareLokal($row['cloudflare_id']);
+                
+                // Jika status di database berbeda dengan Cloudflare, update databasenya
+                if ($status_sekarang !== $row['status']) {
+                    $id_update = $row['id'];
+                    mysqli_query($koneksi, "UPDATE custom_domains SET status = '$status_sekarang' WHERE id = '$id_update'");
+                }
+
+                $badge_class = ($status_sekarang === 'active') ? 'badge-active' : 'badge-pending';
+
                 echo "<tr>
                         <td><strong>" . htmlspecialchars($row['domain_name'] ?? '', ENT_QUOTES, 'UTF-8') . "</strong></td>
-                        <td>" . htmlspecialchars($row['status'] ?? '', ENT_QUOTES, 'UTF-8') . "</td>
+                        <td><span class='badge {$badge_class}'>" . htmlspecialchars($status_sekarang, ENT_QUOTES, 'UTF-8') . "</span></td>
                         <td><a href='?aksi=hapus&id={$row['id']}&cf_id={$row['cloudflare_id']}' class='btn-delete' onclick='return confirm(\"Hapus?\")'>Hapus</a></td>
                       </tr>";
             }
