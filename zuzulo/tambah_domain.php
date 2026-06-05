@@ -27,7 +27,7 @@ function sinkronisasiDomainKeCoolifyLokal() {
     // Gabungkan jadi string dipisah koma untuk dikirim ke fqdn Coolify
     $string_domains = implode(",", $list_domain);
 
-    // Kirim perintah PATCH ke API Coolify lokal lu
+    // 🔥 PERBAIKAN 1: Pake IP Publik VPS langsung agar cURL lolos dari isolasi Docker internal localhost
     $url = "http://137.184.155.151:8000/api/v1/applications/" . $application_uuid;
     $data_payload = json_encode(array("fqdn" => $string_domains));
 
@@ -136,7 +136,7 @@ if (isset($_GET['aksi']) && $_GET['aksi'] == 'hapus' && isset($_GET['id']) && is
         // 🔥 UPDATE COOLIFY: Sinkronisasi ulang daftar domain setelah ada yang dihapus
         sinkronisasiDomainKeCoolifyLokal();
 
-        $pesan = "<div class='alert success'><strong>Sukses!</strong> Domain lama berhasil dihapus dari Cloudflare dan Database. Slot akun kosong kembali!</div>";
+        $pesan = "<div class='alert success'><strong>Sukses!</strong> Domain lama berhasil dihapus dari Cloudflare and Database. Slot akun kosong kembali!</div>";
     } else {
         $error_msg_cf = $eksekusi_cf['errors'][0]['message'] ?? 'Koneksi ke Cloudflare gagal.';
         if (isset($eksekusi_cf['errors'][0]['code']) && ($eksekusi_cf['errors'][0]['code'] == 1006 || $eksekusi_cf['errors'][0]['code'] == 7003)) {
@@ -181,7 +181,7 @@ if (isset($_POST['submit_domain'])) {
                 "name" => "@",
                 "content" => $ip_server_kamu,
                 "ttl" => 1, 
-                "proxied" => true 
+                "proxied" => false // 🔥 PERBAIKAN 2: Wajib FALSE biar jadi Awan Abu-abu (DNS Only) agar tembus port 80 Coolify!
             ];
 
             $ch_dns = curl_init("https://api.cloudflare.com/client/v4/zones/" . $zone_id . "/dns_records");
@@ -228,7 +228,8 @@ if (isset($_POST['submit_domain'])) {
             $pesan = "<div class='alert error'><strong>Cloudflare Error:</strong> $error_msg</div>";
         }
     } else {
-        $pesan = "<div class='alert warning'><strong>Input Salah:</strong> Format nama domain tidak valid!</div>";
+        $domain_clean_input = htmlspecialchars($domain_input, ENT_QUOTES, 'UTF-8');
+        $pesan = "<div class='alert warning'><strong>Input Salah:</strong> Format nama domain $domain_clean_input tidak valid!</div>";
     }
 }
 ?>
@@ -316,9 +317,9 @@ if (isset($_POST['submit_domain'])) {
                         : "<span class='badge badge-pending'>PENDING</span>";
                     
                     echo "<tr>
-                            <td><strong>" . htmlspecialchars($row['domain_name']) . "</strong></td>
+                            <td><strong>" . htmlspecialchars($row['domain_name'], ENT_QUOTES, 'UTF-8') . "</strong></td>
                             <td>$status_badge</td>
-                            <td><small>" . $row['created_at'] . "</small></td>
+                            <td><small>" . htmlspecialchars($row['created_at'] ?? '', ENT_QUOTES, 'UTF-8') . "</small></td>
                             <td style='text-align: center;'>
                                 <a href='?aksi=hapus&id={$row['id']}&cf_id={$row['cloudflare_id']}' class='btn-delete' onclick='return confirm(\"Apakah Anda yakin ingin menghapus total domain {$row['domain_name']} ini?\")'>Hapus</a>
                             </td>
