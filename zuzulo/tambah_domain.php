@@ -5,7 +5,7 @@ require_once __DIR__ . '/../koneksi.php';
 $pesan = "";
 
 // =========================================================================
-// FUNGSI SAKTI: OTOMATIS DAFTARKAN SEMUA DOMAIN KE COOLIFY VIA API (FIXED HTTPS)
+// FUNGSI SAKTI: OTOMATIS DAFTARKAN SEMUA DOMAIN KE COOLIFY VIA API (DEBUG MODE)
 // =========================================================================
 function sinkronisasiDomainKeCoolifyLokal() {
     global $koneksi;
@@ -13,7 +13,6 @@ function sinkronisasiDomainKeCoolifyLokal() {
     $api_key = "3|HIDG5O5obDUSuAWiuoDPFSpABtbF4yhALvo3C9Nb14c5fa2b";
     $application_uuid = "ndghrk488bw2hg8l7363bu7v";
     
-    // 🔥 PERBAIKAN 1: Gunakan HTTPS murni untuk domain utama
     $domain_utama = "https://exampleproject.my.id";
     $list_domain = [$domain_utama];
 
@@ -21,30 +20,66 @@ function sinkronisasiDomainKeCoolifyLokal() {
     $query_domains = mysqli_query($koneksi, "SELECT domain_name FROM custom_domains");
     while ($row = mysqli_fetch_array($query_domains)) {
         if (!empty($row['domain_name'])) {
-            // 🔥 PERBAIKAN 2: Paksa push HTTPS murni ke FQDN Coolify biar sinkron ama https://*
             $list_domain[] = "https://" . trim($row['domain_name']);
         }
     }
 
-    // Gabungkan dengan koma: https://exampleproject.my.id,https://harapanjp.my.id
     $string_domains = implode(",", $list_domain);
 
-    // 🔥 PERBAIKAN 3: Bypass port 8000 luar VPS, langsung tembak via internal network Docker Coolify
-    $url = "http://coolify:80/api/v1/applications/" . $application_uuid;
+    // Tembak API Coolify port 8000 luar VPS
+    $url = "http://137.184.155.151:8000/api/v1/applications/" . $application_uuid;
+    
     $data_payload = json_encode(array("fqdn" => $string_domains));
 
     $ch = curl_init($url);
     curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
     curl_setopt($ch, CURLOPT_CUSTOMREQUEST, "PATCH");
     curl_setopt($ch, CURLOPT_POSTFIELDS, $data_payload);
-    curl_setopt($ch, CURLOPT_TIMEOUT, 5); // Timeout aman agar eksekusi web lu ga kerasa ngadat
+    curl_setopt($ch, CURLOPT_TIMEOUT, 10);
+    
+    // Matikan verifikasi SSL agar cURL lokal mau tembus tanpa ribet sertifikat
+    curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
+    curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, false);
     curl_setopt($ch, CURLOPT_HTTPHEADER, [
         'Content-Type: application/json',
         'Authorization: Bearer ' . $api_key
     ]);
 
-    curl_exec($ch);
-    curl_close($ch);
+    $response = curl_exec($ch);
+    $http_code = curl_getinfo($ch, CURLINFO_HTTP_CODE);
+    $curl_errno = curl_errno($ch);
+    $curl_error = curl_error($ch);
+    close_curl($ch);
+
+    // =========================================================================
+    // 🔥 JALUR BRUTAL DEBUG: PAKSA LEPEH EROR DI LAYAR BIAR KELIATAN MASALAHNYA!
+    // =========================================================================
+    if ($curl_errno) {
+        echo "<div style='background:#c0392b;color:white;padding:25px;font-family:sans-serif;margin:30px;border-radius:8px;'>";
+        echo "<h2>🚨 KONEKSI cURL PHP GAGAL TOTAL, GENG!</h2>";
+        echo "<strong>Pesan Eror Jaringan:</strong> " . $curl_error . "<br><br>";
+        echo "<em>Artinya: Kontainer Docker PHP lu bener-bener gak bisa ngobrol ke IP server port 8000 karena diblokir firewall VPS!</em>";
+        echo "</div>";
+        exit;
+    } else {
+        if ($http_code != 200 && $http_code != 201) {
+            echo "<div style='background:#d35400;color:white;padding:25px;font-family:sans-serif;margin:30px;border-radius:8px;'>";
+            echo "<h2>⚠️ PANEL COOLIFY MENOLAK REQUEST PHP LU!</h2>";
+            echo "<strong>HTTP Status Code:</strong> " . $http_code . "<br>";
+            echo "<strong>Balasan Resmi Server:</strong> <pre style='background:#111;padding:15px;color:#2ecc71;'>" . htmlspecialchars($response) . "</pre><br>";
+            echo "<em>Artinya: Jalur koneksi ketemu, tapi Token API lu salah, UUID salah, atau format teks fqdn ditolak sistem!</em>";
+            echo "</div>";
+            exit;
+        }
+    }
+    // =========================================================================
+}
+
+// Helper untuk menutup cURL dengan aman
+function close_curl($ch) {
+    if (is_resource($ch) || (is_object($ch) && $ch instanceof CurlHandle)) {
+        curl_close($ch);
+    }
 }
 
 // ========================================================
@@ -71,7 +106,7 @@ function tambahSiteBaruCloudflareLokal($domainBaru) {
 
     $response = curl_exec($ch);
     $err = curl_error($ch);
-    curl_close($ch);
+    close_curl($ch);
 
     return $err ? ['success' => false, 'error' => $err] : json_decode($response, true);
 }
@@ -94,7 +129,7 @@ function deleteSiteDariCloudflareLokal($zone_id) {
 
     $response = curl_exec($ch);
     $err = curl_error($ch);
-    curl_close($ch);
+    close_curl($ch);
 
     return $err ? ['success' => false, 'error' => $err] : json_decode($response, true);
 }
@@ -116,7 +151,7 @@ function cekStatusZoneCloudflare($zone_id) {
 
     $response = curl_exec($ch);
     $err = curl_error($ch);
-    curl_close($ch);
+    close_curl($ch);
 
     if ($err) return 'pending';
     $res_data = json_decode($response, true);
@@ -178,7 +213,7 @@ if (isset($_POST['submit_domain'])) {
                 'Content-Type: application/json'
             ]);
             curl_exec($ch_dns);
-            curl_close($ch_dns);
+            close_curl($ch_dns);
 
             // 2. Set SSL Cloudflare ke "full" agar mendukung handshake HTTPS murni
             $ssl_payload = [
@@ -195,14 +230,14 @@ if (isset($_POST['submit_domain'])) {
                 'Content-Type: application/json'
             ]);
             curl_exec($ch_ssl);
-            curl_close($ch_ssl);
+            close_curl($ch_ssl);
 
             // 3. Simpan data domain ke database MySQL
             $query_simpan = "INSERT INTO custom_domains (domain_name, cloudflare_id, status) VALUES ('$domain_clean', '$zone_id', 'pending')";
             
             if (mysqli_query($koneksi, $query_simpan)) {
                 
-                // 🔥 SAKTI UTAMA: Sinkronisasi FQDN terbaru ke API internal Coolify secara real-time!
+                // 🔥 TIMBUN DISINI: Jalankan proses nembak API debug
                 sinkronisasiDomainKeCoolifyLokal();
 
                 $pesan = "
