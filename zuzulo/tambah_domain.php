@@ -24,7 +24,7 @@ function sinkronisasiDomainKeCoolifyLokal() {
     while ($row = mysqli_fetch_array($query_domains)) {
         if (!empty($row['domain_name'])) {
             // Wajib HTTPS murni agar sinkron dengan SSL Full Mode Cloudflare
-            $list_domain[] = "https://" . trim($row['row']['domain_name'] ?? $row['domain_name']);
+            $list_domain[] = "https://" . trim($row['domain_name']);
         }
     }
 
@@ -64,10 +64,8 @@ function sinkronisasiDomainKeCoolifyLokal() {
     }
 
     // -------------------------------------------------------------------------
-    // 🔥 REVISI MUTLAK LANGKAH 2: TRIGGER DEPLOY VIA WEBHOOK (PASTI JALAN 100%)
+    // 🔥 REVISI MUTLAK LANGKAH 2: TRIGGER DEPLOY VIA WEBHOOK + AUTH BEARER (ANTI 401)
     // -------------------------------------------------------------------------
-    // Masuk ke Coolify > Pilih Aplikasi > Klik menu Webhooks > Copy bagian 'Deploy Webhook'
-    // Lalu paste URL-nya di bawah ini untuk menggantikan URL sampel gua:
     $webhook_url = "http://137.184.155.151:8000/api/v1/deploy?uuid=sfpho7xg4jjpep1xpnaf8y8o&force=true"; 
 
     $ch_deploy = curl_init($webhook_url);
@@ -76,6 +74,11 @@ function sinkronisasiDomainKeCoolifyLokal() {
     curl_setopt($ch_deploy, CURLOPT_TIMEOUT, 10);
     curl_setopt($ch_deploy, CURLOPT_SSL_VERIFYPEER, false);
     curl_setopt($ch_deploy, CURLOPT_SSL_VERIFYHOST, false);
+    
+    // Menyertakan token API agar disetujui oleh pengaman webhook Coolify
+    curl_setopt($ch_deploy, CURLOPT_HTTPHEADER, [
+        'Authorization: Bearer ' . $api_key
+    ]);
 
     $deploy_response = curl_exec($ch_deploy);
     $deploy_err = curl_error($ch_deploy);
