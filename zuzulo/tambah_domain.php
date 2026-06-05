@@ -32,7 +32,7 @@ function sinkronisasiDomainKeCoolifyLokal() {
 
     // Tembak API Coolify port 8000 luar VPS
     $url = "http://137.184.155.151:8000/api/v1/applications/" . $application_uuid;
-    $data_payload = json_encode(array("fqdn" => $string_domains));
+    $data_payload = json_encode(array("domains" => $string_domains));
 
     $ch = curl_init($url);
     curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
