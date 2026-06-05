@@ -1,11 +1,9 @@
 # Pakai mesin PHP dan Apache
 FROM php:8.2-apache
 
-# Aktifkan ekstensi database MySQLi
-RUN docker-php-ext-install mysqli pdo pdo_mysql
-
-# Aktifkan fitur baca .htaccess (URL Rewrite)
-RUN a2enmod rewrite
+# 🔥 REVISI 1: Gabungkan instalasi dasar di atas agar kena cache Docker (Build jadi super cepat)
+RUN docker-php-ext-install mysqli pdo pdo_mysql \
+    && a2enmod rewrite
 
 # Copy semua kodingan lu ke folder server
 COPY . /var/www/html/
@@ -21,25 +19,32 @@ RUN echo "upload_max_filesize = 64M" > /usr/local/etc/php/conf.d/uploads.ini \
     && echo "post_max_size = 64M" >> /usr/local/etc/php/conf.d/uploads.ini
 # ========================================================
 
-# Beri akses ke .htaccess
-RUN echo "<Directory /var/www/html>\n\tAllowOverride All\n</Directory>" > /etc/apache2/conf-available/override.conf
+# 🔥 REVISI 2: Pake metode EOF biar penulisan syntax Apache aman tanpa ngetik \n\t manual
+RUN cat << 'EOF' > /etc/apache2/conf-available/override.conf
+<Directory /var/www/html>
+    AllowOverride All
+</Directory>
+EOF
+
 RUN a2enconf override
 
 # ========================================================
 # FIX SAAS MULTI-TENANT: INLINE GENERATE VHOST CONFIG (ANTI-NOT FOUND)
 # ========================================================
 # Membuat file vhost secara langsung tanpa perlu file vhost.conf eksternal di GitHub
-RUN echo '<VirtualHost *:80>\n\
-\tServerAdmin webmaster@localhost\n\
-\tDocumentRoot /var/www/html\n\
-\tServerAlias *\n\
-\t<Directory /var/www/html>\n\
-\t\tAllowOverride All\n\
-\t\tRequire all granted\n\
-\t</Directory>\n\
-\tErrorLog ${APACHE_LOG_DIR}/error.log\n\
-\tCustomLog ${APACHE_LOG_DIR}/access.log combined\n\
-</VirtualHost>' > /etc/apache2/sites-available/000-default.conf
+RUN cat << 'EOF' > /etc/apache2/sites-available/000-default.conf
+<VirtualHost *:80>
+    ServerAdmin webmaster@localhost
+    DocumentRoot /var/www/html
+    ServerAlias *
+    <Directory /var/www/html>
+        AllowOverride All
+        Require all granted
+    </Directory>
+    ErrorLog ${APACHE_LOG_DIR}/error.log
+    CustomLog ${APACHE_LOG_DIR}/access.log combined
+</VirtualHost>
+EOF
 
 RUN echo "ServerName localhost" >> /etc/apache2/apache2.conf
 # ========================================================
