@@ -5,14 +5,17 @@ require_once __DIR__ . '/../koneksi.php';
 $pesan = "";
 
 // =========================================================================
-// FUNGSI SAKTI: OTOMATIS DAFTARKAN SEMUA DOMAIN KE COOLIFY VIA API (DEBUG MODE)
+// FUNGSI SAKTI: OTOMATIS DAFTARKAN SEMUA DOMAIN KE COOLIFY VIA API (HTTPS RESMI)
 // =========================================================================
 function sinkronisasiDomainKeCoolifyLokal() {
     global $koneksi;
 
     $api_key = "3|HIDG5O5obDUSuAWiuoDPFSpABtbF4yhALvo3C9Nb14c5fa2b";
-    $application_uuid = "ndghrk488bw2hg8l7363bu7v";
     
+    // 🔥 PERBAIKAN MUTLAK 1: Menggunakan UUID Aplikasi asli dari URL browser lu!
+    $application_uuid = "sfpho7xg4jjpep1xpnaf8y8o";
+    
+    // Semua daftar domain platform wajib HTTPS murni
     $domain_utama = "https://exampleproject.my.id";
     $list_domain = [$domain_utama];
 
@@ -28,7 +31,6 @@ function sinkronisasiDomainKeCoolifyLokal() {
 
     // Tembak API Coolify port 8000 luar VPS
     $url = "http://137.184.155.151:8000/api/v1/applications/" . $application_uuid;
-    
     $data_payload = json_encode(array("fqdn" => $string_domains));
 
     $ch = curl_init($url);
@@ -37,7 +39,7 @@ function sinkronisasiDomainKeCoolifyLokal() {
     curl_setopt($ch, CURLOPT_POSTFIELDS, $data_payload);
     curl_setopt($ch, CURLOPT_TIMEOUT, 10);
     
-    // Matikan verifikasi SSL agar cURL lokal mau tembus tanpa ribet sertifikat
+    // Matikan verifikasi SSL agar cURL lokal mau tembus tanpa hambatan sertifikat
     curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
     curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, false);
     curl_setopt($ch, CURLOPT_HTTPHEADER, [
@@ -45,34 +47,8 @@ function sinkronisasiDomainKeCoolifyLokal() {
         'Authorization: Bearer ' . $api_key
     ]);
 
-    $response = curl_exec($ch);
-    $http_code = curl_getinfo($ch, CURLINFO_HTTP_CODE);
-    $curl_errno = curl_errno($ch);
-    $curl_error = curl_error($ch);
+    curl_exec($ch);
     close_curl($ch);
-
-    // =========================================================================
-    // 🔥 JALUR BRUTAL DEBUG: PAKSA LEPEH EROR DI LAYAR BIAR KELIATAN MASALAHNYA!
-    // =========================================================================
-    if ($curl_errno) {
-        echo "<div style='background:#c0392b;color:white;padding:25px;font-family:sans-serif;margin:30px;border-radius:8px;'>";
-        echo "<h2>🚨 KONEKSI cURL PHP GAGAL TOTAL, GENG!</h2>";
-        echo "<strong>Pesan Eror Jaringan:</strong> " . $curl_error . "<br><br>";
-        echo "<em>Artinya: Kontainer Docker PHP lu bener-bener gak bisa ngobrol ke IP server port 8000 karena diblokir firewall VPS!</em>";
-        echo "</div>";
-        exit;
-    } else {
-        if ($http_code != 200 && $http_code != 201) {
-            echo "<div style='background:#d35400;color:white;padding:25px;font-family:sans-serif;margin:30px;border-radius:8px;'>";
-            echo "<h2>⚠️ PANEL COOLIFY MENOLAK REQUEST PHP LU!</h2>";
-            echo "<strong>HTTP Status Code:</strong> " . $http_code . "<br>";
-            echo "<strong>Balasan Resmi Server:</strong> <pre style='background:#111;padding:15px;color:#2ecc71;'>" . htmlspecialchars($response) . "</pre><br>";
-            echo "<em>Artinya: Jalur koneksi ketemu, tapi Token API lu salah, UUID salah, atau format teks fqdn ditolak sistem!</em>";
-            echo "</div>";
-            exit;
-        }
-    }
-    // =========================================================================
 }
 
 // Helper untuk menutup cURL dengan aman
@@ -195,7 +171,7 @@ if (isset($_POST['submit_domain'])) {
             $cf_key   = 'cfk_' . 'I4b6ZygMhnUoCSYEnPVfupCDOyAHan7ZIs9YbzGpa5e33a56'; 
             $ip_server_kamu = '137.184.155.151'; 
 
-            // 1. Buat A record di Cloudflare
+            // 1. Buat A record di Cloudflare dengan Proxy ON (Awan Oranye) untuk SSL otomatis
             $dns_data = [
                 "type" => "A",
                 "name" => "@",
@@ -215,7 +191,7 @@ if (isset($_POST['submit_domain'])) {
             curl_exec($ch_dns);
             close_curl($ch_dns);
 
-            // 2. Set SSL Cloudflare ke "full" agar mendukung handshake HTTPS murni
+            // 2. Set SSL Cloudflare ke "full" agar jabat tangan HTTPS murni ke https://* Coolify lolos
             $ssl_payload = [
                 "id" => "ssl",
                 "value" => "full" 
@@ -237,7 +213,7 @@ if (isset($_POST['submit_domain'])) {
             
             if (mysqli_query($koneksi, $query_simpan)) {
                 
-                // 🔥 TIMBUN DISINI: Jalankan proses nembak API debug
+                // 🔥 SAKTI UTAMA: Panggil otomatisasi pengisian kolom FQDN di Coolify
                 sinkronisasiDomainKeCoolifyLokal();
 
                 $pesan = "
