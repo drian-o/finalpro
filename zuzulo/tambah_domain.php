@@ -13,7 +13,7 @@ function sinkronisasiDomainKeCoolifyLokal() {
     $api_key = "3|HIDG5O5obDUSuAWiuoDPFSpABtbF4yhALvo3C9Nb14c5fa2b";
     
     // 🔥 REVISI 1: Menggunakan UUID Aplikasi aktif yang sesuai dengan resource container Coolify lu
-    $application_uuid = "ndghrk488bw2hg8l7363bu7v";
+    $application_uuid = "sfpho7xg4jjpep1xpnaf8y8o";
     
     // Semua daftar domain platform wajib HTTPS murni
     $domain_utama = "https://exampleproject.my.id";
