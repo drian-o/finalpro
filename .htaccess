@@ -1,13 +1,7 @@
-<IfModule mod_rewrite.c>
-  RewriteEngine on
-  RewriteBase /
+Options -Indexes
 
-  # 1. Jika ada user ngakses file beneran (seperti gambar, css, js), langsung loloskan
-  RewriteCond %{REQUEST_FILENAME} -f [OR]
-  RewriteCond %{REQUEST_FILENAME} -d
-  RewriteRule ^ - [L]
-
-  # 2. Jika yang diakses adalah domain murni atau rute SaaS, oper diam-diam ke index.php
-  # Di dalam index.php nanti lu tinggal tangkap domainnya pake $_SERVER['HTTP_HOST']
-  RewriteRule ^(.*)$ index.php?route=$1 [L,QSA]
-</IfModule>
+RewriteEngine On
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^(.*)$ index.php?url=$1 [L,QSA]
