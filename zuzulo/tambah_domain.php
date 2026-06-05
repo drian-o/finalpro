@@ -5,29 +5,28 @@ require_once __DIR__ . '/../koneksi.php';
 $pesan = "";
 
 // =========================================================================
-// FUNGSI SAKTI BARU: FUNGSI SINKRONISASI LIST DOMAIN DATABASE KE API COOLIFY
+// FUNGSI SAKTI: SINKRONISASI LIST DOMAIN DATABASE KE API COOLIFY (VERSI HTTPS)
 // =========================================================================
 function sinkronisasiDomainKeCoolifyLokal() {
     global $koneksi;
 
     $api_key = "3|HIDG5O5obDUSuAWiuoDPFSpABtbF4yhALvo3C9Nb14c5fa2b";
     $application_uuid = "ndghrk488bw2hg8l7363bu7v";
-    $domain_utama = "http://exampleproject.my.id";
     
+    // 🔥 PERBAIKAN 1: Samakan domain utama pake HTTPS murni
+    $domain_utama = "https://exampleproject.my.id";
     $list_domain = [$domain_utama];
 
-    // Ambil SEMUA domain dari database yang statusnya active maupun pending
     $query_domains = mysqli_query($koneksi, "SELECT domain_name FROM custom_domains");
     while ($row = mysqli_fetch_array($query_domains)) {
         if (!empty($row['domain_name'])) {
-            $list_domain[] = "http://" . trim($row['domain_name']);
+            // 🔥 PERBAIKAN 2: Wajib daftarkan sebagai HTTPS biar sinkron ama https://* di Coolify
+            $list_domain[] = "https://" . trim($row['domain_name']);
         }
     }
 
-    // Gabungkan jadi string dipisah koma untuk dikirim ke fqdn Coolify
     $string_domains = implode(",", $list_domain);
 
-    // 🔥 PERBAIKAN 1: Pake IP Publik VPS langsung agar cURL lolos dari isolasi Docker internal localhost
     $url = "http://137.184.155.151:8000/api/v1/applications/" . $application_uuid;
     $data_payload = json_encode(array("fqdn" => $string_domains));
 
@@ -133,7 +132,6 @@ if (isset($_GET['aksi']) && $_GET['aksi'] == 'hapus' && isset($_GET['id']) && is
     if (isset($eksekusi_cf['success']) && $eksekusi_cf['success'] == true) {
         mysqli_query($koneksi, "DELETE FROM custom_domains WHERE id = '$id_hapus'");
         
-        // 🔥 UPDATE COOLIFY: Sinkronisasi ulang daftar domain setelah ada yang dihapus
         sinkronisasiDomainKeCoolifyLokal();
 
         $pesan = "<div class='alert success'><strong>Sukses!</strong> Domain lama berhasil dihapus dari Cloudflare and Database. Slot akun kosong kembali!</div>";
@@ -142,7 +140,6 @@ if (isset($_GET['aksi']) && $_GET['aksi'] == 'hapus' && isset($_GET['id']) && is
         if (isset($eksekusi_cf['errors'][0]['code']) && ($eksekusi_cf['errors'][0]['code'] == 1006 || $eksekusi_cf['errors'][0]['code'] == 7003)) {
             mysqli_query($koneksi, "DELETE FROM custom_domains WHERE id = '$id_hapus'");
             
-            // 🔥 UPDATE COOLIFY: Sinkronisasi ulang daftar domain setelah ada yang dihapus
             sinkronisasiDomainKeCoolifyLokal();
 
             $pesan = "<div class='alert success'><strong>Informasi:</strong> Domain sudah bersih, record database lokal dihapus.</div>";
@@ -181,7 +178,7 @@ if (isset($_POST['submit_domain'])) {
                 "name" => "@",
                 "content" => $ip_server_kamu,
                 "ttl" => 1, 
-                "proxied" => true // 🔥 Tetap TRUE biar dapet SSL otomatis dari Cloudflare untuk user!
+                "proxied" => true // Tetap true agar Cloudflare membungkus SSL untuk user luar
             ];
 
             $ch_dns = curl_init("https://api.cloudflare.com/client/v4/zones/" . $zone_id . "/dns_records");
@@ -196,11 +193,11 @@ if (isset($_POST['submit_domain'])) {
             curl_exec($ch_dns);
             curl_close($ch_dns);
 
-            // 🔥 SUNTIKAN SAKTI 2: Otomatis setel pengaturan SSL Cloudflare domain user ke FLEXIBLE
-            // Supaya dari Cloudflare dioper lewat HTTP biasa ke port 80 Coolify (Cocok ama http://*)
+            // 🔥 PERBAIKAN 3: Paksa Cloudflare pakai mode "full" agar melempar trafik via HTTPS (Port 443) ke VPS
+            // Ini wajib agar berjabat tangan sempurna dengan settingan https://* milik Coolify!
             $ssl_payload = [
                 "id" => "ssl",
-                "value" => "flexible"
+                "value" => "full" 
             ];
             $ch_ssl = curl_init("https://api.cloudflare.com/client/v4/zones/" . $zone_id . "/settings/ssl");
             curl_setopt($ch_ssl, CURLOPT_RETURNTRANSFER, true);
@@ -220,7 +217,6 @@ if (isset($_POST['submit_domain'])) {
             
             if (mysqli_query($koneksi, $query_simpan)) {
                 
-                // 🔥 SAKTI UTAMA: Panggil fungsi sinkronisasi otomatis agar domain langsung didaftarkan ke gerbang Coolify!
                 sinkronisasiDomainKeCoolifyLokal();
 
                 $pesan = "
@@ -317,18 +313,13 @@ if (isset($_POST['submit_domain'])) {
                     
                     $status_sekarang = $row['status'];
 
-                    // --------------------------------------------------------
-                    // AUTO CHECK TERBARU: Jika status lokal masih pending, cek ke Cloudflare
-                    // --------------------------------------------------------
                     if ($status_sekarang === 'pending') {
                         $status_cf = cekStatusZoneCloudflare($row['cloudflare_id']);
                         if ($status_cf === 'active') {
-                            // Update status di database lokal agar jadi active
                             mysqli_query($koneksi, "UPDATE custom_domains SET status = 'active' WHERE id = '{$row['id']}'");
                             $status_sekarang = 'active'; 
                         }
                     }
-                    // --------------------------------------------------------
 
                     $status_badge = ($status_sekarang === 'active') 
                         ? "<span class='badge badge-active'>ACTIVE</span>" 
