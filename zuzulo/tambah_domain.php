@@ -6,7 +6,6 @@ if (session_status() == PHP_SESSION_NONE) {
 }
 
 if (!isset($alamat_admin)) {
-    // Fallback jika $alamat_admin tidak terdefinisi
     $current_dir_url_path = dirname($_SERVER['SCRIPT_NAME']);
     $alamat_admin = (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on' ? "https" : "http") . "://$_SERVER[HTTP_HOST]" . $current_dir_url_path . '/';
 }
@@ -15,8 +14,6 @@ if (!isset($_SESSION['kode_admin'])) {
     echo '<script>alert("Terjadi kesalahan, harap masuk kembali!"); window.location.replace("'.rtrim($alamat_admin, '/').'/keluar.php");</script>';
     exit();
 }
-
-// 🔥 REVISI 1: require_once koneksi.php ditiadakan di sini karena sudah otomatis di-load mutlak oleh index.php induk admin lu
 
 $pesan = "Catat NameServer Otomatis Akan Terhapus ketika Halaman di Refresh";
 
@@ -126,7 +123,7 @@ if (isset($_GET['aksi']) && $_GET['aksi'] == 'hapus' && isset($_GET['id']) && is
     deleteSiteDariCloudflareLokal($zone_id_hapus);
     mysqli_query($koneksi, "DELETE FROM custom_domains WHERE id = '$id_hapus'");
     sinkronisasiDomainKeCoolifyLokal();
-    $pesan = "<div class='alert alert-success alert-dismissible' role='alert'>Domain berhasil dihapus!<button type='button' class='btn-close' data-bs-dismiss='alert'></button></div>";
+    $pesan = "<div class='alert alert-success alert-dismissible fade show' role='alert'>Domain berhasil dihapus!<button type='button' class='btn-close' data-bs-dismiss='alert' aria-label='Close'></button></div>";
 }
 
 // EKSEKUSI TAMBAH
@@ -143,7 +140,6 @@ if (isset($_POST['submit_domain'])) {
             $ns2 = $hasil['result']['name_servers'][1] ?? 'ns2.cloudflare.com';
             $ip_server_kamu = '137.184.155.151'; 
 
-            // 🔥 REVISI 2: Suntik variabel kredensial di sini agar cURL di bawah terbaca tanpa memicu Warning teks putih
             $cf_email = 'adrnsyah' . '18' . '@' . 'gmail.com';
             $cf_key   = 'cfk_' . 'I4b6ZygMhnUoCSYEnPVfupCDOyAHan7ZIs9YbzGpa5e33a56'; 
 
@@ -168,15 +164,41 @@ if (isset($_POST['submit_domain'])) {
             $query_simpan = "INSERT INTO custom_domains (domain_name, cloudflare_id, status) VALUES ('$domain_clean', '$zone_id', 'pending')";
             if (mysqli_query($koneksi, $query_simpan)) {
                 sinkronisasiDomainKeCoolifyLokal();
-                $pesan = "<div class='alert alert-success alert-dismissible'><strong>Domain Terdaftar!</strong><br>NS 1: $ns1<br>NS 2: $ns2<button type='button' class='btn-close' data-bs-dismiss='alert'></button></div>";
+                $pesan = "<div class='alert alert-success alert-dismissible fade show' role='alert'><strong>🎉 Domain Berhasil Terdaftar!</strong><br><small>Silakan arahkan NameServer domain user Anda ke:</small><br><code>1. $ns1</code><br><code>2. $ns2</code><button type='button' class='btn-close' data-bs-dismiss='alert' aria-label='Close'></button></div>";
             }
         } else {
             $error_msg = $hasil['errors'][0]['message'] ?? 'Cloudflare Error.';
-            $pesan = "<div class='alert alert-danger'>$error_msg</div>";
+            $pesan = "<div class='alert alert-danger alert-dismissible fade show' role='alert'>$error_msg<button type='button' class='btn-close' data-bs-dismiss='alert' aria-label='Close'></button></div>";
         }
     }
 }
 ?>
+
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<script>
+function konfirmasiHapusDomain(event, urlTarget) {
+    event.preventDefault(); // Mencegah link langsung tereksekusi melompat halaman
+    
+    Swal.fire({
+        title: 'Apakah Anda Yakin?',
+        text: "Domain akan dihapus permanen dari VPS Coolify & API Cloudflare!",
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#ff3e1d', // Merah Sneat
+        cancelButtonColor: '#8592a3',  // Abu-abu Sneat
+        confirmButtonText: 'Ya, Hapus Permanen!',
+        cancelButtonText: 'Batal',
+        customClass: {
+            popup: 'card bg-card-theme border-secondary text-white' // Penyelarasan tema gelap
+        }
+    }).then((result) => {
+        if (result.isConfirmed) {
+            // Jika diklik Ya, barulah rute PHP dieksekusi jalan
+            window.location.href = urlTarget;
+        }
+    });
+}
+</script>
 
 <h4 class="fw-bold py-3 mb-4">Manajemen Domain & Anti-Nawala</h4>
 
@@ -228,13 +250,19 @@ if (isset($_POST['submit_domain'])) {
                         }
 
                         $badge_class = ($status_sekarang === 'active') ? 'bg-label-success' : 'bg-label-warning';
+                        
+                        // Buat variabel URL target hapus secara dinamis
+                        $url_hapus = "?halaman=tambah_domain&aksi=hapus&id=".$row['id']."&cf_id=".$row['cloudflare_id'];
                         ?>
                         <tr style="border-bottom: 1px solid #3c3d56;">
                             <td class="text-center fw-semibold"><?= $no++; ?></td>
                             <td><span class="fw-bold text-white"><?= htmlspecialchars($row['domain_name'], ENT_QUOTES, 'UTF-8'); ?></span></td>
                             <td><span class="badge <?= $badge_class; ?> fw-bold"><?= strtoupper($status_sekarang); ?></span></td>
                             <td class="text-center">
-                                <a href="?halaman=tambah_domain&aksi=hapus&id=<?= $row['id']; ?>&cf_id=<?= $row['cloudflare_id']; ?>" class="btn btn-sm text-white fw-bold" style="background-color: #ff3e1d;" onclick="return confirm('Hapus domain ini?')">
+                                <a href="javascript:void(0);" 
+                                   onclick="konfirmasiHapusDomain(event, '<?= $url_hapus; ?>')" 
+                                   class="btn btn-sm text-white fw-bold" 
+                                   style="background-color: #ff3e1d;">
                                     <i class="bx bx-trash me-1"></i> HAPUS
                                 </a>
                             </td>
