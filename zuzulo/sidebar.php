@@ -52,7 +52,7 @@
             <div>Refferal</div>
           </a>
         </li>
-        <li class="menu-item" id="refferal">
+        <li class="menu-item" id="turnover">
           <a href="<?php echo $alamat_admin.'turnover'; ?>" class="menu-link">
             <div>Turnover Member</div>
           </a>
@@ -83,6 +83,13 @@
         </li>
       </ul>
     </li>
+
+    <li class="menu-item" id="tambah_domain"> 
+      <a href="<?php echo $alamat_admin.'tambah_domain'; ?>" class="menu-link">
+        <i class="menu-icon tf-icons mdi mdi-web"></i>
+        <div>Tambah Domain</div>
+      </a>
+    </li>
     
     <li class="menu-item">
       <a href="javascript:void(0);" class="menu-link menu-toggle">
@@ -95,7 +102,7 @@
             <div>Promosi</div>
           </a>
         </li>
-                <li class="menu-item" id="ubah_pengaturan_referral">
+        <li class="menu-item" id="ubah_pengaturan_referral">
           <a href="<?php echo $alamat_admin.'ubah_pengaturan_referral'; ?>" class="menu-link">
             <div>Refferal & Bonus</div>
           </a>
@@ -115,7 +122,7 @@
             <div>Bonus</div>
           </a>
         </li>
-                <li class="menu-item" id="claimbonus">
+        <li class="menu-item" id="claimbonus">
           <a href="<?php echo $alamat_admin.'claim_bonus'; ?>" class="menu-link">
             <div>Claim Bonus</div>
           </a>
@@ -127,76 +134,81 @@
         </li>
       </ul>
     </li>
+
     <li class="menu-item">
       <a href="javascript:void(0);" class="menu-link menu-toggle">
         <i class="menu-icon tf-icons mdi mdi-palette-swatch"></i>
         <div>Game Pilihan</div>
       </a>
       <ul class="menu-sub">
-        <li class="menu-item" id="promosi">
+        <li class="menu-item" id="pilihan_lottery">
           <a href="<?php echo $alamat_admin.'pilihan_lottery'; ?>" class="menu-link">
             <div>Togel</div>
           </a>
         </li> 
-        <li class="menu-item" id="promosi">
+        <li class="menu-item" id="pilihan_slot">
           <a href="<?php echo $alamat_admin.'pilihan_slot'; ?>" class="menu-link">
             <div>Slot</div>
           </a>
         </li> 
-        <li class="menu-item" id="promosi">
+        <li class="menu-item" id="pilihan_casino">
           <a href="<?php echo $alamat_admin.'pilihan_casino'; ?>" class="menu-link">
             <div>Casino</div>
           </a>
         </li> 
-        <li class="menu-item" id="promosi">
+        <li class="menu-item" id="pilihan_table">
           <a href="<?php echo $alamat_admin.'pilihan_table'; ?>" class="menu-link">
             <div>Table</div>
           </a>
         </li> 
-        <li class="menu-item" id="promosi">
+        <li class="menu-item" id="pilihan_sports">
           <a href="<?php echo $alamat_admin.'pilihan_sports'; ?>" class="menu-link">
             <div>Sports</div>
           </a>
         </li> 
-        <li class="menu-item" id="promosi">
+        <li class="menu-item" id="pilihan_arcade">
           <a href="<?php echo $alamat_admin.'pilihan_arcade'; ?>" class="menu-link">
             <div>Arcade</div>
           </a>
         </li>
-                <li class="menu-item" id="promosi">
+        <li class="menu-item" id="pilihan_card">
           <a href="<?php echo $alamat_admin.'pilihan_card'; ?>" class="menu-link">
             <div>Poker</div>
           </a>
         </li> 
-        <li class="menu-item" id="promosi">
+        <li class="menu-item" id="pilihan_fishing">
           <a href="<?php echo $alamat_admin.'pilihan_fishing'; ?>" class="menu-link">
             <div>Fishing</div>
           </a>
         </li>
-        <li class="menu-item" id="promosi">
+        <li class="menu-item" id="pilihan_cockfight">
           <a href="<?php echo $alamat_admin.'pilihan_cockfight'; ?>" class="menu-link">
             <div>CockFight</div>
           </a>
         </li>
-        <li class="menu-item" id="promosi">
+        <li class="menu-item" id="pilihan_crash">
           <a href="<?php echo $alamat_admin.'pilihan_crash'; ?>" class="menu-link">
             <div>Crash</div>
           </a>
         </li>            
-          </ul>
+      </ul>
     </li>
-    <li class="menu-item" id="rekening"> <a href="<?php echo $alamat_admin.'rekening'; ?>" class="menu-link">
+
+    <li class="menu-item" id="rekening"> 
+      <a href="<?php echo $alamat_admin.'rekening'; ?>" class="menu-link">
         <i class="menu-icon tf-icons mdi mdi-bank"></i>
         <div>Rekening</div>
       </a>
     </li>
 
-    <li class="menu-item" id="staff"> <a href="<?php echo $alamat_admin.'staff'; ?>" class="menu-link">
+    <li class="menu-item" id="staff"> 
+      <a href="<?php echo $alamat_admin.'staff'; ?>" class="menu-link">
         <i class="menu-icon tf-icons mdi mdi-account-group"></i>
         <div>Staff</div>
       </a>
     </li>    
-        <li class="menu-item">
+
+    <li class="menu-item">
       <a href="javascript:void(0);" class="menu-link menu-toggle">
         <i class="menu-icon tf-icons mdi mdi-api"></i>
         <div>GameXaGlobal</div>
@@ -224,7 +236,8 @@
         </li>
       </ul>
     </li>
-            <li class="menu-item">
+
+    <li class="menu-item">
       <a href="javascript:void(0);" class="menu-link menu-toggle">
         <i class="menu-icon tf-icons mdi mdi-api"></i>
         <div>Nexus GGR</div>
@@ -247,11 +260,14 @@
         </li>
       </ul>
     </li>
-        <li class="menu-item" id="rekening"> <a href="<?php echo $alamat_admin.'voucher'; ?>" class="menu-link">
+
+    <li class="menu-item" id="voucher"> 
+      <a href="<?php echo $alamat_admin.'voucher'; ?>" class="menu-link">
         <i class="menu-icon tf-icons mdi mdi-bank"></i>
         <div>Voucher</div>
       </a>
     </li>
+
     <li class="menu-header fw-light mt-4">
       <span class="menu-header-text">Menu Lainnya</span>
     </li>
