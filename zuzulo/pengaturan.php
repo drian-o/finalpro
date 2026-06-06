@@ -416,6 +416,16 @@
       }
     }
   }
+  if (isset($_POST['ubah_amp'])) {
+    $amp_status = $_POST['amp_status'];
+    $amp_script = mysqli_real_escape_string($koneksi, $_POST['amp_script']);
+    $perbarui = mysqli_query($koneksi, "UPDATE pengaturan SET isi_1_pengaturan = '$amp_status', isi_2_pengaturan = '$amp_script' WHERE nama_pengaturan = 'amp_pengaturan'");
+    if ($perbarui) {
+      echo '<script>alert("Berhasil ubah data AMP."); window.location.replace("'.$alamat_admin.'pengaturan");</script>';
+    } else {
+      echo "Proses Gagal<br>Error : ".mysqli_error($koneksi);
+    }
+  }
 ?>
 <div class="container-xxl flex-grow-1 container-p-y">
   <div class="row gy-4 mb-4">
@@ -779,6 +789,35 @@ updateHslValues();
         </button>
       </div>
     </form>
+    <div class="container-xxl flex-grow-1 container-p-y">
+  <div class="card mb-4">
+    <form method="post" class="card-body">
+      <h5 class="card-header border-bottom mb-4">Pengaturan AMP</h5>
+      <div class="row g-3">
+        <div class="col-md-4">
+          <div class="form-floating form-floating-outline">
+            <select name="amp_status" class="form-select">
+              <option value="on" <?php if(isset($isi_1_amp_pengaturan) && $isi_1_amp_pengaturan == 'on') echo 'selected'; ?>>Aktif</option>
+              <option value="off" <?php if(isset($isi_1_amp_pengaturan) && $isi_1_amp_pengaturan == 'off') echo 'selected'; ?>>Nonaktif</option>
+            </select>
+            <label>Status AMP</label>
+          </div>
+        </div>
+        <div class="col-md-8">
+          <div class="form-floating form-floating-outline">
+            <input type="text" name="amp_script" class="form-control" value="<?php echo isset($isi_2_amp_pengaturan) ? htmlspecialchars($isi_2_amp_pengaturan) : ''; ?>" placeholder="Masukkan script/meta tag AMP">
+            <label>Script/Meta AMP</label>
+          </div>
+        </div>
+      </div>
+      <div class="pt-4 text-end">
+        <button type="submit" name="ubah_amp" class="btn btn-primary waves-effect waves-light">
+          <span class="tf-icons mdi mdi-content-save me-1"></span> Simpan AMP
+        </button>
+      </div>
+    </form>
+  </div>
+  </div>
     <!--<form method="post" enctype="multipart/form-data" class="card-body">
       <hr class="my-4 mx-n4">
       <h6> QRIS</h6>
