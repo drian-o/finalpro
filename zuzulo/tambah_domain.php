@@ -1,11 +1,29 @@
 <?php
-// zuzulo/tambah_domain.php
+// =========================================================================
+// 🔐 SISTEM PROTEKSI ADMIN: WAJIB LOGIN SEBELUM AKSES HALAMAN INI
+// =========================================================================
+if (session_status() == PHP_SESSION_NONE) {
+    session_start();
+}
+
+// FIX: Cek apakah session login admin ada. 
+// Sesuai config database lu, kita cek session 'loggedin'. 
+// Catatan: Jika di panel admin lu punya variabel khusus admin (misal: $_SESSION['role'] !== 'admin'), lu bisa tambahkan di sini.
+if (!isset($_SESSION['loggedin']) || $_SESSION['loggedin'] !== true) {
+    // Jika tidak ada session login, tendang paksa ke halaman login admin
+    header("Location: login.php"); 
+    exit;
+}
+
+// -------------------------------------------------------------------------
+// REQ FILE KONEKSI DATABASE
+// -------------------------------------------------------------------------
 require_once __DIR__ . '/../koneksi.php'; 
 
-$pesan = "";
+$pesan = "Catat NameServer Akan Terhapus Otomatis ketika halaman di Refresh";
 
 // =========================================================================
-// FUNGSI SAKTI: OTOMATIS DAFTARKAN SEMUA DOMAIN & LANGSUNG APPLY DEPLOYMENT
+// BACKEND API & LOGIKA CLOUDFLARE / COOLIFY (MURNI TIDAK BERUBAH)
 // =========================================================================
 function sinkronisasiDomainKeCoolifyLokal() {
     global $koneksi;
@@ -132,7 +150,6 @@ function cekStatusZoneCloudflareLokal($zone_id) {
     return $res_data['result']['status'] ?? 'pending'; 
 }
 
-// LOGIKA PROSES TOMBOL: HAPUS SITE DOMAIN
 if (isset($_GET['aksi']) && $_GET['aksi'] == 'hapus' && isset($_GET['id']) && isset($_GET['cf_id'])) {
     $id_hapus = mysqli_real_escape_string($koneksi, $_GET['id']);
     $zone_id_hapus = mysqli_real_escape_string($koneksi, $_GET['cf_id']);
@@ -143,7 +160,6 @@ if (isset($_GET['aksi']) && $_GET['aksi'] == 'hapus' && isset($_GET['id']) && is
     $pesan = "<div class='alert alert-success alert-dismissible fade show mb-4' role='alert'><strong>Sukses!</strong> Domain berhasil dihapus dari sistem.<button type='button' class='btn-close' data-bs-dismiss='alert' aria-label='Close'></button></div>";
 }
 
-// LOGIKA PROSES TOMBOL: TAMBAH SITE DOMAIN (POST FORM)
 if (isset($_POST['submit_domain'])) {
     $domain_input = strtolower(trim($_POST['nama_domain']));
     $domain_clean = mysqli_real_escape_string($koneksi, $domain_input);
@@ -221,34 +237,32 @@ if (isset($_POST['submit_domain'])) {
     }
 }
 
-// =========================================================================
-// 🔥 FIX UTAMA: KITA LOAD SELURUH RANGKAIAN TEMPLATE SNEAT BIAR GA BERANTAKAN
-// =========================================================================
-include_once 'header.php'; 
+// Load kerangka tema admin
+include_once __DIR__ . '/../header.php'; 
 ?>
 
 <div class="content-wrapper">
     <div class="container-xxl flex-grow-1 container-p-y">
         
         <div class="d-flex justify-content-between align-items-center mb-4">
-            <h4 class="fw-bold py-3 mb-0">Domain</h4>
-            <button type="button" class="btn btn-primary d-flex align-items-center text-uppercase fw-bold" style="background-color: #696cff; border-color: #696cff;" data-bs-toggle="modal" data-bs-target="#modalTambahDomain">
+            <h4 class="fw-bold py-3 mb-0" style="color: #cbcbd6;">Domain</h4>
+            <button type="button" class="btn btn-primary d-flex align-items-center fw-bold" style="background-color: #696cff; border-color: #696cff;" data-bs-toggle="modal" data-bs-target="#modalTambahDomain">
                 + TAMBAH DATA
             </button>
         </div>
 
         <?php if(!empty($pesan)) echo $pesan; ?>
 
-        <div class="card bg-card-theme border-0 shadow-sm">
+        <div class="card border-0 shadow-sm" style="background-color: #2b2c40; color: #cbcbd6;">
             <div class="card-body p-0">
                 <div class="table-responsive text-nowrap">
                     <table class="table mb-0">
                         <thead>
-                            <tr>
-                                <th style="width: 70px;" class="text-center">#</th>
-                                <th>Judul / Nama Domain</th>
-                                <th>Kategori / Status</th>
-                                <th style="width: 150px;" class="text-center">Aksi</th>
+                            <tr style="border-bottom: 1px solid #444;">
+                                <th style="width: 70px; color: #a3a4cc;" class="text-center">#</th>
+                                <th style="color: #a3a4cc;">JUDUL / NAMA DOMAIN</th>
+                                <th style="color: #a3a4cc;">KATEGORI / STATUS</th>
+                                <th style="width: 150px; color: #a3a4cc;" class="text-center">AKSI</th>
                             </tr>
                         </thead>
                         <tbody class="table-border-bottom-0">
@@ -266,17 +280,16 @@ include_once 'header.php';
                                         mysqli_query($koneksi, "UPDATE custom_domains SET status = '$status_sekarang' WHERE id = '$id_update'");
                                     }
 
-                                    // Styling Badge menyesuaikan warna Sneat Admin
                                     if ($status_sekarang === 'active') {
                                         $badge_style = "background-color: rgba(46, 204, 113, 0.15); color: #2ecc71; padding: 6px 12px; font-weight: bold; border-radius: 4px;";
                                     } else {
                                         $badge_style = "background-color: rgba(241, 196, 15, 0.15); color: #f1c40f; padding: 6px 12px; font-weight: bold; border-radius: 4px;";
                                     }
                                     ?>
-                                    <tr>
-                                        <td class="text-center fw-semibold"><?= $no++; ?></td>
+                                    <tr style="border-bottom: 1px solid #3c3d56;">
+                                        <td class="text-center fw-semibold" style="color: #cbcbd6;"><?= $no++; ?></td>
                                         <td>
-                                            <span class="fw-bold" style="font-size: 0.95rem;">
+                                            <span class="fw-bold" style="color: #fff; font-size: 0.95rem;">
                                                 <?= htmlspecialchars($row['domain_name'] ?? '', ENT_QUOTES, 'UTF-8'); ?>
                                             </span>
                                         </td>
@@ -287,8 +300,8 @@ include_once 'header.php';
                                         </td>
                                         <td class="text-center">
                                             <a href="?aksi=hapus&id=<?= $row['id']; ?>&cf_id=<?= $row['cloudflare_id']; ?>" 
-                                               class="btn btn-sm text-white font-weight-bold" 
-                                               style="background-color: #ff3e1d; border-color: #ff3e1d;"
+                                               class="btn btn-sm text-white fw-bold" 
+                                               style="background-color: #ff3e1d; border-color: #ff3e1d; font-size: 0.8rem; padding: 6px 16px;"
                                                onclick="return confirm('Apakah Anda yakin ingin menghapus domain ini?')">
                                                 UBAH / HAPUS
                                             </a>
@@ -297,21 +310,21 @@ include_once 'header.php';
                                     <?php 
                                 } 
                             } else {
-                                echo "<tr><td colspan='4' class='text-center py-4 text-muted'>Tidak ada domain yang terdaftar.</td></tr>";
+                                echo "<tr><td colspan='4' class='text-center py-4 text-muted' style='color: #888 !important;'>Tidak ada domain yang terdaftar.</td></tr>";
                             }
                             ?>
                         </tbody>
                     </table>
                 </div>
             </div>
-            <div class="card-footer border-0 py-3" style="background-color: rgba(0,0,0,0.05);">
+            <div class="card-footer border-0 py-3" style="background-color: rgba(0,0,0,0.15);">
                 <div class="d-flex justify-content-between align-items-center">
-                    <span class="text-muted" style="font-size: 0.85rem;">Showing 1 to <?= ($no - 1); ?> entries</span>
+                    <span class="text-muted" style="font-size: 0.85rem;">Showing 1 to <?= ($no - 1); ?> of <?= ($no - 1); ?> entries</span>
                     <nav aria-label="Page navigation">
                         <ul class="pagination pagination-sm mb-0">
-                            <li class="page-item disabled"><a class="page-link" href="javascript:void(0);">&laquo;</a></li>
-                            <li class="page-item active"><a class="page-link" href="javascript:void(0);" style="background-color: #696cff; border-color: #696cff;">1</a></li>
-                            <li class="page-item disabled"><a class="page-link" href="javascript:void(0);">&raquo;</a></li>
+                            <li class="page-item disabled"><a class="page-link" href="javascript:void(0);" style="background-color: #232333; border-color: #444; color: #888;&laquo;</a></li>
+                            <li class="page-item active"><a class="page-link" href="javascript:void(0);" style="background-color: #696cff; border-color: #696cff; color: #fff;">1</a></li>
+                            <li class="page-item disabled"><a class="page-link" href="javascript:void(0);" style="background-color: #232333; border-color: #444; color: #888;&raquo;</a></li>
                         </ul>
                     </nav>
                 </div>
@@ -323,7 +336,7 @@ include_once 'header.php';
 
 <div class="modal fade" id="modalTambahDomain" tabindex="-1" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered" role="document">
-        <div class="modal-content" style="background-color: #2b2c40; color: #cbcbd6;">
+        <div class="modal-content" style="background-color: #2b2c40; color: #cbcbd6; border: 1px solid #444;">
             <div class="modal-header border-bottom border-secondary pb-3">
                 <h5 class="modal-title fw-bold text-white">Daftarkan Domain Baru</h5>
                 <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
@@ -331,22 +344,16 @@ include_once 'header.php';
             <form method="POST" action="">
                 <div class="modal-body py-4">
                     <div class="form-group">
-                        <label for="nama_domain" class="form-label mb-2 fw-semibold">Nama Domain Alamat Web</label>
-                        <input type="text" 
-                               id="nama_domain" 
-                               name="nama_domain" 
-                               class="form-control text-white bg-transparent border-secondary py-2" 
-                               placeholder="contoh: domainsampel.com" 
-                               required 
-                               autocomplete="off">
-                        <small class="form-text text-muted d-block mt-2">
-                            <i class="bi bi-info-circle me-1"></i> Jangan masukkan karakter <code>http://</code> atau <code>https://</code>.
+                        <label for="nama_domain" class="form-label mb-2 fw-semibold" style="color: #a3a4cc;">Nama Domain Alamat Web</label>
+                        <input type="text" id="nama_domain" name="nama_domain" class="form-control text-white bg-transparent border-secondary py-2" placeholder="contoh: domainsampel.com" required style="border: 1px solid #555 !important;" autocomplete="off">
+                        <small class="form-text text-muted d-block mt-2" style="color: #888 !important;">
+                            Jangan masukkan karakter <code>http://</code> atau <code>https://</code>.
                         </small>
                     </div>
                 </div>
                 <div class="modal-footer border-top border-secondary pt-3">
                     <button type="button" class="btn btn-outline-secondary text-white" data-bs-dismiss="modal">KEMBALI</button>
-                    <button type="submit" name="submit_domain" class="btn text-white" style="background-color: #696cff;">TAMBAH & GENERATE NS</button>
+                    <button type="submit" name="submit_domain" class="btn text-white" style="background-color: #696cff;">DAFTARKAN & GENERATE NS</button>
                 </div>
             </form>
         </div>
@@ -354,5 +361,5 @@ include_once 'header.php';
 </div>
 
 <?php 
-include_once 'footer.php';
+include_once __DIR__ . '/../footer.php';
 ?>
