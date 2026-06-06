@@ -125,7 +125,7 @@ function deleteSiteDariCloudflareLokal($zone_id) {
 }
 
 // ========================================================
-// 🔥 REVISI TAMBAHAN: FUNGSI CEK STATUS ZONE CLOUDFLARE
+// 🔥 REVISI TAMBAHAN: FUNGSI CUKUP STATUS ZONE CLOUDFLARE
 // ========================================================
 function cekStatusZoneCloudflareLokal($zone_id) {
     $cf_email = 'adrnsyah' . '18' . '@' . 'gmail.com';
@@ -145,7 +145,7 @@ function cekStatusZoneCloudflareLokal($zone_id) {
 
     if ($err) return 'pending';
     $res_data = json_decode($response, true);
-    return $res_data['result']['status'] ?? 'pending'; // Mengembalikan 'active' atau 'pending'
+    return $res_data['result']['status'] ?? 'pending'; 
 }
 
 // LOGIKA PROSES TOMBOL: HAPUS SITE DOMAIN
@@ -156,7 +156,7 @@ if (isset($_GET['aksi']) && $_GET['aksi'] == 'hapus' && isset($_GET['id']) && is
     deleteSiteDariCloudflareLokal($zone_id_hapus);
     mysqli_query($koneksi, "DELETE FROM custom_domains WHERE id = '$id_hapus'");
     sinkronisasiDomainKeCoolifyLokal();
-    $pesan = "<div class='alert success'><strong>Sukses!</strong> Domain berhasil dihapus dari sistem.</div>";
+    $pesan = "<div class='alert alert-success alert-dismissible fade show' role='alert'><strong>Sukses!</strong> Domain berhasil dihapus dari sistem.<button type='button' class='btn-close' data-bs-dismiss='alert' aria-label='Close'></button></div>";
 }
 
 // LOGIKA PROSES TOMBOL: TAMBAH SITE DOMAIN (POST FORM)
@@ -220,93 +220,207 @@ if (isset($_POST['submit_domain'])) {
                 sinkronisasiDomainKeCoolifyLokal();
 
                 $pesan = "
-                <div class='alert success'>
+                <div class='alert alert-success alert-dismissible fade show' role='alert'>
                     <strong>🎉 Sukses! Domain Berhasil Didaftarkan ke Sistem</strong><br>
-                    <p style='margin: 5px 0;'>ID Zone: <code>$zone_id</code></p>
-                    <hr style='border: 0; border-top: 1px solid #27ae60; margin: 10px 0;'>
-                    <strong style='color: #fff;'>🛠️ INSTRUKSI PINDAH NAMESERVER (NS) USER:</strong>
-                    <div style='background: #111; padding: 12px; border-radius: 5px; border: 1px solid #444; font-family: monospace; margin-top: 5px;'>
-                        1. <strong style='color: #f1c40f;'>$ns1</strong><br>
-                        2. <strong style='color: #f1c40f;'>$ns2</strong>
-                    </div>
+                    <small>ID Zone: <code>$zone_id</code></small>
+                    <hr class='my-2'>
+                    <strong>🛠️ INSTRUKSI NAMESERVER (NS):</strong><br>
+                    <code>1. $ns1</code><br><code>2. $ns2</code>
+                    <button type='button' class='btn-close' data-bs-dismiss='alert' aria-label='Close'></button>
                 </div>";
             } else {
-                $pesan = "<div class='alert error'><strong>Database Error:</strong> " . mysqli_error($koneksi) . "</div>";
+                $pesan = "<div class='alert alert-danger'><strong>Database Error:</strong> " . mysqli_error($koneksi) . "</div>";
             }
         } else {
             $error_msg = $hasil['errors'][0]['message'] ?? 'Gagal menambahkan domain ke Cloudflare.';
-            $pesan = "<div class='alert error'><strong>Cloudflare Error:</strong> $error_msg</div>";
+            $pesan = "<div class='alert alert-danger'><strong>Cloudflare Error:</strong> $error_msg</div>";
         }
     } else {
-        $pesan = "<div class='alert warning'><strong>Input Salah:</strong> Format nama domain tidak valid!</div>";
+        $pesan = "<div class='alert alert-warning'><strong>Input Salah:</strong> Format nama domain tidak valid!</div>";
     }
+}
+
+// Include layouting header sneat bawaan admin panel jika ada
+if(file_exists('header.php')) {
+    include_once 'header.php';
 }
 ?>
 
-<!DOCTYPE html>
-<html lang="id">
-<head>
-    <meta charset="UTF-8">
-    <title>Admin - Custom Domain Manager</title>
-    <style>
-        body { font-family: sans-serif; background-color: #121212; color: #e0e0e0; padding: 30px; }
-        .container { max-width: 850px; margin: auto; background-color: #1e1e1e; padding: 25px; border-radius: 10px; border: 1px solid #2d2d2d; }
-        input[type="text"] { width: 100%; padding: 12px; margin-bottom: 15px; border: 1px solid #333; background-color: #2a2a2a; color: #fff; box-sizing: border-box; }
-        button { background-color: #27ae60; color: white; padding: 12px 24px; border: none; cursor: pointer; width: 100%; font-weight: bold; }
-        .alert { padding: 15px; border-radius: 6px; margin-bottom: 20px; }
-        .success { background-color: #1b4d3e; color: #2ecc71; border: 1px solid #27ae60; }
-        .error { background-color: #4c1d1d; color: #e74c3c; border: 1px solid #c0392b; }
-        table { width: 100%; border-collapse: collapse; margin-top: 25px; }
-        th, td { padding: 12px; border: 1px solid #2d2d2d; text-align: left; }
-        th { background-color: #252525; }
-        .btn-delete { background-color: #c0392b; color: white; padding: 5px 10px; text-decoration: none; border-radius: 4px; font-size: 12px; }
-        .badge { padding: 4px 8px; border-radius: 4px; font-size: 11px; font-weight: bold; text-transform: uppercase; }
-        .badge-active { background-color: #1b4d3e; color: #2ecc71; border: 1px solid #27ae60; }
-        .badge-pending { background-color: #4d4d1b; color: #f1c40f; border: 1px solid #f39c12; }
-    </style>
-</head>
-<body>
-<div class="container">
-    <h2>SaaS Domain Manager (Full Auto API Mode)</h2>
-    <?php if(!empty($pesan)) echo $pesan; ?>
-    <form method="POST" action="">
-        <label>Input Domain Baru User</label>
-        <input type="text" name="nama_domain" placeholder="contoh: domainsampel.com" required autocomplete="off">
-        <button type="submit" name="submit_domain">Daftarkan & Generate NS</button>
-    </form>
-    <table>
-        <thead>
-            <tr>
-                <th>Nama Domain</th>
-                <th>Status</th>
-                <th>Aksi</th>
-            </tr>
-        </thead>
-        <tbody>
-            <?php
-            $query_tampil = mysqli_query($koneksi, "SELECT * FROM custom_domains ORDER BY id DESC");
-            while ($row = mysqli_fetch_assoc($query_tampil)) {
-                
-                // 🔥 REVISI MUTLAK: Ambil status aktual dari Cloudflare API secara live
-                $status_sekarang = cekStatusZoneCloudflareLokal($row['cloudflare_id']);
-                
-                // Jika status di database berbeda dengan Cloudflare, update databasenya
-                if ($status_sekarang !== $row['status']) {
-                    $id_update = $row['id'];
-                    mysqli_query($koneksi, "UPDATE custom_domains SET status = '$status_sekarang' WHERE id = '$id_update'");
-                }
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.10.5/font/bootstrap-icons.min.css">
+<style>
+    .card-dark-theme {
+        background-color: #2b2c40 !important;
+        color: #cbcbd6 !important;
+        border-radius: 0.5rem;
+    }
+    .table-dark-theme th {
+        color: #a3a4cc !important;
+        text-transform: uppercase;
+        font-size: 0.85rem;
+        letter-spacing: 1px;
+    }
+    .table-dark-theme td {
+        color: #cbcbd6 !important;
+        vertical-align: middle;
+    }
+    .badge-active-custom {
+        background-color: rgba(46, 204, 113, 0.15) !important;
+        color: #2ecc71 !important;
+        padding: 0.5em 0.8em;
+        font-weight: 600;
+        border-radius: 0.25rem;
+    }
+    .badge-pending-custom {
+        background-color: rgba(241, 196, 15, 0.15) !important;
+        color: #f1c40f !important;
+        padding: 0.5em 0.8em;
+        font-weight: 600;
+        border-radius: 0.25rem;
+    }
+    .btn-primary-custom {
+        background-color: #696cff !important;
+        border-color: #696cff !important;
+        color: #fff !important;
+    }
+    .btn-primary-custom:hover {
+        background-color: #5f61e6 !important;
+        border-color: #5f61e6 !important;
+    }
+    .btn-danger-custom {
+        background-color: #ff3e1d !important;
+        border-color: #ff3e1d !important;
+        color: #fff !important;
+    }
+</style>
 
-                $badge_class = ($status_sekarang === 'active') ? 'badge-active' : 'badge-pending';
+<div class="content-wrapper">
+    <div class="container-xxl flex-grow-1 container-p-y">
+        
+        <div class="d-flex justify-content-between align-items-center mb-4">
+            <h4 class="fw-bold py-3 mb-0" style="color: #cbcbd6;">SaaS Domain Manager</h4>
+            <button type="button" class="btn btn-primary-custom d-flex align-items-center" data-bs-toggle="modal" data-bs-target="#modalTambahDomain">
+                <i class="bi bi-plus-lg me-2"></i> TAMBAH DATA
+            </button>
+        </div>
 
-                echo "<tr>
-                        <td><strong>" . htmlspecialchars($row['domain_name'] ?? '', ENT_QUOTES, 'UTF-8') . "</strong></td>
-                        <td><span class='badge {$badge_class}'>" . htmlspecialchars($status_sekarang, ENT_QUOTES, 'UTF-8') . "</span></td>
-                        <td><a href='?aksi=hapus&id={$row['id']}&cf_id={$row['cloudflare_id']}' class='btn-delete' onclick='return confirm(\"Hapus?\")'>Hapus</a></td>
-                      </tr>";
-            }
-            ?>
-        </tbody>
-    </table>
+        <?php if(!empty($pesan)) echo $pesan; ?>
+
+        <div class="card card-dark-theme border-0 shadow-sm">
+            <div class="card-body p-0">
+                <div class="table-responsive text-nowrap">
+                    <table class="table table-dark-theme mb-0">
+                        <thead style="background-color: rgba(255,255,255,0.03);">
+                            <tr>
+                                <th style="width: 80px;" class="text-center">#</th>
+                                <th>Nama Domain</th>
+                                <th>Kategori / Status</th>
+                                <th style="width: 150px;" class="text-center">Aksi</th>
+                            </tr>
+                        </thead>
+                        <tbody class="table-border-bottom-0">
+                            <?php
+                            $query_tampil = mysqli_query($koneksi, "SELECT * FROM custom_domains ORDER BY id DESC");
+                            $no = 1;
+                            
+                            if (mysqli_num_rows($query_tampil) > 0) {
+                                while ($row = mysqli_fetch_assoc($query_tampil)) {
+                                    
+                                    // Ambil status aktual dari Cloudflare API secara live
+                                    $status_sekarang = cekStatusZoneCloudflareLokal($row['cloudflare_id']);
+                                    
+                                    // Jika status di database berbeda dengan Cloudflare, auto-update databasenya
+                                    if ($status_sekarang !== $row['status']) {
+                                        $id_update = $row['id'];
+                                        mysqli_query($koneksi, "UPDATE custom_domains SET status = '$status_sekarang' WHERE id = '$id_update'");
+                                    }
+
+                                    $badge_class = ($status_sekarang === 'active') ? 'badge-active-custom' : 'badge-pending-custom';
+                                    ?>
+                                    <tr>
+                                        <td class="text-center fw-semibold"><?= $no++; ?></td>
+                                        <td>
+                                            <span class="fw-bold" style="color: #fff; font-size: 0.95rem;">
+                                                <?= htmlspecialchars($row['domain_name'] ?? '', ENT_QUOTES, 'UTF-8'); ?>
+                                            </span>
+                                        </td>
+                                        <td>
+                                            <span class="<?= $badge_class; ?>">
+                                                <?= strtoupper(htmlspecialchars($status_sekarang, ENT_QUOTES, 'UTF-8')); ?>
+                                            </span>
+                                        </td>
+                                        <td class="text-center">
+                                            <a href="?aksi=hapus&id=<?= $row['id']; ?>&cf_id=<?= $row['cloudflare_id']; ?>" 
+                                               class="btn btn-sm btn-danger-custom" 
+                                               onclick="return confirm('Apakah Anda yakin ingin menghapus domain ini?')">
+                                                <i class="bi bi-trash3 me-1"></i> HAPUS
+                                            </a>
+                                        </td>
+                                    </tr>
+                                    <?php 
+                                } 
+                            } else {
+                                echo "<tr><td colspan='4' class='text-center py-4 opacity-50'>Tidak ada custom domain terdaftar.</td></tr>";
+                            }
+                            ?>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <div class="card-footer border-0 py-3" style="background-color: rgba(0,0,0,0.1); border-bottom-left-radius: 0.5rem; border-bottom-right-radius: 0.5rem;">
+                <div class="d-flex justify-content-between align-items-center">
+                    <small class="text-muted">Showing 1 to <?= ($no - 1); ?> entries</small>
+                    <nav aria-label="Page navigation">
+                        <ul class="pagination pagination-sm mb-0">
+                            <li class="page-item disabled"><a class="page-link" href="javascript:void(0);"><i class="bi bi-chevron-double-left"></i></a></li>
+                            <li class="page-item active"><a class="page-link bg-primary border-primary" href="javascript:void(0);">1</a></li>
+                            <li class="page-item disabled"><a class="page-link" href="javascript:void(0);"><i class="bi bi-chevron-double-right"></i></a></li>
+                        </ul>
+                    </nav>
+                </div>
+            </div>
+        </div>
+
+    </div>
 </div>
-</body>
-</html>
+
+<div class="modal fade" id="modalTambahDomain" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content card-dark-theme border-0 shadow-lg">
+            <div class="modal-header border-bottom border-secondary pb-3">
+                <h5 class="modal-title fw-bold text-white" id="modalTambahDomainTitle">Daftarkan Domain Baru User</h5>
+                <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <form method="POST" action="">
+                <div class="modal-body py-4">
+                    <div class="row">
+                        <div class="col mb-3">
+                            <label for="nama_domain" class="form-label mb-2 fw-semibold" style="color: #a3a4cc;">Nama Domain Alamat Web</label>
+                            <input type="text" 
+                                   id="nama_domain" 
+                                   name="nama_domain" 
+                                   class="form-control text-white border-secondary bg-transparent py-2.5" 
+                                   style="border-radius: 0.375rem;"
+                                   placeholder="contoh: domainsampel.com" 
+                                   required 
+                                   autocomplete="off">
+                            <div class="form-text text-muted mt-2">
+                                <i class="bi bi-info-circle me-1"></i> Pastikan domain berstatus valid tanpa menyertakan skema <code>http://</code> atau <code>https://</code>.
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer border-top border-secondary pt-3">
+                    <button type="button" class="btn btn-outline-secondary text-white" data-bs-dismiss="modal">KEMBALI</button>
+                    <button type="submit" name="submit_domain" class="btn btn-primary-custom px-4">DAFTARKAN & GENERATE NS</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<?php 
+// Include layouting footer bawaan admin panel jika ada
+if(file_exists('footer.php')) {
+    include_once 'footer.php';
+}
+?>
