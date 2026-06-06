@@ -9,21 +9,29 @@ if (session_status() == PHP_SESSION_NONE) {
 // FIX: Cek apakah session login admin ada. 
 // Sesuai config database lu, kita cek session 'loggedin'. 
 // Catatan: Jika di panel admin lu punya variabel khusus admin (misal: $_SESSION['role'] !== 'admin'), lu bisa tambahkan di sini.
-if (!isset($_SESSION['loggedin']) || $_SESSION['loggedin'] !== true) {
-    // Jika tidak ada session login, tendang paksa ke halaman login admin
-    header("Location: login.php"); 
-    exit;
-}
+
+  // Variabel $alamat_admin diharapkan dari koneksi.php
+  if (!isset($alamat_admin)) {
+      // Fallback jika $alamat_admin tidak terdefinisi (sesuaikan jika perlu)
+      $current_dir_url_path = dirname($_SERVER['SCRIPT_NAME']);
+      $alamat_admin = (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on' ? "https" : "http") . "://$_SERVER[HTTP_HOST]" . $current_dir_url_path . '/';
+  }
+
+  if (!isset($_SESSION['kode_admin'])) {
+    echo '<script>alert("Terjadi kesalahan, harap masuk kembali!"); window.location.replace("'.rtrim($alamat_admin, '/').'/keluar.php");</script>';
+    exit();
+  }
+
 
 // -------------------------------------------------------------------------
 // REQ FILE KONEKSI DATABASE
 // -------------------------------------------------------------------------
 require_once __DIR__ . '/../koneksi.php'; 
 
-$pesan = "Catat NameServer Akan Terhapus Otomatis ketika halaman di Refresh";
+$pesan = "";
 
 // =========================================================================
-// BACKEND API & LOGIKA CLOUDFLARE / COOLIFY (MURNI TIDAK BERUBAH)
+// BACKEND API & LOGIKA CLOUDFLARE / COOLIFY 
 // =========================================================================
 function sinkronisasiDomainKeCoolifyLokal() {
     global $koneksi;
