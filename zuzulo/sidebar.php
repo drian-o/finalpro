@@ -85,7 +85,7 @@
     </li>
 
     <li class="menu-item" id="tambah_domain"> 
-  <a href="<?php echo $alamat_admin.'tambah_domain.php'; ?>" class="menu-link">
+  <a href="<?php echo $alamat_admin.'tambah_domain'; ?>" class="menu-link">
     <i class="menu-icon tf-icons mdi mdi-web"></i>
       <div>Tambah Domain</div>
     </a>
