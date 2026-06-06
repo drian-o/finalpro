@@ -135,7 +135,7 @@
             </div>
         <?php else : ?>
             <div class="px-3 py-1">
-                <a href="<?php echo htmlspecialchars($alamat_website . 'auth-login'); ?>" class="w-full flex justify-between items-center border border-base py-2 px-2 pl-3 rounded-full">
+                <a href="<?php echo htmlspecialchars($alamat_website . 'auth-login.php'); ?>" class="w-full flex justify-between items-center border border-base py-2 px-2 pl-3 rounded-full">
                     <span>Login</span>
                     <svg width="22" height="22" viewbox="0 0 24 24" fill="var(--base)" xmlns="http://www.w3.org/2000/svg" size="22">
                         <path d="m15 12 .354-.354.353.354-.353.354L15 12ZM9.354 5.646l6 6-.708.708-6-6 .708-.708Zm6 6.708-6 6-.708-.708 6-6 .708.708Z" fill="var(--base)"></path>
