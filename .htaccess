@@ -1,12 +1,9 @@
 Options -Indexes
-
 RewriteEngine On
 
-# Jika yang diakses adalah file asli (seperti gambar, css, js), langsung buka filenya
+# 1. Jika file atau folder asli ada, biarkan akses langsung (agar CSS/JS/Gambar bisa dibuka)
 RewriteCond %{REQUEST_FILENAME} !-f
-
-# Jika yang diakses adalah folder asli, langsung buka foldernya
 RewriteCond %{REQUEST_FILENAME} !-d
 
-# Sisa request URL cantik lainnya dialihkan ke index.php sebagai parameter 'url'
-RewriteRule ^(.*)$ index.php?url=$1 [L,QSA]
+# 2. Jika user akses /history-deposit, arahkan ke history-deposit.php
+RewriteRule ^([^\.]+)$ $1.php [NC,L]
