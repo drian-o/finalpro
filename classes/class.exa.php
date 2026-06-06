@@ -4,7 +4,7 @@ class GameXaAPI {
     private $baseURL = "https://api.httpsgamexaglobal.net";
     private $jwtToken = null; // Ubah ini menjadi null agar otomatis dipanggil
     private $agentCode = "AG1772576397689D2S8"; // Ganti dengan agent code Anda
-    private $password = "luckywin"; // Ganti dengan password Anda
+    private $password = "123@superbone"; // Ganti dengan password Anda
 
     public function __construct($jwtToken = null, $agentCode = null, $password = null) {
         if ($jwtToken) {
