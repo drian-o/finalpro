@@ -489,19 +489,19 @@ $quick_banks = [
 
             <?php if (isset($id_anggota) && $id_anggota !== null): ?>
                 <div class="menu-grid">
-                    <a href="<?php echo htmlspecialchars($alamat_website . 'rtp'); ?>">RTP</a>
-                    <a href="<?php echo htmlspecialchars($alamat_website . 'qris'); ?>">Deposit</a>
-                    <a href="<?php echo htmlspecialchars($alamat_website . 'withdraw'); ?>">Withdraw</a>
-                    <a href="<?php echo htmlspecialchars($alamat_website . 'promo'); ?>">Blog</a>
-                    <a href="<?php echo htmlspecialchars($alamat_website . 'aduan'); ?>">Aduan</a>
-                    <a href="<?php echo htmlspecialchars($alamat_website . 'logout'); ?>" class="logout-btn">Logout</a>
+                    <a href="<?php echo htmlspecialchars($alamat_website . 'rtp.php'); ?>">RTP</a>
+                    <a href="<?php echo htmlspecialchars($alamat_website . 'qris.php'); ?>">Deposit</a>
+                    <a href="<?php echo htmlspecialchars($alamat_website . 'withdraw.php'); ?>">Withdraw</a>
+                    <a href="<?php echo htmlspecialchars($alamat_website . 'promo.php'); ?>">Blog</a>
+                    <a href="<?php echo htmlspecialchars($alamat_website . 'aduan.php'); ?>">Aduan</a>
+                    <a href="<?php echo htmlspecialchars($alamat_website . 'logout.php'); ?>" class="logout-btn">Logout</a>
                 </div>
             <?php else: ?>
                 <div class="menu-grid">
-                    <a href="<?php echo htmlspecialchars($alamat_website . 'rtp'); ?>">RTP</a>
+                    <a href="<?php echo htmlspecialchars($alamat_website . 'rtp.php'); ?>">RTP</a>
                     <a href="#" onclick="showLoginModal(); return false;">Login</a>
                     <a href="#" onclick="showRegisterModal(); return false;">Register</a>
-                    <a href="<?php echo htmlspecialchars($alamat_website . 'promo'); ?>">Blog</a>
+                    <a href="<?php echo htmlspecialchars($alamat_website . 'promo.php'); ?>">Blog</a>
                 </div>
             <?php endif; ?>
         </div>
@@ -518,7 +518,7 @@ $quick_banks = [
                 </div>
                 <p class="nav-item-text">Beranda</p>
             </a>
-            <a class="nav-item" href="<?php echo htmlspecialchars($alamat_website . 'history-deposit'); ?>">
+            <a class="nav-item" href="<?php echo htmlspecialchars($alamat_website . 'history-deposit.php'); ?>">
                 <div class="nav-item-icon">
                     <svg width="100%" height="100%" viewbox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" clip-rule="evenodd" d="M12 1v5.56c0 .466 0 .92.05 1.294.057.421.195.902.594 1.302.4.4.88.537 1.302.594.374.05.828.05 1.294.05h5.56v6.6c0 3.111 0 4.667-.966 5.634C18.867 23 17.31 23 14.2 23H9.8c-3.111 0-4.667 0-5.633-.966C3.2 21.067 3.2 19.51 3.2 16.4V7.6c0-3.111 0-4.667.967-5.633C5.133 1 6.689 1 9.8 1H12Zm2.2.005V6.5c0 .55.002.851.03 1.06l.002.008.008.002c.209.028.51.03 1.06.03h5.495c-.011-.453-.047-.752-.163-1.03-.167-.405-.485-.723-1.12-1.359L16.588 2.29c-.636-.636-.954-.954-1.358-1.122-.278-.115-.578-.15-1.031-.162ZM7.6 13.1A1.1 1.1 0 0 1 8.7 12h6.6a1.1 1.1 0 0 1 0 2.2H8.7a1.1 1.1 0 0 1-1.1-1.1Zm1.1 3.3a1.1 1.1 0 0 0 0 2.2h4.4a1.1 1.1 0 0 0 0-2.2H8.7Z"></path></svg>
                 </div>
@@ -530,7 +530,7 @@ $quick_banks = [
                     <p class="main-btn-text">Menu</p>
                 </button>
             </div>
-            <a class="nav-item" href="<?php echo htmlspecialchars($alamat_website . 'my-account'); ?>">
+            <a class="nav-item" href="<?php echo htmlspecialchars($alamat_website . 'my-account.php'); ?>">
                 <div class="nav-item-icon">
                     <svg width="100%" height="100%" viewbox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M19.651 20.431c.553-.115.883-.694.608-1.187-.606-1.088-1.56-2.043-2.78-2.772-1.572-.938-3.498-1.446-5.479-1.446-1.981 0-3.907.508-5.479 1.446-1.22.729-2.174 1.684-2.78 2.772-.275.493.055 1.072.607 1.187a37.503 37.503 0 0015.303 0z"></path><circle cx="12" cy="8.026" r="5"></circle></svg>
                 </div>
