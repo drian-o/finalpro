@@ -887,7 +887,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
         showAuthLoading('Mendaftar...');
 
-        fetch('<?php echo htmlspecialchars($alamat_website . 'process_register'); ?>', {
+        fetch('<?php echo htmlspecialchars($alamat_website . 'process_register.php'); ?>', {
             method: 'POST',
             body: formData
         })
