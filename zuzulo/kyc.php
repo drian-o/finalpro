@@ -1,8 +1,13 @@
 <?php
+// 1. Sertakan file koneksi
 include_once '../koneksi.php';
-session_start();
 
-// Cek apakah pengguna sudah masuk
+// 2. Gunakan pengecekan status sesi agar tidak double start
+if (session_status() === PHP_SESSION_NONE) {
+    session_start();
+}
+
+// 3. Cek apakah pengguna sudah masuk
 if (!isset($_SESSION['kode_admin'])) {
     echo '
       <script>
