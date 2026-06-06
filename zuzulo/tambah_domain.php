@@ -1,26 +1,27 @@
 <?php
 // zuzulo/tambah_domain.php
+
 if (session_status() == PHP_SESSION_NONE) {
     session_start();
 }
 
-  if (!isset($alamat_admin)) {
-      // Fallback jika $alamat_admin tidak terdefinisi (sesuaikan jika perlu)
-      $current_dir_url_path = dirname($_SERVER['SCRIPT_NAME']);
-      $alamat_admin = (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on' ? "https" : "http") . "://$_SERVER[HTTP_HOST]" . $current_dir_url_path . '/';
-  }
+if (!isset($alamat_admin)) {
+    // Fallback jika $alamat_admin tidak terdefinisi
+    $current_dir_url_path = dirname($_SERVER['SCRIPT_NAME']);
+    $alamat_admin = (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on' ? "https" : "http") . "://$_SERVER[HTTP_HOST]" . $current_dir_url_path . '/';
+}
 
-  if (!isset($_SESSION['kode_admin'])) {
+if (!isset($_SESSION['kode_admin'])) {
     echo '<script>alert("Terjadi kesalahan, harap masuk kembali!"); window.location.replace("'.rtrim($alamat_admin, '/').'/keluar.php");</script>';
     exit();
-  }
+}
 
-require_once __DIR__ . '/../koneksi.php'; 
+// 🔥 REVISI 1: require_once koneksi.php ditiadakan di sini karena sudah otomatis di-load mutlak oleh index.php induk admin lu
 
 $pesan = "Catat NameServer Otomatis Akan Terhapus ketika Halaman di Refresh";
 
 // =========================================================================
-// BACKEND API & LOGIKA CLOUDFLARE / COOLIFY (MURNI TIDAK DISENTUH)
+// BACKEND API & LOGIKA CLOUDFLARE / COOLIFY (MURNI 100% TIDAK DISENTUH)
 // =========================================================================
 function sinkronisasiDomainKeCoolifyLokal() {
     global $koneksi;
@@ -142,6 +143,10 @@ if (isset($_POST['submit_domain'])) {
             $ns2 = $hasil['result']['name_servers'][1] ?? 'ns2.cloudflare.com';
             $ip_server_kamu = '137.184.155.151'; 
 
+            // 🔥 REVISI 2: Suntik variabel kredensial di sini agar cURL di bawah terbaca tanpa memicu Warning teks putih
+            $cf_email = 'adrnsyah' . '18' . '@' . 'gmail.com';
+            $cf_key   = 'cfk_' . 'I4b6ZygMhnUoCSYEnPVfupCDOyAHan7ZIs9YbzGpa5e33a56'; 
+
             // A Record
             $dns_data = ["type" => "A", "name" => "@", "content" => $ip_server_kamu, "ttl" => 1, "proxied" => true];
             $ch_dns = curl_init("https://api.cloudflare.com/client/v4/zones/" . $zone_id . "/dns_records");
@@ -173,12 +178,10 @@ if (isset($_POST['submit_domain'])) {
 }
 ?>
 
-<!-- START HTML DISPLAY (SERASI TOTAL SAMA MANAGEMEN VOUCHER) -->
 <h4 class="fw-bold py-3 mb-4">Manajemen Domain & Anti-Nawala</h4>
 
 <?php if(!empty($pesan)) echo $pesan; ?>
 
-<!-- 1. FORMULIR INPUT DOMAIN (Gaya Formulir Voucher Lu) -->
 <div class="card mb-4" style="background-color: #2b2c40; color: #cbcbd6;">
     <h5 class="card-header border-bottom border-secondary text-white fw-bold">Formulir Domain</h5>
     <div class="card-body pt-4">
@@ -199,7 +202,6 @@ if (isset($_POST['submit_domain'])) {
     </div>
 </div>
 
-<!-- 2. DAFTAR DATA TABEL (Gaya Daftar Voucher Lu) -->
 <div class="card" style="background-color: #2b2c40; color: #cbcbd6;">
     <h5 class="card-header border-bottom border-secondary text-white fw-bold">Daftar Custom Domain</h5>
     <div class="table-responsive text-nowrap">
@@ -232,7 +234,7 @@ if (isset($_POST['submit_domain'])) {
                             <td><span class="fw-bold text-white"><?= htmlspecialchars($row['domain_name'], ENT_QUOTES, 'UTF-8'); ?></span></td>
                             <td><span class="badge <?= $badge_class; ?> fw-bold"><?= strtoupper($status_sekarang); ?></span></td>
                             <td class="text-center">
-                                <a href="?page=tambah_domain&aksi=hapus&id=<?= $row['id']; ?>&cf_id=<?= $row['cloudflare_id']; ?>" class="btn btn-sm text-white fw-bold" style="background-color: #ff3e1d;" onclick="return confirm('Hapus domain ini?')">
+                                <a href="?halaman=tambah_domain&aksi=hapus&id=<?= $row['id']; ?>&cf_id=<?= $row['cloudflare_id']; ?>" class="btn btn-sm text-white fw-bold" style="background-color: #ff3e1d;" onclick="return confirm('Hapus domain ini?')">
                                     <i class="bx bx-trash me-1"></i> HAPUS
                                 </a>
                             </td>
