@@ -426,6 +426,13 @@
       echo "Proses Gagal<br>Error : ".mysqli_error($koneksi);
     }
   }
+    // --- TAMBAHKAN INI DI BAGIAN ATAS PENGATURAN.PHP ---
+$q_amp = mysqli_query($koneksi, "SELECT * FROM pengaturan WHERE nama_pengaturan = 'amp_pengaturan'");
+$d_amp = mysqli_fetch_array($q_amp);
+// Pakai null coalescing (??) biar gak error kalau datanya masih kosong/null
+$isi_1_amp_pengaturan = $d_amp['isi_1_pengaturan'] ?? 'off'; 
+$isi_2_amp_pengaturan = $d_amp['isi_2_pengaturan'] ?? '';
+// ---------------------------------------------------
 ?>
 <div class="container-xxl flex-grow-1 container-p-y">
   <div class="row gy-4 mb-4">
