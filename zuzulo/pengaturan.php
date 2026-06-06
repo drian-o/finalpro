@@ -800,13 +800,15 @@ updateHslValues();
               <option value="on" <?php if(isset($isi_1_amp_pengaturan) && $isi_1_amp_pengaturan == 'on') echo 'selected'; ?>>Aktif</option>
               <option value="off" <?php if(isset($isi_1_amp_pengaturan) && $isi_1_amp_pengaturan == 'off') echo 'selected'; ?>>Nonaktif</option>
             </select>
-            <label>Status AMP</label>
-          </div>
-        </div>
-        <div class="col-md-8">
-          <div class="form-floating form-floating-outline">
-            <input type="text" name="amp_script" class="form-control" value="<?php echo isset($isi_2_amp_pengaturan) ? htmlspecialchars($isi_2_amp_pengaturan) : ''; ?>" placeholder="Masukkan script/meta tag AMP">
-            <label>Script/Meta AMP</label>
+           <label>Status AMP</label>
+      </div>
+    </div>
+    <div class="col-md-8">
+      <div class="form-floating form-floating-outline">
+        <input type="text" name="amp_script" class="form-control" 
+               value="<?php echo htmlspecialchars($isi_2_amp_pengaturan); ?>" 
+               placeholder="<?php echo ($isi_1_amp_pengaturan == 'on') ? 'AMP Sedang Aktif (Nawala Terproteksi)' : 'AMP Sedang Nonaktif (Segera Aktifkan!)'; ?>">
+        <label>Script/Meta AMP</label>
           </div>
         </div>
       </div>
