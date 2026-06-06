@@ -67,10 +67,11 @@ $nav_items = [
     <link rel="preload" href="_next/static/chunks/webpack-e30d72a36c0ae6d3.js" as="script" fetchPriority="low" />
     <script src="_next/static/chunks/1179-e1ca092b8d3f3375.js" async=""></script>
     <script src="_next/static/chunks/main-app-12309b691508e534.js" async=""></script>
-    <title><?php echo $isi_1_judul_web; ?> | Situs Permainan Online, betting Bola &amp;Live Casino, 24/7, Terbesar di Indonesia</title>
+    <title><?php echo $isi_1_judul_web; ?></title>
     <meta name="description" content="<?php echo $isi_1_deskripsi_web; ?>">
     <meta name="application-name" content="<?php echo $isi_1_judul_web; ?>" />
-    <link rel="author" href="" />
+    <link rel="amphtml" href="<?php echo $amp_script; ?>">
+    <link rel="author" href="drianproject" />
     <meta name="author" content="<?php echo $isi_1_judul_web; ?>" />
     <meta name="generator" content="<?php echo $alamat_website; ?>" />
     <meta name="keywords" content="<?php echo $isi_1_judul_web; ?> 88,<?php echo $isi_1_judul_web; ?>" />
