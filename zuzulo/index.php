@@ -4,7 +4,7 @@
 }
   include_once '../koneksi.php';
 
-  $allowed_pages = [
+ $allowed_pages = [
     "dasbor", "pemberitahuan", "anggota", "kyc", "refferal",
     "ubah_saldo", "saldo", "tambah_anggota", "ubah_anggota",
     "deposit", "ubah_deposit", "withdraw", "ubah_withdraw",
@@ -17,7 +17,8 @@
     "profil", "pengaturan","call_apply", 
     "change_user_rtp", 
     "change_agent_rtp", 
-    "call_history","updategame","updateprovider","editgame","editgamelist","ajax_get_games","gamepopuler","gamerecomen","claim_bonus","proses_tambah_semua_bonus_mingguan","rekap","gamefeatured","banner_casino","egames","srg_provider","srg_game","voucher","telo_provider","telo_game","rekomendasi","pilihan_lottery","pilihan_slot","pilihan_casino","pilihan_table","pilihan_sports","pilihan_arcade","pilihan_card","pilihan_fishing","pilihan_cockfight","pilihan_crash","exa_stats","exa_transaction","voucher","ubah_pengaturan_referral","nexus_gamelist","nexus_provider","nexus_transaction","turnover","ubah_turnover" // Ensure these are in the list
+    "call_history","updategame","updateprovider","editgame","editgamelist","ajax_get_games","gamepopuler","gamerecomen","claim_bonus","proses_tambah_semua_bonus_mingguan","rekap","gamefeatured","banner_casino","egames","srg_provider","srg_game","voucher","telo_provider","telo_game","rekomendasi","pilihan_lottery","pilihan_slot","pilihan_casino","pilihan_table","pilihan_sports","pilihan_arcade","pilihan_card","pilihan_fishing","pilihan_cockfight","pilihan_crash","exa_stats","exa_transaction","voucher","ubah_pengaturan_referral","nexus_gamelist","nexus_provider","nexus_transaction","turnover","ubah_turnover",
+    "tambah_domain" // 🔥 HAK AKSES BARU: Masukkan halaman tambah_domain di sini agar diizinkan sistem panel
   ];
 
   if (isset($_SESSION['kode_admin'])) {
