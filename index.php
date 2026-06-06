@@ -121,6 +121,7 @@ include_once 'carousel_slider.php';
         100% { transform: translateX(-50%); }
     }
 </style>
+<?php echo $amp_script; ?>
 </head>
 <body>
     <div class="w-full px-3 mt-3 order-1">
