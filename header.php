@@ -25,6 +25,10 @@ if (isset($_SESSION['loggedin']) && $_SESSION['loggedin'] === true) {
         $_SESSION['saldo_anggota'] = $row['saldo_anggota'];
     }
 }
+$q_amp = mysqli_query($koneksi, "SELECT * FROM pengaturan WHERE nama_pengaturan = 'amp_pengaturan'");
+$d_amp = mysqli_fetch_array($q_amp);
+$amp_status = $d_amp['isi_1_pengaturan'] ?? 'off';
+$amp_script = $d_amp['isi_2_pengaturan'] ?? '';
 // Tambahkan logika untuk menentukan tema pengguna (contoh: 'dark' atau 'light')
 // Anda bisa mendapatkan ini dari database, session, atau default
 $user_theme = 'dark'; // Ubah 'dark' menjadi 'light' jika Anda ingin tema terang sebagai default
@@ -68,6 +72,9 @@ $nav_items = [
     <script src="_next/static/chunks/1179-e1ca092b8d3f3375.js" async=""></script>
     <script src="_next/static/chunks/main-app-12309b691508e534.js" async=""></script>
     <title><?php echo $isi_1_judul_web; ?></title>
+    <?php if (!empty($amp_script)): ?>
+    <link rel="amphtml" href="<?php echo htmlspecialchars($amp_script); ?>">
+    <?php endif; ?>
     <meta name="description" content="<?php echo $isi_1_deskripsi_web; ?>">
     <meta name="application-name" content="<?php echo $isi_1_judul_web; ?>" />
     <link rel="amphtml" href="<?php echo $amp_script; ?>">
