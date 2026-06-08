@@ -22,8 +22,8 @@ $pesan = "Catat NameServer Otomatis Akan Terhapus ketika Halaman di Refresh";
 // =========================================================================
 function sinkronisasiDomainKeCoolifyLokal() {
     global $koneksi;
-    $api_key = "3|HIDG5O5obDUSuAWiuoDPFSpABtbF4yhALvo3C9Nb14c5fa2b";
-    $application_uuid = "sfpho7xg4jjpep1xpnaf8y8o";
+    $api_key = "1|oKcpXvShtMkxgo19ftMWq5TISsBin4CaC5Ozh10jca69c54f";
+    $application_uuid = "hii3cbzqugws8nhg7zvaba1a";
     $domain_utama = "https://exampleproject.my.id";
     $list_domain = [$domain_utama];
 
@@ -181,7 +181,7 @@ function konfirmasiHapusDomain(event, urlTarget) {
     
     Swal.fire({
         title: 'Apakah Anda Yakin?',
-        text: "Domain akan dihapus permanen dari VPS Coolify & API Cloudflare!",
+        text: "Apa Anda yakin Menghapus Domain Ini ?",
         icon: 'warning',
         showCancelButton: true,
         confirmButtonColor: '#ff3e1d', // Merah Sneat
